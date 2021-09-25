@@ -38,5 +38,12 @@ public class EnemyStatus : HealthManager
     {
         curHealth -= damage;
         healthBarManager.UpdateHealth(curHealth / maxHealth);
+        if (curHealth <= 0)
+        {
+            EnemyManager tmp = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
+            tmp.Die(position);
+            Destroy(healthBarManager.gameObject);
+            Destroy(gameObject);
+        }
     }
 }
