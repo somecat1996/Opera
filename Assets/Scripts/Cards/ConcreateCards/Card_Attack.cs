@@ -6,6 +6,10 @@ using UnityEngine;
 // 使用卡牌操作接口以及效果实现接口且声明卡牌信息类
 public class Card_Attack : MonoBehaviour, ICardOperation,ICardEffectTrigger
 {
+    // ***卡牌信息动态读取***
+    // 即所有CardBasicInfomation通过Resourse.Load来载入数据
+    // 每当新开游戏时 CardManager读取所有卡牌基本信息 将所有卡牌等级设为0 再将特定卡牌等级设为1
+    // 若有存档则Card读取所有卡牌信息且根据存档一一修改对应等级
     public CardBasicInfomation cardInfo;
 
     // 每张卡具体造成效果数值放在具体类上
