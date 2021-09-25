@@ -24,7 +24,7 @@ public class CardManager : MonoBehaviour
 
     [Header("Temp")]
     public GameObject card_Attack;
-   
+    public Dictionary<int, CardBasicInfomation> dic = new Dictionary<int, CardBasicInfomation>();
 
     private void Awake()
     {
@@ -33,10 +33,18 @@ public class CardManager : MonoBehaviour
 
     void Start()
     {
+        // ***动态读取测试***
+        int j = 10;
+        foreach (var i in Resources.LoadAll<CardBasicInfomation>("CardInfomation")) {
+            Debug.Log(i.id);
+            i.level = j;
+            j += j;
+        }
+
         // 测试用
         // 正式开始游戏前 需要将所选卡牌进行压入队列操作
         // 后在将其放入操作栏
-        for(int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject go = GameObject.Instantiate<GameObject>(card_Attack);
             go.transform.parent = tempLayoutGroup;
