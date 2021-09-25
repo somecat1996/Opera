@@ -48,10 +48,11 @@ public class Card_Attack : MonoBehaviour, ICardOperation,ICardEffectTrigger
         {
             Debug.Log(hit.transform.name);
 
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
-            if (enemy)
+            HealthManager healthManager = hit.transform.GetComponent<HealthManager>();
+            if (healthManager)
             {
-                enemy.cur_healthPoint -= 5;
+                Debug.Log(healthManager);
+                healthManager.Hurt(5);
 
                 // 使用完毕 卡牌扔回等待队列或者直接销毁
                 CardManager.instance.SendToTempGroup(gameObject);
