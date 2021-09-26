@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d192056b336d2459d3b0891b12eb1e, type: 3}
+  m_Name: 3_Break
+  m_EditorClassIdentifier: 
+  id: 3
+  cardName: Break
+  description: AOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+  story: 6666666666as4d65as4d5a6sd4as56d4a5s64d5a6sd4as65d4as56d4as6d4as56da4s5d4as6d45asda6sd45a6d5as4da65sd4a5s6d4as56d4a6s5d4a6s5d4a65sd4a65sd4a65sdas65d4a65s4d
+  illustration: {fileID: 21300000, guid: c7f1cb364719c6b489a2d6a43994aa16, type: 3}
+  rarity: 1
+  belonger: 2
+  mainValue_Origin: 80
+  cost: 1
+  duration: 0
+  radius: 0
+  mainValue_Cur: 80
+  quantity: 2
+  level: 3

@@ -7,7 +7,6 @@ using UnityEngine;
 public class Card_Attack : MonoBehaviour, ICardOperation,ICardEffectTrigger
 {
     // ***卡牌信息动态读取***
-    // 即所有CardBasicInfomation通过Resourse.Load来载入数据
     // 每当新开游戏时 CardManager读取所有卡牌基本信息 将所有卡牌等级设为0 再将特定卡牌等级设为1
     // 若有存档则Card读取所有卡牌信息且根据存档一一修改对应等级
     public CardBasicInfomation cardInfo;
@@ -57,9 +56,16 @@ public class Card_Attack : MonoBehaviour, ICardOperation,ICardEffectTrigger
             {
                 Debug.Log(healthManager);
                 healthManager.Hurt(5);
-
                 // 使用完毕 卡牌扔回等待队列或者直接销毁
-                CardManager.instance.SendToTempGroup(gameObject);
+                CardManager.instance.SendToDiscardedCardGroup(gameObject);
+            }
+
+            // 场景2 测试使用
+            Enemy e = hit.transform.GetComponent<Enemy>();
+            if (e)
+            {
+                e.cur_healthPoint -= 5;
+                CardManager.instance.SendToDiscardedCardGroup(gameObject);
             }
         }
 

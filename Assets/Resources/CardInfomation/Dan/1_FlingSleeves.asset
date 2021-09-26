@@ -10,11 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45d192056b336d2459d3b0891b12eb1e, type: 3}
-  m_Name: CardInfo_Attack
+  m_Name: 1_FlingSleeves
   m_EditorClassIdentifier: 
   id: 1
-  cardName: Attack
-  cost: 3
-  description: Just for fun
+  cardName: FlingSleeves
+  description: hello thank are you ok
+  story: Im fine thank you and you
+  illustration: {fileID: 21300000, guid: 943835a194a6d384a8d8f9d82615fa10, type: 3}
+  rarity: 1
+  belonger: 2
+  mainValue_Origin: 100
+  cost: 1
   duration: 0
-  useForEnemy: 1
+  radius: 0
+  mainValue_Cur: 146.41
+  quantity: 32
+  level: 5

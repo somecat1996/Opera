@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d192056b336d2459d3b0891b12eb1e, type: 3}
+  m_Name: 5_Debut
+  m_EditorClassIdentifier: 
+  id: 5
+  cardName: Debut
+  description: "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999\t666666666666666666"
+  story: a4sd65qwe87978vbcc8vb7c9vb7cv9b7cvb9cv7b8c9b78c9vb7cv9bcvb7cvb97cvb79cvb7c98vb7c98vb7cv98b7cv98b789cvbcv9bc7v9b8cvbc89vb7c89vb7cv98bcv89bcv798
+  illustration: {fileID: 21300000, guid: ae4e938b72fda334996a552dae4ea034, type: 3}
+  rarity: 3
+  belonger: 2
+  mainValue_Origin: 10
+  cost: 2
+  duration: 5
+  radius: 100
+  mainValue_Cur: 10
+  quantity: 11
+  level: 5
