@@ -14,7 +14,9 @@ public class CardBasicInfomation : ScriptableObject
     [TextArea]
     public string story;
     public Sprite illustration;
-    public int rarity;
+    [Header("1-基础 2-稀有 3-诗史 4-传说")]
+    [Range(1,4)]
+    public int rarity = 1;
 
     public CharacterType.Character belonger; // 卡牌所属角色
 

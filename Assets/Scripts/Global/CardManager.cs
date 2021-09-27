@@ -76,8 +76,8 @@ public class CardManager : MonoBehaviour
             total_Card++;
         }
 
-        // 测试增加新卡牌
-        for (int i = 1; i <= 5; i++)
+        // 测试增加新卡牌 **** 暂时没有限定卡牌携带数量 *****
+        for (int i = 1; i <= 15; i++)
         {
             GameObject go = Instantiate <GameObject>(instanceCardLibrary[i]);
             go.transform.parent = tempLayoutGroup;

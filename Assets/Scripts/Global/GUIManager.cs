@@ -10,6 +10,7 @@ public class GUIManager : MonoBehaviour
 
     [Header("Objects")]
     public GameObject cardList; // 卡牌列表容器
+    public Scrollbar cardList_ScrollBar; // 卡牌容器滚动条
     public GameObject listCardSample; // 列表卡牌样本
 
     [Header("CardDetails Object")]
@@ -75,6 +76,7 @@ public class GUIManager : MonoBehaviour
     {
         GameObject go = GameObject.Instantiate(listCardSample);
         go.transform.parent = cardList.transform;
+        go.transform.localScale = Vector3.one;
         go.GetComponent<ListCardSetter>().SetCardInfo(_cardInfo);
 
         // *****未知组件启用BUG 暂时解决方法*****
@@ -90,6 +92,8 @@ public class GUIManager : MonoBehaviour
         {
             i.enabled = true;
         }
+
+        cardList_ScrollBar.value = 1;
     }
     
     // 展示卡牌细节 将列表卡牌数据存储至细节画面对象中

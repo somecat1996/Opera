@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45d192056b336d2459d3b0891b12eb1e, type: 3}
-  m_Name: CardInfo_Attack
+  m_Name: 7_RainyOrchid
   m_EditorClassIdentifier: 
-  id: 1
-  cardName: Attack
-  description: Just for fun
-  story: Have  Fun
+  id: 7
+  cardName: RainyOrchid
+  description: 
+  story: 
   illustration: {fileID: 0}
-  rarity: 0
-  belonger: 0
-  mainValue_Origin: 0
+  rarity: 1
+  belonger: 2
+  mainValue_Origin: 0.75
   cost: 3
-  duration: 0
+  duration: 6
   radius: 0
   mainValue_Cur: 0
   quantity: 0
-  level: 1
+  level: 0
