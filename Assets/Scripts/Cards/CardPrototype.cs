@@ -10,4 +10,9 @@ public class CardPrototype : MonoBehaviour
     {
         return cardInfo.id;
     }
+
+    public void LoadCardInfo(string _path)
+    {
+        cardInfo = Resources.Load<CardBasicInfomation>(_path);
+    }
 }

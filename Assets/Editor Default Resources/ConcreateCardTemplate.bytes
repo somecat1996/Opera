@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConcreateCardTemplate : CardPrototype,ICardOperation,ICardEffectTrigger
+public class #ClassName : CardPrototype,ICardOperation,ICardEffectTrigger
 {
     public void mouseDrag()
     {
@@ -17,7 +17,6 @@ public class ConcreateCardTemplate : CardPrototype,ICardOperation,ICardEffectTri
 
     public void mouseExit()
     {
-        // 当未检测到目标或因其他原因失效时 返回位置
         CardManager.instance.ReflashLayoutGroup();
         Vector3 scale = Vector3.one;
         transform.localScale = scale;

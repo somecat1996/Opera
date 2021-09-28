@@ -16,9 +16,9 @@ public class CardBasicInfomation : ScriptableObject
     public Sprite illustration;
     [Header("1-基础 2-稀有 3-诗史 4-传说")]
     [Range(1,4)]
-    public int rarity = 1;
+    public int rarity = 1;  
 
-    public CharacterType.Character belonger; // 卡牌所属角色
+    public CharacterType.Character belongner; // 卡牌所属角色
 
     [Header("卡牌效果相关数据")]
     public float mainValue_Origin; // 初始主要参数-用于治疗量或攻击量
