@@ -35,6 +35,7 @@ public class Card_BirdsAndFlowers : CardPrototype,ICardEffectTrigger,ICardOperat
 
     public void TriggerEffect()
     {
-        throw new System.NotImplementedException();
+        // Buff Ð§¹û
+        Invoke("RevokeEffect",cardInfo.duration);
     }
 }

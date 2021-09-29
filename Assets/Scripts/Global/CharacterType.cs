@@ -11,6 +11,4 @@ public static class CharacterType {
         Jing,
         Chou
     }
-
-    public static Character cur_Character;
 }

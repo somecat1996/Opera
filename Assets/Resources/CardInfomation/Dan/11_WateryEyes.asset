@@ -18,11 +18,11 @@ MonoBehaviour:
   story: 
   illustration: {fileID: 0}
   rarity: 3
-  belonger: 2
+  belongner: 2
   mainValue_Origin: 20
   cost: 6
   duration: 5
   radius: 0
-  mainValue_Cur: 0
+  mainValue_Cur: 20
   quantity: 0
-  level: 0
+  level: 1

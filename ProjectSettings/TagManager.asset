@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HealthBarCanvas
   - EnemyManager
+  - Card
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - UI_CardSlot
+  - UI_UnselectedList
   - 
   - 
   - 

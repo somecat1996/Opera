@@ -29,7 +29,7 @@ public class ListCardSetter : MonoBehaviour
     {
         cardInfo = _cardInfo;
 
-        illustration.sprite = _cardInfo.illustration;
+        illustration.sprite = cardInfo.illustration;
 
         text_Name.text = cardInfo.cardName;
         text_Level.text = cardInfo.level.ToString();
