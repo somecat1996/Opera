@@ -58,7 +58,17 @@ public class GUIManager : MonoBehaviour
 
     void Update()
     {
+        
+    }
 
+    public IEnumerator Test()
+    {
+        int i = 0;
+        while(i != 3)
+        {
+            Debug.Log(i);
+            yield return new WaitForSeconds(1);
+        }
     }
 
     public void SetBossHealthPoint(float _v)
