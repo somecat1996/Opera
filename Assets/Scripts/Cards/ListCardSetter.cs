@@ -43,6 +43,7 @@ public class ListCardSetter : MonoBehaviour
             sprit.gameObject.SetActive(false);
 
             label_Max.gameObject.SetActive(true);
+            label_Max.GetComponent<TextMeshProUGUI>().enabled = true;
         }
         else
         {

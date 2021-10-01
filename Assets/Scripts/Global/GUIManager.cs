@@ -10,7 +10,6 @@ public class GUIManager : MonoBehaviour
 
     [Header("CardList Objects")]
     public GameObject cardList; // 卡牌列表容器
-    public Scrollbar cardList_ScrollBar; // 卡牌容器滚动条
     public GameObject listCardSample; // 列表卡牌样本
     [Space]
     [Header("UnselectedCardList Objects")]
@@ -18,7 +17,7 @@ public class GUIManager : MonoBehaviour
     public LayoutGroup unselectedCardList_LayoutGroup; // 待选卡牌容器的排序组件
     public Mask unselectedCardList_Mask; // 待选卡牌容器遮罩组件
     public GameObject unselectedCardTemplatee; // 待选卡牌容器模板
-    public Transform selectedCardTempParent; // 选中卡牌临时父母节点
+    public Transform selectedCardTempParent; // 选中卡牌临时(容器)父母节点
 
     [Header("CardDetails Object")]
     public ListCardSetter selectedCard;
@@ -39,7 +38,11 @@ public class GUIManager : MonoBehaviour
     public TextMeshProUGUI cardDetail_Text_Story;
 
     public GameObject cardDetail_Label_Max;
-        
+
+    [Header("Other Objects")]
+    public List<TextMeshProUGUI> text_Money = new List<TextMeshProUGUI>();
+
+    public Button button_Contiune;
 
     [Header("Temp")]
     public Slider boss_HealthPoint;
@@ -106,8 +109,6 @@ public class GUIManager : MonoBehaviour
         {
             i.enabled = true;
         }
-
-        cardList_ScrollBar.value = 1;
     }
     
     // 展示卡牌细节 将列表卡牌数据存储至细节画面对象中
@@ -156,8 +157,8 @@ public class GUIManager : MonoBehaviour
         selectedCard.cardInfo.UpgradeMainValue(); 
 
         // 刷新界面信息
-        selectedCard.SetCardInfo(selectedCard.cardInfo);
-        SetCardDetail(selectedCard);
+        selectedCard.SetCardInfo(selectedCard.cardInfo); // 自带刷新卡牌列表界面的信息
+        SetCardDetail(selectedCard); // 刷新细节列表的信息
     }
 
     // 重新排序未选中卡牌队列
@@ -165,15 +166,22 @@ public class GUIManager : MonoBehaviour
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(unselectedCardList.GetComponent<RectTransform>());
     }
-    // 清空未选择卡牌列表
+    // 清空未选择卡牌列表 及 *已选卡牌列表*
     public void ClearUnselectedCardList()
     {
         for(int i = 0; i < unselectedCardList.transform.childCount; i++)
         {
             Destroy(unselectedCardList.transform.GetChild(i).gameObject);
         }
+
+        for (int i = 0; i < selectedCardTempParent.transform.childCount; i++)
+        {
+            Destroy(selectedCardTempParent.transform.GetChild(i).gameObject);
+        }
     }
-    // 生成一张卡牌并放入未选择列表
+
+
+    // 生成一张卡牌并放入未选择列表   
     public void AddUnselectedCard(CardBasicInfomation _card)
     {
         GameObject go = Instantiate(unselectedCardTemplatee);
@@ -187,5 +195,20 @@ public class GUIManager : MonoBehaviour
     {
         unselectedCardList_LayoutGroup.enabled = _v;
         unselectedCardList_Mask.enabled = _v;
+    }
+
+    public void ChangeMoneyText(int _v)
+    {
+        foreach(var i in text_Money)
+        {
+            i.text = _v.ToString();
+        }
+
+    }
+
+    // 锁定继续按钮
+    public void LockButton_Continue(bool _v)
+    {
+        button_Contiune.interactable = !_v;
     }
 }

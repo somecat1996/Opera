@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45d192056b336d2459d3b0891b12eb1e, type: 3}
-  m_Name: 7_RainyOrchid
+  m_Name: 22_RainyOrchid
   m_EditorClassIdentifier: 
-  id: 7
+  id: 22
   cardName: RainyOrchid
   description: 
   story: 

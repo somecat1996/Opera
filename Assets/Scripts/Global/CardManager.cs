@@ -22,6 +22,7 @@ public class CardManager : MonoBehaviour
     public Dictionary<int, CardBasicInfomation> cardLibrary = new Dictionary<int, CardBasicInfomation>(); // 卡牌库 存放所有与角色相关的卡牌
     public Dictionary<int, CardBasicInfomation> cardLibrary_Commona = new Dictionary<int, CardBasicInfomation>(); // 额外卡牌库
     public Dictionary<int, GameObject> instanceCardLibrary = new Dictionary<int, GameObject>(); // 卡牌信息对应实例卡牌
+
     public List<CardBasicInfomation> cardLibrary_Selected = new List<CardBasicInfomation>(); // 玩家选择的卡牌
 
     [Header("Objects")]
@@ -45,51 +46,21 @@ public class CardManager : MonoBehaviour
         // 卡牌列表库测试
         LoadCardLibrary(); // 将指定角色卡牌载入到库
 
-        //InitializeAllCards(); // 初始化解锁角色所有卡牌 等级设定为 1 同时锁定所有额外卡牌
-        LoadExtraCardLibrary(); // 将通用卡牌载入到列表中以备使用
+        //InitializeAllCards(); // 初始化解锁角色所有卡牌 等级设定为 1 同时锁定所有通用卡牌
+        LoadCommonCardLibrary(); // 将通用卡牌载入到列表中以备使用
         LoadCardInstance(); // 将库中卡牌对应的实例载入到字典中以备使用
         LoadAllCardIntoUnselectedList(); // 将卡牌库的信息载入到选择列表中
         LoadAllCardIntoCardList();// 卡牌展示 测试
 
-
-        /*
-        // 测试用
-        // 正式开始游戏前 需要将所选卡牌进行压入队列操作
-        // 后在将其放入操作栏
-        for (int i = 0; i < 5; i++)
-        {
-            GameObject go = GameObject.Instantiate<GameObject>(card_Attack);
-            go.transform.parent = tempLayoutGroup;
-            go.name = "card_Attack_" + i;
-            go.transform.localScale = Vector3.one;
-            cardQueue.Add(go);
-
-            total_Card++;
-        }
-
-        // 测试增加新卡牌 **** 暂时没有限定卡牌携带数量 *****
-        for (int i = 1; i <= 15; i++)
-        {
-            GameObject go = Instantiate <GameObject>(instanceCardLibrary[i]);
-            go.transform.parent = tempLayoutGroup;
-            go.transform.localScale = Vector3.one;
-
-            cardQueue.Add(go);
-            total_Card++;
-        }
-
-        while (cardQueue.Count != 0 && cur_Card != max_Cur_Card)
-        {
-            SendToLayoutGroup();
-        }
-        */
     }
 
     void Update()
     {
+        // 测试用 生成战斗画面卡牌
         if (Input.GetMouseButtonDown(1))
         {
-            LoadSelectedCard();
+            //LoadSelectedCard();
+            RealignAndLoadCards();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -97,12 +68,13 @@ public class CardManager : MonoBehaviour
         }
     }
 
+
     // 将等待队列中的卡牌送入游戏画面
     public void SendToLayoutGroup()
     {
         GameObject go = cardQueue[0];
         cardQueue.RemoveAt(0);
-        go.transform.parent = layoutGroup;
+        go.transform.parent = layoutGroup;  
         cur_Card++;
     }
     // 将使用过的卡牌送出画面并放入弃牌队列中
@@ -147,12 +119,12 @@ public class CardManager : MonoBehaviour
     }
 
     // 读取额外卡牌库
-    public void LoadExtraCardLibrary()
+    public void LoadCommonCardLibrary()
     {
 
     }
 
-    // 读取卡牌实例并放入字典中
+    // 读取卡牌实例并放入字典中以作备用
     public void LoadCardInstance()
     {
         // 判断角色类型
@@ -162,7 +134,9 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    // 将卡牌库中的所有卡牌载入到卡牌暂时界面中
+    
+
+    // 将卡牌库中的所有卡牌载入到卡牌展示界面中
     public void LoadAllCardIntoCardList()
     {
         GUIManager.instance.ClearCardList();
@@ -178,28 +152,38 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    // 重新排列并载入玩家所选择的卡牌-开始战斗场景时使用
+    // 重新排列并载入玩家所选择的卡牌——***开始战斗场景时使用***
     public void RealignAndLoadCards()
     {
+        List<CardBasicInfomation> tempCardList = new List<CardBasicInfomation>();
+        
+        // 载入角色卡
+
+        // 载入通用卡
+        for(int i = 0; i < cardLibrary_Selected.Count; i++)
+        {
+            tempCardList.Add(cardLibrary[cardLibrary_Selected[i].id]);
+        }
+
         // 重新排列
-        int count = cardLibrary_Selected.Count - 1;
+        int count = tempCardList.Count - 1;
 
         while (count != 0)
         {
             int index = Random.Range(0, count + 1);
             
             CardBasicInfomation temp = cardLibrary_Selected[count];
-            cardLibrary_Selected[count] = cardLibrary_Selected[index];
-            cardLibrary_Selected[index] = temp;
+            tempCardList[count] = tempCardList[index];
+            tempCardList[index] = temp;
 
             count --;
         }
 
         // 所选卡牌进行压入等待队列
         // 后在将其放入操作栏
-        for (int i = 0; i < cardLibrary_Selected.Count; i++)
+        for (int i = 0; i < tempCardList.Count; i++)
         {
-            GameObject go = instanceCardLibrary[cardLibrary_Selected[i].id];
+            GameObject go = Instantiate(instanceCardLibrary[tempCardList[i].id]);
             go.transform.parent = tempLayoutGroup;
             go.transform.localScale = Vector3.one;
             cardQueue.Add(go);
@@ -219,7 +203,7 @@ public class CardManager : MonoBehaviour
         // 初始化角色卡牌
         foreach(var i in cardLibrary.Values)
         {
-            i.UnlockCard();
+            i.InitilizeCard();
         }
         // 初始化额外卡牌
         foreach(var i in cardLibrary_Commona.Values)
@@ -231,15 +215,18 @@ public class CardManager : MonoBehaviour
     // 将所有卡牌载入到未选中容器中
     public void LoadAllCardIntoUnselectedList()
     {
-        GUIManager.instance.ClearUnselectedCardList();
+        // 清除卡牌操作由PlayerManager执行 此处临时使用
+       // GUIManager.instance.ClearUnselectedCardList();
+        //ClearSelectedCard();
 
-        foreach(var i in cardLibrary.Values)
+        // 此处应遍历通用卡牌库 临时遍历卡牌库
+        foreach (var i in cardLibrary.Values)
         {
             GUIManager.instance.AddUnselectedCard(i);
         }
     }
     // 清空所有已选中的卡牌
-    public void ClearSelectedCard(CardBasicInfomation _card)
+    public void ClearSelectedCard()
     {
         cardLibrary_Selected.Clear();
 

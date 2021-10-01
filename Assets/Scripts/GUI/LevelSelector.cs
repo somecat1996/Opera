@@ -2,28 +2,133 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour
 {
-    GameObject[] go = new GameObject[3];
+    List<GameObject> buttonList = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    [Header("Configuration")]
+    public float speed = 1.0f;
+    public int offset = 250;
+    public Vector3 maxScale = new Vector3(1.35f, 1.35f, 1.35f);
+    public Color color_Disable = new Color(0.5f, 0.5f, 0.5f);
+
+    [Header("Real-Time Data")]
+    public int currentIndex = 0;
+    private bool enable = true;
+
+
+    private void Awake()
     {
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            go[i] = transform.GetChild(i).gameObject;
+            buttonList.Add(transform.GetChild(i).gameObject);
         }
 
-        foreach(var i in go)
-        {
-            i.transform.DOMoveX(100, 2);
-        }
+        InitializeAllButton();
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+
+    }
+
     void Update()
     {
         
+    }
+
+    private void OnEnable()
+    {
+        InitializeAllButton();
+    }
+
+    public void InitializeAllButton()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if(currentIndex == i)
+            {
+                buttonList[i].GetComponent<RectTransform>().localScale = maxScale;
+            }
+            else
+            {
+                buttonList[i].GetComponent<Image>().color = color_Disable;
+            }
+        }
+    }
+
+    // ×óÐý
+    public void TurnLeft()
+    {
+        if (currentIndex == 0 || !enable)
+            return;
+        currentIndex--;
+
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            RectTransform rect = buttonList[i].GetComponent<RectTransform>();
+            Image image = buttonList[i].GetComponent<Image>();
+            Vector3 pos = rect.localPosition;
+            pos.x += offset;
+
+            rect.transform.DOLocalMove(pos, speed);
+
+            if (i == currentIndex)
+            {
+                rect.transform.DOScale(maxScale, speed);
+                image.DOColor(Color.white,speed);
+                
+            }
+            else
+            {
+                rect.transform.DOScale(Vector3.one, speed);
+                image.DOColor(color_Disable, speed);
+            }
+        }
+
+        enable = false;
+        Invoke("Enable", speed);
+
+    }
+    
+    // ÓÒÐý
+    public void TurnRight()
+    {
+        if (currentIndex == transform.childCount-1 || !enable)
+            return;
+        currentIndex++;
+
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            RectTransform rect = buttonList[i].GetComponent<RectTransform>();
+            Image image = buttonList[i].GetComponent<Image>();
+            Vector3 pos = rect.localPosition;
+            pos.x -= offset;
+
+            rect.transform.DOLocalMove(pos, speed);
+
+            if (i == currentIndex)
+            {
+                rect.transform.DOScale(maxScale, speed);
+                image.DOColor(Color.white, speed);
+            }
+            else
+            {
+                rect.transform.DOScale(Vector3.one, speed);
+                image.DOColor(color_Disable, speed);
+            }
+        }
+
+        enable = false;
+        Invoke("Enable", speed);
+    }
+
+    private void Enable()
+    {
+        enable = true;
     }
 }

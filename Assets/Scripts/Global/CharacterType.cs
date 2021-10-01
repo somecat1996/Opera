@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class CharacterType {
-    public enum Character
+    public enum CharacterTag
     {
         Common = 0,
         Sheng,

@@ -15,7 +15,7 @@ public class CardCreator : EditorWindow
     Sprite illustration;
 
     int rarity = 1;
-    CharacterType.Character belongner;
+    CharacterType.CharacterTag belongner;
 
     public float mainValue;
     public int cost;
@@ -45,7 +45,7 @@ public class CardCreator : EditorWindow
 
         GUILayout.Label("1-基础 2-稀有 3-实施 4-传说");
         rarity = EditorGUILayout.IntSlider("Rarity", rarity, 1, 4);
-        belongner = (CharacterType.Character)EditorGUILayout.EnumPopup("Belonger", belongner);
+        belongner = (CharacterType.CharacterTag)EditorGUILayout.EnumPopup("Belonger", belongner);
 
         mainValue = EditorGUILayout.FloatField("Main Value", mainValue);
         cost = EditorGUILayout.IntField("Cost", cost);

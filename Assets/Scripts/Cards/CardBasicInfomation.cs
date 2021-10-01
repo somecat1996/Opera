@@ -18,7 +18,7 @@ public class CardBasicInfomation : ScriptableObject
     [Range(1,4)]
     public int rarity = 1;  
 
-    public CharacterType.Character belongner; // 卡牌所属角色
+    public CharacterType.CharacterTag belongner; // 卡牌所属角色
 
     [Header("卡牌效果相关数据")]
     public float mainValue_Origin; // 初始主要参数-用于治疗量或攻击量
@@ -48,23 +48,35 @@ public class CardBasicInfomation : ScriptableObject
                 return false;
             }
 
+            // 先确定数量后确定货币
             if (quantity >= CardManager.instance.cardCommonData.upgrade_Demanded[level])
             {
-                quantity -= CardManager.instance.cardCommonData.upgrade_Demanded[level];
-                mainValue_Cur *= 1.1f;
-                Debug.Log("Upgraded successfully!");
-                level++;
-                return true;
-            }
+                if (PlayerManager.instance.ChangeMoney(-CardManager.instance.cardCommonData.upgrade_MoneyCost[level]))
+                {
+                    quantity -= CardManager.instance.cardCommonData.upgrade_Demanded[level];
+                    mainValue_Cur *= 1.1f;
+                    Debug.Log("Upgraded successfully!");
+                    level++;
 
-            Debug.Log("Insufficient card");
+                    GUIManager.instance.ChangeMoneyText(PlayerManager.instance.data.money);
+                    return true;
+                }
+                else
+                {
+                    Debug.Log("Insufficient money");
+                }
+            }
+            else
+            {
+                Debug.Log("Insufficient card");
+            }
 
             return false;
         }
     }
 
-    // 解锁卡牌
-    public void UnlockCard()
+    // 解锁并初始化卡牌
+    public void InitilizeCard()
     {
         level = 1;
         UpgradeMainValue(true);
