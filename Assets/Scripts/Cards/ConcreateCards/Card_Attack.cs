@@ -51,11 +51,11 @@ public class Card_Attack : MonoBehaviour, ICardOperation,ICardEffectTrigger
         {
             Debug.Log(hit.transform.name);
 
-            HealthManager healthManager = hit.transform.GetComponent<HealthManager>();
+            GameObjectBase healthManager = hit.transform.GetComponent<GameObjectBase>();
             if (healthManager)
             {
                 Debug.Log(healthManager);
-                healthManager.Hurt(5);
+                healthManager.Hurt(5, false, 0);
                 // 使用完毕 卡牌扔回等待队列或者直接销毁
                 CardManager.instance.SendToDiscardedCardGroup(gameObject);
             }

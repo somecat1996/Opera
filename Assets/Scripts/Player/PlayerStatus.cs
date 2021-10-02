@@ -2,35 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatus : HealthManager
+public class PlayerStatus : GameObjectBase
 {
-    public float maxHealth;
-    public Vector3 offsetPos;
-    public GameObject healthBarPrefab;
+    private float allDamage;
+    private float magicDamage;
+    private float physicDamage;
 
-    private float curHealth;
-    private HealthBarManager healthBarManager;
-    // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
-        // 创建并初始化血条
-        GameObject healthBar = Instantiate(healthBarPrefab, GameObject.FindGameObjectWithTag("HealthBarCanvas").transform);
-        healthBarManager = healthBar.GetComponent<HealthBarManager>();
-
-        curHealth = maxHealth;
-        healthBarManager.Init(transform, offsetPos);
+        base.Awake();
+        allDamage = 0f;
+        magicDamage = 0f;
+        physicDamage = 0f;
+    }
+    // Start is called before the first frame update
+    protected override void Start()
+    {
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
 
-    public override void Hurt(float damage)
+    public override void Hurt(float damage, bool shieldBreak, float damageIncrease)
     {
-        curHealth -= damage;
-        Debug.Log(curHealth);
-        healthBarManager.UpdateHealth(curHealth / maxHealth);
+        base.Hurt(damage, shieldBreak, damageIncrease);
+    }
+
+    public float MagicDamageIncrease()
+    {
+        return 1 + allDamage + magicDamage;
+    }
+
+    public float PhysicDamageIncrease()
+    {
+        return 1 + allDamage + physicDamage;
     }
 }
