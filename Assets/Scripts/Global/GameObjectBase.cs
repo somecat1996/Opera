@@ -192,6 +192,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         curHealth += healingValue;
         if (curHealth > maxHealth)
             curHealth = maxHealth;
+        healthBarManager.UpdateHealth(curHealth / maxHealth);
     }
 
     public void ContinuousHealing(float time, float tickle, float value)
