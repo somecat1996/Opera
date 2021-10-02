@@ -14,6 +14,7 @@ public class PlayerData : ScriptableObject
     public void Initialize()
     {
         money = 0;
+        firstTimeRunning = false;
 
         for(int i = 0; i < levelStatus.Length; i++)
         {

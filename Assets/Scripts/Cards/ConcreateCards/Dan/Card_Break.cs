@@ -11,16 +11,14 @@ public class Card_Break : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseEnter()
     {
-        Vector3 scale = new Vector3(1.2f, 1.2f, 1.2f);
-        transform.localScale = scale;
+        SetOnSelected(true);
     }
 
     public void mouseExit()
     {
         // 当未检测到目标或因其他原因失效时 返回位置
         CardManager.instance.ReflashLayoutGroup();
-        Vector3 scale = Vector3.one;
-        transform.localScale = scale;
+        SetOnSelected(false);
     }
 
     public void mouseUp()

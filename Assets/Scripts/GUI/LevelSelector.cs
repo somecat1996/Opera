@@ -90,7 +90,7 @@ public class LevelSelector : MonoBehaviour
         }
 
         enable = false;
-        Invoke("Enable", speed);
+        Invoke("Enable", speed+0.1f);
 
     }
     
@@ -124,7 +124,7 @@ public class LevelSelector : MonoBehaviour
         }
 
         enable = false;
-        Invoke("Enable", speed);
+        Invoke("Enable", speed + 0.1f);
     }
 
     private void Enable()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 24_SpringSong
   m_EditorClassIdentifier: 
   id: 24
-  cardName: SpringSong
+  cardName: "\u6625\u8F89\u66F2"
   description: 
   story: 
   illustration: {fileID: 0}

@@ -33,7 +33,7 @@ public class ListCardSetter : MonoBehaviour
 
         text_Name.text = cardInfo.cardName;
         text_Level.text = cardInfo.level.ToString();
-        colorBar.color = CardManager.instance.cardCommonData.color_Quality[cardInfo.rarity];
+        colorBar.sprite = CardManager.instance.cardCommonData.sprite_Quality[cardInfo.rarity];
 
         if(cardInfo.level == CardManager.instance.cardCommonData.max_Level || cardInfo.level == 0)
         {

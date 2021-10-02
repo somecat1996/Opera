@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4_Chou
   m_EditorClassIdentifier: 
   id: 4
-  charName: Chou
+  charName: "\u4E11"
   description: CCCCC
   story: DDDD
   icon: {fileID: 21300000, guid: 4fa1070941b1cd74d9de82f1934b0ea3, type: 3}

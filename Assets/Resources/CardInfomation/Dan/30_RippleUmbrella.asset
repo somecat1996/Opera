@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 30_RippleUmbrella
   m_EditorClassIdentifier: 
   id: 30
-  cardName: RippleUmbrella
+  cardName: "\u9526\u7EE3\u6D9F\u6F2A\u4F1E"
   description: 
   story: 
   illustration: {fileID: 0}

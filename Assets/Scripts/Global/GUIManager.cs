@@ -44,7 +44,9 @@ public class GUIManager : MonoBehaviour
 
     public Button button_Contiune;
 
-    [Header("Temp")]
+    [Header("GameScene Objects")]
+    public Slider player_PowerPoint;
+    public TextMeshProUGUI text_PowerPoint;
     public Slider boss_HealthPoint;
 
 
@@ -56,7 +58,7 @@ public class GUIManager : MonoBehaviour
 
     void Start()
     {
-       
+        player_PowerPoint.maxValue = PlayerManager.instance.max_PowerPoint;
     }
 
     void Update()
@@ -77,6 +79,11 @@ public class GUIManager : MonoBehaviour
     public void SetBossHealthPoint(float _v)
     {
         boss_HealthPoint.value = _v;
+    }
+    public void SetPowerPoint(float _v)
+    {
+        player_PowerPoint.value = _v;
+        text_PowerPoint.text = ((int)_v).ToString();
     }
 
     // Çå¿Õ¿¨ÅÆÁÐ±í
@@ -121,7 +128,7 @@ public class GUIManager : MonoBehaviour
 
         cardDetail_Text_Name.text = _lcs.cardInfo.cardName;
         cardDetail_Text_Level.text = _lcs.text_Level.text;
-        cardDetail_ColorBar.color = _lcs.colorBar.color;
+        cardDetail_ColorBar.sprite = _lcs.colorBar.sprite;
 
         if(_lcs.cardInfo.level == CardManager.instance.cardCommonData.max_Level || _lcs.cardInfo.level == 0)
         {

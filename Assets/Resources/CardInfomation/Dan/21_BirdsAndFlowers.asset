@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 21_BirdsAndFlowers
   m_EditorClassIdentifier: 
   id: 21
-  cardName: BirdsAndFlowers
+  cardName: "\u9E1F\u8BED\xB7\u82B1\u9999"
   description: 
   story: 
   illustration: {fileID: 0}

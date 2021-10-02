@@ -32,7 +32,8 @@ public class CardCreator : EditorWindow
     {
         GUI.skin.label.fontStyle = FontStyle.Bold;
         GUILayout.Space(5);
-        GUILayout.Label("注意:EventTrigger需要手动配置事件");
+        GUILayout.Label("注意:\n1.EventTrigger需要手动配置事件\n2.脚本需要手动配置\n3.背景暂时需要手动配置");
+        GUILayout.Space(5);
         GUILayout.Label("卡牌基本信息");
         id = EditorGUILayout.IntField("Card ID",id);
         cardName = EditorGUILayout.TextField("Card Name",cardName);
@@ -103,31 +104,15 @@ public class CardCreator : EditorWindow
     // 创建卡牌游戏对象
     public void CreateCardObject()
     {
-        //GameObject prefab = EditorGUIUtility.Load("CardObjectTemplate.prefab") as GameObject;
-        GameObject go = new GameObject("Card_" + cardName);
-        go.AddComponent<RectTransform>();
-        Image im = go.AddComponent<Image>();
-        Button bt = go.AddComponent<Button>();
-        EventTrigger et = go.AddComponent<EventTrigger>();
-        var type = System.Reflection.Assembly.Load("Assembly-CSharp").GetType("Card_Break");
+        GameObject prefab = Resources.Load("Prefabs/CardObjectTemplate") as GameObject;
+        GameObject go = GameObject.Instantiate(prefab);
+        go.name = "Card_" + cardName;
+        var type = System.Reflection.Assembly.Load("Assembly-CSharp").GetType("Card_" + cardName);
         var script = go.AddComponent(type);
-
-        // 组件配置
-        string cardInfo_Path = "CardInfomation/" + belongner.ToString() + "/" + id + "_" + cardName;
-        go.GetComponent<CardPrototype>().LoadCardInfo(cardInfo_Path);
-
-        EventTrigger.Entry entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerEnter;
-        entry.callback = new EventTrigger.TriggerEvent();
-
-        im.sprite = go.GetComponent<CardPrototype>().cardInfo.illustration;
-        //UnityEngine.Events.UnityAction<BaseEventData> callback = new UnityEngine.Events.UnityAction<BaseEventData>(InvokeMouseUp);
-        et.triggers.Add(entry);
-
-        //prefab.AddComponent(System.Type.GetType("Card_" + cardName));
         string path = "Assets/Resources/CardInstances/" + belongner.ToString() + "/Card_" + cardName + ".prefab"; ;
         PrefabUtility.SaveAsPrefabAsset(go, path);
-        Destroy(go.gameObject);
+
+        Destroy(go);
     }
 
     void InvokeMouseUp(BaseEventData arg0)

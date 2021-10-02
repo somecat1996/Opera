@@ -20,6 +20,12 @@ MonoBehaviour:
   - {r: 0.3023614, g: 0.7428002, b: 0.9811321, a: 1}
   - {r: 1, g: 0.44968545, b: 0.93559164, a: 1}
   - {r: 1, g: 0.85786253, b: 0.23270434, a: 1}
+  sprite_Quality:
+  - {fileID: 21300000, guid: 5928402c92303894ea3688969f2445a9, type: 3}
+  - {fileID: 21300000, guid: 5928402c92303894ea3688969f2445a9, type: 3}
+  - {fileID: 21300000, guid: f13dc56215ba53343a72bad239a48593, type: 3}
+  - {fileID: 21300000, guid: e3fa6bf8dd026704e95c671ac676bfee, type: 3}
+  - {fileID: 21300000, guid: 5b97a848ec32657489b6e0ac4b62632a, type: 3}
   upgrade_Demanded: 0000000001000000030000000500000009000000
   upgrade_MoneyCost: 00000000640000002c010000f4010000e8030000
   probability:

@@ -8,7 +8,7 @@ public class CardManager : MonoBehaviour
     public static CardManager instance;
 
     [Header("Configuration")]
-    public int max_Total_Card = 15; // 牌库最大可持有卡牌数
+    public int max_Total_Card = 30; // 牌库最大可持有卡牌数
     public int min_Total_Card = 15; // 牌库最小持有数量
     public int max_Cur_Card = 6; // 当前最大可使用卡牌数
 
@@ -20,7 +20,7 @@ public class CardManager : MonoBehaviour
     public List<GameObject> cardQueue_Discarded= new List<GameObject>(); // 已使用的卡牌
 
     public Dictionary<int, CardBasicInfomation> cardLibrary = new Dictionary<int, CardBasicInfomation>(); // 卡牌库 存放所有与角色相关的卡牌
-    public Dictionary<int, CardBasicInfomation> cardLibrary_Commona = new Dictionary<int, CardBasicInfomation>(); // 额外卡牌库
+    public Dictionary<int, CardBasicInfomation> cardLibrary_Common = new Dictionary<int, CardBasicInfomation>(); // 额外卡牌库
     public Dictionary<int, GameObject> instanceCardLibrary = new Dictionary<int, GameObject>(); // 卡牌信息对应实例卡牌
 
     public List<CardBasicInfomation> cardLibrary_Selected = new List<CardBasicInfomation>(); // 玩家选择的卡牌
@@ -43,7 +43,8 @@ public class CardManager : MonoBehaviour
     void Start()
     {
 
-        // 卡牌列表库测试
+        // 测试用——会与UI按钮控件相冲突 *****下列方法调用时 不要使用UI中的部分按钮*****
+
         LoadCardLibrary(); // 将指定角色卡牌载入到库
 
         //InitializeAllCards(); // 初始化解锁角色所有卡牌 等级设定为 1 同时锁定所有通用卡牌
@@ -146,7 +147,7 @@ public class CardManager : MonoBehaviour
         }
 
         // 通用卡牌
-        foreach(var i in cardLibrary_Commona.Values)
+        foreach(var i in cardLibrary_Common.Values)
         {
             GUIManager.instance.LoadCardIntoList(i);
         }
@@ -156,10 +157,17 @@ public class CardManager : MonoBehaviour
     public void RealignAndLoadCards()
     {
         List<CardBasicInfomation> tempCardList = new List<CardBasicInfomation>();
-        
-        // 载入角色卡
 
-        // 载入通用卡
+        // 载入角色卡
+        foreach(var i in cardLibrary.Values)
+        {
+            if(i.belongner == PlayerManager.instance.cur_Character)
+            {
+                tempCardList.Add(i);
+            }
+        }
+
+        // 载入所选择的通用卡
         for(int i = 0; i < cardLibrary_Selected.Count; i++)
         {
             tempCardList.Add(cardLibrary[cardLibrary_Selected[i].id]);
@@ -172,7 +180,7 @@ public class CardManager : MonoBehaviour
         {
             int index = Random.Range(0, count + 1);
             
-            CardBasicInfomation temp = cardLibrary_Selected[count];
+            CardBasicInfomation temp = tempCardList[count];
             tempCardList[count] = tempCardList[index];
             tempCardList[index] = temp;
 
@@ -206,7 +214,7 @@ public class CardManager : MonoBehaviour
             i.InitilizeCard();
         }
         // 初始化额外卡牌
-        foreach(var i in cardLibrary_Commona.Values)
+        foreach(var i in cardLibrary_Common.Values)
         {
             i.LockCard();
         }
@@ -219,8 +227,8 @@ public class CardManager : MonoBehaviour
        // GUIManager.instance.ClearUnselectedCardList();
         //ClearSelectedCard();
 
-        // 此处应遍历通用卡牌库 临时遍历卡牌库
-        foreach (var i in cardLibrary.Values)
+        // 应遍历通用卡牌库
+        foreach (var i in cardLibrary_Common.Values)
         {
             GUIManager.instance.AddUnselectedCard(i);
         }

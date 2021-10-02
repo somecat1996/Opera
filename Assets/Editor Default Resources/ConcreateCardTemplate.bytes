@@ -11,15 +11,13 @@ public class #ClassName : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseEnter()
     {
-        Vector3 scale = new Vector3(1.2f, 1.2f, 1.2f);
-        transform.localScale = scale;
+        SetOnSelected(true);
     }
 
     public void mouseExit()
     {
         CardManager.instance.ReflashLayoutGroup();
-        Vector3 scale = Vector3.one;
-        transform.localScale = scale;
+        SetOnSelected(false);
     }
 
     public void mouseUp()

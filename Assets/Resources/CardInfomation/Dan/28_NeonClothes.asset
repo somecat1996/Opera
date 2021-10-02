@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 28_NeonClothes
   m_EditorClassIdentifier: 
   id: 28
-  cardName: NeonClothes
+  cardName: "\u9713\u88F3\u7FBD\u8863"
   description: 
   story: 
   illustration: {fileID: 0}

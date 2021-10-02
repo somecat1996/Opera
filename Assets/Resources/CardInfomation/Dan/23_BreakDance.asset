@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 23_BreakDance
   m_EditorClassIdentifier: 
   id: 23
-  cardName: BreakDance
+  cardName: "\u7834\u9635\u821E"
   description: 
   story: 
   illustration: {fileID: 0}

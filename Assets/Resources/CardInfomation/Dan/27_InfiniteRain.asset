@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 27_InfiniteRain
   m_EditorClassIdentifier: 
   id: 27
-  cardName: InfiniteRain
+  cardName: "\u7EF5\u96E8\u7EB7\u7EB7"
   description: 
   story: 
   illustration: {fileID: 0}

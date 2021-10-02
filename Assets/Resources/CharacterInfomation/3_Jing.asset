@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3_Jing
   m_EditorClassIdentifier: 
   id: 3
-  charName: Jing
+  charName: "\u51C0"
   description: ASD
   story: DSa
   icon: {fileID: 21300000, guid: c7f1cb364719c6b489a2d6a43994aa16, type: 3}

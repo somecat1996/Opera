@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 22_RainyOrchid
   m_EditorClassIdentifier: 
   id: 22
-  cardName: RainyOrchid
+  cardName: "\u78A7\u96E8\xB7\u5E7D\u5170"
   description: 
   story: 
   illustration: {fileID: 0}
