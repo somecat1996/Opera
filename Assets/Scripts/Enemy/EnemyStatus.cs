@@ -2,24 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStatus : HealthManager
+public class EnemyStatus : GameObjectBase
 {
-    public float maxHealth;
-    public Vector3 offsetPos;
-    public GameObject healthBarPrefab;
     public int position;
-
-    private float curHealth;
-    private HealthBarManager healthBarManager;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        // 创建并初始化血条
-        GameObject healthBar = Instantiate(healthBarPrefab, GameObject.FindGameObjectWithTag("HealthBarCanvas").transform);
-        healthBarManager = healthBar.GetComponent<HealthBarManager>();
-
-        curHealth = maxHealth;
-        healthBarManager.Init(transform, offsetPos);
+        base.Start();
     }
 
     // 记录出生点
@@ -29,15 +18,14 @@ public class EnemyStatus : HealthManager
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-
+        base.Update();
     }
 
-    public override void Hurt(float damage)
+    public override void Hurt(float damage, bool shieldBreak, float damageIncrease)
     {
-        curHealth -= damage;
-        healthBarManager.UpdateHealth(curHealth / maxHealth);
+        base.Hurt(damage, shieldBreak, damageIncrease);
         if (curHealth <= 0)
         {
             EnemyManager tmp = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
