@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7049907831289417318}
   m_Layer: 0
   m_Name: EnemyPrototype
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,6 +79,9 @@ MonoBehaviour:
   maxHealth: 10
   offsetPos: {x: 0, y: 0, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
+  poisonTime: 5
+  poisonDamage: 5
+  poisonDamageTime: 1
   position: 0
 --- !u!1 &7049907832430946937
 GameObject:
