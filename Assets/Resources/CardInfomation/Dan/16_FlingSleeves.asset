@@ -14,15 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 16
   cardName: "\u7529\u8896"
-  description: hello thank are you ok
+  description: "\u5BF9\u4E00\u4E2A\u6307\u5B9A\u654C\u65B9\u5355\u4F4D\u9020\u6210
+    <color=red>#MainValue </color> \u70B9\u7269\u7406\u4F24\u5BB3"
   story: Im fine thank you and you
   illustration: {fileID: 21300000, guid: 5120a41a6093c5542ab3227a2829482d, type: 3}
   rarity: 1
+  cardTag: 2
   belongner: 2
   mainValue_Origin: 100
   cost: 1
   duration: 0
   radius: 0
-  mainValue_Cur: 214.35892
+  mainValue_Cur: 100
   quantity: 30
-  level: 5
+  level: 1

@@ -23,6 +23,10 @@ public class Card_Attack : MonoBehaviour, ICardOperation,ICardEffectTrigger
 
     }
 
+    public void mouseDown()
+    {
+        GUIManager.instance.DisableCardDesc();
+    }
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
@@ -93,5 +97,13 @@ public class Card_Attack : MonoBehaviour, ICardOperation,ICardEffectTrigger
         throw new System.NotImplementedException();
     }
 
+    public void TriggerEffect(GameObjectBase _go)
+    {
+        throw new System.NotImplementedException();
+    }
 
+    public void TriggerEffect(GameObjectBase[] _gos)
+    {
+        throw new System.NotImplementedException();
+    }
 }

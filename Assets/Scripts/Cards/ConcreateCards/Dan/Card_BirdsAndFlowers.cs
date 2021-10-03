@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Card_BirdsAndFlowers : CardPrototype,ICardEffectTrigger,ICardOperation
 {
+    public void mouseDown()
+    {
+        GUIManager.instance.DisableCardDesc();
+    }
+
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
@@ -11,21 +16,34 @@ public class Card_BirdsAndFlowers : CardPrototype,ICardEffectTrigger,ICardOperat
 
     public void mouseEnter()
     {
-        Vector3 scale = new Vector3(1.2f, 1.2f, 1.2f);
-        transform.localScale = scale;
+        SetOnSelected(true);
     }
 
     public void mouseExit()
     {
         // 当未检测到目标或因其他原因失效时 返回位置
         CardManager.instance.ReflashLayoutGroup();
-        Vector3 scale = Vector3.one;
-        transform.localScale = scale;
+        SetOnSelected(false);
     }
 
     public void mouseUp()
     {
-        CardManager.instance.SendToDiscardedCardGroup(gameObject);
+        if (CheckOnValidArea())
+        {
+            if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
+            {
+                TriggerEffect();
+                CardManager.instance.SendToDiscardedCardGroup(gameObject);
+            }
+            else
+            {
+                mouseExit();
+            }
+
+        }
+        else
+            mouseExit();
+
     }
 
     public void RevokeEffect()
@@ -35,7 +53,16 @@ public class Card_BirdsAndFlowers : CardPrototype,ICardEffectTrigger,ICardOperat
 
     public void TriggerEffect()
     {
-        // Buff 效果
-        Invoke("RevokeEffect",cardInfo.duration);
+        PlayerManager.instance.ChangeHealthPoint(cardInfo.mainValue_Cur);
+    }
+
+    public void TriggerEffect(GameObjectBase _go)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void TriggerEffect(GameObjectBase[] _gos)
+    {
+        throw new System.NotImplementedException();
     }
 }

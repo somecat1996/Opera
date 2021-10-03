@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 27
   cardName: "\u7EF5\u96E8\u7EB7\u7EB7"
-  description: 
+  description: "\u5BF9<color=orange>\u533A\u57DF</color>\u5185\u6240\u6709\u654C\u65B9\u5355\u4F4D\u6BCF\u79D2\u9020\u6210
+    <color=red>#MainValue</color>*\u03B1 \u70B9\u6CD5\u672F\u4F24\u5BB3\uFF0C\u6BCF\u6B21\u4F24\u5BB3\u6709
+    50% \u51E0\u7387\u4F7F \u03B1+1 \uFF0C1\u2264\u03B1\u22645 \uFF0C\u6301\u7EED
+    5 \u79D2"
   story: 
-  illustration: {fileID: 0}
+  illustration: {fileID: 21300000, guid: e5f777324663a7c4d92c049096bee46a, type: 3}
   rarity: 4
+  cardTag: 5
   belongner: 2
   mainValue_Origin: 25
   cost: 8

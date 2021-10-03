@@ -7,6 +7,7 @@ TagManager:
   - HealthBarCanvas
   - EnemyManager
   - Card
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - UI_CardSlot
   - UI_UnselectedList
-  - 
+  - UI_ValidArea
   - 
   - 
   - 

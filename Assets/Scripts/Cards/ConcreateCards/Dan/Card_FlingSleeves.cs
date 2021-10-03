@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Card_FlingSleeves : CardPrototype, ICardEffectTrigger, ICardOperation
 {
+    public void mouseDown()
+    {
+        GUIManager.instance.DisableCardDesc();
+    }
+
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
@@ -11,21 +16,32 @@ public class Card_FlingSleeves : CardPrototype, ICardEffectTrigger, ICardOperati
 
     public void mouseEnter()
     {
-        Vector3 scale = new Vector3(1.2f, 1.2f, 1.2f);
-        transform.localScale = scale;
+        SetOnSelected(true);
     }
 
     public void mouseExit()
     {
         // 当未检测到目标或因其他原因失效时 返回位置
         CardManager.instance.ReflashLayoutGroup();
-        Vector3 scale = Vector3.one;
-        transform.localScale = scale;
+        SetOnSelected(false);
     }
 
     public void mouseUp()
     {
-        CardManager.instance.SendToDiscardedCardGroup(gameObject);
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit) && hit.transform.tag == "Enemy")
+        {
+            if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
+            {
+                TriggerEffect(hit.transform.GetComponent<GameObjectBase>());
+                CardManager.instance.SendToDiscardedCardGroup(gameObject);
+                return;
+            }
+        }
+
+        mouseExit();
     }
 
     public void RevokeEffect()
@@ -34,6 +50,16 @@ public class Card_FlingSleeves : CardPrototype, ICardEffectTrigger, ICardOperati
     }
 
     public void TriggerEffect()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void TriggerEffect(GameObjectBase _go)
+    {
+        _go.Hurt(cardInfo.mainValue_Cur,false,1.0f);
+    }
+
+    public void TriggerEffect(GameObjectBase[] _gos)
     {
         throw new System.NotImplementedException();
     }

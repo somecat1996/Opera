@@ -36,6 +36,11 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
         }
     }
 
+    public void mouseDown()
+    {
+        
+    }
+
     public void mouseUp()
     {
         // 此处判断是否在插槽中
@@ -111,7 +116,5 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
 
 
     }
-
-    // Start is called before the first frame update
 
 }

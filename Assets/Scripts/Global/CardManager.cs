@@ -34,6 +34,7 @@ public class CardManager : MonoBehaviour
 
     [Header("Temp")]
     public GameObject card_Attack;
+    public Vector3 test = Vector3.zero;
 
     private void Awake()
     {
@@ -55,8 +56,45 @@ public class CardManager : MonoBehaviour
 
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(test, 1);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(test, 2);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(test, 3);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(test, 4);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(test, 5);
+    }
+
     void Update()
     {
+        // 测试用 查看技能影响距离范围
+        if (Input.GetMouseButtonDown(0))
+        {
+            // 此处暂时将TriggerEffect函数内容调用至此
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                //Debug.Log(hit.transform.name);
+                test = hit.point;
+
+                foreach(var i in Physics.SphereCastAll(ray, 3))
+                {
+                    if(i.transform.tag == "Enemy")
+                        Debug.Log(i.transform.parent.name);
+                }
+            }
+        }
+
         // 测试用 生成战斗画面卡牌
         if (Input.GetMouseButtonDown(1))
         {
@@ -255,7 +293,7 @@ public class CardManager : MonoBehaviour
         total_Card--;
     }
 
-    // 载入所有已选择的卡牌-战斗场景时使用
+    // 载入所有已选择的卡牌——战斗场景时使用
     public void LoadSelectedCard()
     {
         foreach(var i in cardLibrary_Selected)
@@ -273,7 +311,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    // 清楚所有队列中的卡牌及其实例
+    // 清楚所有队列中的卡牌及其实例——退出战斗时使用
     public void ClearAllCardQueue()
     {
         cardQueue.Clear();

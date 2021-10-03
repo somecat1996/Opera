@@ -16,8 +16,9 @@ public class CardBasicInfomation : ScriptableObject
     public Sprite illustration;
     [Header("1-基础 2-稀有 3-诗史 4-传说")]
     [Range(1,4)]
-    public int rarity = 1;  
+    public int rarity = 1;
 
+    public CardTag.Tag cardTag = CardTag.Tag.None;
     public CharacterType.CharacterTag belongner; // 卡牌所属角色
 
     [Header("卡牌效果相关数据")]
@@ -58,7 +59,7 @@ public class CardBasicInfomation : ScriptableObject
                     Debug.Log("Upgraded successfully!");
                     level++;
 
-                    GUIManager.instance.ChangeMoneyText(PlayerManager.instance.data.money);
+                    GUIManager.instance.UpdateMoneyText(PlayerManager.instance.data.money);
                     return true;
                 }
                 else
@@ -87,5 +88,27 @@ public class CardBasicInfomation : ScriptableObject
     {
         level = 0;
         quantity = 0;
+    }
+
+    // 获得技能解释
+    public string GetDesc()
+    {
+        string text = null;
+        if (description.Contains("#MainValue"))
+        {
+            text = description.Replace("#MainValue", mainValue_Cur.ToString());
+        }else if (description.Contains("%MainValue"))
+        {
+            text = description.Replace("%MainValue", (mainValue_Cur*100).ToString()+'%');
+        }
+            
+        
+        return text;
+    }
+
+    // 获得标签
+    public string GetTag()
+    {
+        return CardTag.TagToString(cardTag);
     }
 }

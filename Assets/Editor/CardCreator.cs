@@ -16,6 +16,7 @@ public class CardCreator : EditorWindow
 
     int rarity = 1;
     CharacterType.CharacterTag belongner;
+    CardTag.Tag cardTag;
 
     public float mainValue;
     public int cost;
@@ -32,7 +33,7 @@ public class CardCreator : EditorWindow
     {
         GUI.skin.label.fontStyle = FontStyle.Bold;
         GUILayout.Space(5);
-        GUILayout.Label("注意:\n1.EventTrigger需要手动配置事件\n2.脚本需要手动配置\n3.背景暂时需要手动配置");
+        GUILayout.Label("注意:\n1.EventTrigger需要手动配置事件\n2.脚本需要手动配置");
         GUILayout.Space(5);
         GUILayout.Label("卡牌基本信息");
         id = EditorGUILayout.IntField("Card ID",id);
@@ -47,6 +48,7 @@ public class CardCreator : EditorWindow
         GUILayout.Label("1-基础 2-稀有 3-实施 4-传说");
         rarity = EditorGUILayout.IntSlider("Rarity", rarity, 1, 4);
         belongner = (CharacterType.CharacterTag)EditorGUILayout.EnumPopup("Belonger", belongner);
+        cardTag = (CardTag.Tag)EditorGUILayout.EnumPopup("CardTag", cardTag);
 
         mainValue = EditorGUILayout.FloatField("Main Value", mainValue);
         cost = EditorGUILayout.IntField("Cost", cost);
@@ -78,6 +80,7 @@ public class CardCreator : EditorWindow
         cardInfoTemplate.duration = duration;
         cardInfoTemplate.radius = radius;
         cardInfoTemplate.illustration = illustration;
+        cardInfoTemplate.cardTag = cardTag;
 
         string cardInfo_Path = "Assets/Resources/CardInfomation/" + belongner.ToString() + "/" + id + "_" + cardName + ".asset";
         CardBasicInfomation cardInfo = Object.Instantiate<CardBasicInfomation>(cardInfoTemplate);
@@ -107,9 +110,10 @@ public class CardCreator : EditorWindow
         GameObject prefab = Resources.Load("Prefabs/CardObjectTemplate") as GameObject;
         GameObject go = GameObject.Instantiate(prefab);
         go.name = "Card_" + cardName;
-        var type = System.Reflection.Assembly.Load("Assembly-CSharp").GetType("Card_" + cardName);
+        go.GetComponent<Image>().sprite = illustration;
+        var type = System.Reflection.Assembly.Load("Assembly-CSharp").GetType(id + "_Card_" + cardName);
         var script = go.AddComponent(type);
-        string path = "Assets/Resources/CardInstances/" + belongner.ToString() + "/Card_" + cardName + ".prefab"; ;
+        string path = "Assets/Resources/CardInstances/" + belongner.ToString() + "/" + id +"_Card_" + cardName + ".prefab"; ;
         PrefabUtility.SaveAsPrefabAsset(go, path);
 
         Destroy(go);

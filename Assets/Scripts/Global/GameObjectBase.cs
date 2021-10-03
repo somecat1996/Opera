@@ -10,7 +10,7 @@ interface GameObjectInterface
     public void Hurt(float damage, bool shieldBreak, float damageIncrease);
     // 中毒接口，每次调用刷新中毒时间、增加中毒层数
     public void Poisoning();
-    // 眩晕接口，调用后眩晕time时间
+    // 眩晕接口，调用后眩晕time时间 
     public void Stun(float time);
     // 返回是否眩晕
     public bool IsStun();

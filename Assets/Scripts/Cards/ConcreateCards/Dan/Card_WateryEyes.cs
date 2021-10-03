@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
 {
+    float time;
+    bool executing = false;
+    Ray tempRay;
+
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
@@ -11,21 +15,50 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseEnter()
     {
-        Vector3 scale = new Vector3(1.2f, 1.2f, 1.2f);
-        transform.localScale = scale;
+        SetOnSelected(true);
+    }
+
+    public void mouseDown()
+    {
+        GUIManager.instance.DisableCardDesc();
     }
 
     public void mouseExit()
     {
         // 当未检测到目标或因其他原因失效时 返回位置
         CardManager.instance.ReflashLayoutGroup();
-        Vector3 scale = Vector3.one;
-        transform.localScale = scale;
+        SetOnSelected(false);
     }
 
     public void mouseUp()
     {
-        CardManager.instance.SendToDiscardedCardGroup(gameObject);
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
+            {
+                tempRay = ray;
+
+                List<GameObjectBase> temp = new List<GameObjectBase>();
+                foreach (var i in Physics.SphereCastAll(ray, cardInfo.radius))
+                {
+                    if (i.transform.tag == "Enemy")
+                    {
+                        temp.Add(i.transform.GetComponent<GameObjectBase>());
+                    }
+                }
+
+                TriggerEffect(temp.ToArray());
+                CardManager.instance.SendToDiscardedCardGroup(gameObject);
+            }
+            else
+            {
+                mouseExit();
+            }
+        }
+        mouseExit();
     }
 
     public void RevokeEffect()
@@ -36,5 +69,60 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
     public void TriggerEffect()
     {
         throw new System.NotImplementedException();
+    }
+
+    public void TriggerEffect(GameObjectBase _go)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void TriggerEffect(GameObjectBase[] _gos)
+    {
+        if (!executing)
+        {
+            executing = true;
+            time = cardInfo.duration;
+            StartCoroutine(Timer(_gos));
+        }
+        else
+        {
+            time = cardInfo.duration;
+        }
+        
+    }
+
+    public IEnumerator Timer(GameObjectBase[] _gos)
+    {
+        List<GameObjectBase> temp = new List<GameObjectBase>(_gos);
+
+        while(time > 0)
+        {
+            temp.Clear();
+            foreach (var i in Physics.SphereCastAll(tempRay, cardInfo.radius))
+            {
+                if (i.transform.tag == "Enemy")
+                {
+                    temp.Add(i.transform.GetComponent<GameObjectBase>());
+                }
+            }
+
+            foreach (var i in temp)
+            {
+                if (i.IsStun())
+                {
+                    i.Hurt(cardInfo.mainValue_Cur*2, false, 1.0f);
+                }
+                else
+                {
+                    i.Hurt(cardInfo.mainValue_Cur, false, 1.0f);
+                }
+                
+            }
+
+            time--;
+            yield return new WaitForSeconds(1);
+        }
+
+        executing = false;
     }
 }

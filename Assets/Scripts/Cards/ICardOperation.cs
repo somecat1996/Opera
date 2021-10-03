@@ -8,4 +8,5 @@ public interface ICardOperation
     public void mouseEnter();
     public void mouseExit();
     public void mouseUp();
+    public void mouseDown();
 }

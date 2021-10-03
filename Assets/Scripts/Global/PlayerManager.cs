@@ -8,13 +8,14 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Configuration")]
     public float max_PowerPoint;
-    public float recoverySpeed_PowerPoint;
+    public float default_RecoverySpeed_PowerPoint;
     [Space]
     public float max_HealthPoint;
 
     [Header("Real-Time Data")]
     public float cur_PowerPoint = 0;
     public float cur_HealthPoint = 0;
+    public float cur_RecoverySpeed_PowerPoint = 0;
 
     [Space]
     public CharacterType.CharacterTag cur_Character = CharacterType.CharacterTag.Dan;
@@ -27,7 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        GUIManager.instance.ChangeMoneyText(data.money);
+        GUIManager.instance.UpdateMoneyText(data.money);
 
         ResetBattleData();
     }
@@ -35,9 +36,9 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cur_PowerPoint += recoverySpeed_PowerPoint * Time.deltaTime;
+        cur_PowerPoint += cur_RecoverySpeed_PowerPoint * Time.deltaTime;
         cur_PowerPoint = Mathf.Clamp(cur_PowerPoint, 0, max_PowerPoint);
-        GUIManager.instance.SetPowerPoint(cur_PowerPoint);
+        GUIManager.instance.UpdatePowerPoint(cur_PowerPoint);
         
     }
 
@@ -45,7 +46,7 @@ public class PlayerManager : MonoBehaviour
     public void InitializeData()
     {
         data.Initialize();
-        GUIManager.instance.ChangeMoneyText(data.money);
+        GUIManager.instance.UpdateMoneyText(data.money);
     }
 
     /// <summary>
@@ -61,7 +62,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         data.money += _increment;
-        GUIManager.instance.ChangeMoneyText(data.money);
+        GUIManager.instance.UpdateMoneyText(data.money);
         return true;
     }
 
@@ -109,6 +110,12 @@ public class PlayerManager : MonoBehaviour
         cur_HealthPoint += _v;
         cur_HealthPoint = Mathf.Clamp(cur_HealthPoint, 0, max_HealthPoint);
     }
+    
+    public void ChangeRecoverySpeed_PowerPoint(float _v)
+    {
+        cur_RecoverySpeed_PowerPoint += _v;
+        cur_RecoverySpeed_PowerPoint = Mathf.Clamp(cur_RecoverySpeed_PowerPoint, 0, Mathf.Infinity);
+    }
 
     /// <summary>
     /// 重设战斗数据——进入新关卡时调用
@@ -117,6 +124,7 @@ public class PlayerManager : MonoBehaviour
     {
         cur_HealthPoint = max_HealthPoint;
         cur_PowerPoint = 0;
+        cur_RecoverySpeed_PowerPoint = default_RecoverySpeed_PowerPoint;
     }
 
     // 解锁关卡

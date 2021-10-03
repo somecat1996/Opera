@@ -16,6 +16,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GUIManager.instance.SetBossHealthPoint(cur_healthPoint / (float)max_HealthPoint);
+        GUIManager.instance.UpdateBossHealthPoint(cur_healthPoint / (float)max_HealthPoint);
     }
 }

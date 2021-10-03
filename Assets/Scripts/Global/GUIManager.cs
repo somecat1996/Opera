@@ -8,6 +8,9 @@ public class GUIManager : MonoBehaviour
 {
     public static GUIManager instance;
 
+    [Header("Configuration")]
+    public float offsetX_CardDesc = 115;
+
     [Header("CardList Objects")]
     public GameObject cardList; // 卡牌列表容器
     public GameObject listCardSample; // 列表卡牌样本
@@ -22,6 +25,7 @@ public class GUIManager : MonoBehaviour
     [Header("CardDetails Object")]
     public ListCardSetter selectedCard;
 
+    public TextMeshProUGUI cardDetail_Cost;
     public TextMeshProUGUI cardDetail_Text_Name;
     public TextMeshProUGUI cardDetail_Text_Level;
     public Image cardDetail_ColorBar;
@@ -48,6 +52,8 @@ public class GUIManager : MonoBehaviour
     public Slider player_PowerPoint;
     public TextMeshProUGUI text_PowerPoint;
     public Slider boss_HealthPoint;
+    public GameObject panel_CardDesc;
+    public TextMeshProUGUI text_CardDesc;
 
 
 
@@ -66,21 +72,11 @@ public class GUIManager : MonoBehaviour
         
     }
 
-    public IEnumerator Test()
-    {
-        int i = 0;
-        while(i != 3)
-        {
-            Debug.Log(i);
-            yield return new WaitForSeconds(1);
-        }
-    }
-
-    public void SetBossHealthPoint(float _v)
+    public void UpdateBossHealthPoint(float _v)
     {
         boss_HealthPoint.value = _v;
     }
-    public void SetPowerPoint(float _v)
+    public void UpdatePowerPoint(float _v)
     {
         player_PowerPoint.value = _v;
         text_PowerPoint.text = ((int)_v).ToString();
@@ -130,7 +126,9 @@ public class GUIManager : MonoBehaviour
         cardDetail_Text_Level.text = _lcs.text_Level.text;
         cardDetail_ColorBar.sprite = _lcs.colorBar.sprite;
 
-        if(_lcs.cardInfo.level == CardManager.instance.cardCommonData.max_Level || _lcs.cardInfo.level == 0)
+        cardDetail_Cost.text = _lcs.text_Cost.text;
+
+        if (_lcs.cardInfo.level == CardManager.instance.cardCommonData.max_Level || _lcs.cardInfo.level == 0)
         {
             cardDetail_Label_Max.gameObject.SetActive(true);
 
@@ -154,7 +152,7 @@ public class GUIManager : MonoBehaviour
             cardDetail_UpgradeSlider.value = _lcs.upgradeSlider.value;
         }
 
-        cardDetail_Text_Description.text = _lcs.cardInfo.description;
+        cardDetail_Text_Description.text = _lcs.cardInfo.GetDesc();
         cardDetail_Text_Story.text = _lcs.cardInfo.story;
     }
 
@@ -204,13 +202,28 @@ public class GUIManager : MonoBehaviour
         unselectedCardList_Mask.enabled = _v;
     }
 
-    public void ChangeMoneyText(int _v)
+    public void UpdateMoneyText(int _v)
     {
         foreach(var i in text_Money)
         {
             i.text = _v.ToString();
         }
 
+    }
+
+    // 战斗界面卡牌介绍
+    public void EnableCardDesc(CardBasicInfomation _cardInfo,Vector3 _pos)
+    {
+        panel_CardDesc.GetComponent<RectTransform>().position = _pos;
+
+        string tag = "[ " + _cardInfo.GetTag() + " ]"; 
+
+        text_CardDesc.text = tag + '\n' + _cardInfo.GetDesc();
+        panel_CardDesc.SetActive(true);
+    }
+    public void DisableCardDesc()
+    {
+        panel_CardDesc.SetActive(false);
     }
 
     // 锁定继续按钮

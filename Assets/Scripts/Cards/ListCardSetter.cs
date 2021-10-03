@@ -14,6 +14,7 @@ public class ListCardSetter : MonoBehaviour
     [Header("Label")]
     public TextMeshProUGUI text_Name;
     public TextMeshProUGUI text_Level;
+    public TextMeshProUGUI text_Cost;
     public Image colorBar;
 
     [Header("UngradeBar")]
@@ -34,6 +35,7 @@ public class ListCardSetter : MonoBehaviour
         text_Name.text = cardInfo.cardName;
         text_Level.text = cardInfo.level.ToString();
         colorBar.sprite = CardManager.instance.cardCommonData.sprite_Quality[cardInfo.rarity];
+        text_Cost.text = cardInfo.cost.ToString();
 
         if(cardInfo.level == CardManager.instance.cardCommonData.max_Level || cardInfo.level == 0)
         {

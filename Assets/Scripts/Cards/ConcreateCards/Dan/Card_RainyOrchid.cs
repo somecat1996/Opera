@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Card_RainyOrchid :CardPrototype,ICardOperation,ICardEffectTrigger
 {
+    public bool healing = false;
+    public float time;
+
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
@@ -11,21 +14,39 @@ public class Card_RainyOrchid :CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseEnter()
     {
-        Vector3 scale = new Vector3(1.2f, 1.2f, 1.2f);
-        transform.localScale = scale;
+        SetOnSelected(true);
     }
 
     public void mouseExit()
     {
         // 当未检测到目标或因其他原因失效时 返回位置
         CardManager.instance.ReflashLayoutGroup();
-        Vector3 scale = Vector3.one;
-        transform.localScale = scale;
+        SetOnSelected(false);
     }
 
     public void mouseUp()
     {
-        CardManager.instance.SendToDiscardedCardGroup(gameObject);
+        if (CheckOnValidArea())
+        {
+            if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
+            {
+                TriggerEffect();
+                CardManager.instance.SendToDiscardedCardGroup(gameObject);
+            }
+            else
+            {
+                mouseExit();
+            }
+
+        }
+        else
+            mouseExit();
+    }
+
+
+    public void mouseDown()
+    {
+        GUIManager.instance.DisableCardDesc();
     }
 
     public void RevokeEffect()
@@ -34,6 +55,41 @@ public class Card_RainyOrchid :CardPrototype,ICardOperation,ICardEffectTrigger
     }
 
     public void TriggerEffect()
+    {
+        if(healing == false)
+        {
+            StartCoroutine(Effect());
+            healing = true;
+        }
+        else
+        {
+            // 如果效果仍在 则刷新次数
+            time = cardInfo.duration;
+        }
+
+    }
+
+    public IEnumerator Effect()
+    {
+        time = cardInfo.duration;
+
+        while (time > 0)
+        {
+            time--;
+            Debug.Log(time);
+            PlayerManager.instance.ChangeHealthPoint(cardInfo.mainValue_Cur);
+            yield return new WaitForSeconds(1);
+        }
+
+        healing = false;
+    }
+
+    public void TriggerEffect(GameObjectBase _go)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void TriggerEffect(GameObjectBase[] _gos)
     {
         throw new System.NotImplementedException();
     }

@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 23
   cardName: "\u7834\u9635\u821E"
-  description: 
+  description: "\u51C0\u5316\u81EA\u8EAB\uFF0C\u514D\u63A73\u79D2\uFF0C\u5BF9\u547D\u4E2D\u533A\u57DF\u5185\u7684\u6240\u6709\u654C\u65B9\u5355\u4F4D\u9020\u6210
+    <color=red>#MainValue</color> \u70B9\u6CD5\u672F\u4F24\u5BB3"
   story: 
-  illustration: {fileID: 0}
+  illustration: {fileID: 21300000, guid: 5110f04977b7a9a4189949fc1d69c0b0, type: 3}
   rarity: 2
+  cardTag: 1
   belongner: 2
   mainValue_Origin: 100
   cost: 2
