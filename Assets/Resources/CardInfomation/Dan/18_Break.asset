@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 18
   cardName: "\u51FB\u7834"
   description: "\u5BF9\u4E00\u4E2A\u6307\u5B9A\u654C\u65B9\u5355\u4F4D\u9020\u6210
-    <color=red>#MainValue</color> \u70B9\u7269\u7406\u4F24\u5BB3\uFF0C\u82E5\u76EE\u6807\u643A\u5E26\u62A4\u76FE\uFF0C\u5219\u4F24\u5BB3\u503C
+    <color=#F08080>#MainValue</color> \u70B9\u7269\u7406\u4F24\u5BB3\uFF0C\u82E5\u76EE\u6807\u643A\u5E26\u62A4\u76FE\uFF0C\u5219\u4F24\u5BB3\u503C
     * 3"
   story: 6666666666as4d65as4d5a6sd4as56d4a5s64d5a6sd4as65d4as56d4as6d4as56da4s5d4as6d45asda6sd45a6d5as4da65sd4a5s6d4as56d4a6s5d4a6s5d4a65sd4a65sd4a65sdas65d4a65s4d
   illustration: {fileID: 21300000, guid: da2be43c52cbd0a42bfe8fa6653aff70, type: 3}

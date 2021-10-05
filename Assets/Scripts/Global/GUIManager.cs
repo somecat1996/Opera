@@ -69,8 +69,29 @@ public class GUIManager : MonoBehaviour
 
     void Update()
     {
-        
+        List<int> a = new List<int>();
+        a.Add(1);
+        a.Add(2);
+        int b = 2;
+        if (Input.GetMouseButtonDown(0))
+        {
+            Test(b);
+        }
     }
+
+    void Test(object _d)
+    {
+        if(_d.GetType() != typeof(List<int>))
+        {
+            Debug.Log("≤ª∆•≈‰£°");
+            return;
+        }
+            
+        foreach(var i in (List<int>)_d)
+            Debug.Log(i);
+    }
+
+    
 
     public void UpdateBossHealthPoint(float _v)
     {

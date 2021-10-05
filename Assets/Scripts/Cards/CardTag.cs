@@ -16,6 +16,32 @@ public static class CardTag
         Shield,
         Rd,
     }
+    public enum Type
+    {
+        None = 0,
+        Physics,
+        Magic
+    }
+
+    public static string TypeToString(Type _type)
+    {
+        switch (_type)
+        {
+            case Type.Magic:
+                {
+                    return "Ä§·¨¿¨";
+                }
+            case Type.Physics:
+                {
+                    return "ÎïÀí¿¨";
+                }
+            case Type.None:
+            default:
+                {
+                    return "Nah";
+                }
+        }
+    }
 
     public static string TagToString(Tag _tag)
     {

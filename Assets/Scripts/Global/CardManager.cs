@@ -311,21 +311,41 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    // 清楚所有队列中的卡牌及其实例——退出战斗时使用
+    /// <summary>
+    /// 清除场上所有卡牌以及卡牌队列及其弃牌队列
+    /// </summary>
     public void ClearAllCardQueue()
     {
         cardQueue.Clear();
         cardQueue_Discarded.Clear();
 
-        for(int i = 0; i < layoutGroup.childCount; i++)
+        var tempList = GetAllActivatedCard();
+        for (int i = 0; i < tempList.Count; i++)
         {
-            Destroy(layoutGroup.transform.GetChild(i).gameObject);
-        }
-        for (int i = 0; i < tempLayoutGroup.childCount; i++)
-        {   
-            Destroy(tempLayoutGroup.transform.GetChild(i).gameObject);
+            Destroy(tempList[i]);
         }
 
         cur_Card = 0;
+    }
+
+    /// <summary>
+    /// 获得场上所有的卡牌游戏对象
+    /// </summary>
+    /// <returns></returns>
+
+    public List<GameObject> GetAllActivatedCard()
+    {
+        List<GameObject> temp = new List<GameObject>();
+
+        for (int i = 0; i < layoutGroup.childCount; i++)
+        {
+            temp.Add(layoutGroup.transform.GetChild(i).gameObject);
+        }
+        for (int i = 0; i < tempLayoutGroup.childCount; i++)
+        {
+            temp.Add(tempLayoutGroup.transform.GetChild(i).gameObject);
+        }
+
+        return temp;
     }
 }

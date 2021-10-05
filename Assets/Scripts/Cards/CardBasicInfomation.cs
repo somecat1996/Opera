@@ -19,6 +19,7 @@ public class CardBasicInfomation : ScriptableObject
     public int rarity = 1;
 
     public CardTag.Tag cardTag = CardTag.Tag.None;
+    public CardTag.Type cardType = CardTag.Type.None;
     public CharacterType.CharacterTag belongner; // 卡牌所属角色
 
     [Header("卡牌效果相关数据")]

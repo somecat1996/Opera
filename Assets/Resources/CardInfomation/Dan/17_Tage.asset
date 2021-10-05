@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 17
   cardName: "\u8E0F\u6B4C"
-  description: "\u5BF9<color=orange>\u533A\u57DF</color>\u5185\u7684\u6240\u6709\u654C\u65B9\u5355\u4F4D\u9020\u6210
-    <color=red>#MainValue</color> \u70B9\u7269\u7406\u4F24\u5BB3"
+  description: "\u5BF9\u533A\u57DF\u5185\u7684\u6240\u6709\u654C\u65B9\u5355\u4F4D\u9020\u6210
+    <color=#F08080>#MainValue</color> \u70B9\u7269\u7406\u4F24\u5BB3"
   story: ASDASDASD ASDASDASDASDASDASDASDASDASDASDASDASDASD
   illustration: {fileID: 21300000, guid: 45eeb7c2f6bf48b429f57827271a504e, type: 3}
   rarity: 1

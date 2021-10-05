@@ -16,6 +16,7 @@ public class CardCreator : EditorWindow
 
     int rarity = 1;
     CharacterType.CharacterTag belongner;
+    CardTag.Type cardType;
     CardTag.Tag cardTag;
 
     public float mainValue;
@@ -49,6 +50,7 @@ public class CardCreator : EditorWindow
         rarity = EditorGUILayout.IntSlider("Rarity", rarity, 1, 4);
         belongner = (CharacterType.CharacterTag)EditorGUILayout.EnumPopup("Belonger", belongner);
         cardTag = (CardTag.Tag)EditorGUILayout.EnumPopup("CardTag", cardTag);
+        cardType = (CardTag.Type)EditorGUILayout.EnumPopup("CardType", cardType);
 
         mainValue = EditorGUILayout.FloatField("Main Value", mainValue);
         cost = EditorGUILayout.IntField("Cost", cost);

@@ -15,7 +15,8 @@ MonoBehaviour:
   id: 22
   cardName: "\u78A7\u96E8\xB7\u5E7D\u5170"
   description: "\u7F13\u6162\u63D0\u5347\u6C1B\u56F4\uFF0C\u6BCF\u79D2\u56DE\u590D
-    <color=red>#MainValue</color> \u70B9\u6C1B\u56F4\u503C\uFF0C\u6301\u7EED 6 \u79D2"
+    <color=#20B2AA>#MainValue</color> \u70B9\u6C1B\u56F4\u503C\uFF0C\u6301\u7EED
+    6 \u79D2"
   story: 
   illustration: {fileID: 21300000, guid: 897d75e2a42ca6d4f83a7d605092aff3, type: 3}
   rarity: 1

@@ -10,11 +10,26 @@ public class CardPrototype : MonoBehaviour
 {
     public CardBasicInfomation cardInfo;
 
+　　
+
     private Vector3 scale_Selected= new Vector3(1.3f,1.3f,1.3f);
     private Vector3 offset_Selected = new Vector3(0, 0, 0);
     private float animateSpeed = 0.1f;
 
     private void Start()
+    {
+        UpdateInfo();
+    }
+
+    public int GetID()
+    {
+        return cardInfo.id;
+    }
+
+    /// <summary>
+    /// 更新UI信息
+    /// </summary>
+    public void UpdateInfo()
     {
         // 信息载入
         Transform son = transform.GetChild(0);
@@ -23,11 +38,6 @@ public class CardPrototype : MonoBehaviour
 
         Transform grandson = son.transform.Find("Cost");
         grandson.Find("Text_Cost").GetComponent<TextMeshProUGUI>().text = cardInfo.cost.ToString();
-    }
-
-    public int GetID()
-    {
-        return cardInfo.id;
     }
 
     public void LoadCardInfo(string _path)

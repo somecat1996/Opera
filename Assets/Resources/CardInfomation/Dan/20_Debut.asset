@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 20
   cardName: "\u4EAE\u76F8"
-  description: "\u5BF9<color=orange>\u6240\u6709</color>\u654C\u65B9\u5355\u4F4D\u9020\u6210\u9707\u6151\uFF0C\u6BCF\u79D2\u9020\u6210
-    <color=red>#MainValue</color> \u70B9\u7269\u7406\u4F24\u5BB3\uFF0C\u6301\u7EED
+  description: "\u5BF9\u6240\u6709\u654C\u65B9\u5355\u4F4D\u9020\u6210\u9707\u6151\uFF0C\u6BCF\u79D2\u9020\u6210
+    <color=#F08080>#MainValue</color> \u70B9\u7269\u7406\u4F24\u5BB3\uFF0C\u6301\u7EED
     5 \u79D2"
   story: a4sd65qwe87978vbcc8vb7c9vb7cv9b7cvb9cv7b8c9b78c9vb7cv9bcvb7cvb97cvb79cvb7c98vb7c98vb7cv98b7cv98b789cvbcv9bc7v9b8cvbc89vb7c89vb7cv98bcv89bcv798
   illustration: {fileID: 21300000, guid: 7a9be9df1447a2c4fa4145d9abba8898, type: 3}
