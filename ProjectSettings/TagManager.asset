@@ -8,6 +8,7 @@ TagManager:
   - EnemyManager
   - Card
   - Enemy
+  - PlayerManager
   layers:
   - Default
   - TransparentFX

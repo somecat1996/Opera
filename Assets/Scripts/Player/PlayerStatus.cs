@@ -41,4 +41,14 @@ public class PlayerStatus : GameObjectBase
     {
         return 1 + allDamage + physicDamage;
     }
+
+    public void StartMoving()
+    {
+        battleDataManager.UpdatePlayerMovingStatus(true);
+    }
+
+    public void StopMoving()
+    {
+        battleDataManager.UpdatePlayerMovingStatus(false);
+    }
 }

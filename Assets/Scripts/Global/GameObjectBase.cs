@@ -8,9 +8,14 @@ interface GameObjectInterface
     // 伤害接口
     // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
     public void Hurt(float damage, bool shieldBreak, float damageIncrease);
+    // 传入CardPrototype
     public void Hurt(CardPrototype cardPrototype);
+    // 最大血量比例伤害
+    public void PercentHurt(float percent, float max);
     // 中毒接口，每次调用刷新中毒时间、增加中毒层数
     public void Poisoning();
+    // 流血接口，每次调用刷新5秒中毒
+    public void Bleeding();
     // 眩晕接口，调用后眩晕time时间 
     public void Stun(float time);
     // 返回是否眩晕
@@ -50,6 +55,13 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     // 眩晕
     private float stunTimer;
     private bool stun;
+    public float stunEffect = 1;
+    // 流血
+    private float bleedingTimer;
+    private float bleedingTickleTimer;
+    public float bleedingTime = 5f;
+    public float bleedingTickleTime = 1f;
+    public int bleedingDamage = 5;
     // 免疫眩晕
     private float stunImmunityTimer;
     private bool stunImmunity;
@@ -61,6 +73,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     private float healingTimer;
     private float healingTime;
     private float healingValue;
+    // 战斗管理器
+    protected BattleDataManager battleDataManager;
     // 玩家、敌人基类
 
     protected virtual void Awake()
@@ -73,6 +87,9 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         stun = false;
         stunImmunityTimer = 0f;
         stunImmunity = false;
+
+        bleedingTimer = 0f;
+        bleedingTickleTimer = 0f;
 
         curHealth = maxHealth;
 
@@ -92,6 +109,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         healthBarManager = healthBar.GetComponent<HealthBarManager>();
 
         healthBarManager.Init(transform, offsetPos);
+
+        battleDataManager = GameObject.FindGameObjectWithTag("BattleDataManager").GetComponent<BattleDataManager>();
     }
 
     protected virtual void Update()
@@ -100,6 +119,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         HandlingStun();
         HandlingShield();
         HandlingHealing();
+        HandlingBleeding();
     }
 
     public virtual void Hurt(CardPrototype cardPrototype)
@@ -107,14 +127,14 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
 
     }
 
-    public virtual void Hurt(float damage, bool shieldBreak=false, float damageIncrease=0)
+    public virtual void Hurt(float damage, bool shieldBreak=false, float damageIncrease=1)
     {
         // 受伤接口
         // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
+        float trueDamage;
         if (shield > 0)
         {
             // 计算真实伤害
-            float trueDamage;
             if (shieldBreak)
             {
                 trueDamage = damageIncrease * damage;
@@ -137,9 +157,20 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         }
         else
         {
+            trueDamage = damage;
             curHealth -= damage;
         }
+        battleDataManager.UpdateDamage(trueDamage);
         healthBarManager.UpdateHealth(curHealth / maxHealth);
+    }
+
+    public void PercentHurt(float percent, float max = Mathf.Infinity)
+    {
+        float trueDamage = percent * maxHealth;
+        if (max <= trueDamage)
+            Hurt(max);
+        else
+            Hurt(trueDamage);
     }
 
     public void Poisoning()
@@ -151,6 +182,12 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         poisonTimer = poisonDamageTime;
     }
 
+    public void Bleeding()
+    {
+        bleedingTimer = bleedingTime;
+        bleedingTickleTimer = bleedingTickleTime;
+    }
+
     public void Stun(float time)
     {
         // 眩晕接口
@@ -158,7 +195,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         if (!stunImmunity)
         {
             stun = true;
-            stunTimer = time;
+            stunTimer = time * stunEffect;
         }
     }
 
@@ -265,7 +302,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
             if (poisonTimer <= 0)
             {
                 // 结算伤害并刷新结算计时器
-                Hurt(poisonDamage * poisonLevel, false, 0);
+                Hurt(poisonDamage * poisonLevel);
                 poisonTimer = poisonDamageTime;
             }
             if (poisonTotalTimer <= 0)
@@ -275,6 +312,26 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
                 poisonTotalTimer = 0;
             }
 
+        }
+    }
+
+    protected void HandlingBleeding()
+    {
+        if (bleedingTimer > 0)
+        {
+            bleedingTimer -= Time.deltaTime;
+            bleedingTickleTimer -= Time.deltaTime;
+
+            if (bleedingTickleTimer <= 0)
+            {
+                Hurt(bleedingDamage);
+                bleedingTickleTimer = bleedingTickleTime;
+            }
+            if (bleedingTimer <= 0)
+            {
+                bleedingTimer = 0;
+                bleedingTickleTimer = 0;
+            }
         }
     }
 }

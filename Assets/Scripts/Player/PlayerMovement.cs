@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rigidbody;
     private Vector3 spriteOriginSacle;
+
+    private PlayerStatus playerStatus;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
         timer = Random.Range(walkTimeRange[0], walkTimeRange[1]);
         RandomDirection();
         rigidbody.velocity = moveDirection * moveSpeed;
+
+        playerStatus = gameObject.GetComponent<PlayerStatus>();
     }
 
     // Update is called once per frame
@@ -46,12 +50,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (walk)
             {
+                playerStatus.StopMoving();
                 walk = false;
                 timer = Random.Range(stayTimeRange[0], stayTimeRange[1]);
                 rigidbody.velocity = Vector3.zero * moveSpeed;
             }
             else
             {
+                playerStatus.StartMoving();
                 walk = true;
                 timer = Random.Range(walkTimeRange[0], walkTimeRange[1]);
                 RandomDirection();

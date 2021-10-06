@@ -28,10 +28,15 @@ public class EnemyStatus : GameObjectBase
         base.Hurt(damage, shieldBreak, damageIncrease);
         if (curHealth <= 0)
         {
-            EnemyManager tmp = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
-            tmp.Die(position);
-            Destroy(healthBarManager.gameObject);
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    public virtual void Die()
+    {
+        EnemyManager tmp = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
+        tmp.Die(position);
+        Destroy(healthBarManager.gameObject);
+        Destroy(gameObject);
     }
 }
