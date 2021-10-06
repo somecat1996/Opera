@@ -16,4 +16,4 @@ MonoBehaviour:
   buffName: "\u7269\u7406\u4F24\u5BB3\u52A0\u6DF1"
   description: "\u6240\u6709\u7269\u7406\u4F24\u5BB3\u52A0\u6DF1%MainValue"
   icon: {fileID: 0}
-  hideInGUI: 1
+  hideInGUI: 0

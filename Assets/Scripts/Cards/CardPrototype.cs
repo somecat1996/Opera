@@ -18,7 +18,7 @@ public class CardPrototype : MonoBehaviour
 
     private void Start()
     {
-        UpdateInfo();
+        UpdateGUIInfo();
     }
 
     public int GetID()
@@ -44,7 +44,7 @@ public class CardPrototype : MonoBehaviour
     /// <summary>
     /// 更新UI信息
     /// </summary>
-    public void UpdateInfo()
+    public void UpdateGUIInfo()
     {
         // 信息载入
         Transform son = transform.GetChild(0);

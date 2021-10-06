@@ -119,9 +119,6 @@ public class CardManager : MonoBehaviour
     // 将使用过的卡牌送出画面并放入弃牌队列中
     public void SendToDiscardedCardGroup(GameObject _card)
     {
-        // ***** 尝试在这里代理发送使用过卡牌信号 *****
-        BattleDataManager.instance.UpdateUsedCard(_card.GetComponent<CardPrototype>());
-
         _card.transform.parent = tempLayoutGroup;
         cardQueue_Discarded.Add(_card);
 
@@ -138,7 +135,12 @@ public class CardManager : MonoBehaviour
             }
         }
 
+        // ***** 尝试在这里代理发送使用过卡牌信号 *****
+        BattleDataManager.instance.UpdateUsedCard(_card.GetComponent<CardPrototype>());
+
         SendToLayoutGroup();
+
+
     }
 
     public void ReflashLayoutGroup()
