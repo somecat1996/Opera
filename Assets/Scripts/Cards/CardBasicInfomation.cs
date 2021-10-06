@@ -95,12 +95,25 @@ public class CardBasicInfomation : ScriptableObject
     public string GetDesc()
     {
         string text = null;
+        
+        float mainvalue = mainValue_Cur;
+
+        // 只有伤害卡牌才会有加成值计算
+        if(cardType == CardTag.Type.Magic)
+        {
+            mainvalue = GlobalValue.GetTrueMagicDamage_ToEnemy(mainvalue,cost);
+        }
+        else if(cardType == CardTag.Type.Physics)
+        {
+            mainvalue = GlobalValue.GetTruePhysicsDamage_ToEnemy(mainvalue, cost);
+        }
+
         if (description.Contains("#MainValue"))
         {
-            text = description.Replace("#MainValue", mainValue_Cur.ToString());
+            text = description.Replace("#MainValue",mainValue_Cur.ToString() + (mainvalue == mainValue_Cur ? "" : "(+" + (mainvalue-mainValue_Cur) + "加成)"));
         }else if (description.Contains("%MainValue"))
         {
-            text = description.Replace("%MainValue", (mainValue_Cur*100).ToString()+'%');
+            text = description.Replace("%MainValue",(mainValue_Cur * 100).ToString()+'%');
         }
             
         

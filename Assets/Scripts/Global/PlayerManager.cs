@@ -110,7 +110,20 @@ public class PlayerManager : MonoBehaviour
         cur_HealthPoint += _v;
         cur_HealthPoint = Mathf.Clamp(cur_HealthPoint, 0, max_HealthPoint);
     }
+
+    /// <summary>
+    /// 返回血量百分比
+    /// </summary>
+    /// <returns></returns>
+    public float GetPercentage_HealthPoint()
+    {
+        return cur_HealthPoint / max_HealthPoint;
+    }
     
+    /// <summary>
+    /// 通过增量修改心流值
+    /// </summary>
+    /// <param name="_v"></param>
     public void ChangeRecoverySpeed_PowerPoint(float _v)
     {
         cur_RecoverySpeed_PowerPoint += _v;

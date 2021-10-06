@@ -25,6 +25,21 @@ public class CardPrototype : MonoBehaviour
     {
         return cardInfo.id;
     }
+    public CardTag.Type GetCardType()
+    {
+        return cardInfo.cardType;
+    }
+
+    // 检测该卡是否为伤害卡
+    public bool CheckIfDamageCard()
+    {
+        if(GetCardType() == CardTag.Type.Magic || GetCardType() == CardTag.Type.Physics)
+        {
+            return true;
+        }
+
+        return false;
+    }
 
     /// <summary>
     /// 更新UI信息

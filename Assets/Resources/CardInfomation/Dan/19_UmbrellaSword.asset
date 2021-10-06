@@ -20,6 +20,7 @@ MonoBehaviour:
   illustration: {fileID: 21300000, guid: ae70fba19206bb54c8ce70c4ba6afcb2, type: 3}
   rarity: 1
   cardTag: 2
+  cardType: 1
   belongner: 2
   mainValue_Origin: 300
   cost: 2

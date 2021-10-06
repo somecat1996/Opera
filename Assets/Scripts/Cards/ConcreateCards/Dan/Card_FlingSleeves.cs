@@ -56,7 +56,9 @@ public class Card_FlingSleeves : CardPrototype, ICardEffectTrigger, ICardOperati
 
     public void TriggerEffect(GameObjectBase _go)
     {
-        _go.Hurt(cardInfo.mainValue_Cur,false,1.0f);
+
+        _go.Hurt(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur), false,1.0f);
+        BattleDataManager.instance.UpdateTargetEnemy(_go);
     }
 
     public void TriggerEffect(GameObjectBase[] _gos)

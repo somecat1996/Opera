@@ -67,6 +67,7 @@ public class Card_UmbrellaSword : CardPrototype, ICardEffectTrigger,ICardOperati
     public void TriggerEffect(GameObjectBase _go)
     {
         _go.Hurt(cardInfo.mainValue_Cur, false, 1.0f);
+        BattleDataManager.instance.UpdateTargetEnemy(_go);
     }
 
     public void TriggerEffect(GameObjectBase[] _gos)

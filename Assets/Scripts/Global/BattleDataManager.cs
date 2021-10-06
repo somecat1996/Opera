@@ -33,8 +33,13 @@ public class BattleDataManager : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        ResetAllData();
+    }
+
     // 重设数据——开启新关卡时调用
-    public void ResetAddData()
+    public void ResetAllData()
     {
         totalDamage = 0;
         totalUsedCard = 0;
@@ -46,7 +51,7 @@ public class BattleDataManager : MonoBehaviour
         playerMoving = false;
     }
 
-    // 数据更新
+    // 更新伤害数据
     public void UpdateDamage(float _damage)
     {
         totalDamage += _damage;
@@ -63,13 +68,14 @@ public class BattleDataManager : MonoBehaviour
         lastTargetEnemy = _gob;
     }
 
-    public void UpdatePlayerMoving(bool _v)
+    // 更新玩家移动状态 true->移动中 false->未移动
+    public void UpdatePlayerMovingStatus(bool _v)
     {
         playerMoving = _v;
     }
 
 
-    // 增加(移除)战场上敌人信息 在生成和*敌人对象销毁前*分别调用
+    // 增加(移除)战场上敌人信息 在生成和*敌人对象销毁前*调用
     public void AddEnemyData(GameObjectBase _gob)
     {
         enemyList.Add(_gob);

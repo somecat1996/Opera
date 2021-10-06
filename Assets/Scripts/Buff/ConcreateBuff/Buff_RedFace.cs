@@ -1,0 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Buff_RedFace : BuffPrototype
+{
+    private int counter_Origin = 5;
+    public int counter;
+    public float increment = 1f;
+
+    private int cur_UsedCard;
+
+    private void Update()
+    {
+        // 检测到使用卡牌数已更新
+        if (cur_UsedCard != BattleDataManager.instance.totalUsedCard)
+        {
+            cur_UsedCard++;
+
+            // 效果已激活
+            if (activated)
+            {
+                // 所使用卡牌为伤害卡
+                if (BattleDataManager.instance.lastUsedCard.CheckIfDamageCard())
+                {
+                    // 收回效果
+                    GlobalValue.damageIncrement_General -= increment;
+
+                    int cost = BattleDataManager.instance.lastUsedCard.cardInfo.cost;
+
+                    PlayerManager.instance.ChangePowerPoint(cost);
+                    PlayerManager.instance.ChangeHealthPoint(-cost);
+
+                    activated = false;
+                }
+                else
+                {
+                    // 非伤害卡牌 则跳过
+                    return;
+                }
+
+                return;
+            }
+            // 增伤未激活
+            else
+            {
+                counter--;
+
+                // 计数器以达到预定值
+                if (counter == 0)
+                {
+                    // 复位
+                    counter = counter_Origin;
+                    GlobalValue.damageIncrement_General += increment;
+                    activated = true;
+                }
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        activated = false;
+        counter = counter_Origin;
+        cur_UsedCard = BattleDataManager.instance.totalUsedCard;
+    }
+
+    private void OnDisable()
+    {
+        if (activated)
+        {
+            activated = false;
+            GlobalValue.damageIncrement_General -= increment;
+        }
+    }
+}
