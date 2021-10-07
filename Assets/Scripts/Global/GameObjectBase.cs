@@ -5,6 +5,7 @@ using UnityEngine;
 
 interface GameObjectInterface
 {
+    public void SetMaxHealth(float m);
     // 伤害接口
     // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
     public void Hurt(float damage, bool shieldBreak, float damageIncrease);
@@ -125,6 +126,12 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         HandlingShield();
         HandlingHealing();
         HandlingBleeding();
+    }
+
+    public void SetMaxHealth(float m)
+    {
+        maxHealth = m;
+        curHealth = m;
     }
 
     public virtual void Hurt(CardPrototype cardPrototype)
