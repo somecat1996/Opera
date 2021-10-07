@@ -31664,6 +31664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_PowerPoint: 10
   default_RecoverySpeed_PowerPoint: 0
+  lowBoundary_RecoverySpeed: 0.5
   max_HealthPoint: 0
   cur_PowerPoint: 0
   cur_HealthPoint: 0
