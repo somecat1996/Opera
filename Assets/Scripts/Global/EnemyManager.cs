@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public static EnemyManager instance;
     // 敌人生成位置，3*4方阵，从上到下从左到右排列
     // 9  6  3  0
     // 10 7  4  1
@@ -14,6 +15,10 @@ public class EnemyManager : MonoBehaviour
 
     // 记录状态
     private EnemyStatus [] generationPointStatus;
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {

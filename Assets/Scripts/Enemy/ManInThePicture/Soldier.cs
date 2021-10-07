@@ -6,13 +6,11 @@ public class Soldier : EnemyStatus, ReducePower
 {
     public float reduceRate;
 
-    private PlayerManager playerManager;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
 
-        playerManager = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         StartReducing();
     }
 
@@ -24,12 +22,12 @@ public class Soldier : EnemyStatus, ReducePower
 
     public void StartReducing()
     {
-        playerManager.ChangeRecoverySpeed_PowerPoint(reduceRate);
+        PlayerManager.instance.ChangeRecoverySpeed_PowerPoint(reduceRate);
     }
 
     public void StopReducing()
     {
-        playerManager.ChangeRecoverySpeed_PowerPoint(-reduceRate);
+        PlayerManager.instance.ChangeRecoverySpeed_PowerPoint(-reduceRate);
     }
 
     public override void Die()
