@@ -45,12 +45,23 @@ public class PlayerManager : MonoBehaviour
         cur_PowerPoint += cur_RecoverySpeed_PowerPoint * Time.deltaTime;
         cur_PowerPoint = Mathf.Clamp(cur_PowerPoint, 0, max_PowerPoint);
         GUIManager.instance.UpdatePowerPoint(cur_PowerPoint);
-        
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            player.Hurt(2);
+        }
     }
 
     public void SetPlayer(GameObjectBase _player)
     {
         player = _player;
+        player.maxHealth = max_HealthPoint;
+        cur_HealthPoint = max_HealthPoint;
+    }
+    public void SetCurrentHealthPoint(float _hp)
+    {
+        cur_HealthPoint = _hp;
+        cur_HealthPoint = Mathf.Clamp(cur_HealthPoint, 0, Mathf.Infinity);
     }
 
     // 初始化数据
@@ -118,8 +129,9 @@ public class PlayerManager : MonoBehaviour
     /// <param name="_v">增量</param>
     public void ChangeHealthPoint(float _v)
     {
-        cur_HealthPoint += _v;
-        cur_HealthPoint = Mathf.Clamp(cur_HealthPoint, 0, max_HealthPoint);
+       // cur_HealthPoint += _v;
+        player.InstantHealing(_v);
+        //cur_HealthPoint = Mathf.Clamp(cur_HealthPoint, 0, max_HealthPoint);
     }
 
     /// <summary>
