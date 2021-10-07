@@ -9,6 +9,7 @@ TagManager:
   - Card
   - Enemy
   - PlayerManager
+  - BattleDataManager
   layers:
   - Default
   - TransparentFX

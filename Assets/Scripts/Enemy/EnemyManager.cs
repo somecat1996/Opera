@@ -67,6 +67,7 @@ public class EnemyManager : MonoBehaviour
             GameObject tmp = Instantiate(prefab, generationPoint[p]);
             tmp.transform.localPosition = new Vector3(0, 0, 0);
             generationPointStatus[p] = tmp.GetComponent<EnemyStatus>();
+            BattleDataManager.instance.AddEnemyData(generationPointStatus[p]);
             generationPointStatus[p].position = p;
         }
     }
@@ -79,12 +80,14 @@ public class EnemyManager : MonoBehaviour
             GameObject tmp = Instantiate(prefab, generationPoint[4]);
             tmp.transform.localPosition = new Vector3(0, 0, 0);
             generationPointStatus[4] = tmp.GetComponent<EnemyStatus>();
+            BattleDataManager.instance.AddEnemyData(generationPointStatus[4]);
             generationPointStatus[4].position = 4;
         }
     }
 
     public void Die(int p)
     {
+        BattleDataManager.instance.AddEnemyData(generationPointStatus[p]);
         generationPointStatus[p] = null;
         // 测试用，死一个招一个
         SummonOne();

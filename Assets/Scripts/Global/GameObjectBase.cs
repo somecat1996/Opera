@@ -73,8 +73,6 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     private float healingTimer;
     private float healingTime;
     private float healingValue;
-    // 战斗管理器
-    protected BattleDataManager battleDataManager;
     // 玩家、敌人基类
 
     protected virtual void Awake()
@@ -109,8 +107,6 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         healthBarManager = healthBar.GetComponent<HealthBarManager>();
 
         healthBarManager.Init(transform, offsetPos);
-
-        battleDataManager = GameObject.FindGameObjectWithTag("BattleDataManager").GetComponent<BattleDataManager>();
     }
 
     protected virtual void Update()
@@ -160,7 +156,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
             trueDamage = damage;
             curHealth -= damage;
         }
-        battleDataManager.UpdateDamage(trueDamage);
+        BattleDataManager.instance.UpdateDamage(trueDamage);
         healthBarManager.UpdateHealth(curHealth / maxHealth);
     }
 

@@ -44,11 +44,11 @@ public class PlayerStatus : GameObjectBase
 
     public void StartMoving()
     {
-        battleDataManager.UpdatePlayerMovingStatus(true);
+        BattleDataManager.instance.UpdatePlayerMovingStatus(true);
     }
 
     public void StopMoving()
     {
-        battleDataManager.UpdatePlayerMovingStatus(false);
+        BattleDataManager.instance.UpdatePlayerMovingStatus(false);
     }
 }
