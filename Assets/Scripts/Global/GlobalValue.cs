@@ -16,7 +16,7 @@ public static class GlobalValue
     // 事件概率增幅
     public static float probabilityIncrement_Event = 0;
 
-    // 伤害衰减率
+    // 对玩家伤害衰减率 [非负数]
     public static float damageDecrement_Player = 0;
 
     // 奖赏增幅
@@ -39,14 +39,15 @@ public static class GlobalValue
         probabilityIncrement_Event = 0;
         damageDecrement_Player = 0;
 
-        lootIncrement = 0;
-        rewardIncrement = 0;
+        lootIncrement = 0; // 战利品 增量
+        rewardIncrement = 0; // 观众奖赏 增量
     }
 
     /// <summary>
     /// 返回真实物理伤害
     /// </summary>
     /// <param name="_damage">卡牌原本伤害</param>
+    /// <param name="_cost">传入卡牌心流值用于计算特殊加成 默认不考虑特殊加成</param>
     /// <returns></returns>
     public static float GetTruePhysicsDamage_ToEnemy(float _damage,int _cost = 100)
     {
@@ -86,7 +87,7 @@ public static class GlobalValue
     /// 返回真实魔法伤害
     /// </summary>
     /// <param name="_damage">卡牌原本伤害</param>
-    /// <param name="_cost">使用阈值 当阈值不为-1时 表示开启使用特殊伤害增量</param>
+    /// <param name="_cost">传入卡牌心流值用于计算特殊加成 默认不考虑特殊加成</param>
     /// <returns></returns>
     public static float GetTrueMagicDamage_ToEnemy(float _damage,int _cost = 100)
     {
@@ -124,5 +125,26 @@ public static class GlobalValue
 
     }
 
+    /// <summary>
+    /// 获得对玩家真实伤害
+    /// </summary>
+    /// <param name="_damage">初始伤害</param>
+    /// <returns></returns>
+    public static float GetTrueDamage_ToPlayer(float _damage)
+    {
+        return _damage * (1 - damageDecrement_Player);
+    }
 
+    /// <summary>
+    /// 获得真实概率
+    /// </summary>
+    /// <param name="_origin"></param>
+    /// <returns></returns>
+    public static float GetTrueProbaility(float _origin)
+    {
+        float temp = _origin + probabilityIncrement_Event;
+        temp = Mathf.Clamp(temp, 0, 1.0f);
+
+        return temp;
+    }
 }
