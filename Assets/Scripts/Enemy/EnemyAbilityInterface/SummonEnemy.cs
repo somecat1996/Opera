@@ -4,5 +4,5 @@ using UnityEngine;
 
 interface SummonEnemy
 {
-    public void Summon(int number);
+    public void SummonMinion(GameObject minion, int number);
 }

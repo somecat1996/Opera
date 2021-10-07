@@ -36,11 +36,11 @@ public class Minister : EnemyStatus, ReducePower, SummonEnemy
         base.Die();
     }
 
-    public void Summon(int number)
+    public void SummonMinion(GameObject minion, int number = 1)
     {
         for (int i = 0; i < number; i++)
         {
-            EnemyManager.instance.SummonMinion(soldierPrefab);
+            EnemyManager.instance.SummonMinion(minion);
         }
     }
 }
