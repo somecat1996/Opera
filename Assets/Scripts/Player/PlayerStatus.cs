@@ -33,6 +33,12 @@ public class PlayerStatus : GameObjectBase
         PlayerManager.instance.SetCurrentHealthPoint(curHealth);
     }
 
+    public void SetMaxHealth(float m)
+    {
+        maxHealth = m;
+        curHealth = m;
+    }
+
     public override void Hurt(float damage, bool shieldBreak, float damageIncrease)
     {
         base.Hurt(damage, shieldBreak, damageIncrease);
