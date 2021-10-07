@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // 改变人物朝向
         if (moveDirection.x < 0)
-            spriteTransform.localScale = new Vector3(spriteOriginSacle.x, -spriteOriginSacle.y, spriteOriginSacle.z);
+            spriteTransform.localScale = new Vector3(-spriteOriginSacle.x, spriteOriginSacle.y, spriteOriginSacle.z);
         else
             spriteTransform.localScale = new Vector3(spriteOriginSacle.x, spriteOriginSacle.y, spriteOriginSacle.z);
     }

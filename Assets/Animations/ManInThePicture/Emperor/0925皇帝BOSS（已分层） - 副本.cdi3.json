@@ -1,0 +1,211 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param7",
+			"GroupId": "ParamGroup",
+			"Name": "衣服飘动"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "ParamGroup",
+			"Name": "头帘晃动x"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "ParamGroup2",
+			"Name": "呼吸x"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "ParamGroup2",
+			"Name": "摔倒"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "ParamGroup2",
+			"Name": "受击"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "ParamGroup4",
+			"Name": "抬左腿"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "ParamGroup4",
+			"Name": "抬右腿"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "",
+			"Name": "圣旨抛起"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "抬右手（圣旨/香蕉皮）"
+		},
+		{
+			"Id": "Param19",
+			"GroupId": "",
+			"Name": "拔剑收剑"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "抬左手"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "左手外张"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "",
+			"Name": "左手外张 小臂"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "右手外张"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "伸右手"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "挥动右手"
+		},
+		{
+			"Id": "Param16",
+			"GroupId": "",
+			"Name": "出剑"
+		},
+		{
+			"Id": "Param21",
+			"GroupId": "",
+			"Name": "举剑"
+		},
+		{
+			"Id": "Param17",
+			"GroupId": "ParamGroup3",
+			"Name": "闭合圣旨透明度"
+		},
+		{
+			"Id": "Param20",
+			"GroupId": "ParamGroup3",
+			"Name": "香蕉皮透明度"
+		},
+		{
+			"Id": "Param18",
+			"GroupId": "",
+			"Name": "宝剑透明度"
+		}
+	],
+	"ParameterGroups": [
+		{
+			"Id": "ParamGroup",
+			"GroupId": "",
+			"Name": "晃动"
+		},
+		{
+			"Id": "ParamGroup2",
+			"GroupId": "",
+			"Name": "动作"
+		},
+		{
+			"Id": "ParamGroup4",
+			"GroupId": "",
+			"Name": "腿部"
+		},
+		{
+			"Id": "ParamGroup5",
+			"GroupId": "",
+			"Name": "手部"
+		},
+		{
+			"Id": "ParamGroup3",
+			"GroupId": "",
+			"Name": "道具透明度"
+		}
+	],
+	"Parts": [
+		{
+			"Id": "Part9",
+			"Name": "道具.psd"
+		},
+		{
+			"Id": "tou",
+			"Name": "tou"
+		},
+		{
+			"Id": "youshou",
+			"Name": "youshou"
+		},
+		{
+			"Id": "Part",
+			"Name": "腰带"
+		},
+		{
+			"Id": "Part2",
+			"Name": "上半身"
+		},
+		{
+			"Id": "Part3",
+			"Name": "三块黄布"
+		},
+		{
+			"Id": "Part4",
+			"Name": "红布"
+		},
+		{
+			"Id": "Part5",
+			"Name": "右腿"
+		},
+		{
+			"Id": "Part6",
+			"Name": "左腿"
+		},
+		{
+			"Id": "Part7",
+			"Name": "左手"
+		},
+		{
+			"Id": "PartSketch0",
+			"Name": "[ 参考图 ]"
+		},
+		{
+			"Id": "Part8",
+			"Name": "组 1"
+		},
+		{
+			"Id": "Tou",
+			"Name": "Tou"
+		},
+		{
+			"Id": "shenti2",
+			"Name": "shenti"
+		},
+		{
+			"Id": "zuoshou",
+			"Name": "zuoshou"
+		},
+		{
+			"Id": "qunzi",
+			"Name": "qunzi"
+		},
+		{
+			"Id": "youtui",
+			"Name": "youtui"
+		},
+		{
+			"Id": "zuotui",
+			"Name": "zuotui"
+		}
+	]
+}
