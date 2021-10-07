@@ -19,6 +19,7 @@ public class PlayerStatus : GameObjectBase
     protected override void Start()
     {
         base.Start();
+        PlayerManager.instance.SetPlayer(gameObject.GetComponent<GameObjectBase>());
     }
 
     // Update is called once per frame
