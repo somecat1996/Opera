@@ -13,9 +13,9 @@ public class Buff_YellowFace : BuffPrototype
         {
             cur_Target = BattleDataManager.instance.lastTargetEnemy;
 
-            if (Random.Range(0, 1.0f) <= probability)
+            if (Random.Range(0, 1.0f) <= GlobalValue.GetTrueProbaility(probability))
             {
-                Debug.Log("Á÷Ñª£¡");
+                cur_Target.Bleeding();
             }
         }
     }

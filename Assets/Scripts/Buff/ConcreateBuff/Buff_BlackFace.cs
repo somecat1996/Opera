@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Buff_BlackFace : BuffPrototype
 {
+    public float percentage = 0.05f;
+    public float maxDamage;
+
     public float interval = 20f;
     Coroutine timer;
 
-    public IEnumerator Timer()
+    public IEnumerator Timer()  
     {
         yield return new WaitForSeconds(interval);
 
         foreach(var i in BattleDataManager.instance.enemyList)
         {
-            Debug.Log(i.transform.parent + " ‹µΩÃÏ∑£");
+            i.PercentHurt(percentage, maxDamage);
         }
 
         timer = StartCoroutine(Timer());

@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Configuration")]
     public float max_PowerPoint;
     public float default_RecoverySpeed_PowerPoint;
+    public float lowBoundary_RecoverySpeed = 0.5f;
     [Space]
     public float max_HealthPoint;
 
@@ -16,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     public float cur_PowerPoint = 0;
     public float cur_HealthPoint = 0;
     public float cur_RecoverySpeed_PowerPoint = 0;
+
 
     [Space]
     public CharacterType.CharacterTag cur_Character = CharacterType.CharacterTag.Dan;
@@ -127,7 +129,7 @@ public class PlayerManager : MonoBehaviour
     public void ChangeRecoverySpeed_PowerPoint(float _v)
     {
         cur_RecoverySpeed_PowerPoint += _v;
-        cur_RecoverySpeed_PowerPoint = Mathf.Clamp(cur_RecoverySpeed_PowerPoint, 0, Mathf.Infinity);
+        cur_RecoverySpeed_PowerPoint = Mathf.Clamp(cur_RecoverySpeed_PowerPoint, lowBoundary_RecoverySpeed, Mathf.Infinity);
     }
 
     /// <summary>
