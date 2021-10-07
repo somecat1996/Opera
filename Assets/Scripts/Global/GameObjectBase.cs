@@ -52,34 +52,34 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     protected float curHealth;
     protected HealthBarManager healthBarManager;
     // 中毒持续时间计时器
-    private float poisonTotalTimer;
+    protected float poisonTotalTimer;
     // 中毒伤害结算计时器
-    private float poisonTimer;
+    protected float poisonTimer;
     // 中毒层数
-    private int poisonLevel;
+    protected int poisonLevel;
     // 眩晕
-    private float stunTimer;
-    private bool stun;
+    protected float stunTimer;
+    protected bool stun;
     public float stunEffect = 1;
     // 流血
-    private float bleedingTimer;
-    private float bleedingTickleTimer;
+    protected float bleedingTimer;
+    protected float bleedingTickleTimer;
     public float bleedingTime = 5f;
     public float bleedingTickleTime = 1f;
     public int bleedingDamage = 5;
     // 免疫眩晕
-    private float stunImmunityTimer;
-    private bool stunImmunity;
+    protected float stunImmunityTimer;
+    protected bool stunImmunity;
     // 免疫伤害
-    private int immunityTime;
+    protected int immunityTime;
     // 护盾
-    private float shield;
-    private float shieldTimer;
+    protected float shield;
+    protected float shieldTimer;
     // 持续回复
-    private float healingTotalTimer;
-    private float healingTimer;
-    private float healingTime;
-    private float healingValue;
+    protected float healingTotalTimer;
+    protected float healingTimer;
+    protected float healingTime;
+    protected float healingValue;
     // 玩家、敌人基类
 
     protected virtual void Awake()
@@ -228,7 +228,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         immunityTime += num;
     }
 
-    public void InstantHealing(float healingValue)
+    public virtual void InstantHealing(float healingValue)
     {
 
         curHealth += healingValue;

@@ -28,9 +28,21 @@ public class PlayerStatus : GameObjectBase
         base.Update();
     }
 
+    private void UpdateHealth()
+    {
+        PlayerManager.instance.SetCurrentHealthPoint(curHealth);
+    }
+
     public override void Hurt(float damage, bool shieldBreak, float damageIncrease)
     {
         base.Hurt(damage, shieldBreak, damageIncrease);
+        UpdateHealth();
+    }
+
+    public override void InstantHealing(float healingValue)
+    {
+        base.InstantHealing(healingValue);
+        UpdateHealth();
     }
 
     public float MagicDamageIncrease()
