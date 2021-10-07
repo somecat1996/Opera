@@ -22,6 +22,8 @@ interface GameObjectInterface
     public bool IsStun();
     // 控制免疫
     public void StunImmunity(float time);
+    // 免疫伤害
+    public void Immunity(int num);
     // 瞬间治疗接口，回复healingValue血量
     public void InstantHealing(float healingValue);
     // 持续治疗接口
@@ -65,6 +67,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     // 免疫眩晕
     private float stunImmunityTimer;
     private bool stunImmunity;
+    // 免疫伤害
+    private int immunityTime;
     // 护盾
     private float shield;
     private float shieldTimer;
@@ -85,6 +89,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         stun = false;
         stunImmunityTimer = 0f;
         stunImmunity = false;
+
+        immunityTime = 0;
 
         bleedingTimer = 0f;
         bleedingTickleTimer = 0f;
@@ -127,6 +133,11 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     {
         // 受伤接口
         // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
+        if (immunityTime > 0)
+        {
+            immunityTime -= 1;
+            return
+        }
         float trueDamage;
         if (shield > 0)
         {
@@ -207,6 +218,11 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         stunImmunityTimer = time;
         stun = false;
         stunTimer = 0f;
+    }
+
+    public void Immunity(int num)
+    {
+        immunityTime += num;
     }
 
     public void InstantHealing(float healingValue)
