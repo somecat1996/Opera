@@ -32,6 +32,9 @@ interface GameObjectInterface
     // 增加护盾
     // shieldValue护盾值，time护盾持续时间
     public void AddShield(float shieldValue, float time);
+
+    public float CurrentHealth();
+    public float MaxHealth();
 }
 
 public class GameObjectBase : MonoBehaviour, GameObjectInterface
@@ -345,5 +348,15 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
                 bleedingTickleTimer = 0;
             }
         }
+    }
+
+    public float CurrentHealth()
+    {
+        return curHealth;
+    }
+
+    public float MaxHealth()
+    {
+        return maxHealth;
     }
 }
