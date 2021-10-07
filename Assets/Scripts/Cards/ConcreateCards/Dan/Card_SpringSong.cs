@@ -100,7 +100,7 @@ public class Card_SpringSong :CardPrototype,ICardOperation,ICardEffectTrigger
 
             foreach (var i in temp)
             {
-                i.Hurt(damage, false, 1.0f);
+                i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), false, 1.0f);
             }
 
             damage *= 2;

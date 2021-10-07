@@ -73,6 +73,6 @@ public class Card_Tage : CardPrototype, ICardOperation,ICardEffectTrigger
     public void TriggerEffect(GameObjectBase[] _gos)
     {
         foreach (var i in _gos)
-            i.Hurt(cardInfo.mainValue_Cur,false,1.0f);
+            i.Hurt(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), false,1.0f);
     }
 }

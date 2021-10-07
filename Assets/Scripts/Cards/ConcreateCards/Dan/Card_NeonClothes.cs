@@ -23,7 +23,21 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
-        CardManager.instance.SendToDiscardedCardGroup(gameObject);
+        if (CheckOnValidArea())
+        {
+            if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
+            {
+                TriggerEffect();
+                CardManager.instance.SendToDiscardedCardGroup(gameObject);
+            }
+            else
+            {
+                mouseExit();
+            }
+
+        }
+        else
+            mouseExit();
     }
 
     public void mouseDown()
@@ -38,7 +52,7 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
-        throw new System.NotImplementedException();
+        PlayerManager.instance.player.Immunity((int)cardInfo.mainValue_Cur);
     }
 
     public void TriggerEffect(GameObjectBase _go)

@@ -101,7 +101,7 @@ public class CardManager : MonoBehaviour
             //LoadSelectedCard();
             RealignAndLoadCards();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             ClearAllCardQueue();
         }

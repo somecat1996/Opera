@@ -52,12 +52,20 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 设置玩家对象并传送最大生命值参数
+    /// </summary>
+    /// <param name="_player"></param>
     public void SetPlayer(GameObjectBase _player)
     {
         player = _player;
-        player.maxHealth = max_HealthPoint;
+        player.SetMaxHealth(max_HealthPoint);
         cur_HealthPoint = max_HealthPoint;
     }
+    /// <summary>
+    /// 同步玩家生命值
+    /// </summary>
+    /// <param name="_hp"></param>
     public void SetCurrentHealthPoint(float _hp)
     {
         cur_HealthPoint = _hp;

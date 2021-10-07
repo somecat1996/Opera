@@ -108,7 +108,7 @@ public class Card_Debut : CardPrototype, ICardEffectTrigger,ICardOperation
             }
 
             foreach (var i in temp)
-                i.Hurt(cardInfo.mainValue_Cur, false, 1);
+                i.Hurt(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), false, 1);
             yield return new WaitForSeconds(1.0f);
         }
 

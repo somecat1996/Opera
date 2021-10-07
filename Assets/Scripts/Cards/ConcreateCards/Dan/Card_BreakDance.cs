@@ -72,9 +72,9 @@ public class Card_BreakDance : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
-        
+        PlayerManager.instance.player.StunImmunity(cardInfo.duration);
 
         foreach (var i in _gos)
-            i.Hurt(cardInfo.mainValue_Cur,false,1.0f);
+            i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), false,1.0f);
     }
 }

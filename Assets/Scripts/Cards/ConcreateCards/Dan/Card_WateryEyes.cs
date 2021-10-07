@@ -110,11 +110,11 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
             {
                 if (i.IsStun())
                 {
-                    i.Hurt(cardInfo.mainValue_Cur*2, false, 1.0f);
+                    i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost) * 2, false, 1.0f);
                 }
                 else
                 {
-                    i.Hurt(cardInfo.mainValue_Cur, false, 1.0f);
+                    i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), false, 1.0f);
                 }
                 
             }
