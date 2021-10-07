@@ -72,6 +72,8 @@ public class Card_BreakDance : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
+        
+
         foreach (var i in _gos)
             i.Hurt(cardInfo.mainValue_Cur,false,1.0f);
     }

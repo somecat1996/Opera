@@ -14,9 +14,11 @@ public class Buff_BlackFace : BuffPrototype
     {
         yield return new WaitForSeconds(interval);
 
+        Debug.Log("Hurt");
         foreach(var i in BattleDataManager.instance.enemyList)
         {
             i.PercentHurt(percentage, maxDamage);
+            Debug.Log("Hit!");
         }
 
         timer = StartCoroutine(Timer());

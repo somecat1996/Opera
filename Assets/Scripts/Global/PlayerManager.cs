@@ -18,6 +18,10 @@ public class PlayerManager : MonoBehaviour
     public float cur_HealthPoint = 0;
     public float cur_RecoverySpeed_PowerPoint = 0;
 
+    [Space]
+    [Header("Player")]
+    public GameObjectBase player;
+
 
     [Space]
     public CharacterType.CharacterTag cur_Character = CharacterType.CharacterTag.Dan;
@@ -42,6 +46,11 @@ public class PlayerManager : MonoBehaviour
         cur_PowerPoint = Mathf.Clamp(cur_PowerPoint, 0, max_PowerPoint);
         GUIManager.instance.UpdatePowerPoint(cur_PowerPoint);
         
+    }
+
+    public void SetPlayer(GameObjectBase _player)
+    {
+        player = _player;
     }
 
     // 初始化数据

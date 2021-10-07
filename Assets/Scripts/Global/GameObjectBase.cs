@@ -136,7 +136,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         if (immunityTime > 0)
         {
             immunityTime -= 1;
-            return
+            return;
         }
         float trueDamage;
         if (shield > 0)

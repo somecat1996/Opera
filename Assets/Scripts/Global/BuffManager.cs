@@ -32,11 +32,11 @@ public class BuffManager : MonoBehaviour
             ReflashAllBuffData();
         }else if (Input.GetKeyDown(KeyCode.S))
         {
-            EnableBuff(208);
+            EnableBuff(213);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            DisableBuff(208);
+            DisableBuff(213);
         }
     }
 

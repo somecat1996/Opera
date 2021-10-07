@@ -46,4 +46,6 @@ MonoBehaviour:
   buffInfo: {fileID: 11400000, guid: 4e5c3e31dfd112a4fbf6b9889b8b5bed, type: 2}
   replaceText: 
   activated: 0
+  percentage: 0.05
+  maxDamage: 500
   interval: 20

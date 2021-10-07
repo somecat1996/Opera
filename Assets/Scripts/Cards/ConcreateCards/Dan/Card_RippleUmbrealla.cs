@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Card_RippleUmbrealla : CardPrototype,ICardOperation,ICardEffectTrigger
 {
+    public bool activated = false;
+    public Coroutine timer;
+
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
@@ -23,7 +26,21 @@ public class Card_RippleUmbrealla : CardPrototype,ICardOperation,ICardEffectTrig
 
     public void mouseUp()
     {
-        CardManager.instance.SendToDiscardedCardGroup(gameObject);
+        if (CheckOnValidArea())
+        {
+            if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
+            {
+                TriggerEffect();
+                CardManager.instance.SendToDiscardedCardGroup(gameObject);
+            }
+            else
+            {
+                mouseExit();
+            }
+
+        }
+        else
+            mouseExit();
     }
 
     public void mouseDown()
@@ -32,12 +49,40 @@ public class Card_RippleUmbrealla : CardPrototype,ICardOperation,ICardEffectTrig
     }
     public void RevokeEffect()
     {
-        throw new System.NotImplementedException();
+        GlobalValue.damageIncrement_Magic -= cardInfo.mainValue_Cur;
+        activated = false;
     }
 
     public void TriggerEffect()
     {
-        throw new System.NotImplementedException();
+        // 效果正在激活中 重新激活
+        if (activated)
+        {
+            OnDisable();
+        }
+
+        GlobalValue.damageIncrement_Magic += cardInfo.mainValue_Cur;
+        activated = true;
+
+        StartCoroutine(Timer());
+
+
+    }
+
+    IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(cardInfo.duration);
+        RevokeEffect();
+    }
+
+    private void OnDisable()
+    {
+        if (activated)
+        {
+            activated = false;
+            StopCoroutine(timer);
+            RevokeEffect();
+        }
     }
 
     public void TriggerEffect(GameObjectBase _go)
