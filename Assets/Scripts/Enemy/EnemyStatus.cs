@@ -34,8 +34,7 @@ public class EnemyStatus : GameObjectBase
 
     public virtual void Die()
     {
-        EnemyManager tmp = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
-        tmp.Die(position);
+        EnemyManager.instance.Die(position);
         Destroy(healthBarManager.gameObject);
         Destroy(gameObject);
     }

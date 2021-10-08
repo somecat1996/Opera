@@ -5,6 +5,7 @@ using UnityEngine;
 public class Soldier : EnemyStatus, ReducePower
 {
     public float reduceRate;
+    public float lifeTimer = 3f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -18,6 +19,9 @@ public class Soldier : EnemyStatus, ReducePower
     protected override void Update()
     {
         base.Update();
+
+        lifeTimer -= Time.deltaTime;
+        if (lifeTimer <= 0) Die();
     }
 
     public void StartReducing()

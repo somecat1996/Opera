@@ -17,6 +17,9 @@ public class EnemyManager : MonoBehaviour
 
     // 记录状态
     private EnemyStatus [] generationPointStatus;
+
+    // 关卡设置
+    public List<GameObject> bossPrefabs;
     private void Awake()
     {
         instance = this;
@@ -26,16 +29,19 @@ public class EnemyManager : MonoBehaviour
     {
         generationPointStatus = new EnemyStatus[generationPoint.Count];
 
-        // 先招满，测试用
-        int ministerPosition = SummonOne();
-        Minister minister = generationPointStatus[ministerPosition].GetComponent<Minister>();
-        minister.SummonMinion(minister.soldierPrefab, 3);
+        // 测试用
+        EnterLevel(0);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void EnterLevel(int bossIndex)
+    {
+        SummonBoss(bossPrefabs[bossIndex]);
     }
 
     public int SummonOne()
@@ -102,10 +108,11 @@ public class EnemyManager : MonoBehaviour
     }
 
     // 在中心位置召唤
-    public void SummonInMiddle(GameObject prefab)
+    public GameObject SummonInMiddle(GameObject prefab)
     {
         GameObject tmp = Instantiate(prefab, middleGenerationPoint);
         tmp.transform.localPosition = new Vector3(0, 0, 0);
+        return tmp;
     }
 
     public void Die(int p)
@@ -113,6 +120,24 @@ public class EnemyManager : MonoBehaviour
         BattleDataManager.instance.RemoveEnemyData(generationPointStatus[p]);
         generationPointStatus[p] = null;
         // 测试用，死一个招一个
-        SummonOne();
+        // SummonOne();
+    }
+
+    public void RemoveMinions()
+    {
+        for (int i = 0; i < generationPoint.Count; i++)
+        {
+            if (i!=4 && generationPointStatus[i])
+                generationPointStatus[i].Die();
+        }
+    }
+
+    public void HurtAll(float damage)
+    {
+        for (int i = 0; i < generationPoint.Count; i++)
+        {
+            if (generationPointStatus[i])
+                generationPointStatus[i].Hurt(damage);
+        }
     }
 }

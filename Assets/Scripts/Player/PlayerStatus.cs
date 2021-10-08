@@ -35,7 +35,7 @@ public class PlayerStatus : GameObjectBase
         PlayerManager.instance.SetCurrentHealthPoint(curHealth);
     }
 
-    public override void Hurt(float damage, bool shieldBreak, float damageIncrease)
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1)
     {
         if (immunityTime > 0)
         {
@@ -44,6 +44,10 @@ public class PlayerStatus : GameObjectBase
         }
         else if (immunityTimer > 0)
             return;
+
+        // ≤‚ ‘
+        Debug.Log(damage);
+        Debug.Log(curHealth);
 
         base.Hurt(damage, shieldBreak, damageIncrease);
         UpdateHealth();
