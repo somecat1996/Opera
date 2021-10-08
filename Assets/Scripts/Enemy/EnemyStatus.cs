@@ -23,7 +23,7 @@ public class EnemyStatus : GameObjectBase
         base.Update();
     }
 
-    public override void Hurt(float damage, bool shieldBreak, float damageIncrease)
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1)
     {
         base.Hurt(damage, shieldBreak, damageIncrease);
         if (curHealth <= 0)
