@@ -26,6 +26,8 @@ public class PlayerStatus : GameObjectBase
     protected override void Update()
     {
         base.Update();
+        HandlingImmunity();
+        HandlingInvisible();
     }
 
     private void UpdateHealth()
@@ -35,6 +37,14 @@ public class PlayerStatus : GameObjectBase
 
     public override void Hurt(float damage, bool shieldBreak, float damageIncrease)
     {
+        if (immunityTime > 0)
+        {
+            immunityTime -= 1;
+            return;
+        }
+        else if (immunityTimer > 0)
+            return;
+
         base.Hurt(damage, shieldBreak, damageIncrease);
         UpdateHealth();
     }

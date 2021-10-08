@@ -7,8 +7,8 @@ interface GameObjectInterface
 {
     public void SetMaxHealth(float m);
     // 伤害接口
-    // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
-    public void Hurt(float damage, bool shieldBreak, float damageIncrease);
+    // 传入damage伤害数值，poison是否带毒（默认false），shieldBreak是否对护盾增伤（默认false），damageIncrease增伤比例（默认1）
+    public void Hurt(float damage, bool poison, bool shieldBreak, float damageIncrease);
     // 传入CardPrototype
     public void Hurt(CardPrototype cardPrototype);
     // 最大血量比例伤害
@@ -24,7 +24,10 @@ interface GameObjectInterface
     // 控制免疫
     public void StunImmunity(float time);
     // 免疫伤害
-    public void Immunity(int num);
+    public void ImmunityByTime(int num);
+    public void ImmunityByDuration(float time);
+    // 隐身动画效果
+    public void Invisible(float time);
     // 瞬间治疗接口，回复healingValue血量
     public void InstantHealing(float healingValue);
     // 持续治疗接口
@@ -73,6 +76,9 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     protected bool stunImmunity;
     // 免疫伤害
     protected int immunityTime;
+    protected float immunityTimer;
+    // 隐身
+    protected float invisibleTimer;
     // 护盾
     protected float shield;
     protected float shieldTimer;
@@ -95,6 +101,9 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         stunImmunity = false;
 
         immunityTime = 0;
+        immunityTimer = 0;
+
+        invisibleTimer = 0;
 
         bleedingTimer = 0f;
         bleedingTickleTimer = 0f;
@@ -139,15 +148,10 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
 
     }
 
-    public virtual void Hurt(float damage, bool shieldBreak=false, float damageIncrease=1)
+    public virtual void Hurt(float damage, bool poison=false, bool shieldBreak=false, float damageIncrease=1)
     {
         // 受伤接口
         // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
-        if (immunityTime > 0)
-        {
-            immunityTime -= 1;
-            return;
-        }
         float trueDamage;
         if (shield > 0)
         {
@@ -177,6 +181,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
             trueDamage = damage;
             curHealth -= damage;
         }
+        if (poison)
+            Poisoning();
         BattleDataManager.instance.UpdateDamage(trueDamage);
         healthBarManager.UpdateHealth(curHealth / maxHealth);
     }
@@ -230,9 +236,19 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         stunTimer = 0f;
     }
 
-    public void Immunity(int num)
+    public void ImmunityByTime(int num)
     {
         immunityTime += num;
+    }
+
+    public void ImmunityByDuration(float time)
+    {
+        immunityTimer += time;
+    }
+
+    public void Invisible(float time)
+    {
+        invisibleTimer += time;
     }
 
     public virtual void InstantHealing(float healingValue)
@@ -353,6 +369,30 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
             {
                 bleedingTimer = 0;
                 bleedingTickleTimer = 0;
+            }
+        }
+    }
+
+    protected void HandlingImmunity()
+    {
+        if (immunityTimer > 0)
+        {
+            immunityTimer -= Time.deltaTime;
+            if (immunityTimer <= 0)
+            {
+                immunityTimer = 0;
+            }
+        }
+    }
+
+    protected void HandlingInvisible()
+    {
+        if (invisibleTimer > 0)
+        {
+            invisibleTimer -= Time.deltaTime;
+            if (invisibleTimer <= 0)
+            {
+                invisibleTimer = 0;
             }
         }
     }
