@@ -116,12 +116,12 @@ public class CardBasicInfomation : ScriptableObject
             text = description.Replace("%MainValue",(mainValue_Cur * 100).ToString()+'%');
         }
 
-        // 暂时将二段伤害
-        if (description.Contains("#Duration"))
+        // 乘数替换 duration当作倍数
+        if (description.Contains("@MainValue"))
         {
 
 
-            text = text.Replace("#Duration", duration.ToString());
+            text = text.Replace("@MainValue", (mainValue_Cur*duration).ToString() + (mainvalue * duration == mainValue_Cur * duration ? "" : "(+" + (mainvalue - mainValue_Cur) * duration + "加成)"));
         }
             
         

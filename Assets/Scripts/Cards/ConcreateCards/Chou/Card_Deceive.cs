@@ -61,6 +61,9 @@ public class Card_Deceive : CardPrototype,ICardOperation,ICardEffectTrigger
             OnDisable();
         }
 
+        PlayerManager.instance.player.ImmunityByDuration(cardInfo.duration);
+        PlayerManager.instance.player.Invisible(cardInfo.duration);
+
         GlobalValue.damageIncrement_General += cardInfo.mainValue_Cur;
         activated = true;
 

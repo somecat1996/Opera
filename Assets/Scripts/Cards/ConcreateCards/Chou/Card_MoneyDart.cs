@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * *************注意**************** 
- * 此卡牌较为特殊，由于包含2个主要参数
- * 故Duration当作第二个主要参数使用
- */
-
 public class Card_MoneyDart : CardPrototype,ICardOperation,ICardEffectTrigger
 {
+    public int firstObjectMultiple = 5;
+    public GameObjectBase enemyList = new GameObjectBase();
+
     public void mouseDown()
     {
         GUIManager.instance.DisableCardDesc();
@@ -62,7 +59,8 @@ public class Card_MoneyDart : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect(GameObjectBase _go)
     {
-        _go.Hurt(GlobalValue.GetTruePhysicsDamage_ToEnemy(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost)), false, 1.0f);
+        // 首个目标5倍伤害
+        _go.Hurt(GlobalValue.GetTruePhysicsDamage_ToEnemy(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur * firstObjectMultiple, cardInfo.cost)), false, 1.0f);
         BattleDataManager.instance.UpdateTargetEnemy(_go);
 
         // 进行散射伤害 不记录单体攻击对象

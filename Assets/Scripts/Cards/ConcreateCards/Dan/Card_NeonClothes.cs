@@ -52,7 +52,7 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
-        PlayerManager.instance.player.Immunity((int)cardInfo.mainValue_Cur);
+        PlayerManager.instance.player.ImmunityByTime((int)cardInfo.mainValue_Cur);
     }
 
     public void TriggerEffect(GameObjectBase _go)
