@@ -8,7 +8,7 @@ interface GameObjectInterface
     public void SetMaxHealth(float m);
     // 伤害接口
     // 传入damage伤害数值，poison是否带毒（默认false），shieldBreak是否对护盾增伤（默认false），damageIncrease增伤比例（默认1）
-    public void Hurt(float damage, bool poison, bool shieldBreak, float damageIncrease);
+    public void Hurt(float damage, bool shieldBreak, float damageIncrease, bool poison);
     // 传入CardPrototype
     public void Hurt(CardPrototype cardPrototype);
     // 最大血量比例伤害
@@ -148,7 +148,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
 
     }
 
-    public virtual void Hurt(float damage, bool poison=false, bool shieldBreak=false, float damageIncrease=1)
+    public virtual void Hurt(float damage, bool shieldBreak=false, float damageIncrease=1, bool poison=false)
     {
         // 受伤接口
         // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
