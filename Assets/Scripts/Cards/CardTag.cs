@@ -15,6 +15,7 @@ public static class CardTag
         Buff,
         Shield,
         Rd,
+        Posion
     }
     public enum Type
     {
@@ -77,7 +78,11 @@ public static class CardTag
                 }
             case Tag.Rd:
                 {
-                    return "ª§∂‹";
+                    return "ºı…À";
+                }
+            case Tag.Posion:
+                {
+                    return "∂æ…À";
                 }
             case Tag.None:
             default:

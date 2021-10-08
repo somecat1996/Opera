@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public class CardCreator : EditorWindow
 {
     int id;
+    string className;
     string cardName;
     string description;
     string story;
@@ -38,6 +39,7 @@ public class CardCreator : EditorWindow
         GUILayout.Space(5);
         GUILayout.Label("卡牌基本信息");
         id = EditorGUILayout.IntField("Card ID",id);
+        className = EditorGUILayout.TextField("Class Name", className);
         cardName = EditorGUILayout.TextField("Card Name",cardName);
 
         description = EditorGUILayout.TextField("Description", description);
@@ -83,8 +85,9 @@ public class CardCreator : EditorWindow
         cardInfoTemplate.radius = radius;
         cardInfoTemplate.illustration = illustration;
         cardInfoTemplate.cardTag = cardTag;
+        cardInfoTemplate.cardType = cardType;
 
-        string cardInfo_Path = "Assets/Resources/CardInfomation/" + belongner.ToString() + "/" + id + "_" + cardName + ".asset";
+        string cardInfo_Path = "Assets/Resources/CardInfomation/" + belongner.ToString() + "/" + id + "_" + className + ".asset";
         CardBasicInfomation cardInfo = Object.Instantiate<CardBasicInfomation>(cardInfoTemplate);
         AssetDatabase.CreateAsset(cardInfo, cardInfo_Path);
         AssetDatabase.Refresh();
@@ -97,9 +100,9 @@ public class CardCreator : EditorWindow
 
         string codeSrc = templateSource.text;
 
-        codeSrc = templateSource.text.Replace("#ClassName", "Card_" + cardName);
+        codeSrc = templateSource.text.Replace("#ClassName", "Card_" + className);
 
-        var assetPath = string.Format("Assets/Scripts/Cards/ConcreateCards/" + belongner.ToString()+ "/Card_" +cardName + ".cs");
+        var assetPath = string.Format("Assets/Scripts/Cards/ConcreateCards/" + belongner.ToString()+ "/Card_" + className + ".cs");
         var filePath = Application.dataPath.Replace("Assets", assetPath);
 
         File.WriteAllText(filePath, codeSrc);
@@ -111,11 +114,11 @@ public class CardCreator : EditorWindow
     {
         GameObject prefab = Resources.Load("Prefabs/CardObjectTemplate") as GameObject;
         GameObject go = GameObject.Instantiate(prefab);
-        go.name = "Card_" + cardName;
+        go.name = id+"_Card_" + className;
         go.GetComponent<Image>().sprite = illustration;
-        var type = System.Reflection.Assembly.Load("Assembly-CSharp").GetType(id + "_Card_" + cardName);
+        var type = System.Reflection.Assembly.Load("Assembly-CSharp").GetType(id + "_Card_" + className);
         var script = go.AddComponent(type);
-        string path = "Assets/Resources/CardInstances/" + belongner.ToString() + "/" + id +"_Card_" + cardName + ".prefab"; ;
+        string path = "Assets/Resources/CardInstances/" + belongner.ToString() + "/" + id +"_Card_" + className + ".prefab"; ;
         PrefabUtility.SaveAsPrefabAsset(go, path);
 
         Destroy(go);

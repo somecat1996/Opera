@@ -7,12 +7,12 @@ public class BattleDataManager : MonoBehaviour
     public static BattleDataManager instance;
 
     [Header("Real-Time Data")]
-    public float totalDamage = 0;
-    public int totalUsedCard = 0;
-    public GameObjectBase lastTargetEnemy;
-    public CardPrototype lastUsedCard;
+    public float totalDamage = 0; // 由敌人Hurt函数上传伤害信息
+    public int totalUsedCard = 0; // 由CardManger.SendToTempLayoutGroup上传
+    public GameObjectBase lastTargetEnemy; // 由单体输出卡牌上传
+    public CardPrototype lastUsedCard; // 由CardManger.SendToTempLayoutGroup上传
     [Space]
-    public List<GameObjectBase> enemyList = new List<GameObjectBase>();
+    public List<GameObjectBase> enemyList = new List<GameObjectBase>(); // 由敌人自身上传信息
     [Space]
     public bool playerMoving = false;
 

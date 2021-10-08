@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d192056b336d2459d3b0891b12eb1e, type: 3}
+  m_Name: 53_Crappy
+  m_EditorClassIdentifier: 
+  id: 53
+  cardName: "\u8E69\u811A\u6B65"
+  description: "\u7F13\u6162\u63D0\u5347\u6C1B\u56F4\uFF0C\u6BCF\u79D2\u56DE\u590D
+    <color=#20B2AA>#MainValue</color> \u70B9\u6C1B\u56F4\u503C\uFF0C\u6301\u7EED
+    5 \u79D2"
+  story: 
+  illustration: {fileID: 0}
+  rarity: 2
+  cardTag: 3
+  cardType: 0
+  belongner: 4
+  mainValue_Origin: 0.6
+  cost: 2
+  duration: 5
+  radius: 0
+  mainValue_Cur: 0
+  quantity: 0
+  level: 0

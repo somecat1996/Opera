@@ -27,6 +27,9 @@ public static class GlobalValue
     public static int costThreshold = -1;
     public static float damageIncrement_Special = 0;
 
+    // 玩家攻击带毒 标志位
+    public static bool poisonAttack = false;
+
     public static void ResetAllData()
     {
         damageIncrement_General = 0;

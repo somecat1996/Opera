@@ -6,6 +6,7 @@ public class Card_RainyOrchid :CardPrototype,ICardOperation,ICardEffectTrigger
 {
     public bool healing = false;
     public float time;
+    Coroutine timer;
 
     public void mouseDrag()
     {
@@ -58,7 +59,7 @@ public class Card_RainyOrchid :CardPrototype,ICardOperation,ICardEffectTrigger
     {
         if(healing == false)
         {
-            StartCoroutine(Effect());
+            timer = StartCoroutine(Effect());
             healing = true;
         }
         else
@@ -67,6 +68,15 @@ public class Card_RainyOrchid :CardPrototype,ICardOperation,ICardEffectTrigger
             time = cardInfo.duration;
         }
 
+    }
+
+    private void OnDisable()
+    {
+        if (healing)
+        {
+            StopCoroutine(timer);
+            healing = false;
+        }
     }
 
     public IEnumerator Effect()

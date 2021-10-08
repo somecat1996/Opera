@@ -106,7 +106,7 @@ public class CardBasicInfomation : ScriptableObject
         else if(cardType == CardTag.Type.Physics)
         {
             mainvalue = GlobalValue.GetTruePhysicsDamage_ToEnemy(mainvalue, cost);
-        }
+        }   
 
         if (description.Contains("#MainValue"))
         {
@@ -114,6 +114,14 @@ public class CardBasicInfomation : ScriptableObject
         }else if (description.Contains("%MainValue"))
         {
             text = description.Replace("%MainValue",(mainValue_Cur * 100).ToString()+'%');
+        }
+
+        // ÔÝÊ±½«¶þ¶ÎÉËº¦
+        if (description.Contains("#Duration"))
+        {
+
+
+            text = text.Replace("#Duration", duration.ToString());
         }
             
         

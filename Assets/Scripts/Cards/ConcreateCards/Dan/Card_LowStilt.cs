@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Card_LowStilt : CardPrototype,ICardEffectTrigger,ICardOperation
 {
-    public bool recovering = false;
-    public float rate = 0.5f;
+    public bool activated = false;
     public float increment = 0;
-    public float time = 0;
+    Coroutine timer;
 
     public void mouseDrag()
     {
@@ -57,30 +56,38 @@ public class Card_LowStilt : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void TriggerEffect()
     {
-        if (!recovering)
+        increment = PlayerManager.instance.cur_RecoverySpeed_PowerPoint * cardInfo.mainValue_Cur;
+
+        if (!activated)
         {
-            recovering = true;
-            time = cardInfo.duration;
-            increment = PlayerManager.instance.cur_RecoverySpeed_PowerPoint * rate;
+            activated = true;
             PlayerManager.instance.ChangeRecoverySpeed_PowerPoint(increment);
-            StartCoroutine(Timer());
+            timer = StartCoroutine(Timer());
         }
         else
         {
-            time = cardInfo.duration;
+            StopCoroutine(timer);
+            timer = StartCoroutine(Timer());
         }
     }
     
-    // 用于周期检测
+    // 定时器
     public IEnumerator Timer()
     {
-        while(time > 0)
-        {
-            time--;
-            yield return new WaitForSeconds(1);
-        }
+        yield return new WaitForSeconds(cardInfo.duration);
+
         PlayerManager.instance.ChangeRecoverySpeed_PowerPoint(-increment);
-        recovering = false;
+        activated = false;
+    }
+
+    private void OnDisable()
+    {
+        if (activated)
+        {
+            StopCoroutine(timer);
+            activated = false;
+            PlayerManager.instance.ChangeRecoverySpeed_PowerPoint(-increment);
+        }
     }
 
     public void TriggerEffect(GameObjectBase _go)
