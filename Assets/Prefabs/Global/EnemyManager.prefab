@@ -89,7 +89,9 @@ MonoBehaviour:
   - {fileID: 4587633646086845133}
   - {fileID: 4587633645428224590}
   middleGenerationPoint: {fileID: 5412829362662183938}
-  enemyPrefab: {fileID: 7049907831289417314, guid: cfc4989c03dc8394a80cc7b2daffd54b, type: 3}
+  enemyPrefab: {fileID: 7049907831289417314, guid: 122080d50a4b3cc45bde69af429d6b23, type: 3}
+  bossPrefabs:
+  - {fileID: 7049907831289417314, guid: 122080d50a4b3cc45bde69af429d6b23, type: 3}
 --- !u!1 &4587633645427658909
 GameObject:
   m_ObjectHideFlags: 0
