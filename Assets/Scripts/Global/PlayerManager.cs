@@ -25,6 +25,9 @@ public class PlayerManager : MonoBehaviour
 
     [Space]
     public CharacterType.CharacterTag cur_Character = CharacterType.CharacterTag.Dan;
+    public CharacterBasicInfomation cur_CharacterInfo;
+
+    [Space]
     public PlayerData data;
 
     private void Awake()
@@ -97,11 +100,12 @@ public class PlayerManager : MonoBehaviour
     }
 
     //  修改当前角色
-    public void SwitchCharacter(CharacterType.CharacterTag _v)
+    public void SwitchCharacter(CharacterType.CharacterTag _v,CharacterBasicInfomation _info)
     {
         if (_v == cur_Character)
             return;
 
+        cur_CharacterInfo = _info;
         cur_Character = _v;
 
         // 清除已选择卡牌的信息

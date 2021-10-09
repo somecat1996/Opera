@@ -16,6 +16,8 @@ public class Card_GroundDragon : CardPrototype,ICardOperation,ICardEffectTrigger
 
     private void Start()
     {
+        UpdateGUIInfo();
+
         // 该卡牌的主要参数暂时用于效果倍乘
         mv_Crappy = CardManager.instance.cardLibrary[53].mainValue_Cur * cardInfo.mainValue_Cur;
         mv_ShakeShoulder = CardManager.instance.cardLibrary[54].mainValue_Cur * cardInfo.mainValue_Cur;

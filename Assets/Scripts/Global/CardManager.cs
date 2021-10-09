@@ -156,7 +156,7 @@ public class CardManager : MonoBehaviour
         //... 检查玩家所选角色
         // if(xx == CharacterType.Character.Dan) ...
 
-        foreach(var i in Resources.LoadAll<CardBasicInfomation>("CardInfomation/Dan"))
+        foreach(var i in Resources.LoadAll<CardBasicInfomation>("CardInfomation"))
         {
             cardLibrary.Add(i.id, i);
         }
@@ -171,8 +171,7 @@ public class CardManager : MonoBehaviour
     // 读取卡牌实例并放入字典中以作备用
     public void LoadCardInstance()
     {
-        // 判断角色类型
-        foreach (var i in Resources.LoadAll<GameObject>("CardInstances/Dan"))
+        foreach (var i in Resources.LoadAll<GameObject>("CardInstances"))
         {
             instanceCardLibrary.Add(i.GetComponent<CardPrototype>().GetID(),i);
         }

@@ -18,3 +18,4 @@ MonoBehaviour:
   story: DSA
   icon: {fileID: 21300000, guid: 74ab5323d2fded947821804f16c189ba, type: 3}
   charTag: 2
+  buffID: 2d0100002e010000

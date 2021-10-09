@@ -59,6 +59,12 @@ public class LevelSelector : MonoBehaviour
         }
     }
 
+    // 确认进入关卡
+    public void ConfirmLevel()
+    {
+        GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>().EnterLevel(currentIndex);
+    }
+
     // 左旋
     public void TurnLeft()
     {
