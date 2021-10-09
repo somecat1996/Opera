@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class EnemyManager : MonoBehaviour
     public List<GameObject> bossPrefabs;
 
     private PlayerStatus playerStatus;
+
+    public Image background;
+    public List<Sprite> backgroundImages;
     private void Awake()
     {
         instance = this;
@@ -34,17 +38,21 @@ public class EnemyManager : MonoBehaviour
         playerStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
 
         // ≤‚ ‘”√
-        EnterLevel(0);
+        // EnterLevel(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // ≤‚ ‘
+        if (Input.GetKeyDown(KeyCode.Space))
+            EnterLevel(0);
     }
 
     public void EnterLevel(int bossIndex)
     {
+        background.gameObject.SetActive(true);
+        background.sprite = backgroundImages[bossIndex];
         SummonBoss(bossPrefabs[bossIndex]);
         playerStatus.RestartPlaying();
     }
@@ -52,6 +60,7 @@ public class EnemyManager : MonoBehaviour
     public void FinishLevel()
     {
         playerStatus.StopPlaying();
+        background.gameObject.SetActive(false);
     }
 
     public int SummonOne()
