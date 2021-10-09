@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerStatus : GameObjectBase
 {
+    public PlayerMovement playerMovement;
+
     private float allDamage;
     private float magicDamage;
     private float physicDamage;
+
+    private bool started;
 
     protected override void Awake()
     {
@@ -14,6 +18,8 @@ public class PlayerStatus : GameObjectBase
         allDamage = 0f;
         magicDamage = 0f;
         physicDamage = 0f;
+
+        started = false;
     }
     // Start is called before the first frame update
     protected override void Start()
@@ -25,9 +31,30 @@ public class PlayerStatus : GameObjectBase
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
-        HandlingImmunity();
-        HandlingInvisible();
+        if (started)
+        {
+            base.Update();
+            HandlingImmunity();
+            HandlingInvisible();
+        }
+    }
+
+    public void StartPlaying()
+    {
+        started = true;
+        playerMovement.StartMoving();
+    }
+
+    public void StopPlaying()
+    {
+        started = false;
+        playerMovement.StopMoving();
+    }
+
+    public void RestartPlaying()
+    {
+        started = true;
+        playerMovement.StartMovingAt();
     }
 
     private void UpdateHealth()
