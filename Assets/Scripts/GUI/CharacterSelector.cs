@@ -28,11 +28,6 @@ public class CharacterSelector : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -73,7 +68,7 @@ public class CharacterSelector : MonoBehaviour
     {
 
         charIcon.sprite = charInfo[selectedId].icon;
-        PlayerManager.instance.SwitchCharacter(charInfo[selectedId].charTag);
+        PlayerManager.instance.SwitchCharacter(charInfo[selectedId].charTag,charInfo[selectedId]);
     }
 
     // 显示选中角色的标签

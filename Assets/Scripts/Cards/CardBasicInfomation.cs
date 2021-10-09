@@ -94,7 +94,7 @@ public class CardBasicInfomation : ScriptableObject
     // 获得技能解释
     public string GetDesc()
     {
-        string text = null;
+        string text = description;
         
         float mainvalue = mainValue_Cur;
 
@@ -108,10 +108,14 @@ public class CardBasicInfomation : ScriptableObject
             mainvalue = GlobalValue.GetTruePhysicsDamage_ToEnemy(mainvalue, cost);
         }   
 
+        // 主要参数转换
         if (description.Contains("#MainValue"))
         {
             text = description.Replace("#MainValue",mainValue_Cur.ToString() + (mainvalue == mainValue_Cur ? "" : "(+" + (mainvalue-mainValue_Cur) + "加成)"));
-        }else if (description.Contains("%MainValue"))
+        }
+        
+        // 小数转百分数
+        if (description.Contains("%MainValue"))
         {
             text = description.Replace("%MainValue",(mainValue_Cur * 100).ToString()+'%');
         }
@@ -119,8 +123,6 @@ public class CardBasicInfomation : ScriptableObject
         // 乘数替换 duration当作倍数
         if (description.Contains("@MainValue"))
         {
-
-
             text = text.Replace("@MainValue", (mainValue_Cur*duration).ToString() + (mainvalue * duration == mainValue_Cur * duration ? "" : "(+" + (mainvalue - mainValue_Cur) * duration + "加成)"));
         }
             
