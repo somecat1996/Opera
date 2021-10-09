@@ -27,55 +27,65 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 spriteOriginSacle;
 
     private PlayerStatus playerStatus;
-    // Start is called before the first frame update
-    void Start()
+
+    private bool started;
+    public Vector3 startPoint;
+    private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         spriteOriginSacle = spriteTransform.localScale;
         // 初始化为运动状态
         walk = true;
         timer = Random.Range(walkTimeRange[0], walkTimeRange[1]);
-        RandomDirection();
-        rigidbody.velocity = moveDirection * moveSpeed;
 
         playerStatus = gameObject.GetComponent<PlayerStatus>();
+
+        StopMoving();
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
-        // 计时器归零后改变状态
-        if (timer <= 0)
+        if (started)
         {
-            if (walk)
+            timer -= Time.deltaTime;
+            // 计时器归零后改变状态
+            if (timer <= 0)
             {
-                playerStatus.StopMoving();
-                walk = false;
-                timer = Random.Range(stayTimeRange[0], stayTimeRange[1]);
-                rigidbody.velocity = Vector3.zero * moveSpeed;
+                if (walk)
+                {
+                    playerStatus.StopMoving();
+                    walk = false;
+                    timer = Random.Range(stayTimeRange[0], stayTimeRange[1]);
+                    rigidbody.velocity = Vector3.zero * moveSpeed;
+                }
+                else
+                {
+                    playerStatus.StartMoving();
+                    walk = true;
+                    timer = Random.Range(walkTimeRange[0], walkTimeRange[1]);
+                    RandomDirection();
+                    rigidbody.velocity = moveDirection * moveSpeed;
+                }
             }
-            else
+            // 判断范围
+            if (transform.position.x < moveAera[0].position.x && moveDirection.x < 0 || transform.position.x > moveAera[1].position.x && moveDirection.x > 0)
             {
-                playerStatus.StartMoving();
-                walk = true;
-                timer = Random.Range(walkTimeRange[0], walkTimeRange[1]);
-                RandomDirection();
+                moveDirection.x = -moveDirection.x;
                 rigidbody.velocity = moveDirection * moveSpeed;
+                Flip();
             }
-        }
-        // 判断范围
-        if (transform.position.x < moveAera[0].position.x && moveDirection.x < 0 || transform.position.x > moveAera[1].position.x && moveDirection.x > 0)
-        {
-            moveDirection.x = -moveDirection.x;
-            rigidbody.velocity = moveDirection * moveSpeed;
-            Flip();
-        }
-        if (transform.position.z < moveAera[0].position.z && moveDirection.z < 0 || transform.position.z > moveAera[1].position.z && moveDirection.z > 0)
-        {
-            moveDirection.z = -moveDirection.z;
-            rigidbody.velocity = moveDirection * moveSpeed;
-            Flip();
+            if (transform.position.z < moveAera[0].position.z && moveDirection.z < 0 || transform.position.z > moveAera[1].position.z && moveDirection.z > 0)
+            {
+                moveDirection.z = -moveDirection.z;
+                rigidbody.velocity = moveDirection * moveSpeed;
+                Flip();
+            }
         }
     }
 
@@ -94,5 +104,24 @@ public class PlayerMovement : MonoBehaviour
             spriteTransform.localScale = new Vector3(-spriteOriginSacle.x, spriteOriginSacle.y, spriteOriginSacle.z);
         else
             spriteTransform.localScale = new Vector3(spriteOriginSacle.x, spriteOriginSacle.y, spriteOriginSacle.z);
+    }
+
+    public void StartMoving()
+    {
+        started = true;
+        RandomDirection();
+        rigidbody.velocity = moveDirection * moveSpeed;
+    }
+
+    public void StopMoving()
+    {
+        started = false;
+        rigidbody.velocity = Vector3.zero;
+    }
+
+    public void StartMovingAt()
+    {
+        transform.position = startPoint;
+        StartMoving();
     }
 }

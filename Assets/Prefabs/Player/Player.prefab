@@ -171,6 +171,7 @@ MonoBehaviour:
   - 2
   - 3
   spriteTransform: {fileID: 3879383905660197031}
+  startPoint: {x: -4, y: 1, z: 0}
 --- !u!114 &3880208515835783631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +194,7 @@ MonoBehaviour:
   bleedingTime: 5
   bleedingTickleTime: 1
   bleedingDamage: 5
+  playerMovement: {fileID: 3880208515835783630}
 --- !u!1001 &3880208516612798771
 PrefabInstance:
   m_ObjectHideFlags: 0

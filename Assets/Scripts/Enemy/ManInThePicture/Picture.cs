@@ -14,6 +14,7 @@ public class Picture : GameObjectBase
 
     public int stage2DamageNumber = 5;
     private int stage2DamageCounter;
+    private CardPrototype lastUsedCard;
     public float stage2PlayerDamage = 2;
     public float stage2EnemyDamage = 200;
 
@@ -43,6 +44,7 @@ public class Picture : GameObjectBase
     public void Change()
     {
         currentStage = 2;
+        lastUsedCard = BattleDataManager.instance.lastUsedCard;
     }
 
     private void Stage1()
@@ -66,12 +68,19 @@ public class Picture : GameObjectBase
     {
         if (stage1CoolingTimer <= 0)
         {
-            stage1CardCounter -= 1;
-            if (stage1CardCounter <= 0)
+            if (lastUsedCard.cardInfo.id != BattleDataManager.instance.lastUsedCard.cardInfo.id)
             {
-                stage1CardCounter = stage1CardNumber;
-                stage1CoolingTimer = stage1CoolingTime;
-                EnemyManager.instance.HurtAll(stage1Damage);
+                lastUsedCard = BattleDataManager.instance.lastUsedCard;
+                if (lastUsedCard.CheckIfDamageCard())
+                {
+                    stage1CardCounter -= 1;
+                    if (stage1CardCounter <= 0)
+                    {
+                        stage1CardCounter = stage1CardNumber;
+                        stage1CoolingTimer = stage1CoolingTime;
+                        EnemyManager.instance.HurtAll(stage1Damage);
+                    }
+                }
             }
         }
     }

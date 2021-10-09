@@ -20,6 +20,8 @@ public class EnemyManager : MonoBehaviour
 
     // 关卡设置
     public List<GameObject> bossPrefabs;
+
+    private PlayerStatus playerStatus;
     private void Awake()
     {
         instance = this;
@@ -28,6 +30,8 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         generationPointStatus = new EnemyStatus[generationPoint.Count];
+
+        playerStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
 
         // 测试用
         EnterLevel(0);
@@ -42,6 +46,12 @@ public class EnemyManager : MonoBehaviour
     public void EnterLevel(int bossIndex)
     {
         SummonBoss(bossPrefabs[bossIndex]);
+        playerStatus.RestartPlaying();
+    }
+
+    public void FinishLevel()
+    {
+        playerStatus.StopPlaying();
     }
 
     public int SummonOne()
@@ -119,8 +129,17 @@ public class EnemyManager : MonoBehaviour
     {
         BattleDataManager.instance.RemoveEnemyData(generationPointStatus[p]);
         generationPointStatus[p] = null;
-        // 测试用，死一个招一个
-        // SummonOne();
+
+        int count = 0;
+        for (int i = 0; i < generationPoint.Count; i++)
+        {
+            if (generationPointStatus[i])
+                count += 1;
+        }
+        if (count == 0)
+        {
+            FinishLevel();
+        }
     }
 
     public void RemoveMinions()
