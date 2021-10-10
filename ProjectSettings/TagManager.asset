@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - PlayerManager
   - BattleDataManager
+  - GUI_GameScene
   layers:
   - Default
   - TransparentFX

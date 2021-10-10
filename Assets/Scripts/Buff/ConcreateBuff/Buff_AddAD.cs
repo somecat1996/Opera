@@ -41,21 +41,21 @@ public class Buff_AddAD : BuffPrototype {
             damage = 0.08f;
             level = 1;
 
-            replaceText = (damage).ToString();
+            replaceValue = damage;
         }
         else if (probability > 0.5f && probability <= 0.8f)
         {
             damage = 0.1f;
             level = 2;
 
-            replaceText = (damage).ToString();
+            replaceValue = damage;
         }
         else
         {
             damage = 0.12f;
             level = 3;
 
-            replaceText = (damage).ToString();
+            replaceValue = damage;
         }
     }
 }

@@ -24,7 +24,7 @@ public class BuffManager : MonoBehaviour
 
       
     }
-
+    List<int> test = new List<int>();
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -32,11 +32,14 @@ public class BuffManager : MonoBehaviour
             ReflashAllBuffData();
         }else if (Input.GetKeyDown(KeyCode.S))
         {
-            EnableBuff(305);
+            int index = deactivateBuffList[Random.Range(0, deactivateBuffList.Count)];
+            EnableBuff(index);
+            test.Add(index);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            DisableBuff(305);
+            DisableBuff(test[0]);
+            test.RemoveAt(0);
         }
     }
 
@@ -71,6 +74,10 @@ public class BuffManager : MonoBehaviour
             activiatedBuffList.Add(_id, go);
 
             deactivateBuffList.Remove(_id);
+
+            // 在GUI上显示Buff
+            if (!go.GetComponent<BuffPrototype>().buffInfo.hideInGUI)
+                go.GetComponent<BuffPrototype>().buffGUIicon = GUIManager.instance.SpawnBuffIcon(go.GetComponent<BuffPrototype>());
         }
     }
 
@@ -79,6 +86,7 @@ public class BuffManager : MonoBehaviour
     {
         if (activiatedBuffList.ContainsKey(_id))
         {
+            Destroy(activiatedBuffList[_id].GetComponent<BuffPrototype>().buffGUIicon);
             Destroy(activiatedBuffList[_id]);
             activiatedBuffList.Remove(_id);
 
@@ -92,6 +100,15 @@ public class BuffManager : MonoBehaviour
         foreach(var i in activiatedBuffList.Keys)
         {
             DisableBuff(i);
+        }
+    }
+
+    // 启用角色Buff
+    public void EnableCharacterBuff(CharacterBasicInfomation _info)
+    {
+        foreach(var i in _info.buffID)
+        {
+            EnableBuff(i);
         }
     }
 }

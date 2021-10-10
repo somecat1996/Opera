@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 210
   buffName: "\u540D\u626C\u6D77\u5916"
-  description: "\u89C2\u4F17\u8D8A\u591A\uFF0C\u4F24\u5BB3\u8D8A\u9AD8\uFF0C\u7531\u89C2\u4F170-20\u7EBF\u6027\u83B7\u5F970-20%\u589E\u4F24"
-  icon: {fileID: 0}
+  description: "\u89C2\u4F17\u8D8A\u591A\uFF0C\u4F24\u5BB3\u8D8A\u9AD8\uFF0C\u7531\u89C2\u4F17
+    0-20 \u7EBF\u6027\u83B7\u5F97 0-20% \u589E\u4F24"
+  icon: {fileID: 21300000, guid: 099d05d0141272b4788eb036c330d045, type: 3}
   hideInGUI: 0

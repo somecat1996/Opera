@@ -12,6 +12,8 @@ public class CardManager : MonoBehaviour
     public int min_Total_Card = 15; // 牌库最小持有数量
     public int max_Cur_Card = 6; // 当前最大可使用卡牌数
 
+    public LayerMask groundLayer;
+
     [Header("Real-Time Setting")]
     public int total_Card; // 当前卡牌数
     public int cur_Card; // 当前可操作卡牌数
@@ -58,7 +60,7 @@ public class CardManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.black;
+        Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(test, 1);
 
         Gizmos.color = Color.yellow;
@@ -72,6 +74,16 @@ public class CardManager : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(test, 5);
+
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out hit,10000, groundLayer))
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(Camera.main.gameObject.transform.position, hit.point);
+        }
+
+
     }
 
     void Update()
@@ -82,9 +94,9 @@ public class CardManager : MonoBehaviour
             // 此处暂时将TriggerEffect函数内容调用至此
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,10000, groundLayer))
             {
-                //Debug.Log(hit.transform.name);
+                Debug.Log(hit.transform.name);
                 test = hit.point;
 
                 foreach(var i in Physics.SphereCastAll(ray, 3))

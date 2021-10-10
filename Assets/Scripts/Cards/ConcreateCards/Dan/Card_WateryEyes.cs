@@ -35,7 +35,7 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, CardManager.instance.groundLayer))
         {
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
             {

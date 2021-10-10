@@ -7,9 +7,10 @@ public class BuffPrototype : MonoBehaviour
     public BuffBasicInfomation buffInfo;
 
     [HideInInspector]
-    public string replaceText = "";
+    public float replaceValue = 0;
     public bool activated = false;
 
+    public GameObject buffGUIicon;
     // 初始化数据
     virtual public void ReflashData() { }
 
@@ -24,11 +25,10 @@ public class BuffPrototype : MonoBehaviour
         string text = buffInfo.description;
         if (text.Contains("#MainValue"))
         {
-            text.Replace("#MainValue", replaceText);
+            text = text.Replace("#MainValue", replaceValue.ToString());
         }else if (text.Contains("%MainValue"))
         {
-
-            text.Replace("%MainValue", (int.Parse(replaceText) * 100).ToString()+"%");
+            text = text.Replace("%MainValue", (replaceValue * 100).ToString()+"%");
         }
 
         return text;

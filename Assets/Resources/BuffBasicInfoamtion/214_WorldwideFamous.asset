@@ -16,5 +16,5 @@ MonoBehaviour:
   buffName: "\u4E3E\u4E16\u77A9\u76EE"
   description: "\u559D\u5F69\u503C\u8FBE\u5230 100 \u70B9\uFF0C\u989D\u5916\u56DE\u590D
     10 \u70B9\u6C1B\u56F4\u503C"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 32816c874c056384b87f010ad2710973, type: 3}
   hideInGUI: 0

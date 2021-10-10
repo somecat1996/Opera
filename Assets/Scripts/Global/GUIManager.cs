@@ -47,6 +47,7 @@ public class GUIManager : MonoBehaviour
     public List<TextMeshProUGUI> text_Money = new List<TextMeshProUGUI>();
 
     public Button button_Contiune;
+    public GameObject canvas;
 
     [Header("GameScene Objects")]
     public Slider player_PowerPoint;
@@ -54,7 +55,9 @@ public class GUIManager : MonoBehaviour
     public Slider boss_HealthPoint;
     public GameObject panel_CardDesc;
     public TextMeshProUGUI text_CardDesc;
-
+    [Space]
+    public GameObject panel_BuffIcon;
+    public GameObject prefab_BuffIcon;
 
 
     private void Awake()
@@ -233,5 +236,39 @@ public class GUIManager : MonoBehaviour
     public void LockButton_Continue(bool _v)
     {
         button_Contiune.interactable = !_v;
+    }
+
+    // 关闭所有UI 但保留战斗GUI
+    public void DisableAllGUI()
+    {
+        for(int i = 0;i< canvas.transform.childCount; i++)
+        {
+            if (canvas.transform.GetChild(i).tag == "GUI_GameScene")
+                continue;
+
+            canvas.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        
+    }
+
+    // 生成Buff图标
+    public GameObject SpawnBuffIcon(BuffPrototype _buff)
+    {
+        GameObject go = Instantiate(prefab_BuffIcon);
+        go.transform.parent = panel_BuffIcon.transform;
+        go.transform.localScale = Vector3.one;
+        go.GetComponent<BuffInfoDisplayer>().SetInfo(_buff);
+
+        return go;
+
+    }
+
+    // 清除所有buff图标——退出战斗时使用
+    public void ClearAllBuffIcon()
+    {
+        for(int i = 0;i< panel_BuffIcon.transform.childCount; i++)
+        {
+            Destroy(panel_BuffIcon.transform.GetChild(i));
+        }
     }
 }
