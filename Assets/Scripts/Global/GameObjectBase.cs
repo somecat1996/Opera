@@ -43,9 +43,12 @@ interface GameObjectInterface
 
 public class GameObjectBase : MonoBehaviour, GameObjectInterface
 {
+    [Header("血量设置")]
     public float maxHealth;
     public Vector3 offsetPos;
     public GameObject healthBarPrefab;
+    public GameObject damageTextPrefab;
+    [Header("血量设置")]
     // 中毒持续时间
     public int poisonTime = 5;
     // 中毒伤害
@@ -64,6 +67,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     // 眩晕
     protected float stunTimer;
     protected bool stun;
+    [Header("流血设置")]
     public float stunEffect = 1;
     // 流血
     protected float bleedingTimer;
@@ -74,14 +78,18 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     // 免疫眩晕
     protected float stunImmunityTimer;
     protected bool stunImmunity;
+    [Header("免疫伤害设置")]
     // 免疫伤害
     protected int immunityTime;
     protected float immunityTimer;
+    [Header("隐身设置")]
     // 隐身
     protected float invisibleTimer;
+    [Header("护盾设置")]
     // 护盾
     protected float shield;
     protected float shieldTimer;
+    [Header("持续回复设置")]
     // 持续回复
     protected float healingTotalTimer;
     protected float healingTimer;
@@ -94,7 +102,6 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         poisonTotalTimer = 0;
         poisonTimer = 0f;
         poisonLevel = 0;
-
         stunTimer = 0f;
         stun = false;
         stunImmunityTimer = 0f;
@@ -185,6 +192,9 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
             Poisoning();
         BattleDataManager.instance.UpdateDamage(trueDamage);
         healthBarManager.UpdateHealth(curHealth / maxHealth);
+
+        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
+        damageText.Init(trueDamage,transform); 
     }
 
     public void PercentHurt(float percent, float max = Mathf.Infinity)

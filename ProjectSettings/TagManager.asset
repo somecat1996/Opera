@@ -11,6 +11,7 @@ TagManager:
   - PlayerManager
   - BattleDataManager
   - GUI_GameScene
+  - DamageCanvas
   layers:
   - Default
   - TransparentFX
