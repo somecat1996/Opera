@@ -10,6 +10,8 @@ public class BattleDataManager : MonoBehaviour
     public float totalDamage = 0; // 由敌人Hurt函数上传伤害信息
     public int totalUsedCard = 0; // 由CardManger.SendToTempLayoutGroup上传
     public GameObjectBase lastTargetEnemy; // 由单体输出卡牌上传
+    [Space]
+    public CardPrototype selectingCard; // 玩家当前选中的卡牌 或 即将要使用的卡牌
     public CardPrototype lastUsedCard; // 由CardManger.SendToTempLayoutGroup上传
     [Space]
     public List<GameObjectBase> enemyList = new List<GameObjectBase>(); // 由敌人自身上传信息
@@ -61,6 +63,10 @@ public class BattleDataManager : MonoBehaviour
     {
         totalUsedCard++;
         lastUsedCard = _cp;
+    }
+    public void UpdateSelectingCard(CardPrototype _cp)
+    {
+        selectingCard = _cp;
     }
 
     public void UpdateTargetEnemy(GameObjectBase _gob)

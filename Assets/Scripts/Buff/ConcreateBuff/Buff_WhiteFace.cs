@@ -40,4 +40,9 @@ public class Buff_WhiteFace : BuffPrototype
     {
         
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

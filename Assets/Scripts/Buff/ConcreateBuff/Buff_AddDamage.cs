@@ -25,13 +25,16 @@ public class Buff_AddDamage : BuffPrototype
 
     private void OnDisable()
     {
-        if (!activated)
+        if (activated)
         {
-            activated = true;
+            activated = false;
             GlobalValue.damageIncrement_General -= damage;
         }
+    }
 
-
+    private void OnDestroy()
+    {
+        OnDisable();
     }
 
     // 按照Buff自行需求 刷新数据

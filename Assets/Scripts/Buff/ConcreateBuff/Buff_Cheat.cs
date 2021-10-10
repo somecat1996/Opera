@@ -108,4 +108,9 @@ public class Buff_Cheat : BuffPrototype
             dictionary.Clear();
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

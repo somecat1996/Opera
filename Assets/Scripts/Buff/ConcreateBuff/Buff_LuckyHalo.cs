@@ -23,4 +23,9 @@ public class Buff_LuckyHalo : BuffPrototype
             GlobalValue.probabilityIncrement_Event -= probabilityIncrement;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

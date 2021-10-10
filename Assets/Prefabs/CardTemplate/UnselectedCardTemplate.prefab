@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 7896236426246597120}
   - component: {fileID: 7896236426246597121}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -381,6 +381,7 @@ MonoBehaviour:
   illustration: {fileID: 7896236426361741405}
   text_Name: {fileID: 7896236426363572991}
   text_Level: {fileID: 7896236428092469851}
+  text_Cost: {fileID: 7896236428092469851}
   colorBar: {fileID: 7896236427157718717}
   text_Quantity: {fileID: 7896236427969156041}
   text_Demanded: {fileID: 7896236426913864616}
@@ -1366,7 +1367,7 @@ GameObject:
   - component: {fileID: 7896236428092469850}
   - component: {fileID: 7896236428092469851}
   m_Layer: 5
-  m_Name: Text_Level
+  m_Name: Text_Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -69,7 +69,10 @@ public class CardPrototype : MonoBehaviour
             //transform.localScale = scale_Selected;
             transform.DOScale(scale_Selected, animateSpeed);
 
+            // 开启技能效果显示栏
             GUIManager.instance.EnableCardDesc(cardInfo,GetComponent<RectTransform>().position);
+            // 向 BDM 发送当前所选择的卡牌信息
+            BattleDataManager.instance.UpdateSelectingCard(this);
         }
         else
         {

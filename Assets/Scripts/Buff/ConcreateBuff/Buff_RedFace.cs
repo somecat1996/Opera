@@ -73,4 +73,9 @@ public class Buff_RedFace : BuffPrototype
             GlobalValue.damageIncrement_General -= increment;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

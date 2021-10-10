@@ -28,4 +28,9 @@ public class Buff_RavineGlamour : BuffPrototype
             activated = false;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

@@ -48,10 +48,9 @@ public class CardManager : MonoBehaviour
 
         // 测试用——会与UI按钮控件相冲突 *****下列方法调用时 不要使用UI中的部分按钮*****
 
-        LoadCardLibrary(); // 将指定角色卡牌载入到库
+        LoadCardLibrary(); // 将所有卡牌信息载入到库中
 
         //InitializeAllCards(); // 初始化解锁角色所有卡牌 等级设定为 1 同时锁定所有通用卡牌
-        LoadCommonCardLibrary(); // 将通用卡牌载入到列表中以备使用
         LoadCardInstance(); // 将库中卡牌对应的实例载入到字典中以备使用
         LoadAllCardIntoUnselectedList(); // 将卡牌库的信息载入到选择列表中
         LoadAllCardIntoCardList();// 卡牌展示 测试
@@ -115,7 +114,7 @@ public class CardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            ClearAllCardQueue();
+            ClearAllActivatedCard();
         }
     }
 
@@ -160,27 +159,23 @@ public class CardManager : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(recTran_layoutGroup);
     }
 
-    // 根据不同角色读取对应角色卡牌库
+    // 载入所有卡牌信息
     public void LoadCardLibrary()
     {
-        // 目前暂时只载入旦的卡牌
-
-        //... 检查玩家所选角色
-        // if(xx == CharacterType.Character.Dan) ...
-
         foreach(var i in Resources.LoadAll<CardBasicInfomation>("CardInfomation"))
         {
-            cardLibrary.Add(i.id, i);
+            if(i.belongner != CharacterType.CharacterTag.Common)
+                cardLibrary.Add(i.id, i);
+        }
+
+        foreach (var i in Resources.LoadAll<CardBasicInfomation>("CardInfomation"))
+        {
+            if (i.belongner == CharacterType.CharacterTag.Common)
+                cardLibrary_Common.Add(i.id, i);
         }
     }
 
-    // 读取额外卡牌库
-    public void LoadCommonCardLibrary()
-    {
-
-    }
-
-    // 读取卡牌实例并放入字典中以作备用
+    // 读取所有卡牌实例并放入字典中以作备用
     public void LoadCardInstance()
     {
         foreach (var i in Resources.LoadAll<GameObject>("CardInstances"))
@@ -274,7 +269,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    // 将所有卡牌载入到未选中容器中
+    // 将所有剧情卡牌载入到未选中容器中
     public void LoadAllCardIntoUnselectedList()
     {
         // 清除卡牌操作由PlayerManager执行 此处临时使用
@@ -284,7 +279,8 @@ public class CardManager : MonoBehaviour
         // 应遍历通用卡牌库
         foreach (var i in cardLibrary_Common.Values)
         {
-            GUIManager.instance.AddUnselectedCard(i);
+            if(i.level != 0)
+                GUIManager.instance.AddUnselectedCard(i);
         }
     }
     // 清空所有已选中的卡牌
@@ -328,9 +324,39 @@ public class CardManager : MonoBehaviour
     }
 
     /// <summary>
+    ///  销毁某一张卡牌使其不能够再次商上场
+    /// </summary>
+    /// <param name="_card"></param>
+    public void DestoryActivatedCard(GameObject _card)
+    {
+        Destroy(_card); // 直接销毁
+
+        cur_Card--;
+
+        if (cardQueue.Count == 0)
+        {
+            // 可使用卡牌队列已空 打乱弃牌队列顺序并重新放入等待队列中
+            while (cardQueue_Discarded.Count != 0)
+            {
+                int index = Random.Range(0, cardQueue_Discarded.Count);
+                cardQueue.Add(cardQueue_Discarded[index]);
+                cardQueue_Discarded.RemoveAt(index);
+            }
+        }
+
+        // ***** 尝试在这里代理发送使用过卡牌信号 *****
+        BattleDataManager.instance.UpdateUsedCard(_card.GetComponent<CardPrototype>());
+
+        SendToLayoutGroup();
+
+
+    }
+
+
+    /// <summary>
     /// 清除场上所有卡牌以及卡牌队列及其弃牌队列
     /// </summary>
-    public void ClearAllCardQueue()
+    public void ClearAllActivatedCard()
     {
         cardQueue.Clear();
         cardQueue_Discarded.Clear();

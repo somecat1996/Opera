@@ -33,6 +33,11 @@ public class Buff_AddAP : BuffPrototype
 
     }
 
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
+
     // 按照Buff自行需求 刷新数据
     public override void ReflashData()
     {

@@ -42,4 +42,9 @@ public class Buff_BlackFace : BuffPrototype
             StopCoroutine(timer);
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

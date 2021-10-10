@@ -67,4 +67,9 @@ public class Buff_Prepared : BuffPrototype
             GlobalValue.damageIncrement_General -= increment;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

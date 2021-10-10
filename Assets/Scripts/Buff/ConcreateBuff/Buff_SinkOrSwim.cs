@@ -35,4 +35,9 @@ public class Buff_SinkOrSwim : BuffPrototype
             activated = false;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

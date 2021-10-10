@@ -26,4 +26,9 @@ public class Buff_Dizzy : BuffPrototype
             GlobalValue.damageIncrement_Special -= increment;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

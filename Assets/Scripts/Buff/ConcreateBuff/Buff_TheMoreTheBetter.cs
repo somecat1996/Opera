@@ -23,4 +23,9 @@ public class Buff_TheMoreTheBetter : BuffPrototype
             GlobalValue.lootIncrement -= increment;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

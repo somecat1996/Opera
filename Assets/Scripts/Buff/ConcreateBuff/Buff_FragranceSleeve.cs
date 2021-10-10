@@ -42,4 +42,9 @@ public class Buff_FragranceSleeve : BuffPrototype
             activated = false;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }
