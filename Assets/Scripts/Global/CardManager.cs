@@ -101,7 +101,7 @@ public class CardManager : MonoBehaviour
     void Update()
     {
         // 测试用 查看技能影响距离范围
-        if (Input.GetMouseButtonDown(0))
+        if (true)
         {
             // 此处暂时将TriggerEffect函数内容调用至此
             RaycastHit hit;
@@ -153,6 +153,9 @@ public class CardManager : MonoBehaviour
         {
             i.GetComponent<CardPrototype>().ReflashOriginPos();
         }
+
+        // 将下一张卡牌置顶
+        cardQueue[0].transform.SetSiblingIndex(tempLayoutGroup.transform.childCount - 1);
     }
 
     /// <summary>
@@ -199,10 +202,6 @@ public class CardManager : MonoBehaviour
         BattleDataManager.instance.UpdateUsedCard(_card.GetComponent<CardPrototype>());
 
         SendToUsableLayoutGroup();
-
-        // 将下一张卡牌置顶
-        cardQueue[0].transform.SetSiblingIndex(tempLayoutGroup.transform.childCount-1);
-
     }
 
     /// <summary>

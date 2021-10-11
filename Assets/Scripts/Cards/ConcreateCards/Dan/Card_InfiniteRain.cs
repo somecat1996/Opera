@@ -40,7 +40,7 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit))
+        if (CheckOnValidArea() && Physics.Raycast(ray, out hit, 1000, CardManager.instance.groundLayer))
         {
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
             {

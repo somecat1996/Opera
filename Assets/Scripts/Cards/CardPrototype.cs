@@ -35,7 +35,10 @@ public class CardPrototype : MonoBehaviour
         return cardInfo.cardType;
     }
 
-    // ¼ì²â¸Ã¿¨ÊÇ·ñÎªÉËº¦¿¨
+    /// <summary>
+    /// ¼ì²â¸Ã¿¨ÊÇ·ñÎªÉËº¦¿¨
+    /// </summary>
+    /// <returns></returns>
     public bool CheckIfDamageCard()
     {
         if(GetCardType() == CardTag.Type.Magic || GetCardType() == CardTag.Type.Physics)
@@ -131,7 +134,9 @@ public class CardPrototype : MonoBehaviour
                 {
                     i.DOFade(0, fadeOut_Duration);
                 }
+
                 fadeOut = true;
+                BattleDataManager.instance.SetActiveRangeDisplayer(true,cardInfo.radius);
             }
         }
         else
@@ -146,7 +151,9 @@ public class CardPrototype : MonoBehaviour
                 {
                     i.DOFade(1, fadeOut_Duration);
                 }
+
                 fadeOut = false;
+                BattleDataManager.instance.SetActiveRangeDisplayer(false);
             }
         }
     }

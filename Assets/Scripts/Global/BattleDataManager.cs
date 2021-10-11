@@ -5,7 +5,6 @@ using UnityEngine;
 public class BattleDataManager : MonoBehaviour
 {
     public static BattleDataManager instance;
-
     [Header("Real-Time Data")]
     public float totalDamage = 0; // 由敌人Hurt函数上传伤害信息
     public int totalUsedCard = 0; // 由CardManger.SendToTempLayoutGroup上传
@@ -18,9 +17,15 @@ public class BattleDataManager : MonoBehaviour
     [Space]
     public bool playerMoving = false;
 
+    [Header("Obejcts")]
+    public GameObject rangeDisplayer;
+
     private void Awake()
     {
         instance = this;
+
+        if (!rangeDisplayer)
+            rangeDisplayer = GameObject.FindWithTag("RangeDisplayer");
     }
 
     // Start is called before the first frame update
@@ -32,12 +37,39 @@ public class BattleDataManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (rangeDisplayer.activeSelf)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, 1000, CardManager.instance.groundLayer))
+            {
+                rangeDisplayer.transform.position = hit.point;
+            }
+        }
     }
 
     private void OnEnable()
     {
         ResetAllData();
+    }
+
+    /// <summary>
+    /// 开启范围显示器
+    /// </summary>
+    /// <param name="_v"></param>
+    /// <param name="_radius">半径</param>
+    public void SetActiveRangeDisplayer(bool _v,float _radius = 0)
+    {
+        if (_v)
+        {
+            rangeDisplayer.transform.localScale = new Vector3(_radius, _radius, _radius) * 2;
+            rangeDisplayer.SetActive(_v);
+        }
+        else
+        {
+            rangeDisplayer.SetActive(_v);
+        }
     }
 
     // 重设数据——开启新关卡时调用
