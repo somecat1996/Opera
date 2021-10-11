@@ -22,7 +22,7 @@ public class Picture : GameObjectBase
     // Start is called before the first frame update
     protected override void Start()
     {
-        base.Start();
+        // 不创建血条
         currentStage = 1;
 
         stage1CoolingTimer = 0;
@@ -94,7 +94,8 @@ public class Picture : GameObjectBase
             {
                 stage2DamageCounter = stage2DamageNumber;
                 EnemyManager.instance.HurtAll(stage2EnemyDamage);
-                player.Hurt(stage2PlayerDamage);
+                if (player)
+                    player.Hurt(stage2PlayerDamage);
             }
         }
     }
