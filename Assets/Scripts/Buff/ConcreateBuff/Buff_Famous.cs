@@ -19,4 +19,9 @@ public class Buff_Famous : BuffPrototype
             activated = false;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

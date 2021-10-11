@@ -23,4 +23,9 @@ public class Buff_Notable : BuffPrototype
             GlobalValue.rewardIncrement -= increment;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

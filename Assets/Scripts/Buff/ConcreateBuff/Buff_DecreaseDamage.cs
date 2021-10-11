@@ -23,4 +23,9 @@ public class Buff_DecreaseDamage : BuffPrototype
             GlobalValue.damageDecrement_Player -= decrement;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

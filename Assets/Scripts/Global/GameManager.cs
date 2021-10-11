@@ -37,9 +37,8 @@ public class GameManager : MonoBehaviour
     // 载入玩家和卡牌数据
     public void LoadData()
     {
-        CardManager.instance.LoadCardInstance(); // 载入卡牌实体
-        CardManager.instance.LoadCardLibrary(); // 将卡牌信息载入到游戏中
-        CardManager.instance.LoadCommonCardLibrary(); // 将通用卡牌信息载入到游戏中
+        CardManager.instance.LoadCardInstance(); // 载入所有卡牌实体
+        CardManager.instance.LoadCardLibrary(); // 将所有卡牌信息载入到游戏中
     }
 
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public static class GlobalValue
 {
+    // 额外伤害
+    public static float extraDamage = 0;
+
     // 三种伤害增量 皆以小数形式表示
     public static float damageIncrement_General = 0;
     public static float damageIncrement_Physics = 0;
@@ -59,7 +62,7 @@ public static class GlobalValue
         {
             float trueDamage = _damage;
 
-            trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Physics) * (1 + damageIncrement_Special);
+            trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Physics) * (1 + damageIncrement_Special) + extraDamage * (1 + damageIncrement_General);
 
             // 判断是否暴击
             if (Random.Range(0, 1.0f) < probability_Crit)
@@ -73,7 +76,7 @@ public static class GlobalValue
         {
             float trueDamage = _damage;
 
-            trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Physics);
+            trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Physics) + extraDamage * (1 + damageIncrement_General);
 
             // 判断是否暴击
             if (Random.Range(0, 1.0f) < probability_Crit)
@@ -99,7 +102,7 @@ public static class GlobalValue
         {
             float trueDamage = _damage;
 
-            trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Magic) * (1 + damageIncrement_Special);
+            trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Magic) * (1 + damageIncrement_Special) + extraDamage * (1 + damageIncrement_General);
 
             // 判断是否暴击
             if (Random.Range(0, 1.0f) < probability_Crit)
@@ -114,7 +117,7 @@ public static class GlobalValue
         {
             float trueDamage = _damage;
 
-            trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Magic);
+            trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Magic) + extraDamage * (1 + damageIncrement_General);
 
             // 判断是否暴击
             if (Random.Range(0, 1.0f) < probability_Crit)

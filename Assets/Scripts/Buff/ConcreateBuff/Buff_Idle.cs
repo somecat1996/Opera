@@ -40,4 +40,9 @@ public class Buff_Idle : BuffPrototype
             activated = false;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

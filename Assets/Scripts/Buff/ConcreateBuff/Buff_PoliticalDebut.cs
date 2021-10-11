@@ -85,4 +85,9 @@ public class Buff_PoliticalDebut : BuffPrototype
             activated = false;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

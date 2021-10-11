@@ -18,4 +18,5 @@ public class Buff_KickYourAss : BuffPrototype
     {
         
     }
+
 }

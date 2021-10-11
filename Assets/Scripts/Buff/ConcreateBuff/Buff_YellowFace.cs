@@ -32,4 +32,9 @@ public class Buff_YellowFace : BuffPrototype
             activated = false;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }

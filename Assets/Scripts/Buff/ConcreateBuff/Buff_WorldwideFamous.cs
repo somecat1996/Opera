@@ -42,4 +42,9 @@ public class Buff_WorldwideFamous : BuffPrototype
     {
 
     }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 }
