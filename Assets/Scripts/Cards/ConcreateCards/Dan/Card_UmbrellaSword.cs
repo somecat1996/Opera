@@ -51,7 +51,9 @@ public class Card_UmbrellaSword : CardPrototype, ICardEffectTrigger,ICardOperati
     public IEnumerator Delay(float _time,GameObjectBase _go)
     {
         yield return new WaitForSeconds(_time);
-        TriggerEffect(_go);
+
+        if(_go)
+            TriggerEffect(_go);
     }
 
     public void RevokeEffect()

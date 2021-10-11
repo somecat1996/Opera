@@ -19,7 +19,7 @@ MonoBehaviour:
   story: 
   illustration: {fileID: 0}
   rarity: 4
-  cardTag: 0
+  cardTag: 6
   cardType: 0
   belongner: 0
   mainValue_Origin: 1
