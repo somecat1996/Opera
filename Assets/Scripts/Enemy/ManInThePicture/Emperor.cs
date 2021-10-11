@@ -194,7 +194,8 @@ public class Emperor : EnemyStatus, SummonEnemy
 
     public override void Die()
     {
-        Destroy(picture.gameObject);
+        if (picture)
+            Destroy(picture.gameObject);
         base.Die();
     }
 }
