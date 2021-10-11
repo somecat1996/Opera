@@ -194,8 +194,10 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         BattleDataManager.instance.UpdateDamage(trueDamage);
         healthBarManager.UpdateHealth(curHealth / maxHealth);
 
+        var col = t.GetComponent<Collider>();
+        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
         DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
-        damageText.Init(trueDamage,transform); 
+        damageText.Init(trueDamage, topAhcor); 
     }
 
     public void PercentHurt(float percent, float max = Mathf.Infinity)
