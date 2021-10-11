@@ -15,11 +15,11 @@ public class CardPrototype : MonoBehaviour
 
     public bool canChangePos = true;
     public Vector3 originPos;
-    public float return_Duration = 0.5f;
+    public float returnTime = 0.2f;
 
     private Vector3 scale_Selected= new Vector3(1.3f,1.3f,1.3f);
     private Vector3 offset_Selected = new Vector3(0, 0, 0);
-    private float animateSpeed = 0.1f;
+    private float scaleTime = 0.1f;
 
     private void Start()
     {
@@ -82,7 +82,7 @@ public class CardPrototype : MonoBehaviour
             }
 
             //transform.localScale = scale_Selected;
-            transform.DOScale(scale_Selected, animateSpeed);
+            transform.DOScale(scale_Selected, scaleTime);
 
             // 开启技能效果显示栏
             GUIManager.instance.EnableCardDesc(cardInfo,GetComponent<RectTransform>().position);
@@ -93,12 +93,12 @@ public class CardPrototype : MonoBehaviour
         }
         else
         {
-            transform.DOScale(Vector3.one, animateSpeed);
+            transform.DOScale(Vector3.one, scaleTime);
             GUIManager.instance.DisableCardDesc();
 
             // 用于判断卡牌是否已经送入等待队列 如果否 则DOTween回到原点
             if(transform.parent == CardManager.instance.layoutGroup && !canChangePos)
-                transform.DOMove(originPos, return_Duration);
+                transform.DOMove(originPos, returnTime);
 
         }
 

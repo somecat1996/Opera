@@ -42,7 +42,6 @@ public class CardManager : MonoBehaviour
     public float cardMoveTime = 1f;
 
     [Header("Temp")]
-    public GameObject card_Attack;
     public Vector3 test = Vector3.zero;
 
     private void Awake()
@@ -154,8 +153,9 @@ public class CardManager : MonoBehaviour
             i.GetComponent<CardPrototype>().ReflashOriginPos();
         }
 
-        // 将下一张卡牌置顶
-        cardQueue[0].transform.SetSiblingIndex(tempLayoutGroup.transform.childCount - 1);
+        if(cardQueue.Count != 0)
+            // 将下一张卡牌置顶
+            cardQueue[0].transform.SetSiblingIndex(tempLayoutGroup.transform.childCount - 1);
     }
 
     /// <summary>
@@ -197,6 +197,7 @@ public class CardManager : MonoBehaviour
         }
 
         // 将下一张卡牌放置在顶部
+        cardQueue[0].transform.SetSiblingIndex(tempLayoutGroup.transform.childCount - 1);
 
         // ***** 尝试在这里代理发送使用过卡牌信号 *****
         BattleDataManager.instance.UpdateUsedCard(_card.GetComponent<CardPrototype>());
