@@ -10,7 +10,12 @@ public class CardPrototype : MonoBehaviour
 {
     public CardBasicInfomation cardInfo;
 
-　　
+    public float fadeOut_Duration = 0.25f;
+    public bool fadeOut = false;
+
+    public bool canChangePos = true;
+    public Vector3 originPos;
+    public float return_Duration = 0.5f;
 
     private Vector3 scale_Selected= new Vector3(1.3f,1.3f,1.3f);
     private Vector3 offset_Selected = new Vector3(0, 0, 0);
@@ -67,6 +72,12 @@ public class CardPrototype : MonoBehaviour
     {
         if (_v)
         {
+            if (canChangePos && !DOTween.IsTweening(transform))
+            {
+                canChangePos = false;
+                originPos = transform.position;
+            }
+
             //transform.localScale = scale_Selected;
             transform.DOScale(scale_Selected, animateSpeed);
 
@@ -74,15 +85,72 @@ public class CardPrototype : MonoBehaviour
             GUIManager.instance.EnableCardDesc(cardInfo,GetComponent<RectTransform>().position);
             // 向 BDM 发送当前所选择的卡牌信息
             BattleDataManager.instance.UpdateSelectingCard(this);
+
+
         }
         else
         {
             transform.DOScale(Vector3.one, animateSpeed);
-
             GUIManager.instance.DisableCardDesc();
+
+            // 用于判断卡牌是否已经送入等待队列 如果否 则DOTween回到原点
+            if(transform.parent == CardManager.instance.layoutGroup && !canChangePos)
+                transform.DOMove(originPos, return_Duration);
+
+        }
+
+        if (fadeOut)
+        {
+            SetFadeOutAndShowRange(false);
         }
     }
-    
+
+    /// <summary>
+    /// 使的卡牌可以重新更新在layout中的位置
+    /// </summary>
+    public void ReflashOriginPos()
+    {
+        canChangePos = true;
+    }
+
+    /// <summary>
+    /// 设置卡牌完全渐出且启用范围显示器——AOE卡牌使用
+    /// </summary>
+    /// <param name="_v">设定是否渐出</param>
+    public void SetFadeOutAndShowRange(bool _v)
+    {
+        if (_v && CheckOnValidArea())
+        {
+            if (!fadeOut)
+            {
+                foreach(var i in GetComponentsInChildren<Image>(true))
+                {
+                    i.DOFade(0, fadeOut_Duration);
+                }
+                foreach(var i in GetComponentsInChildren<TextMeshProUGUI>(true))
+                {
+                    i.DOFade(0, fadeOut_Duration);
+                }
+                fadeOut = true;
+            }
+        }
+        else
+        {
+            if (fadeOut)
+            {
+                foreach (var i in GetComponentsInChildren<Image>(true))
+                {
+                    i.DOFade(1, fadeOut_Duration);
+                }
+                foreach (var i in GetComponentsInChildren<TextMeshProUGUI>(true))
+                {
+                    i.DOFade(1, fadeOut_Duration);
+                }
+                fadeOut = false;
+            }
+        }
+    }
+
     public bool CheckOnValidArea()
     {
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);

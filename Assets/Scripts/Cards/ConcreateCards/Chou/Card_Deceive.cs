@@ -67,7 +67,7 @@ public class Card_Deceive : CardPrototype,ICardOperation,ICardEffectTrigger
         GlobalValue.damageIncrement_General += cardInfo.mainValue_Cur;
         activated = true;
 
-        StartCoroutine(Timer());
+        timer = StartCoroutine(Timer());
 
 
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class CardManager : MonoBehaviour
 {
@@ -30,10 +31,15 @@ public class CardManager : MonoBehaviour
     [Header("Objects")]
     public CardCommonDatas cardCommonData;
 
+    public Transform slotLayoutGroup; // 插槽容器
     public Transform layoutGroup; // 当前操作卡牌容器
     public RectTransform recTran_layoutGroup;
     public Transform tempLayoutGroup; // 临时卡牌容器
     public Transform discardedCardLayoutGroup; // 用于放置一次性卡牌容器
+
+    [Header("Optimization Objects")]
+    public Transform[] layout_SlotPos = new Transform[6]; // 存储插槽坐标
+    public float cardMoveTime = 1f;
 
     [Header("Temp")]
     public GameObject card_Attack;
@@ -42,6 +48,12 @@ public class CardManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        // 存储布局插槽的坐标
+        for(int i = 0; i < slotLayoutGroup.childCount; i++)
+        {
+            layout_SlotPos[i] = slotLayoutGroup.GetChild(i).transform;
+        }
     }
 
     void Start()
@@ -88,8 +100,6 @@ public class CardManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(GlobalValue.poisonAttack);
-
         // 测试用 查看技能影响距离范围
         if (Input.GetMouseButtonDown(0))
         {
@@ -135,7 +145,32 @@ public class CardManager : MonoBehaviour
         cardQueue.RemoveAt(0);
         go.transform.parent = layoutGroup;  
         cur_Card++;
+
+        ReflashUsableCardPosition();
+
+        //测试用
+        foreach(var i in GetAllUsableCard())
+        {
+            i.GetComponent<CardPrototype>().ReflashOriginPos();
+        }
     }
+
+    /// <summary>
+    /// 刷新手牌实体的位置
+    /// </summary>
+    public void ReflashUsableCardPosition()
+    {
+        for(int i = 0; i < layoutGroup.transform.childCount; i++)
+        {
+            Transform card = layoutGroup.transform.GetChild(i);
+
+            if (card.position != layout_SlotPos[i].position)
+            {
+                card.DOMove(layout_SlotPos[i].position,cardMoveTime);
+            }
+        }
+    }
+
     /// <summary>
     /// 将使用过的卡牌送出画面并放入弃牌队列中
     /// </summary>
@@ -158,17 +193,24 @@ public class CardManager : MonoBehaviour
             }
         }
 
+        // 将下一张卡牌放置在顶部
+
         // ***** 尝试在这里代理发送使用过卡牌信号 *****
         BattleDataManager.instance.UpdateUsedCard(_card.GetComponent<CardPrototype>());
 
         SendToUsableLayoutGroup();
 
+        // 将下一张卡牌置顶
+        cardQueue[0].transform.SetSiblingIndex(tempLayoutGroup.transform.childCount-1);
 
     }
 
+    /// <summary>
+    /// 重刷新Layout组件 (暂时不用)
+    /// </summary>
     public void ReflashLayoutGroup()
     {
-        LayoutRebuilder.ForceRebuildLayoutImmediate(recTran_layoutGroup);
+        //LayoutRebuilder.ForceRebuildLayoutImmediate(recTran_layoutGroup);
     }
 
     // 载入所有卡牌信息

@@ -19,6 +19,8 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
+
+        SetFadeOutAndShowRange(true);
     }
 
     public void mouseEnter()

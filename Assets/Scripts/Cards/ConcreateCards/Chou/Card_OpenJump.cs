@@ -7,6 +7,8 @@ public class Card_OpenJump : CardPrototype,ICardOperation,ICardEffectTrigger
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
+
+        SetFadeOutAndShowRange(true);
     }
 
     public void mouseEnter()
