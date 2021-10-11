@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c617b96bd2237e24a8633c082f57b5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
+  maxHealth: 10000
   offsetPos: {x: 0, y: 3, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
   damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
@@ -93,10 +93,10 @@ MonoBehaviour:
   normalAttackTime: 1
   normalAttackDamage: 1
   bananaAttackTime: 10
-  bananaAttackDamage: 3
+  bananaAttackDamage: 33
   ministerPrefab: {fileID: 7049907831289417314, guid: cfc4989c03dc8394a80cc7b2daffd54b, type: 3}
-  ministerSummonTime: 5
-  imperialDecreeThrowTime: 10
+  ministerSummonTime: 10
+  imperialDecreeThrowTime: 15
   swordAttackTime: 5
   swordAttackDamage: 3
   picturePrefab: {fileID: 7049907831289417314, guid: 64b3fc3a3c190184e9c7213af91987d0, type: 3}

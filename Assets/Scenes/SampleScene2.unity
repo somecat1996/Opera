@@ -7196,11 +7196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardInfo: {fileID: 11400000, guid: e4248a89b77caf343bbffef52c4ba032, type: 2}
-  fadeOut_Duration: 0.25
-  fadeOut: 0
-  canChangePos: 0
-  originPos: {x: 0, y: 0, z: 0}
-  return_Duration: 0.5
   healing: 0
   time: 0
 --- !u!114 &369159994
@@ -11758,7 +11753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &490731600
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16250,11 +16245,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardInfo: {fileID: 11400000, guid: e4248a89b77caf343bbffef52c4ba032, type: 2}
-  fadeOut_Duration: 0.25
-  fadeOut: 0
-  canChangePos: 0
-  originPos: {x: 0, y: 0, z: 0}
-  return_Duration: 0.5
   healing: 0
   time: 0
 --- !u!114 &720288751
@@ -16931,19 +16921,10 @@ MonoBehaviour:
   cardQueue_Waitting: []
   cardLibrary_Selected: []
   cardCommonData: {fileID: 11400000, guid: 72b242035d7d1aa498fd73cbe6ae2286, type: 2}
-  slotLayoutGroup: {fileID: 1478165180}
   layoutGroup: {fileID: 47670691}
   recTran_layoutGroup: {fileID: 47670691}
   tempLayoutGroup: {fileID: 1695385242}
   discardedCardLayoutGroup: {fileID: 1887068752}
-  layout_SlotPos:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  cardMoveTime: 1
   card_Attack: {fileID: 1641213190950085546, guid: f90cc6706652284448b7dad26869bce7, type: 3}
   test: {x: 0, y: 0, z: 0}
 --- !u!1 &746356400
@@ -22425,7 +22406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984272008}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 17.5, z: -15.16}
+  m_LocalPosition: {x: 0, y: 17.5, z: -17.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -24729,7 +24710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3880208515835783624, guid: adca270cf4c24324cb8cb1aa0413743f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.34
+      value: -3.31
       objectReference: {fileID: 0}
     - target: {fileID: 3880208515835783624, guid: adca270cf4c24324cb8cb1aa0413743f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26397,7 +26378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4587633645380473494, guid: d64fd322c2546714785a84d56150045c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.9
       objectReference: {fileID: 0}
     - target: {fileID: 4587633645380473494, guid: d64fd322c2546714785a84d56150045c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26656,11 +26637,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardInfo: {fileID: 11400000, guid: e4248a89b77caf343bbffef52c4ba032, type: 2}
-  fadeOut_Duration: 0.25
-  fadeOut: 0
-  canChangePos: 0
-  originPos: {x: 0, y: 0, z: 0}
-  return_Duration: 0.5
   healing: 0
   time: 0
 --- !u!114 &1110074353
@@ -27490,11 +27466,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardInfo: {fileID: 11400000, guid: e4248a89b77caf343bbffef52c4ba032, type: 2}
-  fadeOut_Duration: 0.25
-  fadeOut: 0
-  canChangePos: 0
-  originPos: {x: 0, y: 0, z: 0}
-  return_Duration: 0.5
   healing: 0
   time: 0
 --- !u!114 &1131792790
@@ -31543,11 +31514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardInfo: {fileID: 11400000, guid: e4248a89b77caf343bbffef52c4ba032, type: 2}
-  fadeOut_Duration: 0.25
-  fadeOut: 0
-  canChangePos: 0
-  originPos: {x: 0, y: 0, z: 0}
-  return_Duration: 0.5
   healing: 0
   time: 0
 --- !u!114 &1294960024
@@ -35382,11 +35348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardInfo: {fileID: 11400000, guid: e4248a89b77caf343bbffef52c4ba032, type: 2}
-  fadeOut_Duration: 0.25
-  fadeOut: 0
-  canChangePos: 0
-  originPos: {x: 0, y: 0, z: 0}
-  return_Duration: 0.5
   healing: 0
   time: 0
 --- !u!114 &1486888323
@@ -43140,7 +43101,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a7283b7c3eb20c740a50afd4d2ea37e8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -43179,7 +43140,7 @@ Transform:
   m_GameObject: {fileID: 1912815436}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 18, y: 9.18, z: 1}
+  m_LocalScale: {x: 18, y: 14.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -44751,7 +44712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043607829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -3.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 832307223}
