@@ -24,14 +24,11 @@ public class DamageText : MonoBehaviour
         }
     }
 
-    public void Init(float damage, Transform t)
+    public void Init(float damage, Vector3 t)
     {
         Text text = gameObject.GetComponent<Text>();
         text.text = damage.ToString();
-
-        var col = t.GetComponent<Collider>();
-        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
-        tarPosition = topAhcor;
+        tarPosition = t;
         //转化为屏幕坐标
         gameObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(tarPosition);
     }

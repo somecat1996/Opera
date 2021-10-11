@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e62deae53bb9147a9d6293dc80787d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 350
+  maxHealth: 800
   offsetPos: {x: 0, y: 0, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
   damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
@@ -88,7 +88,7 @@ MonoBehaviour:
   bleedingTickleTime: 1
   bleedingDamage: 5
   position: 0
-  reduceRate: -0.2
+  reduceRate: -0.1
   soldierPrefab: {fileID: 7049907831289417314, guid: 308586f8778ab72428266361f7c41532, type: 3}
 --- !u!1 &7049907832430946937
 GameObject:

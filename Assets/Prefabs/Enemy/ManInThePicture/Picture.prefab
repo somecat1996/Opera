@@ -76,6 +76,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e597da87da79541b44dbfd455e3d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
+  offsetPos: {x: 0, y: 0, z: 0}
+  healthBarPrefab: {fileID: 0}
+  damageTextPrefab: {fileID: 0}
+  poisonTime: 5
+  poisonDamage: 5
+  poisonDamageTime: 1
+  stunEffect: 1
+  bleedingTime: 5
+  bleedingTickleTime: 1
+  bleedingDamage: 5
+  stage1CoolingTime: 20
+  stage1Damage: 250
+  stage1CardNumber: 5
+  stage2DamageNumber: 5
+  stage2PlayerDamage: 20
+  stage2EnemyDamage: 500
 --- !u!1 &7049907832430946937
 GameObject:
   m_ObjectHideFlags: 0
