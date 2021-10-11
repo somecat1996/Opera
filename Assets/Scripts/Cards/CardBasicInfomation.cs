@@ -89,6 +89,7 @@ public class CardBasicInfomation : ScriptableObject
     {
         level = 0;
         quantity = 0;
+        UpgradeMainValue(true);
     }
 
     // 获得技能解释

@@ -18,8 +18,8 @@ public class CardManager : MonoBehaviour
     public int total_Card; // 当前卡牌数
     public int cur_Card; // 当前可操作卡牌数
 
-    public List<GameObject> cardQueue = new List<GameObject>(); // 未上场卡牌队列
-    public List<GameObject> cardQueue_Discarded= new List<GameObject>(); // 已使用的卡牌
+    public List<GameObject> cardQueue = new List<GameObject>(); // 未上场且未使用过卡牌队列
+    public List<GameObject> cardQueue_Waitting= new List<GameObject>(); // 已商场且已使用过的卡牌列表
 
     public Dictionary<int, CardBasicInfomation> cardLibrary = new Dictionary<int, CardBasicInfomation>(); // 卡牌库 存放所有与角色相关的卡牌
     public Dictionary<int, CardBasicInfomation> cardLibrary_Common = new Dictionary<int, CardBasicInfomation>(); // 额外卡牌库
@@ -33,6 +33,7 @@ public class CardManager : MonoBehaviour
     public Transform layoutGroup; // 当前操作卡牌容器
     public RectTransform recTran_layoutGroup;
     public Transform tempLayoutGroup; // 临时卡牌容器
+    public Transform discardedCardLayoutGroup; // 用于放置一次性卡牌容器
 
     [Header("Temp")]
     public GameObject card_Attack;
@@ -116,40 +117,49 @@ public class CardManager : MonoBehaviour
         {
             ClearAllActivatedCard();
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            InitializeAllCards();
+        }
     }
 
 
-    // 将等待队列中的卡牌送入游戏画面
-    public void SendToLayoutGroup()
+    /// <summary>
+    /// 将等待队列中的卡牌送入游戏画面
+    /// </summary>
+    private void SendToUsableLayoutGroup()
     {
         GameObject go = cardQueue[0];
         cardQueue.RemoveAt(0);
         go.transform.parent = layoutGroup;  
         cur_Card++;
     }
-    // 将使用过的卡牌送出画面并放入弃牌队列中
+    /// <summary>
+    /// 将使用过的卡牌送出画面并放入弃牌队列中
+    /// </summary>
+    /// <param name="_card"></param>
     public void SendToDiscardedCardGroup(GameObject _card)
     {
         _card.transform.parent = tempLayoutGroup;
-        cardQueue_Discarded.Add(_card);
+        cardQueue_Waitting.Add(_card);
 
         cur_Card--;
 
         if (cardQueue.Count == 0)
         {
             // 可使用卡牌队列已空 打乱弃牌队列顺序并重新放入等待队列中
-            while (cardQueue_Discarded.Count != 0)
+            while (cardQueue_Waitting.Count != 0)
             {
-                int index = Random.Range(0, cardQueue_Discarded.Count);
-                cardQueue.Add(cardQueue_Discarded[index]);
-                cardQueue_Discarded.RemoveAt(index);
+                int index = Random.Range(0, cardQueue_Waitting.Count);
+                cardQueue.Add(cardQueue_Waitting[index]);
+                cardQueue_Waitting.RemoveAt(index);
             }
         }
 
         // ***** 尝试在这里代理发送使用过卡牌信号 *****
         BattleDataManager.instance.UpdateUsedCard(_card.GetComponent<CardPrototype>());
 
-        SendToLayoutGroup();
+        SendToUsableLayoutGroup();
 
 
     }
@@ -219,7 +229,7 @@ public class CardManager : MonoBehaviour
         // 载入所选择的通用卡
         for(int i = 0; i < cardLibrary_Selected.Count; i++)
         {
-            tempCardList.Add(cardLibrary[cardLibrary_Selected[i].id]);
+            tempCardList.Add(cardLibrary_Common[cardLibrary_Selected[i].id]);
         }
 
         // 重新排列
@@ -250,7 +260,7 @@ public class CardManager : MonoBehaviour
 
         while (cardQueue.Count != 0 && cur_Card != max_Cur_Card)
         {
-            SendToLayoutGroup();
+            SendToUsableLayoutGroup();
         }
     }
 
@@ -319,47 +329,46 @@ public class CardManager : MonoBehaviour
 
         while(cardQueue.Count != 0 && cur_Card != max_Cur_Card)
         {
-            SendToLayoutGroup();
+            SendToUsableLayoutGroup();
         }
     }
 
     /// <summary>
-    ///  销毁某一张卡牌使其不能够再次商上场
+    ///  将该卡牌送入非激活卡牌组 无法再次被抽取
     /// </summary>
     /// <param name="_card"></param>
-    public void DestoryActivatedCard(GameObject _card)
+    public void SendToDisabledCardGroup(GameObject _card)
     {
-        Destroy(_card); // 直接销毁
-
+        _card.transform.parent = discardedCardLayoutGroup;
         cur_Card--;
 
         if (cardQueue.Count == 0)
         {
             // 可使用卡牌队列已空 打乱弃牌队列顺序并重新放入等待队列中
-            while (cardQueue_Discarded.Count != 0)
+            while (cardQueue_Waitting.Count != 0)
             {
-                int index = Random.Range(0, cardQueue_Discarded.Count);
-                cardQueue.Add(cardQueue_Discarded[index]);
-                cardQueue_Discarded.RemoveAt(index);
+                int index = Random.Range(0, cardQueue_Waitting.Count);
+                cardQueue.Add(cardQueue_Waitting[index]);
+                cardQueue_Waitting.RemoveAt(index);
             }
         }
 
         // ***** 尝试在这里代理发送使用过卡牌信号 *****
         BattleDataManager.instance.UpdateUsedCard(_card.GetComponent<CardPrototype>());
 
-        SendToLayoutGroup();
+        SendToUsableLayoutGroup();
 
 
     }
 
 
     /// <summary>
-    /// 清除场上所有卡牌以及卡牌队列及其弃牌队列
+    /// 清除场上所有卡牌实体以及卡牌队列及其弃牌队列
     /// </summary>
     public void ClearAllActivatedCard()
     {
         cardQueue.Clear();
-        cardQueue_Discarded.Clear();
+        cardQueue_Waitting.Clear();
 
         var tempList = GetAllActivatedCard();
         for (int i = 0; i < tempList.Count; i++)
@@ -371,11 +380,11 @@ public class CardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 获得场上所有的卡牌游戏对象
+    /// 获得场上所有的卡牌游戏对象 参数用于是否获得已经使用过的一次性卡牌
     /// </summary>
     /// <returns></returns>
 
-    public List<GameObject> GetAllActivatedCard()
+    public List<GameObject> GetAllActivatedCard(bool _includeDisabledCard = true)
     {
         List<GameObject> temp = new List<GameObject>();
 
@@ -387,6 +396,14 @@ public class CardManager : MonoBehaviour
         {
             temp.Add(tempLayoutGroup.transform.GetChild(i).gameObject);
         }
+        if (_includeDisabledCard)
+        {
+            for (int i = 0; i < discardedCardLayoutGroup.childCount; i++)
+            {
+                temp.Add(discardedCardLayoutGroup.GetChild(i).gameObject);
+            }
+        }
+
 
         return temp;
     }

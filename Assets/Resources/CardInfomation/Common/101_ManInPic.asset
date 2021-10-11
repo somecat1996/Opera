@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 101
   cardName: "\u300A\u753B\u4E2D\u4EBA\u300B"
   description: "\u89D2\u8272\u85CF\u4E8E\u753B\u4E2D 5 \u79D2\uFF0C\u89C4\u907F\u6240\u6709\u4F24\u5BB3\u4F46\u6C89\u9ED8\u81EA\u8EAB\uFF0C\u671F\u95F4\u6BCF\u79D2\u56DE\u590D
-    <color=#20B2AA>1</color> \u70B9\u6C1B\u56F4\u503C"
+    <color=#20B2AA>#MainValue</color> \u70B9\u6C1B\u56F4\u503C"
   story: 
   illustration: {fileID: 0}
   rarity: 4
@@ -26,6 +26,6 @@ MonoBehaviour:
   cost: 0
   duration: 5
   radius: 0
-  mainValue_Cur: 0
+  mainValue_Cur: 1
   quantity: 0
-  level: 0
+  level: 1

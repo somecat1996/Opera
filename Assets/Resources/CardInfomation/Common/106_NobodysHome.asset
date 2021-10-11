@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d192056b336d2459d3b0891b12eb1e, type: 3}
+  m_Name: 106_NobodysHome
+  m_EditorClassIdentifier: 
+  id: 106
+  cardName: "\u300A\u7A7A\u57CE\u8BA1\u300B"
+  description: "\u4F7F\u6240\u6709\u654C\u65B9\u5355\u4F4D\u9677\u5165\u60CA\u614C\uFF0C\u7729\u6655 
+    <color=#4169E1>#MainValue</color> \u79D2\uFF0CBoss\u51CF\u534A"
+  story: 
+  illustration: {fileID: 0}
+  rarity: 4
+  cardTag: 0
+  cardType: 0
+  belongner: 0
+  mainValue_Origin: 6
+  cost: 0
+  duration: 0
+  radius: 0
+  mainValue_Cur: 6
+  quantity: 0
+  level: 1

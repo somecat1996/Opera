@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "\u5FC3\u6D41\u503C\u56DE\u590D\u901F\u5EA6\u63D0\u5347 <color=red>%MainValue</color>
     \uFF0C\u6301\u7EED 6 \u79D2"
   story: 
-  illustration: {fileID: 0}
+  illustration: {fileID: 21300000, guid: f6597d4abfa8a1840a3bb96260e0cb1f, type: 3}
   rarity: 2
   cardTag: 6
   cardType: 0

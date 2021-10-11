@@ -686,3 +686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardInfo: {fileID: 11400000, guid: 07b7e68a7bd3eb441b163a6ccb1c5759, type: 2}
+  firstObjectMultiple: 5
+  catapultCount: 3
+  interval: 0.2

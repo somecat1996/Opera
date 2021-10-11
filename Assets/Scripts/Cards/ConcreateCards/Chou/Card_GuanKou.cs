@@ -79,6 +79,11 @@ public class Card_GuanKou : CardPrototype,ICardOperation,ICardEffectTrigger
         {
             _go.Hurt(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), false, 1.0f);
 
+            if (!_go)
+            {
+                break;
+            }
+
             count--;
             yield return new WaitForSeconds(0.2f);
         }

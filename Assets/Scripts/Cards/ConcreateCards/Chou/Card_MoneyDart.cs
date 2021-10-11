@@ -81,15 +81,15 @@ public class Card_MoneyDart : CardPrototype,ICardOperation,ICardEffectTrigger
         while(temp-- > 0)
         {
             GameObjectBase newTarget = null;
-            float minDis = -Mathf.Infinity;
-
+            float minDis = Mathf.Infinity;
             // 搜寻指定半径内其他目标
-            foreach(var i in Physics.SphereCastAll(originPoint, cardInfo.radius, Vector3.up))
+            foreach(var i in Physics.OverlapSphere(originPoint, cardInfo.radius))
             {
                 // 找到最近目标
                 if (Vector3.Distance(originPoint, i.transform.position) < minDis && _attackableList.Contains(i.transform.GetComponent<GameObjectBase>()))
                 {
                     newTarget = i.transform.GetComponent<GameObjectBase>();
+                    minDis = Vector3.Distance(originPoint, i.transform.position);
                 }
             }
 

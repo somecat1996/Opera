@@ -50,7 +50,6 @@ public class Card_SighDecay : CardPrototype,ICardOperation,ICardEffectTrigger
     public void RevokeEffect()
     {
         GlobalValue.poisonAttack = false;
-        activated = false;
     }
 
     public void TriggerEffect()
@@ -83,6 +82,10 @@ public class Card_SighDecay : CardPrototype,ICardOperation,ICardEffectTrigger
             StopCoroutine(timer);
             RevokeEffect();
         }
+    }
+    private void OnDestroy()
+    {
+        OnDisable();
     }
 
     public void TriggerEffect(GameObjectBase _go)

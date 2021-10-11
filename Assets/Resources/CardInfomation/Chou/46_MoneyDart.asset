@@ -18,7 +18,7 @@ MonoBehaviour:
     <color=#F08080>@MainValue </color> \u70B9\u7269\u7406\u4F24\u5BB3\uFF0C\u7136\u540E\u5F39\u5C04\u81F3\u9644\u8FD1\u6700\u591A3\u540D\u5176\u4ED6\u76EE\u6807\uFF0C\u5404\u9020\u6210
     <color=#F08080>#MainValue </color> \u70B9\u7269\u7406\u4F24\u5BB3"
   story: 
-  illustration: {fileID: 0}
+  illustration: {fileID: 21300000, guid: dd266089569af634b9e10132ca78116a, type: 3}
   rarity: 1
   cardTag: 1
   cardType: 1

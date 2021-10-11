@@ -53,6 +53,7 @@ public class CardPrototype : MonoBehaviour
 
         Transform grandson = son.transform.Find("Cost");
         grandson.Find("Text_Cost").GetComponent<TextMeshProUGUI>().text = cardInfo.cost.ToString();
+        transform.GetComponent<Image>().sprite = cardInfo.illustration;
     }
 
     public void LoadCardInfo(string _path)

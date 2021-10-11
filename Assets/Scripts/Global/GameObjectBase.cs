@@ -190,6 +190,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         }
         if (GlobalValue.poisonAttack)
             Poisoning();
+
         BattleDataManager.instance.UpdateDamage(trueDamage);
         healthBarManager.UpdateHealth(curHealth / maxHealth);
 
