@@ -26,27 +26,17 @@ public class Card_QiaoErLiu : CardPrototype,ICardOperation,ICardEffectTrigger
                 curCard = BattleDataManager.instance.selectingCard;
 
                 // 奇数
-                if(cardInfo.cost % 2 == 1)
+                if(curCard.cardInfo.cost % 2 == 1)
                 {
-                    damageIncreasing = true;
-                    GlobalValue.damageIncrement_General += cardInfo.mainValue_Cur;
+                    if (!damageIncreasing)
+                    {
+                        damageIncreasing = true;
+                        GlobalValue.damageIncrement_General += cardInfo.mainValue_Cur;
+                        GUIManager.instance.EnableCardDesc(curCard.cardInfo, curCard.transform.GetComponent<RectTransform>().position);
+                    }
                 }
                 // 偶数不做回复判断
                 else
-                {
-                    damageIncreasing = false;
-                    GlobalValue.damageIncrement_General -= cardInfo.mainValue_Cur;
-                }
-            }
-
-            // 检测上次选择的卡牌 用于触发回复心流值 及 卡牌计数器判断
-            if(totalCard != BattleDataManager.instance.totalUsedCard)
-            {
-                totalCard = BattleDataManager.instance.totalUsedCard;
-                totalCard--;
-
-                // 奇数 收回伤害增益
-                if(BattleDataManager.instance.lastUsedCard.cardInfo.cost % 2 == 1)
                 {
                     if (damageIncreasing)
                     {
@@ -54,17 +44,34 @@ public class Card_QiaoErLiu : CardPrototype,ICardOperation,ICardEffectTrigger
                         GlobalValue.damageIncrement_General -= cardInfo.mainValue_Cur;
                     }
                 }
+            }
+
+            // 检测上次选择的卡牌 用于触发回复心流值 及 卡牌计数器判断
+            if(totalCard != BattleDataManager.instance.totalUsedCard)
+            {
+                totalCard = BattleDataManager.instance.totalUsedCard;
+                counter--;
+
+                // 奇数
+                if(BattleDataManager.instance.lastUsedCard.cardInfo.cost % 2 == 1)
+                {
+
+                }
                 // 偶数 触发回复
                 else
                 {
                     PlayerManager.instance.ChangePowerPoint(cardInfo.radius);
                 }
 
-                counter--;
-
                 if(counter == 0)
                 {
                     activated = false;
+
+                    if (damageIncreasing)
+                    {
+                        damageIncreasing = false;
+                        GlobalValue.damageIncrement_General -= cardInfo.mainValue_Cur;
+                    }
                 }
             }
 
@@ -121,17 +128,33 @@ public class Card_QiaoErLiu : CardPrototype,ICardOperation,ICardEffectTrigger
     {
         if (activated)
         {
-            counter = counter_Origin;
+            counter = counter_Origin + 1;
             totalCard = BattleDataManager.instance.totalUsedCard;
             damageIncreasing = false;
         }
         else
         {
-            activated = true;
-            counter = counter_Origin;
+            counter = counter_Origin + 1;
             totalCard = BattleDataManager.instance.totalUsedCard;
             damageIncreasing = false;
+
+            activated = true;
         }
+    }
+
+    private void OnDisable()
+    {
+        if (damageIncreasing)
+        {
+            GlobalValue.damageIncrement_General -= cardInfo.mainValue_Cur;
+            damageIncreasing = false;
+        }
+
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 
     public void TriggerEffect(GameObjectBase _go)

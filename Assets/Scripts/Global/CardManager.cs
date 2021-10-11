@@ -88,6 +88,8 @@ public class CardManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(GlobalValue.poisonAttack);
+
         // 测试用 查看技能影响距离范围
         if (Input.GetMouseButtonDown(0))
         {

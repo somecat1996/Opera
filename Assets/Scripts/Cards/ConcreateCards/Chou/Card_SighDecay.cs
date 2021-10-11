@@ -70,7 +70,7 @@ public class Card_SighDecay : CardPrototype,ICardOperation,ICardEffectTrigger
 
     IEnumerator Timer()
     {
-        yield return new WaitForSeconds(cardInfo.duration);
+        yield return new WaitForSeconds(cardInfo.mainValue_Cur);
         RevokeEffect();
     }
 
