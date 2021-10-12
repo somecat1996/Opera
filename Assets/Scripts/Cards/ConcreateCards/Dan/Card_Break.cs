@@ -12,6 +12,8 @@ public class Card_Break : CardPrototype,ICardOperation,ICardEffectTrigger
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
+
+        SetFadeOutAndShowTargetMarker(true);
     }
 
     public void mouseEnter()

@@ -58,8 +58,16 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
                 TriggerEffect(temp.ToArray());
                 CardManager.instance.SendToDiscardedCardGroup(gameObject);
             }
+            else
+            {
+                mouseExit();
+            }
         }
-        mouseExit();
+        else
+        {
+            mouseExit();
+        }
+       
     }
 
     public void RevokeEffect()

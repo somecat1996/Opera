@@ -57,7 +57,8 @@ public class Card_YarnDance :CardPrototype,ICardEffectTrigger,ICardOperation
                 mouseExit();
             }
         }
-        mouseExit();
+        else
+            mouseExit();
     }
 
     public void RevokeEffect()

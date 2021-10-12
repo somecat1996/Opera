@@ -7,6 +7,8 @@ public class Card_Gag : CardPrototype,ICardOperation,ICardEffectTrigger
     public void mouseDown()
     {
         GUIManager.instance.DisableCardDesc();
+
+        SetFadeOutAndShowTargetMarker(true);
     }
 
     public void mouseDrag()

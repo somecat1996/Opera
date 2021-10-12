@@ -12,6 +12,8 @@ public class Card_FlingSleeves : CardPrototype, ICardEffectTrigger, ICardOperati
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
+
+        SetFadeOutAndShowTargetMarker(true);
     }
 
     public void mouseEnter()
@@ -39,9 +41,11 @@ public class Card_FlingSleeves : CardPrototype, ICardEffectTrigger, ICardOperati
                 CardManager.instance.SendToDiscardedCardGroup(gameObject);
                 return;
             }
+            else
+                mouseExit();
         }
-
-        mouseExit();
+        else
+            mouseExit();
     }
 
     public void RevokeEffect()

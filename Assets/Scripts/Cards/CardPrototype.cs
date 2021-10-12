@@ -21,6 +21,8 @@ public class CardPrototype : MonoBehaviour
     private Vector3 offset_Selected = new Vector3(0, 0, 0);
     private float scaleTime = 0.1f;
 
+    public int originIndex;
+
     private void Start()
     {
         UpdateGUIInfo();
@@ -75,11 +77,9 @@ public class CardPrototype : MonoBehaviour
     {
         if (_v)
         {
-            if (canChangePos && !DOTween.IsTweening(transform))
-            {
-                canChangePos = false;
-                originPos = transform.position;
-            }
+            // 当选择时 将卡牌置顶
+            originIndex = transform.GetSiblingIndex();
+            transform.SetSiblingIndex(CardManager.instance.layoutGroup.transform.childCount - 1);
 
             //transform.localScale = scale_Selected;
             transform.DOScale(scale_Selected, scaleTime);
@@ -93,18 +93,33 @@ public class CardPrototype : MonoBehaviour
         }
         else
         {
+            // 放弃选择时 当前下标设置成选择之前的状态
+            transform.SetSiblingIndex(originIndex);
+
             transform.DOScale(Vector3.one, scaleTime);
             GUIManager.instance.DisableCardDesc();
 
             // 用于判断卡牌是否已经送入等待队列 如果否 则DOTween回到原点
-            if(transform.parent == CardManager.instance.layoutGroup && !canChangePos)
+            if(transform.parent == CardManager.instance.layoutGroup)
+            {
+                // 再次进行一次位置判断 强制修正
+                if (originPos != CardManager.instance.slotPos[originIndex].position)
+                {
+                    // 获得该卡牌在父亲下的坐标
+                    int index = transform.GetSiblingIndex();
+                    originPos = CardManager.instance.slotPos[index].position;
+                }
+
                 transform.DOMove(originPos, returnTime);
+            }
+                
 
         }
 
         if (fadeOut)
         {
             SetFadeOutAndShowRange(false);
+            SetFadeOutAndShowTargetMarker(false);
         }
     }
 
@@ -113,7 +128,9 @@ public class CardPrototype : MonoBehaviour
     /// </summary>
     public void ReflashOriginPos()
     {
-        canChangePos = true;
+        // 获得该卡牌在父亲下的坐标
+        int index = transform.GetSiblingIndex();
+        originPos = CardManager.instance.slotPos[index].position;
     }
 
     /// <summary>
@@ -154,6 +171,52 @@ public class CardPrototype : MonoBehaviour
 
                 fadeOut = false;
                 BattleDataManager.instance.SetActiveRangeDisplayer(false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 设置卡牌完全渐出且启用目标指示器——单体目标卡牌使用
+    /// </summary>
+    /// <param name="_v"></param>
+    public void SetFadeOutAndShowTargetMarker(bool _v)
+    {
+        if (_v && CheckOnValidArea())
+        {
+            if (!fadeOut)
+            {
+                foreach (var i in GetComponentsInChildren<Image>(true))
+                {
+                    i.DOFade(0, fadeOut_Duration);
+                }
+                foreach (var i in GetComponentsInChildren<TextMeshProUGUI>(true))
+                {
+                    i.DOFade(0, fadeOut_Duration);
+                }
+
+                fadeOut = true;
+                BattleDataManager.instance.SetActiveTargetMarker(true);
+            }
+        }
+        else
+        {
+            if (fadeOut)
+            {
+                foreach (var i in GetComponentsInChildren<Image>(true))
+                {
+                    i.DOFade(1, fadeOut_Duration);
+                }
+                foreach (var i in GetComponentsInChildren<TextMeshProUGUI>(true))
+                {
+                    i.DOFade(1, fadeOut_Duration);
+                }
+
+                fadeOut = false;
+            }
+
+            if (BattleDataManager.instance.activateTargetMarker)
+            {
+                BattleDataManager.instance.SetActiveTargetMarker(false);
             }
         }
     }

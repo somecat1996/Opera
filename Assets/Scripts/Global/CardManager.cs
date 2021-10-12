@@ -38,7 +38,7 @@ public class CardManager : MonoBehaviour
     public Transform discardedCardLayoutGroup; // 用于放置一次性卡牌容器
 
     [Header("Optimization Objects")]
-    public Transform[] layout_SlotPos = new Transform[6]; // 存储插槽坐标
+    public Transform[] slotPos = new Transform[6]; // 存储插槽坐标
     public float cardMoveTime = 1f;
 
     [Header("Temp")]
@@ -51,7 +51,7 @@ public class CardManager : MonoBehaviour
         // 存储布局插槽的坐标
         for(int i = 0; i < slotLayoutGroup.childCount; i++)
         {
-            layout_SlotPos[i] = slotLayoutGroup.GetChild(i).transform;
+            slotPos[i] = slotLayoutGroup.GetChild(i).transform;
         }
     }
 
@@ -107,7 +107,6 @@ public class CardManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit,10000, groundLayer))
             {
-                Debug.Log(hit.transform.name);
                 test = hit.point;
 
                 foreach(var i in Physics.SphereCastAll(ray, 3))
@@ -167,9 +166,9 @@ public class CardManager : MonoBehaviour
         {
             Transform card = layoutGroup.transform.GetChild(i);
 
-            if (card.position != layout_SlotPos[i].position)
+            if (card.position != slotPos[i].position)
             {
-                card.DOMove(layout_SlotPos[i].position,cardMoveTime);
+                card.DOMove(slotPos[i].position,cardMoveTime);
             }
         }
     }

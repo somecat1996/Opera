@@ -7,6 +7,8 @@ public class Card_HalfStepCrazy : CardPrototype,ICardOperation,ICardEffectTrigge
     public void mouseDown()
     {
         GUIManager.instance.DisableCardDesc();
+
+        SetFadeOutAndShowTargetMarker(true);
     }
 
     public void mouseDrag()

@@ -7,6 +7,8 @@ public class Card_UmbrellaSword : CardPrototype, ICardEffectTrigger,ICardOperati
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
+
+        SetFadeOutAndShowTargetMarker(true);
     }
 
     public void mouseEnter()
@@ -44,8 +46,8 @@ public class Card_UmbrellaSword : CardPrototype, ICardEffectTrigger,ICardOperati
                 mouseExit();
             }
         }
-
-        mouseExit();
+        else
+            mouseExit();
     }
 
     public IEnumerator Delay(float _time,GameObjectBase _go)

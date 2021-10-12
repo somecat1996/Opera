@@ -54,7 +54,8 @@ public class Card_BreakDance : CardPrototype,ICardEffectTrigger,ICardOperation
                 mouseExit();
             }
         }
-        mouseExit();
+        else
+            mouseExit();
     }
 
     public void RevokeEffect()

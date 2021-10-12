@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleDataManager : MonoBehaviour
 {
@@ -17,8 +18,12 @@ public class BattleDataManager : MonoBehaviour
     [Space]
     public bool playerMoving = false;
 
-    [Header("Obejcts")]
+    [Header("Obejcts And Related Configuration")]
     public GameObject rangeDisplayer;
+    [Space]
+    public Vector3 markerOffset;
+    public bool activateTargetMarker;
+    public GameObject targetMarker;
 
     private void Awake()
     {
@@ -47,6 +52,29 @@ public class BattleDataManager : MonoBehaviour
                 rangeDisplayer.transform.position = hit.point;
             }
         }
+
+        if (activateTargetMarker)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if(hit.transform.tag == "Enemy")
+                {
+                    targetMarker.SetActive(true);
+                    targetMarker.transform.position = Camera.main.WorldToScreenPoint(hit.transform.position) + markerOffset;
+                }
+                else
+                {
+                    targetMarker.SetActive(false);
+                }
+            }
+            else
+            {
+                targetMarker.SetActive(false);
+            }
+        }
     }
 
     private void OnEnable()
@@ -72,7 +100,19 @@ public class BattleDataManager : MonoBehaviour
         }
     }
 
-    // 重设数据——开启新关卡时调用
+    public void SetActiveTargetMarker(bool _v)
+    {
+        activateTargetMarker = _v;
+
+        if(_v == false)
+        {
+            targetMarker.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    ///  重设数据——开启新关卡时调用
+    /// </summary>
     public void ResetAllData()
     {
         totalDamage = 0;

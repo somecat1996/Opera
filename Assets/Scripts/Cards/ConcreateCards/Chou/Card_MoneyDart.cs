@@ -11,6 +11,8 @@ public class Card_MoneyDart : CardPrototype,ICardOperation,ICardEffectTrigger
     public void mouseDown()
     {
         GUIManager.instance.DisableCardDesc();
+
+        SetFadeOutAndShowTargetMarker(true);
     }
 
     public void mouseDrag()

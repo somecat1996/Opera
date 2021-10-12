@@ -35,7 +35,7 @@ public class Card_Debut : CardPrototype, ICardEffectTrigger,ICardOperation
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, CardManager.instance.groundLayer))
+        if (CheckOnValidArea() && Physics.Raycast(ray, out hit, CardManager.instance.groundLayer))
         {
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
             {
@@ -58,7 +58,8 @@ public class Card_Debut : CardPrototype, ICardEffectTrigger,ICardOperation
                 mouseExit();
             }
         }
-        mouseExit();
+        else
+            mouseExit();
     }
 
     public void RevokeEffect()

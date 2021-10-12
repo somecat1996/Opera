@@ -58,7 +58,8 @@ public class Card_SpringSong :CardPrototype,ICardOperation,ICardEffectTrigger
                 mouseExit();
             }
         }
-        mouseExit();
+        else
+            mouseExit();
     }
 
     public void RevokeEffect()

@@ -54,7 +54,8 @@ public class Card_Tage : CardPrototype, ICardOperation,ICardEffectTrigger
                 mouseExit();
             }
         }
-        mouseExit();
+        else
+            mouseExit();
     }
 
     public void RevokeEffect()
