@@ -22,7 +22,7 @@ MonoBehaviour:
   rarity: 4
   cardTag: 6
   cardType: 0
-  belongner: 0
+  belongner: -1
   mainValue_Origin: 0.6
   cost: 0
   duration: 6

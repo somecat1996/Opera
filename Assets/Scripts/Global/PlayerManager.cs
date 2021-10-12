@@ -112,7 +112,7 @@ public class PlayerManager : MonoBehaviour
         GUIManager.instance.ClearUnselectedCardList();
         CardManager.instance.ClearSelectedCard();
 
-        // 重新载入通用卡牌 由于通用卡牌暂未完成 故载入角色卡牌
+        // 重新载入通用卡牌到选择容器中 由于通用卡牌暂未完成 故载入角色卡牌
         CardManager.instance.LoadAllCardIntoUnselectedList();
 
     }

@@ -5,10 +5,10 @@ using UnityEngine;
 public static class CharacterType {
     public enum CharacterTag
     {
-        Common = 0,
-        Sheng,
-        Dan,
-        Jing,
-        Chou
+        Common = -1,
+        Sheng = 0,
+        Dan = 1,
+        Jing = 2,
+        Chou = 3
     }
 }

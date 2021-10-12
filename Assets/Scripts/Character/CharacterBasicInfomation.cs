@@ -18,7 +18,7 @@ public class CharacterBasicInfomation : ScriptableObject
 
     public CharacterType.CharacterTag charTag = CharacterType.CharacterTag.Common;
 
-    [Header("可用被动Buff ID")]
+    [Header("可用被动Buff")]
     public List<int> buffID = new List<int>();
 
 }

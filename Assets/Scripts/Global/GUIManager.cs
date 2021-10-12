@@ -16,9 +16,9 @@ public class GUIManager : MonoBehaviour
     public GameObject listCardSample; // 列表卡牌样本
     [Space]
     [Header("UnselectedCardList Objects")]
+    public Transform slotLayout; // 待选卡牌插槽容器
+    public List<Transform> slot_UnselectedCard; // 待选卡牌容器各个点位置
     public GameObject unselectedCardList; // 待选卡牌容器
-    public LayoutGroup unselectedCardList_LayoutGroup; // 待选卡牌容器的排序组件
-    public Mask unselectedCardList_Mask; // 待选卡牌容器遮罩组件
     public GameObject unselectedCardTemplatee; // 待选卡牌容器模板
     public Transform selectedCardTempParent; // 选中卡牌临时(容器)父母节点
 
@@ -63,6 +63,12 @@ public class GUIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        // 获取待选卡牌插槽容器
+        for(int i = 0; i < slotLayout.childCount; i++)
+        {
+            slot_UnselectedCard.Add(slotLayout.GetChild(i).transform);
+        }
     }
 
     void Start()
@@ -172,12 +178,7 @@ public class GUIManager : MonoBehaviour
         SetCardDetail(selectedCard); // 刷新细节列表的信息
     }
 
-    // 重新排序未选中卡牌队列
-    public void ReflashUnselectedCardList()
-    {
-        LayoutRebuilder.ForceRebuildLayoutImmediate(unselectedCardList.GetComponent<RectTransform>());
-    }
-    // 清空未选择卡牌列表 及 *已选卡牌列表*
+    // 清空未选择卡牌列表 及 *已选卡牌列表* 的实体对象
     public void ClearUnselectedCardList()
     {
         for(int i = 0; i < unselectedCardList.transform.childCount; i++)
@@ -199,13 +200,6 @@ public class GUIManager : MonoBehaviour
         go.GetComponent<UnselectedCardSetter>().SetCardInfo(_card);
         go.transform.parent = unselectedCardList.transform;
         go.transform.localScale = Vector3.one;
-    }
-
-    // 设置是否启用未选择卡牌序列的排序组件
-    public void EnableCardListLaygout(bool _v)
-    {
-        unselectedCardList_LayoutGroup.enabled = _v;
-        unselectedCardList_Mask.enabled = _v;
     }
 
     public void UpdateMoneyText(int _v)

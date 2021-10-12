@@ -2,11 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class UnselectedCardSetter : ListCardSetter,ICardOperation
 {
     public bool selected = false;
-    public Vector3 slotPosition;
+    public Vector3 slotPosition_Selected;
+    public Vector3 slotPosition_Unselected;
+
+    public float moveTime = 0.45f;
+    public static List<Transform> unselectedCardList = new List<Transform>();
+    public static List<Transform> selectedCardList = new List<Transform>();
+
+    int originIndex;
+
+
+    private void Start()
+    {
+        unselectedCardList.Add(transform);
+
+        // 生成时获得初始位置 并移动至指定方向
+        slotPosition_Unselected = GUIManager.instance.slot_UnselectedCard[transform.GetSiblingIndex()].position;
+        transform.DOMove(slotPosition_Unselected, moveTime);
+        originIndex = transform.GetSiblingIndex();
+    }
+    private void OnDestroy()
+    {
+        if (unselectedCardList.Contains(transform))
+            unselectedCardList.Remove(transform);
+        else
+            selectedCardList.Remove(transform);
+    }
+
+    /// <summary>
+    /// 刷新所有未选择卡牌的位置
+    /// </summary>
+    private void ReflashPosition()
+    {
+        for(int i = 0; i < unselectedCardList.Count; i++)
+        {
+            if(unselectedCardList[i].position != GUIManager.instance.slot_UnselectedCard[i].position)
+            {
+                unselectedCardList[i].GetComponent<UnselectedCardSetter>().slotPosition_Unselected = GUIManager.instance.slot_UnselectedCard[i].position;
+                unselectedCardList[i].DOMove(GUIManager.instance.slot_UnselectedCard[i].position, moveTime);
+                originIndex = transform.GetSiblingIndex();
+            }
+        }
+    }
 
     public void mouseDrag()
     {
@@ -15,30 +58,34 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
 
     public void mouseEnter()
     {
-        if (!selected)
-        {
-            GUIManager.instance.EnableCardListLaygout(false);
-            transform.parent = GUIManager.instance.selectedCardTempParent;
-        }
+        originIndex = transform.GetSiblingIndex();
+       transform.SetSiblingIndex(transform.parent.childCount - 1);
     }
 
     public void mouseExit()
     {
-        if (!selected)
-        {
-            transform.parent = GUIManager.instance.unselectedCardList.transform;
-            GUIManager.instance.EnableCardListLaygout(true);
-            GUIManager.instance.ReflashUnselectedCardList();
-        }
-        else
-        {
-            transform.position = slotPosition;
-        }
+        transform.SetSiblingIndex(originIndex);
+        ReturnToSlotPosition();
     }
 
     public void mouseDown()
     {
         
+    }
+
+    /// <summary>
+    /// 根据选择状态返回相应插槽位置
+    /// </summary>
+    public void ReturnToSlotPosition()
+    {
+        if (selected)
+        {
+            transform.DOMove(slotPosition_Selected, moveTime);
+        }
+        else
+        {
+            transform.DOMove(slotPosition_Unselected, moveTime);
+        }
     }
 
     public void mouseUp()
@@ -69,26 +116,29 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
                     }
                 }
 
+                // 位于插槽上且不重复 选择成功
                 if(onSlot && !repeated)
                 {
 
                     transform.position = slot.transform.position;
-
-                    slotPosition = slot.gameObject.transform.position;
-
+                    slotPosition_Selected = slot.gameObject.transform.position;
                     CardManager.instance.SelectCard(cardInfo);
-
-                    GUIManager.instance.EnableCardListLaygout(true);
                     selected = true;
+
+                    ReturnToSlotPosition(); // 卡牌返回新插槽位置
+                    unselectedCardList.Remove(transform);
+                    selectedCardList.Add(transform);
+                    ReflashPosition(); // 刷新所有未选择卡牌位置
+
                     return;
                 }
             }
 
             // 未检测到插槽 返回
-            transform.parent = GUIManager.instance.unselectedCardList.transform;
-            GUIManager.instance.EnableCardListLaygout(true);
-            GUIManager.instance.ReflashUnselectedCardList();
+            ReturnToSlotPosition();
+
         }
+        // 已选择的卡牌
         else
         {
             // 判断是否返回未选择队列
@@ -98,20 +148,41 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
             EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
             if (results.Count != 0)
             {
+                bool repeated = false;
+
                 foreach (var i in results)
                 {
+                    // 检测到返回未选择卡牌插槽
                     if (i.gameObject.layer == LayerMask.NameToLayer("UI_UnselectedList"))
                     {
                         transform.parent = GUIManager.instance.unselectedCardList.transform;
+                        unselectedCardList.Add(transform);
+                        selectedCardList.Remove(transform);
+                        ReflashPosition();
                         CardManager.instance.RemoveSelectedCard(cardInfo);
-                        GUIManager.instance.ReflashUnselectedCardList();
+                        
+                        
                         selected = false;
+                        return;
+                    }
+
+                    if (i.gameObject.tag == "Card" && i.gameObject != gameObject)
+                    {
+                        repeated = true;
+                    }
+
+                    // 更换新插槽
+                    if (!repeated && i.gameObject.layer == LayerMask.NameToLayer("UI_CardSlot"))
+                    {
+                        slotPosition_Selected = i.gameObject.transform.position;
+                        ReturnToSlotPosition();
+
                         return;
                     }
                 }
             }
 
-            transform.position = slotPosition;
+            ReturnToSlotPosition();
         }
 
 

@@ -53,10 +53,6 @@ public class CardManager : MonoBehaviour
         {
             slotPos[i] = slotLayoutGroup.GetChild(i).transform;
         }
-    }
-
-    void Start()
-    {
 
         // 测试用——会与UI按钮控件相冲突 *****下列方法调用时 不要使用UI中的部分按钮*****
 
@@ -66,6 +62,10 @@ public class CardManager : MonoBehaviour
         LoadCardInstance(); // 将库中卡牌对应的实例载入到字典中以备使用
         LoadAllCardIntoUnselectedList(); // 将卡牌库的信息载入到选择列表中
         LoadAllCardIntoCardList();// 卡牌展示 测试
+    }
+
+    void Start()
+    {
 
     }
 
@@ -238,9 +238,11 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    
 
-    // 将卡牌库中的所有卡牌载入到卡牌展示界面中
+
+    /// <summary>
+    /// 将卡牌库中的所有卡牌载入到卡牌展示界面中
+    /// </summary>
     public void LoadAllCardIntoCardList()
     {
         GUIManager.instance.ClearCardList();
@@ -255,6 +257,21 @@ public class CardManager : MonoBehaviour
             GUIManager.instance.LoadCardIntoList(i);
         }
     }
+
+    /// <summary>
+    /// 将某个角色的卡牌载入到卡牌展示界面中
+    /// </summary>
+    /// <param name="_charId"></param>
+    public void LoadSecificCharCardIntoCardList(int _charId)
+    {
+        GUIManager.instance.ClearCardList();
+        foreach (var i in cardLibrary.Values)
+        {
+            if(((int)i.belongner) == _charId)
+                GUIManager.instance.LoadCardIntoList(i);
+        }
+    }
+
 
     // 重新排列并载入玩家所选择的卡牌——***开始战斗场景时使用***
     public void RealignAndLoadCards()

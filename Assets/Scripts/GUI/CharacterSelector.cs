@@ -28,6 +28,15 @@ public class CharacterSelector : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        selectedId = ((int)PlayerManager.instance.cur_Character); // 选取默认值
+
+        DisplayCharInfo(selectedId);
+        DisplayTag(selectedId);
+        ConfirmCharacter();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -41,7 +50,6 @@ public class CharacterSelector : MonoBehaviour
         {
             if(i.Value.charTag == PlayerManager.instance.cur_Character)
             {
-                Debug.Log(selectedId);
                 selectedId = i.Key;
                 break;
             }
@@ -52,21 +60,36 @@ public class CharacterSelector : MonoBehaviour
         ConfirmCharacter();
     }
 
+    /// <summary>
+    /// 显示选中角色的信息
+    /// </summary>
+    /// <param name="_id"></param>
     public void DisplayCharInfo(int _id)
     {
         if (!charInfo.ContainsKey(_id))
             return;
 
         charName.text = charInfo[_id].charName;
-        charDesc.text = charInfo[_id].description;
         charStory.text = charInfo[_id].story;
+        DisplayBuffInfo();
 
         selectedId = _id;
     }
 
+    /// <summary>
+    /// 显示所选角色的被动效果
+    /// </summary>
+    /// <param name="_index">被动的下标</param>
+    public void DisplayBuffInfo(int _index = 0)
+    {
+        charDesc.text = BuffManager.instance.buffLibrary[charInfo[selectedId].buffID[_index]].GetComponent<BuffPrototype>().buffInfo.description;
+    }
+
+    /// <summary>
+    /// 确认选择信息
+    /// </summary>
     public void ConfirmCharacter()
     {
-
         charIcon.sprite = charInfo[selectedId].icon;
         PlayerManager.instance.SwitchCharacter(charInfo[selectedId].charTag,charInfo[selectedId]);
     }
@@ -79,6 +102,11 @@ public class CharacterSelector : MonoBehaviour
             i.SetActive(false);
         }
 
-        selectedCharTag[_id-1].SetActive(true);
+        selectedCharTag[_id].SetActive(true);
+    }
+
+    public void ReflashButton()
+    {
+
     }
 }

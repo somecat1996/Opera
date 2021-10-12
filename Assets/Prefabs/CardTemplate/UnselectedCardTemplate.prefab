@@ -389,7 +389,9 @@ MonoBehaviour:
   upgradeSlider: {fileID: 7896236426482663838}
   label_Max: {fileID: 7896236426160454098}
   selected: 0
-  slotPosition: {x: 0, y: 0, z: 0}
+  slotPosition_Selected: {x: 0, y: 0, z: 0}
+  slotPosition_Unselected: {x: 0, y: 0, z: 0}
+  moveTime: 0.45
 --- !u!114 &7896236426361741402
 MonoBehaviour:
   m_ObjectHideFlags: 0
