@@ -33,14 +33,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - BreathSpeed: 1
-    - Fresnel: 5
+    - BreathSpeed: 2.5
+    - DivideValue: 1
+    - Fresnel: 4.41
     - NoiseMagtitude: 0
     - NoiseScale: 20
-    - NormalExpand: 1
+    - NormalExpand: 0.025
     - NormalNoiseSpeed: 0
+    - RotateSpeed: 10
     - Test: 1
-    - _Offset: 0.85
+    - _Offset: 0.71
     m_Colors:
     - _Color: {r: 191.74902, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

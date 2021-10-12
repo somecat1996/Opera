@@ -144,13 +144,14 @@ public class CardManager : MonoBehaviour
         go.transform.parent = layoutGroup;  
         cur_Card++;
 
-        ReflashUsableCardPosition();
-
-        //测试用
-        foreach(var i in GetAllUsableCard())
+        // 刷新所有卡牌的初始位置
+        foreach (var i in GetAllUsableCard())
         {
             i.GetComponent<CardPrototype>().ReflashOriginPos();
         }
+
+        // 刷新手牌的位置
+        ReflashUsableCardPosition();
 
         if(cardQueue.Count != 0)
             // 将下一张卡牌置顶
