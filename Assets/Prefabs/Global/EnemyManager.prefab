@@ -95,6 +95,11 @@ MonoBehaviour:
   background: {fileID: 0}
   backgroundImages:
   - {fileID: 21300000, guid: a515ba8ddb54bf94fbfe85a3812bddc0, type: 3}
+  ground: {fileID: 0}
+  groundMaterials:
+  - {fileID: 2100000, guid: d046d7cd151ab474ea40b8bebead8f42, type: 2}
+  - {fileID: 2100000, guid: 15cc4794c9360a14bbcbcd24ee92cc6b, type: 2}
+  - {fileID: 2100000, guid: 14367b61f7adafe42be9d341707925d6, type: 2}
 --- !u!1 &4587633645427658909
 GameObject:
   m_ObjectHideFlags: 0

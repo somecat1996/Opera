@@ -95,6 +95,13 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     protected float healingTimer;
     protected float healingTime;
     protected float healingValue;
+    // 巫毒娃娃
+    protected float voodooProbability;
+    protected float voodooCoolingTimer;
+    protected float voodooTimer;
+    protected float voodooHurt;
+    public float voodooTime = 10f;
+    public float voodoocoolingTime = 15f;
     // 玩家、敌人基类
 
     protected virtual void Awake()
@@ -133,10 +140,16 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         healthBarManager = healthBar.GetComponent<HealthBarManager>();
 
         healthBarManager.Init(transform, offsetPos);
+
+        // 初始化buff
+        voodooProbability = BuffManager.instance.GetProbability_SpawnVoodoo();
+        voodooCoolingTimer = 0;
+        voodooTimer = 0;
     }
 
     protected virtual void Update()
     {
+        HandlingVoodoo();
         HandlingPoison();
         HandlingStun();
         HandlingShield();
@@ -191,6 +204,9 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         if (GlobalValue.poisonAttack)
             Poisoning();
 
+        if (voodooTimer > 0)
+            voodooHurt += trueDamage;
+
         BattleDataManager.instance.UpdateDamage(trueDamage);
         healthBarManager.UpdateHealth(curHealth / maxHealth);
 
@@ -209,6 +225,21 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
             Hurt(trueDamage);
     }
 
+    public void RemoveShield()
+    {
+        shield = 0;
+    }
+
+    private void Voodoo()
+    {
+        if (voodooProbability > 0 && voodooCoolingTimer <= 0)
+        {
+            voodooCoolingTimer = voodoocoolingTime;
+            voodooTimer = voodooTime;
+            voodooHurt = 0;
+        }
+    }
+
     public void Poisoning()
     {
         // 中毒接口
@@ -216,6 +247,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         poisonLevel += 1;
         poisonTotalTimer = poisonTime;
         poisonTimer = poisonDamageTime;
+        Voodoo();
     }
 
     public void Bleeding()
@@ -406,6 +438,28 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
             if (invisibleTimer <= 0)
             {
                 invisibleTimer = 0;
+            }
+        }
+    }
+
+    protected void HandlingVoodoo()
+    {
+        if (voodooProbability > 0)
+        {
+            if (voodooTimer >= 0)
+            {
+                voodooTimer -= Time.deltaTime;
+                if (voodooTimer <= 0)
+                {
+                    Hurt(voodooHurt);
+                    voodooTimer = 0;
+                }
+            }
+            if (voodooCoolingTimer >= 0)
+            {
+                voodooCoolingTimer -= Time.deltaTime;
+                if (voodooCoolingTimer <= 0)
+                    voodooCoolingTimer = 0;
             }
         }
     }

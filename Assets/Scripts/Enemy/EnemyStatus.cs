@@ -20,7 +20,11 @@ public class EnemyStatus : GameObjectBase
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        HandlingVoodoo();
+        HandlingPoison();
+        HandlingStun();
+        HandlingHealing();
+        HandlingBleeding();
     }
 
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1)

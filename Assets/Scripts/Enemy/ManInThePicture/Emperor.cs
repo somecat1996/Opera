@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Emperor : EnemyStatus, SummonEnemy
+public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 {
     [Header("Stage Configuration")]
     public float stage2Start = 0.7f;
@@ -10,9 +10,11 @@ public class Emperor : EnemyStatus, SummonEnemy
 
     // ÆÕÍ¨¹¥»÷
     [Header("Normal Attack")]
-    public float normalAttackTime = 1f;
-    public float normalAttackDamage = 1f;
+    public int normalAttackTimeMin = 1;
+    public int normalAttackTimeMax = 5;
+    public int[] normalAttackDamage;
     private float normalAttackTimer;
+    private int normalAttackTime;
 
     // Ïã½¶Æ¤¹¥»÷
     [Header("Banana Attack")]
@@ -34,8 +36,9 @@ public class Emperor : EnemyStatus, SummonEnemy
     // »Ó½£
     [Header("Swing Sword")]
     public float swordAttackTime = 5f;
-    public float swordAttackDamage = 3f;
+    public float swordAttackIncrease = 2f;
     private float swordAttackTimer;
+    private bool swordAttack;
 
     // »­¾íprefab
     [Header("Picture Prefab")]
@@ -43,6 +46,19 @@ public class Emperor : EnemyStatus, SummonEnemy
     private Picture picture;
 
     // ¶Ô»°¿ò
+    public GameObject lineTextPrefab;
+    public float speakTime = 20f;
+    private float speakTimer;
+    public string[] stage1Lines;
+    public string stage1To2Line;
+    public string stage2To3Line;
+
+    // ñ¼¶ðÔ©½Ó¿Ú
+    private bool countHurt;
+    private int hurtCounter;
+    private float douETimer;
+    public float douETime = 10f;
+    public float douECoefficient = 2f;
 
     private int currentStage;
     private PlayerStatus player;
@@ -51,20 +67,40 @@ public class Emperor : EnemyStatus, SummonEnemy
     {
         base.Start();
 
+        normalAttackTime = NormalAttackTime();
         normalAttackTimer = normalAttackTime;
         bananaAttackTimer = bananaAttackTime;
         ministerSummonTimer = ministerSummonTime;
         imperialDecreeThrowTimer = imperialDecreeThrowTime;
         swordAttackTimer = swordAttackTime;
+        swordAttack = false;
 
         currentStage = 1;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
+
+        countHurt = false;
+        hurtCounter = 0;
+        douETimer = 0;
+
+        speakTimer = speakTime;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+
+        if (countHurt && douETimer > 0)
+        {
+            douETimer -= Time.deltaTime;
+            if (douETimer <= 0)
+            {
+                countHurt = false;
+                hurtCounter = 0;
+                douETimer = 0;
+                DouEAttack();
+            }
+        }
 
         if (currentStage == 1)
             Stage1();
@@ -74,9 +110,11 @@ public class Emperor : EnemyStatus, SummonEnemy
             Stage3();
     }
 
-    public override void Hurt(float damage, bool shieldBreak, float damageIncrease)
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1)
     {
         base.Hurt(damage, shieldBreak, damageIncrease);
+        if (countHurt)
+            hurtCounter += 1;
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)
             Stage2Start();
         if (curHealth <= stage3Start * maxHealth && currentStage == 2)
@@ -87,6 +125,7 @@ public class Emperor : EnemyStatus, SummonEnemy
     {
         currentStage = 2;
         SummonPicture();
+        Speak(stage1To2Line);
     }
 
     private void Stage3Start()
@@ -94,6 +133,7 @@ public class Emperor : EnemyStatus, SummonEnemy
         currentStage = 3;
         PictureChange();
         EnemyManager.instance.RemoveMinions();
+        Speak(stage2To3Line);
     }
 
     private void Stage1()
@@ -101,6 +141,13 @@ public class Emperor : EnemyStatus, SummonEnemy
         NormalAttack();
         BananaAttack();
         SummonMinister();
+
+        speakTimer -= Time.deltaTime;
+        if (speakTimer <= 0)
+        {
+            speakTimer = speakTime;
+            Speak(stage1Lines[Random.Range(0, stage1Lines.Length - 1)]);
+        }
     }
 
     private void Stage2()
@@ -139,11 +186,23 @@ public class Emperor : EnemyStatus, SummonEnemy
     private void NormalAttack()
     {
         normalAttackTimer -= Time.deltaTime;
+        int damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin];
         if (normalAttackTimer <= 0)
         {
-            normalAttackTimer = normalAttackTime;
-            player.Hurt(normalAttackDamage);
+            normalAttackTimer = NormalAttackTime();
+            if (swordAttack)
+            {
+                swordAttack = false;
+                player.Hurt(damage * swordAttackIncrease);
+            }
+            else
+                player.Hurt(damage);
         }
+    }
+
+    private int NormalAttackTime()
+    {
+        return Random.Range(normalAttackTimeMin, normalAttackTimeMax + 1);
     }
 
     private void BananaAttack()
@@ -197,5 +256,25 @@ public class Emperor : EnemyStatus, SummonEnemy
         if (picture)
             Destroy(picture.gameObject);
         base.Die();
+    }
+
+    public void DouE()
+    {
+        countHurt = true;
+        hurtCounter = 0;
+        douETimer = douETime;
+    }
+
+    private void DouEAttack()
+    {
+        Hurt(douECoefficient * hurtCounter);
+    }
+
+    private void Speak(string line)
+    {
+        var col = gameObject.GetComponent<Collider>();
+        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
+        Line lineText = Instantiate(lineTextPrefab, GameObject.FindGameObjectWithTag("LineCanvas").transform).GetComponent<Line>();
+        lineText.Init(line, topAhcor);
     }
 }

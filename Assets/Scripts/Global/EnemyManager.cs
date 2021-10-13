@@ -26,6 +26,8 @@ public class EnemyManager : MonoBehaviour
 
     public Image background;
     public List<Sprite> backgroundImages;
+    public MeshRenderer ground;
+    public List<Material> groundMaterials;
     private void Awake()
     {
         instance = this;
@@ -53,6 +55,7 @@ public class EnemyManager : MonoBehaviour
     {
         background.gameObject.SetActive(true);
         background.sprite = backgroundImages[bossIndex];
+        ground.material = groundMaterials[bossIndex];
         SummonBoss(bossPrefabs[bossIndex]);
         playerStatus.RestartPlaying();
     }
@@ -166,6 +169,24 @@ public class EnemyManager : MonoBehaviour
         {
             if (generationPointStatus[i])
                 generationPointStatus[i].Hurt(damage);
+        }
+    }
+
+    public void RemoveShieldAll()
+    {
+        for (int i = 0; i < generationPoint.Count; i++)
+        {
+            if (generationPointStatus[i])
+                generationPointStatus[i].RemoveShield();
+        }
+    }
+
+    public void PercentHurtAll(float percent, float max = Mathf.Infinity)
+    {
+        for (int i = 0; i < generationPoint.Count; i++)
+        {
+            if (generationPointStatus[i])
+                generationPointStatus[i].PercentHurt(percent, max);
         }
     }
 }

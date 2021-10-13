@@ -87,6 +87,8 @@ MonoBehaviour:
   bleedingTime: 5
   bleedingTickleTime: 1
   bleedingDamage: 5
+  voodooTime: 10
+  voodoocoolingTime: 15
   position: 0
   stage2Start: 0.7
   stage3Start: 0.3
@@ -100,6 +102,14 @@ MonoBehaviour:
   swordAttackTime: 5
   swordAttackDamage: 3
   picturePrefab: {fileID: 7049907831289417314, guid: 64b3fc3a3c190184e9c7213af91987d0, type: 3}
+  lineTextPrefab: {fileID: 3921916031245853504, guid: 7af6adbf22fe4044d8adbad4008c9957, type: 3}
+  stage1Lines:
+  - "\u4EFF\u4F5B\u516E\u82E5\u8F7B\u4E91\u4E4B\u853D\u6708\uFF0C\u98D8\u98D6\u516E\u82E5\u4F20\u4E16\u4E4B\u4F73\u753B\u3002"
+  - ???
+  stage1To2Line: "\u5927\u7586\u5343\u91CC\uFF0C\u65E0\u6C5D\u7B49\u5BB9\u8EAB\u4E4B\u6240\uFF01"
+  stage2To3Line: "\u8150\u8349\u4E4B\u8424\u5149\uFF0C\u600E\u53CA\u5929\u5FC3\u4E4B\u7693\u6708\uFF01"
+  douETime: 10
+  douECoefficient: 2
 --- !u!1 &7049907832633862938
 GameObject:
   m_ObjectHideFlags: 0

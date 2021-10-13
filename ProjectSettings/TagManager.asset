@@ -13,6 +13,7 @@ TagManager:
   - GUI_GameScene
   - DamageCanvas
   - RangeDisplayer
+  - LineCanvas
   layers:
   - Default
   - TransparentFX

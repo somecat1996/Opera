@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Picture : GameObjectBase
+public class Picture : GameObjectBase, LevelItemInterface
 {
     private int currentStage;
 
@@ -15,8 +15,7 @@ public class Picture : GameObjectBase
     public int stage2DamageNumber = 5;
     private int stage2DamageCounter;
     private CardPrototype lastUsedCard;
-    public float stage2PlayerDamage = 2;
-    public float stage2EnemyDamage = 200;
+    public float stage2PercentDamage = 0.05f;
 
     private PlayerStatus player;
     // Start is called before the first frame update
@@ -49,6 +48,7 @@ public class Picture : GameObjectBase
 
     private void Stage1()
     {
+        AttackCardCheck();
         if (stage1CoolingTimer > 0)
         {
             stage1CoolingTimer -= Time.deltaTime;
@@ -64,7 +64,7 @@ public class Picture : GameObjectBase
 
     }
 
-    public void UseAttackCard()
+    private void AttackCardCheck()
     {
         if (stage1CoolingTimer <= 0)
         {
@@ -78,7 +78,7 @@ public class Picture : GameObjectBase
                     {
                         stage1CardCounter = stage1CardNumber;
                         stage1CoolingTimer = stage1CoolingTime;
-                        EnemyManager.instance.HurtAll(stage1Damage);
+                        Stage1Attack();
                     }
                 }
             }
@@ -93,10 +93,33 @@ public class Picture : GameObjectBase
             if (stage2DamageCounter <= 0)
             {
                 stage2DamageCounter = stage2DamageNumber;
-                EnemyManager.instance.HurtAll(stage2EnemyDamage);
-                if (player)
-                    player.Hurt(stage2PlayerDamage);
+                Stage2Attack();
             }
+        }
+    }
+
+    public void Activate()
+    {
+        if (currentStage == 1)
+            Stage1Attack();
+        else if (currentStage == 2)
+            Stage2Attack();
+    }
+
+
+    private void Stage1Attack()
+    {
+        EnemyManager.instance.HurtAll(stage1Damage);
+    }
+
+    private void Stage2Attack()
+    {
+        EnemyManager.instance.RemoveShieldAll();
+        EnemyManager.instance.PercentHurtAll(stage2PercentDamage);
+        if (player)
+        {
+            player.RemoveShield();
+            player.PercentHurt(stage2PercentDamage);
         }
     }
 }
