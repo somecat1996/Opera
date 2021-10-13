@@ -92,17 +92,19 @@ MonoBehaviour:
   position: 0
   stage2Start: 0.7
   stage3Start: 0.3
-  normalAttackTime: 1
-  normalAttackDamage: 1
+  normalAttackTimeMin: 1
+  normalAttackTimeMax: 5
+  normalAttackDamage: 070000000f000000190000002300000032000000
   bananaAttackTime: 10
   bananaAttackDamage: 33
   ministerPrefab: {fileID: 7049907831289417314, guid: cfc4989c03dc8394a80cc7b2daffd54b, type: 3}
   ministerSummonTime: 10
   imperialDecreeThrowTime: 15
   swordAttackTime: 5
-  swordAttackDamage: 3
+  swordAttackIncrease: 2
   picturePrefab: {fileID: 7049907831289417314, guid: 64b3fc3a3c190184e9c7213af91987d0, type: 3}
   lineTextPrefab: {fileID: 3921916031245853504, guid: 7af6adbf22fe4044d8adbad4008c9957, type: 3}
+  speakTime: 20
   stage1Lines:
   - "\u4EFF\u4F5B\u516E\u82E5\u8F7B\u4E91\u4E4B\u853D\u6708\uFF0C\u98D8\u98D6\u516E\u82E5\u4F20\u4E16\u4E4B\u4F73\u753B\u3002"
   - ???

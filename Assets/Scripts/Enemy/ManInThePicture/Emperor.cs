@@ -189,7 +189,8 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         int damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin];
         if (normalAttackTimer <= 0)
         {
-            normalAttackTimer = NormalAttackTime();
+            normalAttackTime = NormalAttackTime();
+            normalAttackTimer = normalAttackTime;
             if (swordAttack)
             {
                 swordAttack = false;
@@ -247,7 +248,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         if (swordAttackTimer <= 0)
         {
             swordAttackTimer = swordAttackTime;
-            player.Hurt(swordAttackDamage);
+            swordAttack = true;
         }
     }
 
