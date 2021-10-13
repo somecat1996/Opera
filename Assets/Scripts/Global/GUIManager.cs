@@ -50,9 +50,9 @@ public class GUIManager : MonoBehaviour
     public GameObject canvas;
 
     [Header("GameScene Objects")]
-    public Slider player_PowerPoint;
+    public Image player_PowerPoint;
     public TextMeshProUGUI text_PowerPoint;
-    public Slider boss_HealthPoint;
+    public Image boss_HealthPoint;
     public GameObject panel_CardDesc;
     public TextMeshProUGUI text_CardDesc;
     [Space]
@@ -73,7 +73,7 @@ public class GUIManager : MonoBehaviour
 
     void Start()
     {
-        player_PowerPoint.maxValue = PlayerManager.instance.max_PowerPoint;
+        
     }
 
     void Update()
@@ -83,15 +83,22 @@ public class GUIManager : MonoBehaviour
 
 
     
-
+    /// <summary>
+    /// 修改BOSS血条 传入百分值
+    /// </summary>
+    /// <param name="_v"></param>
     public void UpdateBossHealthPoint(float _v)
     {
-        boss_HealthPoint.value = _v;
+        boss_HealthPoint.fillAmount = _v;
     }
-    public void UpdatePowerPoint(float _v)
+    /// <summary>
+    /// 修改心流值 传入百分值 和 真实值
+    /// </summary>
+    /// <param name="_v"></param>
+    public void UpdatePowerPoint(float _v,float _trueV)
     {
-        player_PowerPoint.value = _v;
-        text_PowerPoint.text = ((int)_v).ToString();
+        player_PowerPoint.fillAmount = _v;
+        text_PowerPoint.text = ((int)_trueV).ToString();
     }
 
     // 清空卡牌列表
