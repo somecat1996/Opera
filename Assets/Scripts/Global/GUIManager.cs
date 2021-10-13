@@ -59,6 +59,12 @@ public class GUIManager : MonoBehaviour
     public GameObject panel_BuffIcon;
     public GameObject prefab_BuffIcon;
 
+    [Header("System Objects")]
+    public Transform panel_Common;
+    [Space]
+    public Transform spawnPos_SystemText;
+    public GameObject prefab_SystemText;
+
 
     private void Awake()
     {
@@ -271,5 +277,18 @@ public class GUIManager : MonoBehaviour
         {
             Destroy(panel_BuffIcon.transform.GetChild(i));
         }
+    }
+
+    /// <summary>
+    /// 生成系统文本
+    /// </summary>
+    /// <param name="_text"></param>
+    public void SpawnSystemText(string _text)
+    {
+        GameObject go = Instantiate(prefab_SystemText);
+        go.transform.parent = panel_Common;
+        go.transform.localScale = Vector3.one;
+        go.transform.position = spawnPos_SystemText.position;
+        go.GetComponent<SystemText>().SetText(_text);
     }
 }

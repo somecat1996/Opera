@@ -46,7 +46,7 @@ public class CardBasicInfomation : ScriptableObject
         {
             if (level == CardManager.instance.cardCommonData.max_Level)
             {
-                Debug.Log("Max Level!");
+                GUIManager.instance.SpawnSystemText("卡牌等级已满!");
                 return false;
             }
 
@@ -57,7 +57,7 @@ public class CardBasicInfomation : ScriptableObject
                 {
                     quantity -= CardManager.instance.cardCommonData.upgrade_Demanded[level];
                     mainValue_Cur *= 1.1f;
-                    Debug.Log("Upgraded successfully!");
+                    GUIManager.instance.SpawnSystemText("升级成功!");
                     level++;
 
                     GUIManager.instance.UpdateMoneyText(PlayerManager.instance.data.money);
@@ -65,12 +65,12 @@ public class CardBasicInfomation : ScriptableObject
                 }
                 else
                 {
-                    Debug.Log("Insufficient money");
+                    GUIManager.instance.SpawnSystemText("金币不足!");
                 }
             }
             else
             {
-                Debug.Log("Insufficient card");
+                GUIManager.instance.SpawnSystemText("卡牌数量不足!");
             }
 
             return false;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelSelector : MonoBehaviour
 {
@@ -55,6 +56,12 @@ public class LevelSelector : MonoBehaviour
             else
             {
                 buttonList[i].GetComponent<Image>().color = color_Disable;
+
+                foreach (var j in buttonList[i].transform.GetComponentsInChildren<Image>())
+                {
+                    j.color = color_Disable;
+                }
+
             }
         }
     }
@@ -86,12 +93,21 @@ public class LevelSelector : MonoBehaviour
             {
                 rect.transform.DOScale(maxScale, speed);
                 image.DOColor(Color.white,speed);
-                
+
+                foreach (var j in buttonList[i].transform.GetComponentsInChildren<Image>())
+                {
+                    j.DOColor(Color.white, speed);
+                }
             }
             else
             {
                 rect.transform.DOScale(Vector3.one, speed);
                 image.DOColor(color_Disable, speed);
+
+                foreach (var j in buttonList[i].transform.GetComponentsInChildren<Image>())
+                {
+                    j.DOColor(color_Disable, speed);
+                }
             }
         }
 
@@ -121,11 +137,21 @@ public class LevelSelector : MonoBehaviour
             {
                 rect.transform.DOScale(maxScale, speed);
                 image.DOColor(Color.white, speed);
+
+                foreach (var j in buttonList[i].transform.GetComponentsInChildren<Image>())
+                {
+                    j.DOColor(Color.white, speed);
+                }
             }
             else
             {
                 rect.transform.DOScale(Vector3.one, speed);
                 image.DOColor(color_Disable, speed);
+
+                foreach (var j in buttonList[i].transform.GetComponentsInChildren<Image>())
+                {
+                    j.DOColor(color_Disable, speed);
+                }
             }
         }
 
