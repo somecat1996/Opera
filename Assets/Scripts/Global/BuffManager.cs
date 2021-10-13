@@ -103,15 +103,6 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    // 启用角色Buff
-    public void EnableCharacterBuff(CharacterBasicInfomation _info)
-    {
-        foreach(var i in _info.buffID)
-        {
-            EnableBuff(i);
-        }
-    }
-
     /// <summary>
     /// 获得生成巫毒娃娃的概率
     /// </summary>

@@ -120,6 +120,7 @@ public class CardPrototype : MonoBehaviour
         {
             SetFadeOutAndShowRange(false);
             SetFadeOutAndShowTargetMarker(false);
+            SetFadeOutAndShowDirectionPointer(false);
         }
     }
 
@@ -218,6 +219,49 @@ public class CardPrototype : MonoBehaviour
             {
                 BattleDataManager.instance.SetActiveTargetMarker(false);
             }
+        }
+    }
+
+    /// <summary>
+    /// 设置卡牌完全渐出且启用方向指示器——指向性卡牌使用
+    /// </summary>
+    /// <param name="_v"></param>
+    public void SetFadeOutAndShowDirectionPointer(bool _v)
+    {
+        if (_v && CheckOnValidArea())
+        {
+            if (!fadeOut)
+            {
+                foreach (var i in GetComponentsInChildren<Image>(true))
+                {
+                    i.DOFade(0, fadeOut_Duration);
+                }
+                foreach (var i in GetComponentsInChildren<TextMeshProUGUI>(true))
+                {
+                    i.DOFade(0, fadeOut_Duration);
+                }
+
+                fadeOut = true;
+                BattleDataManager.instance.SetActiveDirectionPointer(true);
+            }
+        }
+        else
+        {
+            if (fadeOut)
+            {
+                foreach (var i in GetComponentsInChildren<Image>(true))
+                {
+                    i.DOFade(1, fadeOut_Duration);
+                }
+                foreach (var i in GetComponentsInChildren<TextMeshProUGUI>(true))
+                {
+                    i.DOFade(1, fadeOut_Duration);
+                }
+
+                fadeOut = false;
+            }
+
+             BattleDataManager.instance.SetActiveDirectionPointer(false);
         }
     }
 
