@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
         CardManager.instance.LoadCardInstance(); // 载入所有卡牌实体
         CardManager.instance.LoadCardLibrary(); // 将所有卡牌信息载入到游戏中
+        BuffManager.instance.LoadAllBuffInstances(); // 载入BUFF实体
     }
 
 }

@@ -19,11 +19,17 @@ public class BattleDataManager : MonoBehaviour
     public bool playerMoving = false;
 
     [Header("Obejcts And Related Configuration")]
+    // 范围卡牌指示器
     public GameObject rangeDisplayer;
     [Space]
+    // 单体卡牌指示器
     public Vector3 markerOffset;
     public bool activateTargetMarker;
     public GameObject targetMarker;
+    [Space]
+    // 方向性卡牌指示器
+    public LineRenderer lineRender_Dp;
+    public GameObject directionPointer;
 
     private void Awake()
     {
@@ -75,6 +81,22 @@ public class BattleDataManager : MonoBehaviour
                 targetMarker.SetActive(false);
             }
         }
+
+        if (directionPointer)
+        {
+            lineRender_Dp.SetPosition(0, PlayerManager.instance.player.transform.position);
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, 1000, CardManager.instance.groundLayer))
+            {
+                lineRender_Dp.SetPosition(1, hit.point);
+            }
+            else
+            {
+
+            }
+        }
     }
 
     private void OnEnable()
@@ -100,6 +122,10 @@ public class BattleDataManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 开启单体目标指示器
+    /// </summary>
+    /// <param name="_v"></param>
     public void SetActiveTargetMarker(bool _v)
     {
         activateTargetMarker = _v;
@@ -109,6 +135,17 @@ public class BattleDataManager : MonoBehaviour
             targetMarker.SetActive(false);
         }
     }
+
+    /// <summary>
+    /// 开启方向指示器
+    /// </summary>
+    /// <param name="_v"></param>
+    public void SetActiveDirectionPointer(bool _v)
+    {
+        directionPointer.SetActive(_v);
+    }
+
+
 
     /// <summary>
     ///  重设数据——开启新关卡时调用
@@ -123,6 +160,12 @@ public class BattleDataManager : MonoBehaviour
         enemyList.Clear();
 
         playerMoving = false;
+
+        // 指示器
+        directionPointer.SetActive(false);
+        rangeDisplayer.SetActive(false);
+        targetMarker.SetActive(false);
+        activateTargetMarker = false;
     }
 
     // 更新伤害数据
