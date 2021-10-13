@@ -265,6 +265,17 @@ public class CardManager : MonoBehaviour
     public void LoadSecificCharCardIntoCardList(int _charId)
     {
         GUIManager.instance.ClearCardList();
+
+        if (_charId == -1)
+        {
+            foreach (var i in cardLibrary_Common.Values)
+            {
+                GUIManager.instance.LoadCardIntoList(i);
+            }
+            return;
+        }
+
+
         foreach (var i in cardLibrary.Values)
         {
             if(((int)i.belongner) == _charId)

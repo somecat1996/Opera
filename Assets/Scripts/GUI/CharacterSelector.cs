@@ -8,6 +8,7 @@ public class CharacterSelector : MonoBehaviour
 {
     [Header("Real-Time Data")]
     public int selectedId = 1;
+    public int selectedBuffIndex = 0;
 
     [Header("Objects")]
     public TextMeshProUGUI charName;
@@ -32,9 +33,9 @@ public class CharacterSelector : MonoBehaviour
     {
         selectedId = ((int)PlayerManager.instance.cur_Character); // 选取默认值
 
+        ConfirmCharacter();
         DisplayCharInfo(selectedId);
         DisplayTag(selectedId);
-        ConfirmCharacter();
     }
 
     // Update is called once per frame
@@ -57,6 +58,7 @@ public class CharacterSelector : MonoBehaviour
 
         DisplayCharInfo(selectedId);
         DisplayTag(selectedId);
+        DisplayBuffInfo(selectedBuffIndex);
         ConfirmCharacter();
     }
 
@@ -71,9 +73,8 @@ public class CharacterSelector : MonoBehaviour
 
         charName.text = charInfo[_id].charName;
         charStory.text = charInfo[_id].story;
-        DisplayBuffInfo();
-
         selectedId = _id;
+
     }
 
     /// <summary>
@@ -82,7 +83,9 @@ public class CharacterSelector : MonoBehaviour
     /// <param name="_index">被动的下标</param>
     public void DisplayBuffInfo(int _index = 0)
     {
-        charDesc.text = BuffManager.instance.buffLibrary[charInfo[selectedId].buffID[_index]].GetComponent<BuffPrototype>().buffInfo.description;
+        int buffID = charInfo[selectedId].buffID[_index];
+        selectedBuffIndex = _index;
+        charDesc.text = BuffManager.instance.buffLibrary[buffID].GetComponent<BuffPrototype>().buffInfo.description;
     }
 
     /// <summary>
@@ -91,7 +94,7 @@ public class CharacterSelector : MonoBehaviour
     public void ConfirmCharacter()
     {
         charIcon.sprite = charInfo[selectedId].icon;
-        PlayerManager.instance.SwitchCharacter(charInfo[selectedId].charTag,charInfo[selectedId]);
+        PlayerManager.instance.SwitchCharacter(charInfo[selectedId].charTag,charInfo[selectedId],selectedBuffIndex);
     }
 
     // 显示选中角色的标签

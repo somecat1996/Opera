@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
 
     [Space]
     public CharacterType.CharacterTag cur_Character = CharacterType.CharacterTag.Dan;
+    public int cur_CharBuffID = 0;
     public CharacterBasicInfomation cur_CharacterInfo;
 
     [Space]
@@ -99,9 +100,16 @@ public class PlayerManager : MonoBehaviour
         return true;
     }
 
-    //  修改当前角色
-    public void SwitchCharacter(CharacterType.CharacterTag _v,CharacterBasicInfomation _info)
+    /// <summary>
+    /// 修改当前选择角色信息
+    /// </summary>
+    /// <param name="_v"></param>
+    /// <param name="_info"></param>
+    /// <param name="_buffIndex">被动下标 0-1 默认选择0</param>
+    public void SwitchCharacter(CharacterType.CharacterTag _v,CharacterBasicInfomation _info, int _buffIndex = 0)
     {
+        cur_CharBuffID = _info.buffID[_buffIndex];
+
         if (_v == cur_Character)
             return;
 

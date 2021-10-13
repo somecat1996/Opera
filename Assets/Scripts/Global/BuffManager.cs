@@ -15,15 +15,15 @@ public class BuffManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        LoadAllBuffInstances();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        LoadAllBuffInstances();
-
-      
     }
+
     List<int> test = new List<int>();
     private void Update()
     {
