@@ -19,4 +19,8 @@ public class Buff_KickYourAss : BuffPrototype
         
     }
 
+    public override float GetTrueMainValue()
+    {
+        return GlobalValue.GetTrueProbaility(probability);
+    }
 }

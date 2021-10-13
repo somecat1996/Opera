@@ -33,4 +33,22 @@ public class BuffPrototype : MonoBehaviour
 
         return text;
     }
+
+    /// <summary>
+    /// 获得主要参数的 *真实值*
+    /// </summary>
+    /// <returns></returns>
+    public virtual float GetTrueMainValue()
+    {
+        return -1;
+    }
+
+    /// <summary>
+    /// 获得主要参数
+    /// </summary>
+    /// <returns></returns>
+    public virtual float GetMainValue()
+    {
+        return -1;
+    }
 }

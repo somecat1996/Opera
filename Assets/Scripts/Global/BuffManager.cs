@@ -111,4 +111,20 @@ public class BuffManager : MonoBehaviour
             EnableBuff(i);
         }
     }
+
+    /// <summary>
+    /// 获得生成巫毒娃娃的概率
+    /// </summary>
+    /// <returns></returns>
+    public float GetProbability_SpawnVoodoo()
+    {
+        if (!activiatedBuffList.ContainsKey(303))
+        {
+            return 0;
+        }
+        else
+        {
+            return activiatedBuffList[303].GetComponent<BuffPrototype>().GetTrueMainValue();
+        }
+    }
 }
