@@ -15,6 +15,7 @@ public class CharacterBasicInfomation : ScriptableObject
     public string story;
 
     public Sprite icon = null;
+    public Sprite illustration = null;
 
     public CharacterType.CharacterTag charTag = CharacterType.CharacterTag.Common;
 

@@ -37,9 +37,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - AlphaClip: -1.28
+    - AlphaClip: 0.49
     - ClipOffset: 0.05
-    - NoiseScale: 25
+    - NoiseScale: 40
     m_Colors:
-    - DisslutionColor: {r: 1024, g: 369.44315, b: 0, a: 1}
+    - DisslutionColor: {r: 0, g: 1023.9999, b: 737.27167, a: 1}
   m_BuildTextureStacks: []

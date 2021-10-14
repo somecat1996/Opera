@@ -65,6 +65,14 @@ public class GUIManager : MonoBehaviour
     public Transform spawnPos_SystemText;
     public GameObject prefab_SystemText;
 
+    [Header("Evaluation UI Objects")]
+    public GameObject panel_Evaluation;
+    public TextMeshProUGUI text_GameResult;
+    public TextMeshProUGUI text_Loot_Money;
+    public TextMeshProUGUI text_GameTime;
+    public Image image_Character;
+    public ListCardSetter[] card_Loot = new ListCardSetter[3];
+
 
     private void Awake()
     {
@@ -291,4 +299,35 @@ public class GUIManager : MonoBehaviour
         go.transform.position = spawnPos_SystemText.position;
         go.GetComponent<SystemText>().SetText(_text);
     }
+
+    /// <summary>
+    /// 显示游戏结算画面
+    /// </summary>
+    public void EnableGameResult(bool _playerVictory,float gameTime,int _money,List<CardBasicInfomation> _card)
+    {
+        text_GameResult.text = _playerVictory == true ? "胜 利!" : "惨 败!";
+        text_Loot_Money.text = _money.ToString();
+
+        int min = (int)(gameTime / 60);
+        int sec = (int)(gameTime % 60);
+        text_GameTime.text = min + "分" + sec + "秒";
+
+        image_Character.sprite = PlayerManager.instance.cur_CharacterInfo.illustration;
+
+        // 卡牌信息
+        for(int i = 0; i < _card.Count; i++)
+        {
+            card_Loot[i].SetCardInfo(_card[i]);
+        }
+
+        panel_Evaluation.SetActive(true);
+    }
+    /// <summary>
+    /// 关闭结算画面
+    /// </summary>
+    public void DisableGameResult()
+    {
+        panel_Evaluation.SetActive(false);
+    }
+
 }

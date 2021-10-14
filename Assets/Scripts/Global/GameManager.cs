@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("Real-Time Data")]
+    public bool gameStart = false;
+    public bool gamePause = false;
+
     private void Awake()
     {
         instance = this;
@@ -42,4 +46,22 @@ public class GameManager : MonoBehaviour
         BuffManager.instance.LoadAllBuffInstances(); // 载入BUFF实体
     }
 
+    /// <summary>
+    /// 检测是否处于有效游戏战斗场景
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckIfGameRunning()
+    {
+        return gameStart && !gamePause;
+    }
+
+    public void SetPauseGame(bool _v)
+    {
+        gamePause = _v;
+    }
+
+    public void SetStartGame(bool _v)
+    {
+        gameStart = _v;
+    }
 }

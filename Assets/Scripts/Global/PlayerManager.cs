@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour
     public CharacterType.CharacterTag cur_Character = CharacterType.CharacterTag.Dan;
     public int cur_CharBuffID = 0;
     public CharacterBasicInfomation cur_CharacterInfo;
+    private Dictionary<int, CharacterBasicInfomation> charInfo = new Dictionary<int, CharacterBasicInfomation>();
 
     [Space]
     public PlayerData data;
@@ -40,6 +41,12 @@ public class PlayerManager : MonoBehaviour
     {
         GUIManager.instance.UpdateMoneyText(data.money);
 
+        foreach (var i in Resources.LoadAll<CharacterBasicInfomation>("CharacterInfomation"))
+        {
+            charInfo.Add(i.id, i);
+        }
+
+        cur_CharacterInfo = charInfo[((int)cur_Character)];
         ResetBattleData();
     }
 
@@ -54,6 +61,32 @@ public class PlayerManager : MonoBehaviour
         {
             player.Hurt(2);
         }
+    }
+
+    /// <summary>
+    /// 进入游戏
+    /// </summary>
+    /// <param name="_levelIndex">关卡ID</param>
+    public void EnterLevel(int _levelIndex)
+    {
+        // Buff相关
+        BuffManager.instance.DiableAllBuff(); // 清空BUFF
+        EnableCharBuff(); // 启用角色被动
+        BuffManager.instance.EnableAllSelectedBuff(); // 启用所有角色的ID
+
+        // 卡牌相关
+        CardManager.instance.ClearAllActivatedCard(); // 清除场上所有的卡牌实体
+        CardManager.instance.RealignAndLoadCards(); // 增加场上卡牌
+
+        // 通知游戏管理器
+        GameManager.instance.SetStartGame(true);
+
+        // 开启关卡
+        GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>().EnterLevel(_levelIndex);
+
+        // 系统
+        GameManager.instance.SetStartGame(true);
+
     }
 
     /// <summary>
@@ -79,8 +112,13 @@ public class PlayerManager : MonoBehaviour
     // 初始化数据
     public void InitializeData()
     {
+        // 初始化玩家数据
         data.Initialize();
         GUIManager.instance.UpdateMoneyText(data.money);
+
+        // 初始化关卡数据
+
+
     }
 
     /// <summary>

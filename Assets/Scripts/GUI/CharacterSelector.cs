@@ -15,7 +15,12 @@ public class CharacterSelector : MonoBehaviour
     public TextMeshProUGUI charDesc;
     public TextMeshProUGUI charStory;
     [Space]
-    public Image charIcon;
+    public Image characterIcon;
+    [Space]
+    public Image[] image_BuffSelector = new Image[2];
+    public TextMeshProUGUI[] text_BuffName = new TextMeshProUGUI[2];
+    public Sprite sprite_SelectedBuff;
+    public Sprite sprite_UnselectedBuff;
 
     private Dictionary<int,CharacterBasicInfomation> charInfo = new Dictionary<int, CharacterBasicInfomation>();
     public List<GameObject> selectedCharTag = new List<GameObject>();
@@ -27,15 +32,13 @@ public class CharacterSelector : MonoBehaviour
         {
             charInfo.Add(i.id, i);
         }
+
+        selectedId = ((int)PlayerManager.instance.cur_Character); // 选取默认值
     }
 
     private void Start()
     {
-        selectedId = ((int)PlayerManager.instance.cur_Character); // 选取默认值
-
-        ConfirmCharacter();
-        DisplayCharInfo(selectedId);
-        DisplayTag(selectedId);
+        
     }
 
     // Update is called once per frame
@@ -86,6 +89,23 @@ public class CharacterSelector : MonoBehaviour
         int buffID = charInfo[selectedId].buffID[_index];
         selectedBuffIndex = _index;
         charDesc.text = BuffManager.instance.buffLibrary[buffID].GetComponent<BuffPrototype>().buffInfo.description;
+
+        for(int i = 0; i < image_BuffSelector.Length; i++)
+        {
+            if(i == selectedBuffIndex)
+            {
+                image_BuffSelector[i].sprite = sprite_SelectedBuff;
+            }
+            else
+            {
+                image_BuffSelector[i].sprite = sprite_UnselectedBuff;
+            }
+        }
+
+        for (int i = 0; i < text_BuffName.Length; i++)
+        {
+            text_BuffName[i].text = BuffManager.instance.buffLibrary[charInfo[selectedId].buffID[i]].GetComponent<BuffPrototype>().buffInfo.buffName;
+        }
     }
 
     /// <summary>
@@ -93,13 +113,14 @@ public class CharacterSelector : MonoBehaviour
     /// </summary>
     public void ConfirmCharacter()
     {
-        charIcon.sprite = charInfo[selectedId].icon;
+        characterIcon.sprite = charInfo[selectedId].icon;
 
         if(charInfo[selectedId].charTag != PlayerManager.instance.cur_Character)
-            GUIManager.instance.SpawnSystemText("成功切换至角色 - " + charInfo[selectedId].charName);
+            GUIManager.instance.SpawnSystemText("成功切换至角色 \"" + charInfo[selectedId].charName+"\"");
+        else if(PlayerManager.instance.cur_CharBuffID != charInfo[selectedId].buffID[selectedBuffIndex])
+            GUIManager.instance.SpawnSystemText("成功切换被动技能");
 
         PlayerManager.instance.SwitchCharacter(charInfo[selectedId].charTag, charInfo[selectedId], selectedBuffIndex);
-
     }
 
     // 显示选中角色的标签

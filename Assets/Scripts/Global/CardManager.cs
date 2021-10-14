@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using DG.Tweening;
 
 public class CardManager : MonoBehaviour
@@ -66,7 +67,52 @@ public class CardManager : MonoBehaviour
 
     void Start()
     {
+        int total = 0, l1 = 0, l2 = 0, l3 = 0, l4 = 0;
 
+        int test = 10;
+        while(test > 0)
+        {
+            string text = null;
+            foreach(var i in GetCardsRandomly(10))
+            {
+                total++;
+                switch (i.rarity){
+                    case 1:
+                        {
+                            l1++;
+                            text += "(普通) ";
+                            break;
+                        }
+                    case 2:
+                        {
+                            l2++;
+                            text += "[稀有] ";
+                            break;
+                        }
+                    case 3:
+                        {
+                            l3++;
+                            text += "{史诗} ";
+                            break;
+                        }
+                    case 4:
+                        {
+                            l4++;
+                            text += "*传说* ";
+                            break;
+                        }
+                    default:break;
+                }
+            }
+
+            test--;
+            Debug.Log(text);
+        }
+
+        Debug.Log("普通卡 : " + l1 / (float)total);
+        Debug.Log("稀有卡 : " + l2 / (float)total);
+        Debug.Log("史诗卡 : " + l3 / (float)total);
+        Debug.Log("传说卡 : " + l4 / (float)total);
     }
 
     private void OnDrawGizmos()
@@ -494,5 +540,102 @@ public class CardManager : MonoBehaviour
         }
 
         return temp;
+    }
+
+    /// <summary>
+    /// 获得符合相对概率的随机N个卡牌
+    /// </summary>
+    /// <param name="_count">获得的卡牌数量</param>
+    /// <param name="_includeCommonCard">是否包括剧情卡</param>
+    /// <returns></returns>
+    public List<CardBasicInfomation> GetCardsRandomly(int _count,bool _includeCommonCard = false)
+    {
+        int time = _count;
+
+        List<CardBasicInfomation> result = new List<CardBasicInfomation>();
+
+        List<CardBasicInfomation> card_L1 = new List<CardBasicInfomation>();
+        List<CardBasicInfomation> card_L2 = new List<CardBasicInfomation>();
+        List<CardBasicInfomation> card_L3 = new List<CardBasicInfomation>();
+        List<CardBasicInfomation> card_L4 = new List<CardBasicInfomation>();
+
+        // 将玩家当全所选角色对应卡牌进行品阶分类
+        foreach(var i in cardLibrary.Values)
+        {
+            if(i.belongner == PlayerManager.instance.cur_Character)
+            {
+                switch (i.rarity)
+                {
+                    case 1:
+                        {
+                            card_L1.Add(i);
+                            break;
+                        }
+                    case 2:
+                        {
+                            card_L2.Add(i);
+                            break;
+                        }
+                    case 3:
+                        {
+                            card_L3.Add(i);
+                            break;
+                        }
+                    case 4:
+                        {
+                            card_L4.Add(i);
+                            break;
+                        }
+                    default:break;
+                }
+            }
+        }
+
+        if (!_includeCommonCard)
+        {
+            // 1-4 分别为普通 稀有 史诗 传说
+            float level1 = cardCommonData.probability[0];
+            float level2 = cardCommonData.probability[1];
+            float level3 = cardCommonData.probability[2];
+            float level4 = cardCommonData.probability[3];
+
+            // 重复抽卡
+            while(time > 0)
+            {
+                float v = Random.Range(0, 1f);
+
+
+                if (CheckInRange(v, 0, level1)) // 普通卡
+                {
+                    result.Add(card_L1[Random.Range(0, card_L1.Count)]);
+                }else if (CheckInRange(v, level1, level1 + level2)) // 稀有卡
+                {
+                    result.Add(card_L2[Random.Range(0, card_L2.Count)]);
+                }
+                else if (CheckInRange(v, level1 + level2, level1 + level2 + level3)) // 史诗卡
+                {
+                    result.Add(card_L3[Random.Range(0, card_L3.Count)]);
+                }
+                else if (CheckInRange(v, level1 + level2 + level3, 1)) // 传说卡
+                {
+                    result.Add(card_L4[Random.Range(0, card_L4.Count)]);
+                }
+
+                time--;
+            }
+
+        }
+        else // 包含剧情卡牌的抽卡
+        {
+
+        }
+
+        return result.OrderBy(d => d.rarity).ToList();
+    }
+
+    // 判断数是否在一个范围内
+    public bool CheckInRange(float _cv,float min,float max)
+    {
+        return min <= _cv && _cv < max;
     }
 }

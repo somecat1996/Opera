@@ -7,6 +7,9 @@ public class BattleDataManager : MonoBehaviour
 {
     public static BattleDataManager instance;
     [Header("Real-Time Data")]
+    public float gameTimer = 0;
+    public int loot = 0;
+
     public float totalDamage = 0; // 由敌人Hurt函数上传伤害信息
     public int totalUsedCard = 0; // 由CardManger.SendToTempLayoutGroup上传
     public GameObjectBase lastTargetEnemy; // 由单体输出卡牌上传
@@ -42,12 +45,24 @@ public class BattleDataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            EvaluateGameResult(true);
+        }
+
+        if (!GameManager.instance.CheckIfGameRunning())
+        {
+            return;
+        }
+
+        gameTimer += Time.deltaTime;
+
         if (rangeDisplayer.activeSelf)
         {
             RaycastHit hit;
@@ -152,13 +167,19 @@ public class BattleDataManager : MonoBehaviour
     /// </summary>
     public void ResetAllData()
     {
+        // 系统信息
+        gameTimer = 0;
+
+        // 伤害数值
         totalDamage = 0;
         totalUsedCard = 0;
         lastTargetEnemy = null;
         lastUsedCard = null;
 
+        // 场上敌人列表
         enemyList.Clear();
 
+        // 玩家信息
         playerMoving = false;
 
         // 指示器
@@ -204,5 +225,30 @@ public class BattleDataManager : MonoBehaviour
     public void RemoveEnemyData(GameObjectBase _gob)
     {
         enemyList.Remove(_gob);
+    }
+
+    /// <summary>
+    /// 游戏结束 结算游戏结果——游戏结束时调用
+    /// </summary>
+    /// <param name="_playerVictory">玩家是否胜利</param>
+    public void EvaluateGameResult(bool _playerVictory)
+    {
+        GameManager.instance.SetStartGame(false);
+
+        // 计算金币 目前测试用
+        loot = 300;
+
+        // 随机抽取3张卡
+        List<CardBasicInfomation> lootCard = CardManager.instance.GetCardsRandomly(3);
+
+        // 实际数值传输到CardManager和PlayerManager;
+        PlayerManager.instance.ChangeMoney(loot);
+        foreach(var i in lootCard)
+        {
+            CardManager.instance.cardLibrary[i.id].quantity++;
+        }
+
+        // GUI 显示
+        GUIManager.instance.EnableGameResult(_playerVictory, gameTimer, loot,lootCard);
     }
 }
