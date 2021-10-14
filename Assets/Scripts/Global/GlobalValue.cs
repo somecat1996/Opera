@@ -13,8 +13,11 @@ public static class GlobalValue
     public static float damageIncrement_Magic = 0;
 
     // ±©»÷ÔöÁ¿ ÒÔ¼° ±©»÷¸ÅÂÊ[0,1]
-    public static float critIncrement = 0;
-    public static float probability_Crit = 0;
+    public static float critIncrement_Magic = 0;
+    public static float probability_Crit_Magic = 0;
+
+    public static float critIncrement_Physics = 0;
+    public static float probability_Crit_Physics = 0;
 
     // ÊÂ¼þ¸ÅÂÊÔö·ù
     public static float probabilityIncrement_Event = 0;
@@ -39,8 +42,8 @@ public static class GlobalValue
         damageIncrement_Physics = 0;
         damageIncrement_Magic = 0;
 
-        critIncrement = 0;
-        probability_Crit = 0;
+        critIncrement_Magic = 0;
+        probability_Crit_Magic = 0;
 
         probabilityIncrement_Event = 0;
         damageDecrement_Player = 0;
@@ -65,9 +68,9 @@ public static class GlobalValue
             trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Physics) * (1 + damageIncrement_Special) + extraDamage * (1 + damageIncrement_General);
 
             // ÅÐ¶ÏÊÇ·ñ±©»÷
-            if (Random.Range(0, 1.0f) < probability_Crit)
+            if (Random.Range(0, 1.0f) < probability_Crit_Physics)
             {
-                trueDamage *= (1 + critIncrement);
+                trueDamage *= (1 + critIncrement_Physics);
             }
 
             return trueDamage;
@@ -79,9 +82,9 @@ public static class GlobalValue
             trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Physics) + extraDamage * (1 + damageIncrement_General);
 
             // ÅÐ¶ÏÊÇ·ñ±©»÷
-            if (Random.Range(0, 1.0f) < probability_Crit)
+            if (Random.Range(0, 1.0f) < probability_Crit_Physics)
             {
-                trueDamage *= (1 + critIncrement);
+                trueDamage *= (1 + critIncrement_Physics);
             }
 
             return trueDamage;
@@ -105,9 +108,9 @@ public static class GlobalValue
             trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Magic) * (1 + damageIncrement_Special) + extraDamage * (1 + damageIncrement_General);
 
             // ÅÐ¶ÏÊÇ·ñ±©»÷
-            if (Random.Range(0, 1.0f) < probability_Crit)
+            if (Random.Range(0, 1.0f) < probability_Crit_Magic)
             {
-                trueDamage *= (1 + critIncrement);
+                trueDamage *= (1 + critIncrement_Magic);
             }
 
             return trueDamage;
@@ -120,9 +123,9 @@ public static class GlobalValue
             trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Magic) + extraDamage * (1 + damageIncrement_General);
 
             // ÅÐ¶ÏÊÇ·ñ±©»÷
-            if (Random.Range(0, 1.0f) < probability_Crit)
+            if (Random.Range(0, 1.0f) < probability_Crit_Magic)
             {
-                trueDamage *= (1 + critIncrement);
+                trueDamage *= (1 + critIncrement_Magic);
             }
 
             return trueDamage;

@@ -94,7 +94,12 @@ public class CharacterSelector : MonoBehaviour
     public void ConfirmCharacter()
     {
         charIcon.sprite = charInfo[selectedId].icon;
-        PlayerManager.instance.SwitchCharacter(charInfo[selectedId].charTag,charInfo[selectedId],selectedBuffIndex);
+
+        if(charInfo[selectedId].charTag != PlayerManager.instance.cur_Character)
+            GUIManager.instance.SpawnSystemText("成功切换至角色 - " + charInfo[selectedId].charName);
+
+        PlayerManager.instance.SwitchCharacter(charInfo[selectedId].charTag, charInfo[selectedId], selectedBuffIndex);
+
     }
 
     // 显示选中角色的标签

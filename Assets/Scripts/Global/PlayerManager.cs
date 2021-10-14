@@ -183,6 +183,14 @@ public class PlayerManager : MonoBehaviour
         cur_RecoverySpeed_PowerPoint = default_RecoverySpeed_PowerPoint;
     }
 
+    /// <summary>
+    /// 启用角色BUFF
+    /// </summary>
+    public void EnableCharBuff()
+    {
+        BuffManager.instance.EnableBuff(cur_CharBuffID);
+    }
+
     // 解锁关卡
     public void UnlockLevel(int _id)
     {

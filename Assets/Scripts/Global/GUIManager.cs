@@ -17,7 +17,7 @@ public class GUIManager : MonoBehaviour
     [Space]
     [Header("UnselectedCardList Objects")]
     public Transform slotLayout; // 待选卡牌插槽容器
-    public List<Transform> slot_UnselectedCard; // 待选卡牌容器各个点位置
+    public List<RectTransform> slot_UnselectedCard; // 待选卡牌容器各个点位置
     public GameObject unselectedCardList; // 待选卡牌容器
     public GameObject unselectedCardTemplatee; // 待选卡牌容器模板
     public Transform selectedCardTempParent; // 选中卡牌临时(容器)父母节点
@@ -73,7 +73,7 @@ public class GUIManager : MonoBehaviour
         // 获取待选卡牌插槽容器
         for(int i = 0; i < slotLayout.childCount; i++)
         {
-            slot_UnselectedCard.Add(slotLayout.GetChild(i).transform);
+            slot_UnselectedCard.Add(slotLayout.GetChild(i).GetComponent<RectTransform>());
         }
     }
 

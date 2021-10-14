@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using TMPro;
 using UnityEngine.UI;
 
 public class UnselectedCardSetter : ListCardSetter,ICardOperation
@@ -16,6 +17,12 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
     public static List<Transform> selectedCardList = new List<Transform>();
 
     int originIndex;
+
+    [Header("Objects")]
+    public GameObject panel_Detail;
+    public Image image_Illus;
+    public TextMeshProUGUI text_CardName;
+    public TextMeshProUGUI text_CardDesc;
 
 
     private void Start()
@@ -40,12 +47,12 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
     /// </summary>
     private void ReflashPosition()
     {
-        for(int i = 0; i < unselectedCardList.Count; i++)
+        for(int i = 0; i < GUIManager.instance.unselectedCardList.transform.childCount; i++)
         {
-            if(unselectedCardList[i].position != GUIManager.instance.slot_UnselectedCard[i].position)
+            if(GUIManager.instance.unselectedCardList.transform.GetChild(i).position != GUIManager.instance.slot_UnselectedCard[i].position)
             {
-                unselectedCardList[i].GetComponent<UnselectedCardSetter>().slotPosition_Unselected = GUIManager.instance.slot_UnselectedCard[i].position;
-                unselectedCardList[i].DOMove(GUIManager.instance.slot_UnselectedCard[i].position, moveTime);
+                GUIManager.instance.unselectedCardList.transform.GetChild(i).GetComponent<UnselectedCardSetter>().slotPosition_Unselected = GUIManager.instance.slot_UnselectedCard[i].position;
+                GUIManager.instance.unselectedCardList.transform.GetChild(i).DOMove(GUIManager.instance.slot_UnselectedCard[i].position, moveTime);
                 originIndex = transform.GetSiblingIndex();
             }
         }
@@ -58,8 +65,7 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
 
     public void mouseEnter()
     {
-        originIndex = transform.GetSiblingIndex();
-       transform.SetSiblingIndex(transform.parent.childCount - 1);
+        DisplayCardDesc();
     }
 
     public void mouseExit()
@@ -70,7 +76,17 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
 
     public void mouseDown()
     {
-        
+        originIndex = transform.GetSiblingIndex();
+        transform.SetSiblingIndex(transform.parent.childCount - 1);
+    }
+
+    public void DisplayCardDesc()
+    {
+        panel_Detail.SetActive(true);
+
+        image_Illus.sprite = cardInfo.illustration;
+        text_CardName.text = cardInfo.cardName;
+        text_CardDesc.text = cardInfo.GetDesc();
     }
 
     /// <summary>
@@ -125,6 +141,8 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
                     CardManager.instance.SelectCard(cardInfo);
                     selected = true;
 
+                    transform.parent = GUIManager.instance.selectedCardTempParent.transform; // ×ªÒÆ¸¸Ä¸
+
                     ReturnToSlotPosition(); // ¿¨ÅÆ·µ»ØÐÂ²å²ÛÎ»ÖÃ
                     unselectedCardList.Remove(transform);
                     selectedCardList.Add(transform);
@@ -135,7 +153,7 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
             }
 
             // Î´¼ì²âµ½²å²Û ·µ»Ø
-            ReturnToSlotPosition();
+            mouseExit();
 
         }
         // ÒÑÑ¡ÔñµÄ¿¨ÅÆ
@@ -156,6 +174,7 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
                     if (i.gameObject.layer == LayerMask.NameToLayer("UI_UnselectedList"))
                     {
                         transform.parent = GUIManager.instance.unselectedCardList.transform;
+
                         unselectedCardList.Add(transform);
                         selectedCardList.Remove(transform);
                         ReflashPosition();
@@ -182,7 +201,7 @@ public class UnselectedCardSetter : ListCardSetter,ICardOperation
                 }
             }
 
-            ReturnToSlotPosition();
+            mouseExit();
         }
 
 

@@ -11,6 +11,7 @@ public class BuffManager : MonoBehaviour
 
     public List<int> deactivateBuffList = new List<int>(); // 未激活BUFF的ID库
     public Dictionary<int, GameObject> activiatedBuffList = new Dictionary<int, GameObject>(); // 存放已经激活的Buff信息
+    public List<int> selectedBuff = new List<int>(); // 存放已经选择的BUFF的ID
 
     private void Awake()
     {
@@ -64,7 +65,10 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    // 启用Buff效果
+    /// <summary>
+    ///  启用单个Buff效果
+    /// </summary>
+    /// <param name="_id">BUFF ID</param>
     public void EnableBuff(int _id)
     {
         if (buffLibrary.ContainsKey(_id))
@@ -94,6 +98,17 @@ public class BuffManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 启用所有玩家所选择的BUFF
+    /// </summary>
+    public void EnableAllSelectedBuff()
+    {
+        foreach(var i in selectedBuff)
+        {
+            EnableBuff(i);
+        }
+    }
+
     // 关闭所有Buff
     public void DiableAllBuff()
     {
@@ -101,6 +116,32 @@ public class BuffManager : MonoBehaviour
         {
             DisableBuff(i);
         }
+    }
+
+    /// <summary>
+    /// 移除所选择的BUFF ID
+    /// </summary>
+    /// <param name="_id"></param>
+    public void RemoveSelectedBuff(int _id)
+    {
+        if (selectedBuff.Contains(_id))
+            selectedBuff.Remove(_id);
+    }
+    /// <summary>
+    /// 选择BUFF 将其ID放入列表
+    /// </summary>
+    /// <param name="_id"></param>
+    public void SelectBuff(int _id)
+    {
+        if (!selectedBuff.Contains(_id))
+            selectedBuff.Add(_id);
+    }
+    /// <summary>
+    /// 清除所有所选择的BUFF
+    /// </summary>
+    public void ClearAllSelectedBuff()
+    {
+        selectedBuff.Clear();
     }
 
     /// <summary>

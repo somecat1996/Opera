@@ -11,8 +11,8 @@ public class Buff_RavineGlamour : BuffPrototype
     {
         if (!activated)
         {
-            GlobalValue.probability_Crit += GlobalValue.GetTrueProbaility(cirtProbability);
-            GlobalValue.critIncrement += cirtIncrement;
+            GlobalValue.probability_Crit_Magic += GlobalValue.GetTrueProbaility(cirtProbability);
+            GlobalValue.critIncrement_Magic += cirtIncrement;
 
             activated = true;
         }
@@ -22,8 +22,8 @@ public class Buff_RavineGlamour : BuffPrototype
     {
         if (activated)
         {
-            GlobalValue.probability_Crit -= GlobalValue.GetTrueProbaility(cirtProbability);
-            GlobalValue.critIncrement -= cirtIncrement;
+            GlobalValue.probability_Crit_Magic -= GlobalValue.GetTrueProbaility(cirtProbability);
+            GlobalValue.critIncrement_Magic -= cirtIncrement;
 
             activated = false;
         }

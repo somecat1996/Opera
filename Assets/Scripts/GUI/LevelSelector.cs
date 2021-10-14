@@ -66,10 +66,22 @@ public class LevelSelector : MonoBehaviour
         }
     }
 
-    // 确认进入关卡
+    /// <summary>
+    /// 确认进入关卡 并初始化一些战斗数据
+    /// </summary>
     public void ConfirmLevel()
     {
+        // 开启关卡
         GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>().EnterLevel(currentIndex);
+
+        // Buff相关
+        BuffManager.instance.DiableAllBuff(); // 清空BUFF
+        PlayerManager.instance.EnableCharBuff(); // 启用角色被动
+        BuffManager.instance.EnableAllSelectedBuff(); // 启用所有角色的ID
+
+        // 卡牌相关
+        CardManager.instance.ClearAllActivatedCard(); // 清除场上所有的卡牌实体
+        CardManager.instance.RealignAndLoadCards(); // 增加场上卡牌
     }
 
     // 左旋
