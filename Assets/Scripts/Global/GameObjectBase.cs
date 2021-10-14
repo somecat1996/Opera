@@ -8,7 +8,7 @@ interface GameObjectInterface
     public void SetMaxHealth(float m);
     // 伤害接口
     // 传入damage伤害数值，poison是否带毒（默认false），shieldBreak是否对护盾增伤（默认false），damageIncrease增伤比例（默认1）
-    public void Hurt(float damage, bool shieldBreak, float damageIncrease);
+    public void Hurt(float damage, bool shieldBreak, float damageIncrease, HurtType type);
     // 传入CardPrototype
     public void Hurt(CardPrototype cardPrototype);
     // 最大血量比例伤害
@@ -39,6 +39,13 @@ interface GameObjectInterface
 
     public float CurrentHealth();
     public float MaxHealth();
+}
+
+public enum HurtType
+{
+    None = 0,
+    Physic = 1,
+    Magic = 2
 }
 
 public class GameObjectBase : MonoBehaviour, GameObjectInterface
@@ -102,6 +109,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     protected float voodooHurt;
     public float voodooTime = 10f;
     public float voodoocoolingTime = 15f;
+
+    protected bool pause;
     // 玩家、敌人基类
 
     protected virtual void Awake()
@@ -131,6 +140,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         healingTimer = 0;
         healingTotalTimer = 0;
         healingValue = 0;
+
+        pause = false;
     }
 
     protected virtual void Start()
@@ -149,12 +160,15 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
 
     protected virtual void Update()
     {
-        HandlingVoodoo();
-        HandlingPoison();
-        HandlingStun();
-        HandlingShield();
-        HandlingHealing();
-        HandlingBleeding();
+        if (!EnemyManager.instance.pause)
+        {
+            HandlingVoodoo();
+            HandlingPoison();
+            HandlingStun();
+            HandlingShield();
+            HandlingHealing();
+            HandlingBleeding();
+        }
     }
 
     public void SetMaxHealth(float m)
@@ -168,9 +182,10 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
 
     }
 
-    public virtual void Hurt(float damage, bool shieldBreak=false, float damageIncrease=1)
+
+    public virtual void Hurt(float damage, bool shieldBreak=false, float damageIncrease=1, HurtType type=HurtType.None)
     {
-        // 受伤接口
+        // 受伤接口，0-真伤，1-物理，2-魔法
         // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
         float trueDamage;
         if (shield > 0)
@@ -201,6 +216,26 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
             trueDamage = damage;
             curHealth -= damage;
         }
+
+        // 计算暴击
+        switch (type)
+        {
+            case HurtType.Physic:
+                if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Physics)
+                {
+                    trueDamage *= 1 + GlobalValue.critIncrement_Physics;
+                }
+                break;
+            case HurtType.Magic:
+                if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Magic)
+                {
+                    trueDamage *= 1 + GlobalValue.critIncrement_Magic;
+                }
+                break;
+            default:
+                break;
+        }
+
         if (GlobalValue.poisonAttack)
             Poisoning();
 
@@ -256,7 +291,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         bleedingTickleTimer = bleedingTickleTime;
     }
 
-    public void Stun(float time)
+    public virtual void Stun(float time)
     {
         // 眩晕接口
         // 传入眩晕时间
@@ -353,7 +388,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         }
     }
     // 处理眩晕计时器
-    protected void HandlingStun()
+    protected virtual void HandlingStun()
     {
         if (stunImmunity)
         {

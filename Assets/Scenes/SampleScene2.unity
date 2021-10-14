@@ -2411,15 +2411,15 @@ MonoBehaviour:
   panel_Common: {fileID: 1422256924}
   spawnPos_SystemText: {fileID: 1665585341}
   prefab_SystemText: {fileID: 5848481520262108006, guid: d4df74774007ef345a275ccc744a7413, type: 3}
-  panel_Evaluation: {fileID: 506024114}
-  text_GameResult: {fileID: 722785652}
-  text_Loot_Money: {fileID: 460919421}
-  text_GameTime: {fileID: 915088889}
-  image_Character: {fileID: 2086591986}
+  panel_Evaluation: {fileID: 0}
+  text_GameResult: {fileID: 0}
+  text_Loot_Money: {fileID: 0}
+  text_GameTime: {fileID: 0}
+  image_Character: {fileID: 0}
   card_Loot:
-  - {fileID: 5924790999821864968}
-  - {fileID: 827165601}
-  - {fileID: 1167855027}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &95612125
 GameObject:
   m_ObjectHideFlags: 0
@@ -25271,6 +25271,105 @@ Transform:
   m_Father: {fileID: 1200730212}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &733908405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 733908409}
+  - component: {fileID: 733908408}
+  - component: {fileID: 733908407}
+  - component: {fileID: 733908406}
+  m_Layer: 5
+  m_Name: Canvas_Line
+  m_TagString: LineCanvas
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &733908406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733908405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &733908407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733908405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &733908408
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733908405}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &733908409
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733908405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &738094139
 GameObject:
   m_ObjectHideFlags: 0
@@ -27606,15 +27705,15 @@ MonoBehaviour:
   charName: {fileID: 565099671}
   charDesc: {fileID: 980677882}
   charStory: {fileID: 546785193}
-  characterIcon: {fileID: 607309262}
+  characterIcon: {fileID: 0}
   image_BuffSelector:
-  - {fileID: 1028271037}
-  - {fileID: 294077104}
+  - {fileID: 0}
+  - {fileID: 0}
   text_BuffName:
-  - {fileID: 1241069428}
-  - {fileID: 325556104}
-  sprite_SelectedBuff: {fileID: 21300000, guid: 552c5c756d041b44db273585af7c1555, type: 3}
-  sprite_UnselectedBuff: {fileID: 21300000, guid: 8bd271c8240a2664f8fa5bc719e3f694, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  sprite_SelectedBuff: {fileID: 0}
+  sprite_UnselectedBuff: {fileID: 0}
   selectedCharTag:
   - {fileID: 444507834}
   - {fileID: 470796270}

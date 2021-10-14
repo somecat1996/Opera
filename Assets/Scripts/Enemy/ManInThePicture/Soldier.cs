@@ -18,10 +18,13 @@ public class Soldier : EnemyStatus, ReducePower
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        if (!EnemyManager.instance.pause)
+        {
+            base.Update();
 
-        lifeTimer -= Time.deltaTime;
-        if (lifeTimer <= 0) Die();
+            lifeTimer -= Time.deltaTime;
+            if (lifeTimer <= 0) Die();
+        }
     }
 
     public void StartReducing()
@@ -38,5 +41,42 @@ public class Soldier : EnemyStatus, ReducePower
     {
         StopReducing();
         base.Die();
+    }
+
+    public override void Stun(float time)
+    {
+        // 眩晕接口
+        // 传入眩晕时间
+        if (!stunImmunity)
+        {
+            stun = true;
+            stunTimer = time * stunEffect;
+            // 停止减少心流回复
+            StopReducing();
+        }
+    }
+
+    protected override void HandlingStun()
+    {
+        if (stunImmunity)
+        {
+            stunImmunityTimer -= Time.deltaTime;
+            if (stunImmunityTimer <= 0)
+            {
+                stunImmunityTimer = 0;
+                stunImmunity = false;
+            }
+        }
+        else if (stun)
+        {
+            stunTimer -= Time.deltaTime;
+            if (stunTimer <= 0)
+            {
+                stunTimer = 0;
+                stun = false;
+                // 恢复减少心流回复
+                StartReducing();
+            }
+        }
     }
 }

@@ -14,12 +14,6 @@ public class Minister : EnemyStatus, ReducePower, SummonEnemy
         StartReducing();
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     public void StartReducing()
     {
         PlayerManager.instance.ChangeRecoverySpeed_PowerPoint(reduceRate);
@@ -41,6 +35,43 @@ public class Minister : EnemyStatus, ReducePower, SummonEnemy
         for (int i = 0; i < number; i++)
         {
             EnemyManager.instance.SummonMinion(minion);
+        }
+    }
+
+    public override void Stun(float time)
+    {
+        // 眩晕接口
+        // 传入眩晕时间
+        if (!stunImmunity)
+        {
+            stun = true;
+            stunTimer = time * stunEffect;
+            // 停止减少心流回复
+            StopReducing();
+        }
+    }
+
+    protected override void HandlingStun()
+    {
+        if (stunImmunity)
+        {
+            stunImmunityTimer -= Time.deltaTime;
+            if (stunImmunityTimer <= 0)
+            {
+                stunImmunityTimer = 0;
+                stunImmunity = false;
+            }
+        }
+        else if (stun)
+        {
+            stunTimer -= Time.deltaTime;
+            if (stunTimer <= 0)
+            {
+                stunTimer = 0;
+                stun = false;
+                // 恢复减少心流回复
+                StartReducing();
+            }
         }
     }
 }

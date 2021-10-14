@@ -28,9 +28,12 @@ public class EnemyManager : MonoBehaviour
     public List<Sprite> backgroundImages;
     public MeshRenderer ground;
     public List<Material> groundMaterials;
+
+    public bool pause;
     private void Awake()
     {
         instance = this;
+        pause = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -53,6 +56,9 @@ public class EnemyManager : MonoBehaviour
 
     public void EnterLevel(int bossIndex)
     {
+        /// test
+        GameManager.instance.SetStartGame(true);
+
         background.gameObject.SetActive(true);
         background.sprite = backgroundImages[bossIndex];
         ground.material = groundMaterials[bossIndex];
@@ -60,10 +66,12 @@ public class EnemyManager : MonoBehaviour
         playerStatus.RestartPlaying();
     }
 
-    public void FinishLevel()
+    public void FinishLevel(bool result)
     {
         playerStatus.StopPlaying();
         background.gameObject.SetActive(false);
+
+        BattleDataManager.instance.EvaluateGameResult(result);
     }
 
     public int SummonOne()
@@ -150,7 +158,7 @@ public class EnemyManager : MonoBehaviour
         }
         if (count == 0)
         {
-            FinishLevel();
+            FinishLevel(true);
         }
     }
 
@@ -188,5 +196,15 @@ public class EnemyManager : MonoBehaviour
             if (generationPointStatus[i])
                 generationPointStatus[i].PercentHurt(percent, max);
         }
+    }
+
+    public void Pause()
+    {
+        pause = true;
+    }
+
+    public void Resume()
+    {
+        pause = false;
     }
 }
