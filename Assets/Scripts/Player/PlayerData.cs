@@ -8,19 +8,9 @@ public class PlayerData : ScriptableObject
 
     public int money;
 
-    // 关卡解锁状态 小标既关卡数字ID 0不使用
-    public bool[] levelStatus = new bool[10];
-
     public void Initialize()
     {
         money = 0;
         firstTimeRunning = false;
-
-        for(int i = 0; i < levelStatus.Length; i++)
-        {
-            levelStatus[i] = false;
-        }
-
-        levelStatus[1] = true; // 默认解锁第一关
     }
 }

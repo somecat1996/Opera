@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     public float cur_HealthPoint = 0;
     public float cur_RecoverySpeed_PowerPoint = 0;
 
+    public int cur_LevelIndex = -1;
     [Space]
     [Header("Player")]
     public GameObjectBase player;
@@ -29,22 +30,28 @@ public class PlayerManager : MonoBehaviour
     public CharacterBasicInfomation cur_CharacterInfo;
     private Dictionary<int, CharacterBasicInfomation> charInfo = new Dictionary<int, CharacterBasicInfomation>();
 
-    [Space]
+    [Header("Data need to be save")]
     public PlayerData data;
+    [Space]
+    public Dictionary<int, LevelBasicInfomation> levelInfo = new Dictionary<int, LevelBasicInfomation>();
 
     private void Awake()
     {
         instance = this;
+
+        foreach(var i in Resources.LoadAll<LevelBasicInfomation>("LevelBasicInfomation"))
+        {
+            levelInfo.Add(i.id, i);
+        }
+        foreach (var i in Resources.LoadAll<CharacterBasicInfomation>("CharacterInfomation"))
+        {
+            charInfo.Add(i.id, i);
+        }
     }
 
     void Start()
     {
         GUIManager.instance.UpdateMoneyText(data.money);
-
-        foreach (var i in Resources.LoadAll<CharacterBasicInfomation>("CharacterInfomation"))
-        {
-            charInfo.Add(i.id, i);
-        }
 
         cur_CharacterInfo = charInfo[((int)cur_Character)];
         ResetBattleData();
@@ -74,6 +81,18 @@ public class PlayerManager : MonoBehaviour
     /// <param name="_levelIndex">关卡ID</param>
     public void EnterLevel(int _levelIndex)
     {
+        // 判断关卡是否解锁
+        if (!levelInfo[_levelIndex].unlocked)
+        {
+            GUIManager.instance.SpawnSystemText("关卡未解锁!");
+            return;
+        }
+
+        cur_LevelIndex = _levelIndex;
+
+        // 关闭无关UI
+        GUIManager.instance.DisableAllGUI();
+
         // Buff相关
         BuffManager.instance.DiableAllBuff(); // 清空BUFF
         EnableCharBuff(); // 启用角色被动
@@ -111,7 +130,7 @@ public class PlayerManager : MonoBehaviour
         cur_HealthPoint = Mathf.Clamp(cur_HealthPoint, 0, Mathf.Infinity);
     }
 
-    // 初始化数据
+    // 初始化数据 包括玩家和关卡信息数据
     public void InitializeData()
     {
         // 初始化玩家数据
@@ -119,8 +138,18 @@ public class PlayerManager : MonoBehaviour
         GUIManager.instance.UpdateMoneyText(data.money);
 
         // 初始化关卡数据
+        foreach (var i in levelInfo.Values)
+            i.InitializeData();
 
+    }
 
+    /// <summary>
+    /// 获得当前关卡信息
+    /// </summary>
+    /// <returns></returns>
+    public LevelBasicInfomation GetCurrentLevelInfo()
+    {
+        return levelInfo[cur_LevelIndex];
     }
 
     /// <summary>
@@ -235,6 +264,11 @@ public class PlayerManager : MonoBehaviour
     // 解锁关卡
     public void UnlockLevel(int _id)
     {
-        data.levelStatus[_id] = true;
+        levelInfo[_id].unlocked = true;
+    }
+    // 记录关卡通关次数
+    public void UpdateVictoryTime()
+    {
+        levelInfo[cur_LevelIndex].victoryTime++;
     }
 }

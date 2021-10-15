@@ -235,8 +235,20 @@ public class BattleDataManager : MonoBehaviour
     {
         GameManager.instance.SetStartGame(false);
 
-        // 计算金币 目前测试用
-        loot = 300;
+        // 计算金币 仅使用难度1系数 未知关卡难度选择操作
+        int timeReward = 0;
+        if(gameTimer <= 120)
+        {
+            timeReward = 100;
+        }else if(gameTimer > 120 && gameTimer < 180)
+        {
+            timeReward = 50;
+        }
+        else
+        {
+            timeReward = 0;
+        }
+        loot = (int)((Random.Range(100, 200)+timeReward) * PlayerManager.instance.GetCurrentLevelInfo().rewardFactor[0]);
 
         // 随机抽取3张卡
         List<CardBasicInfomation> lootCard = CardManager.instance.GetCardsRandomly(3);
@@ -246,6 +258,11 @@ public class BattleDataManager : MonoBehaviour
         foreach(var i in lootCard)
         {
             CardManager.instance.cardLibrary[i.id].quantity++;
+        }
+
+        if (_playerVictory)
+        {
+            PlayerManager.instance.UpdateVictoryTime();
         }
 
         // GUI 显示
