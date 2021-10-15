@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 interface GameObjectInterface
 {
@@ -338,6 +338,13 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         if (curHealth > maxHealth)
             curHealth = maxHealth;
         healthBarManager.UpdateHealth(curHealth / maxHealth);
+
+
+        var col = gameObject.GetComponent<Collider>();
+        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
+        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
+        damageText.Init(healingValue, topAhcor);
+        damageText.GetComponent<Text>().color = Color.green;
     }
 
     public void ContinuousHealing(float time, float tickle, float value)
