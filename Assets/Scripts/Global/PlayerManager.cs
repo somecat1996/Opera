@@ -54,7 +54,6 @@ public class PlayerManager : MonoBehaviour
         GUIManager.instance.UpdateMoneyText(data.money);
 
         cur_CharacterInfo = charInfo[((int)cur_Character)];
-        ResetBattleData();
     }
 
     // Update is called once per frame
@@ -101,6 +100,9 @@ public class PlayerManager : MonoBehaviour
         // 卡牌相关
         CardManager.instance.ClearAllActivatedCard(); // 清除场上所有的卡牌实体
         CardManager.instance.RealignAndLoadCards(); // 增加场上卡牌
+
+        // 玩家角色相关
+        ResetBattleData();
 
         // 通知游戏管理器
         GameManager.instance.SetStartGame(true);
@@ -251,6 +253,9 @@ public class PlayerManager : MonoBehaviour
         cur_HealthPoint = max_HealthPoint;
         cur_PowerPoint = 0;
         cur_RecoverySpeed_PowerPoint = default_RecoverySpeed_PowerPoint;
+
+        if(!player)
+            player.SetMaxHealth(max_HealthPoint);
     }
 
     /// <summary>
