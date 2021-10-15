@@ -258,7 +258,7 @@ public class GUIManager : MonoBehaviour
     {
         for(int i = 0;i< canvas.transform.childCount; i++)
         {
-            if (canvas.transform.GetChild(i).tag == "GUI_Stay")
+            if (canvas.transform.GetChild(i).tag == "GUI_GameScene")
                 continue;
 
             canvas.transform.GetChild(i).gameObject.SetActive(false);
