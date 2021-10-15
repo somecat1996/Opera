@@ -55,6 +55,10 @@ public class CardManager : MonoBehaviour
             slotPos[i] = slotLayoutGroup.GetChild(i).transform;
         }
 
+    }
+
+    void Start()
+    {
         // 测试用——会与UI按钮控件相冲突 *****下列方法调用时 不要使用UI中的部分按钮*****
 
         LoadCardLibrary(); // 将所有卡牌信息载入到库中
@@ -63,10 +67,7 @@ public class CardManager : MonoBehaviour
         LoadCardInstance(); // 将库中卡牌对应的实例载入到字典中以备使用
         LoadAllCardIntoUnselectedList(); // 将卡牌库的信息载入到选择列表中
         LoadAllCardIntoCardList();// 卡牌展示 测试
-    }
 
-    void Start()
-    {
         int total = 0, l1 = 0, l2 = 0, l3 = 0, l4 = 0;
 
         int test = 10;
