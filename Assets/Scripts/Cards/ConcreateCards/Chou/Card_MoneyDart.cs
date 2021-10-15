@@ -12,12 +12,14 @@ public class Card_MoneyDart : CardPrototype,ICardOperation,ICardEffectTrigger
     {
         GUIManager.instance.DisableCardDesc();
 
-        SetFadeOutAndShowTargetMarker(true);
+
     }
 
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
+
+        SetFadeOutAndShowTargetMarker(true);
     }
 
     public void mouseEnter()
