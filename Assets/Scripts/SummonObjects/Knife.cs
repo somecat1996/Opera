@@ -8,11 +8,17 @@ public class Knife : SummonedObjectPrototype
 
     private float damage;
     private Rigidbody rigidbody;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         rigidbody = gameObject.GetComponent<Rigidbody>();
         damage = 0;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
     }
 
     private void OnTriggerEnter(Collider other)
