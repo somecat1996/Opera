@@ -9,7 +9,7 @@ public class GUIManager : MonoBehaviour
     public static GUIManager instance;
 
     [Header("Configuration")]
-    public float offsetX_CardDesc = 115;
+    public float offsetX_CardDesc = 300;
 
     [Header("CardList Objects")]
     public GameObject cardList; // ¿¨ÅÆÁÐ±íÈÝÆ÷
