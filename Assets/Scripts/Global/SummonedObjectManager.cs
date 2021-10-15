@@ -20,9 +20,9 @@ public class SummonedObjectManager : MonoBehaviour
         tmp.Instantiate(damage, startPosition, direction);
     }
 
-    public void SummonPoisonCloud(float time, float range)
+    public void SummonPoisonCloud(Vector3 position, float time, float range)
     {
         PoisonCloud tmp = Instantiate(poisonCloud).GetComponent<PoisonCloud>();
-        tmp.Instantiate(time, range);
+        tmp.Instantiate(position, time, range);
     }
 }

@@ -32,10 +32,11 @@ public class PoisonCloud : MonoBehaviour
         }
     }
 
-    public void Instantiate(float time, float range)
+    public void Instantiate(Vector3 position, float time, float range)
     {
         life = time;
         transform.localScale *= range;
+        transform.position = position;
     }
 
     private void OnTriggerEnter(Collider other)
