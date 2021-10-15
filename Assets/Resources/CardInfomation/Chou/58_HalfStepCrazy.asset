@@ -30,4 +30,4 @@ MonoBehaviour:
   radius: 0
   mainValue_Cur: 0
   quantity: 0
-  level: 0
+  level: 1

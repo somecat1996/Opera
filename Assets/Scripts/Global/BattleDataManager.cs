@@ -234,6 +234,7 @@ public class BattleDataManager : MonoBehaviour
     public void EvaluateGameResult(bool _playerVictory)
     {
         GameManager.instance.SetStartGame(false);
+        EnemyManager.instance.Pause();
 
         // 计算金币 仅使用难度1系数 未知关卡难度选择操作
         int timeReward = 0;

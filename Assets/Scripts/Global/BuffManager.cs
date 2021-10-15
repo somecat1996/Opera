@@ -112,9 +112,15 @@ public class BuffManager : MonoBehaviour
     // πÿ±’À˘”–Buff
     public void DiableAllBuff()
     {
-        foreach(var i in activiatedBuffList.Keys)
+        List<int> keyList = new List<int>();
+        foreach(var i in activiatedBuffList)
         {
-            DisableBuff(i);
+            keyList.Add(i.Key);
+        }
+
+        for (int i = 0; i < keyList.Count; i++)
+        {
+            DisableBuff(keyList[i]);
         }
     }
 
