@@ -149,17 +149,6 @@ public class EnemyManager : MonoBehaviour
     {
         BattleDataManager.instance.RemoveEnemyData(generationPointStatus[p]);
         generationPointStatus[p] = null;
-
-        int count = 0;
-        for (int i = 0; i < generationPoint.Count; i++)
-        {
-            if (generationPointStatus[i])
-                count += 1;
-        }
-        if (count == 0)
-        {
-            FinishLevel(true);
-        }
     }
 
     public void RemoveMinions()
