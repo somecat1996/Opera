@@ -1,0 +1,22 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "0923女旦（已分图层）-3.moc3",
+		"Textures": [
+			"0923女旦（已分图层）-3.1024/texture_00.png"
+		],
+		"DisplayInfo": "0923女旦（已分图层）-3.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	]
+}

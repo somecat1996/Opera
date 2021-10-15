@@ -1,0 +1,90 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param_body_UpAndDown",
+			"GroupId": "",
+			"Name": "上下起伏"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "跳动"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "衣服重力"
+		},
+		{
+			"Id": "Param2_shield",
+			"GroupId": "",
+			"Name": "伞盾"
+		},
+		{
+			"Id": "Param2_leftandright",
+			"GroupId": "",
+			"Name": "左右晃动"
+		},
+		{
+			"Id": "Param_wind",
+			"GroupId": "",
+			"Name": "风吹动"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "衣服后震"
+		},
+		{
+			"Id": "Param2_walk",
+			"GroupId": "",
+			"Name": "走动"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "举伞"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "挥袖"
+		},
+		{
+			"Id": "Param2_umbrella_rotate",
+			"GroupId": "",
+			"Name": "转伞"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "开腿"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "伞的透明度"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "亮相"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part2",
+			"Name": "09.26 女旦（已分图层）-2.psd"
+		},
+		{
+			"Id": "Part",
+			"Name": "09.26 女旦（已分图层）-2.psd(未找到对应图层)"
+		},
+		{
+			"Id": "PartSketch0",
+			"Name": "[ 参考图 ]"
+		}
+	]
+}

@@ -1,0 +1,75 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 1.967,
+		"Fps": 30.0,
+		"Loop": true,
+		"AreBeziersRestricted": true,
+		"CurveCount": 3,
+		"TotalSegmentCount": 5,
+		"TotalPointCount": 18,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "Param_body_UpAndDown",
+			"Segments": [
+				0,
+				1,
+				1,
+				0.333,
+				1,
+				0.667,
+				0,
+				1,
+				0,
+				1,
+				1.322,
+				0,
+				1.644,
+				1,
+				1.967,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Param_wind",
+			"Segments": [
+				0,
+				1,
+				1,
+				0.333,
+				1,
+				0.667,
+				0,
+				1,
+				0,
+				1,
+				1.322,
+				0,
+				1.644,
+				1,
+				1.967,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Param2_walk",
+			"Segments": [
+				0,
+				-1,
+				1,
+				0.656,
+				-1,
+				1.311,
+				-1,
+				1.967,
+				-1
+			]
+		}
+	]
+}

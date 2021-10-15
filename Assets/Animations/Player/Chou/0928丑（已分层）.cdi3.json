@@ -1,0 +1,154 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "ParamGroup",
+			"Name": "金钱镖透明度"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "ParamGroup",
+			"Name": "飞到透明度"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "ParamGroup",
+			"Name": "某道具透明度"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "ParamGroup2",
+			"Name": "衣服晃动"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "ParamGroup2",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "ParamGroup3",
+			"Name": "布晃动"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "ParamGroup4",
+			"Name": "摇头晃脑"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "ParamGroup4",
+			"Name": "开口笑"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "ParamGroup5",
+			"Name": "扔金钱镖或飞刀"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "ParamGroup5",
+			"Name": "抛硬币"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "ParamGroup5",
+			"Name": "钱飞起来"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "ParamGroup5",
+			"Name": "翻滚重做"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "",
+			"Name": "招手"
+		},
+		{
+			"Id": "Param16",
+			"GroupId": "",
+			"Name": "招手2"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "",
+			"Name": "拍肩膀"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "",
+			"Name": "左脚绊右脚"
+		}
+	],
+	"ParameterGroups": [
+		{
+			"Id": "ParamGroup",
+			"GroupId": "",
+			"Name": "道具透明度"
+		},
+		{
+			"Id": "ParamGroup2",
+			"GroupId": "",
+			"Name": "整体动作"
+		},
+		{
+			"Id": "ParamGroup3",
+			"GroupId": "",
+			"Name": "飘动"
+		},
+		{
+			"Id": "ParamGroup4",
+			"GroupId": "",
+			"Name": "头部动作"
+		},
+		{
+			"Id": "ParamGroup5",
+			"GroupId": "",
+			"Name": "手部动作"
+		}
+	],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "丑"
+		},
+		{
+			"Id": "Part2",
+			"Name": "左臂"
+		},
+		{
+			"Id": "Part3",
+			"Name": "白布"
+		},
+		{
+			"Id": "tou",
+			"Name": "tou"
+		},
+		{
+			"Id": "Part4",
+			"Name": "下身"
+		},
+		{
+			"Id": "Part5",
+			"Name": "右腿"
+		},
+		{
+			"Id": "Part6",
+			"Name": "左腿"
+		},
+		{
+			"Id": "Part7",
+			"Name": "右手"
+		},
+		{
+			"Id": "hou_Skinning",
+			"Name": "hou(蒙皮)"
+		},
+		{
+			"Id": "ArtMesh2_Skinning",
+			"Name": "腰带(蒙皮)"
+		}
+	]
+}

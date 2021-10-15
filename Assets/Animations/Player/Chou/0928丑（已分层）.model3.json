@@ -1,0 +1,23 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "0928丑（已分层）.moc3",
+		"Textures": [
+			"0928丑（已分层）.4096/texture_00.png"
+		],
+		"Physics": "0928丑（已分层）.physics3.json",
+		"DisplayInfo": "0928丑（已分层）.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	]
+}
