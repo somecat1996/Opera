@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knife: {fileID: 9002635449994670754, guid: 17b2f1b4752d3074597896e3ec7d37e8, type: 3}
   poisonCloud: {fileID: 9027905276935323461, guid: 812ee8b57132a4a47a929282a59d18e4, type: 3}
+  banana: {fileID: 9002635449994670754, guid: 34fc7d9c84f1c2a48a9c00cfe6207ae8, type: 3}
