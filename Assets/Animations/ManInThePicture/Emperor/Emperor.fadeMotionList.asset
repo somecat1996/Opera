@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403ae2dd693bb1d4b924f6b8d206b053, type: 3}
   m_Name: Emperor.fadeMotionList
   m_EditorClassIdentifier: 
-  MotionInstanceIds: 4e99ffff4299ffff3a99ffff3299ffff2a99ffff2299ffff1a99ffff1299ffff0a99ffff0299fffffa98ffff
+  MotionInstanceIds: 4e99ffff4299ffff3a99ffff3299ffff2a99ffff2299ffff1a99ffff1299ffff0a99ffff0299fffffa98ffffe29ffeff
   CubismFadeMotionObjects:
   - {fileID: 11400000, guid: 2cd7455ac106af64089870ea16962b96, type: 2}
   - {fileID: 11400000, guid: 95feeca697207df46bb19a26a19e9cf2, type: 2}
@@ -25,3 +25,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d2b168607f31de94cb4b64c7d3bc6b86, type: 2}
   - {fileID: 11400000, guid: 50577529906268c41af8d2f26f7ec15b, type: 2}
   - {fileID: 11400000, guid: bcb739c630cac00468bf9c7c5342f9e2, type: 2}
+  - {fileID: 11400000, guid: 6820bb8b3d5b89048b9676a136862334, type: 2}

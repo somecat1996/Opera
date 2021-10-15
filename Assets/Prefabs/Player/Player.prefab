@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3880208514961209496
 Transform:
   m_ObjectHideFlags: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   - 2
   - 3
   spriteTransform: {fileID: 3879383905660197031}
-  startPoint: {x: -4, y: 1, z: 0}
+  startPoint: {x: -4.1, y: 0.79, z: -3.31}
 --- !u!114 &3880208515835783631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +195,8 @@ MonoBehaviour:
   bleedingTime: 5
   bleedingTickleTime: 1
   bleedingDamage: 5
+  voodooTime: 10
+  voodoocoolingTime: 15
   playerMovement: {fileID: 3880208515835783630}
 --- !u!1001 &3880208516612798771
 PrefabInstance:

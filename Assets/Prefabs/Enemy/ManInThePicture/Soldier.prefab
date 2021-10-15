@@ -87,6 +87,8 @@ MonoBehaviour:
   bleedingTime: 5
   bleedingTickleTime: 1
   bleedingDamage: 5
+  voodooTime: 10
+  voodoocoolingTime: 15
   position: 0
   reduceRate: -0.05
   lifeTimer: 3
@@ -189,7 +191,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7049907832633862937
 Transform:
   m_ObjectHideFlags: 0
