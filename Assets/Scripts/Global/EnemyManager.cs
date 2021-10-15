@@ -51,13 +51,13 @@ public class EnemyManager : MonoBehaviour
     {
         // ≤‚ ‘
         if (Input.GetKeyDown(KeyCode.Space))
-            EnterLevel(0);
+            PlayerManager.instance.EnterLevel(0)
     }
 
     public void EnterLevel(int bossIndex)
     {
         /// test
-        GameManager.instance.SetStartGame(true);
+        /// GameManager.instance.SetStartGame(true);
 
         background.gameObject.SetActive(true);
         background.sprite = backgroundImages[bossIndex];

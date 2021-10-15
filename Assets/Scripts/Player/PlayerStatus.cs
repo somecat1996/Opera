@@ -78,6 +78,12 @@ public class PlayerStatus : GameObjectBase
 
         base.Hurt(damage, shieldBreak, damageIncrease, type);
         UpdateHealth();
+
+        if (curHealth <= 0)
+        {
+            StopPlaying();
+            BattleDataManager.instance.EvaluateGameResult(false);
+        }
     }
 
     public override void InstantHealing(float healingValue)
