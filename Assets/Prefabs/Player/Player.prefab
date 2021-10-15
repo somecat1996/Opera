@@ -207,7 +207,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1086712869052770, guid: 6f0e06de47dbcee4c92ffcb3cbd11a22, type: 3}
       propertyPath: m_Name
-      value: Koharu
+      value: Sprite
       objectReference: {fileID: 0}
     - target: {fileID: 4241975236157844, guid: 6f0e06de47dbcee4c92ffcb3cbd11a22, type: 3}
       propertyPath: m_RootOrder
