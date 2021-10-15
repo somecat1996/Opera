@@ -214,6 +214,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2243130660633011638, guid: 76e3a8a07aa13f24f80eee5126876c9f, type: 3}
+      propertyPath: CubismFadeMotionList
+      value: 
+      objectReference: {fileID: 11400000, guid: 6aea5c7de8ad82242b542d136e76440c, type: 2}
     - target: {fileID: 2772045847950595665, guid: 76e3a8a07aa13f24f80eee5126876c9f, type: 3}
       propertyPath: m_Name
       value: Sprite
