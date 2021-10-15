@@ -254,8 +254,7 @@ public class PlayerManager : MonoBehaviour
         cur_PowerPoint = 0;
         cur_RecoverySpeed_PowerPoint = default_RecoverySpeed_PowerPoint;
 
-        if(!player)
-            player.SetMaxHealth(max_HealthPoint);
+        player.SetMaxHealth(max_HealthPoint);
     }
 
     /// <summary>
