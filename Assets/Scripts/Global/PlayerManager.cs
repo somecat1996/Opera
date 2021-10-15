@@ -106,6 +106,7 @@ public class PlayerManager : MonoBehaviour
 
         // 通知游戏管理器
         GameManager.instance.SetStartGame(true);
+        EnemyManager.instance.Resume();
 
         // 开启关卡
         GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>().EnterLevel(_levelIndex);

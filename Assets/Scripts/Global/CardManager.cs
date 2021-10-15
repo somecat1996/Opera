@@ -166,6 +166,8 @@ public class CardManager : MonoBehaviour
         {
             Transform card = layoutGroup.transform.GetChild(i);
 
+            card.DOScale(Vector3.one,cardMoveTime);
+
             if (card.position != slotPos[i].position)
             {
                 card.DOMove(slotPos[i].position,cardMoveTime);
