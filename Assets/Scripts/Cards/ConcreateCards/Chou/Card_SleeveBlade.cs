@@ -37,6 +37,12 @@ public class Card_SleeveBlade : CardPrototype,ICardOperation,ICardEffectTrigger
         {
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
             {
+                Vector3 origin = PlayerManager.instance.player.transform.position;
+                origin.y = 0;
+
+                Vector3 dir = Vector3.Normalize(hit.point - origin);
+                SummonedObjectManager.instance.SummonKnife(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur), origin, dir);
+                CardManager.instance.SendToDiscardedCardGroup(gameObject);
                 TriggerEffect();
             }
             else

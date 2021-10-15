@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Card_Cliche : CardPrototype,ICardOperation,ICardEffectTrigger
 {
-    public void mouseDown()
-    {
-        GUIManager.instance.DisableCardDesc();
-    }
-
     public void mouseDrag()
     {
         transform.position = Input.mousePosition;
@@ -23,13 +18,35 @@ public class Card_Cliche : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseExit()
     {
+        // 当未检测到目标或因其他原因失效时 返回位置
         CardManager.instance.ReflashLayoutGroup();
         SetOnSelected(false);
     }
 
+    public void mouseDown()
+    {
+        GUIManager.instance.DisableCardDesc();
+    }
+
     public void mouseUp()
     {
-        CardManager.instance.SendToDiscardedCardGroup(gameObject);
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (CheckOnValidArea() && Physics.Raycast(ray, out hit, 1000, CardManager.instance.groundLayer))
+        {
+            if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
+            {
+                
+                CardManager.instance.SendToDiscardedCardGroup(gameObject);
+            }
+            else
+            {
+                mouseExit();
+            }
+        }
+        else
+            mouseExit();
     }
 
     public void RevokeEffect()
@@ -49,6 +66,6 @@ public class Card_Cliche : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
-        throw new System.NotImplementedException();
+
     }
 }
