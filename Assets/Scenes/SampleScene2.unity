@@ -10317,6 +10317,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4587633645380473494, guid: d64fd322c2546714785a84d56150045c, type: 3}
   m_PrefabInstance: {fileID: 289388525}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &289388527 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4587633645380473495, guid: d64fd322c2546714785a84d56150045c, type: 3}
+  m_PrefabInstance: {fileID: 289388525}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &289388528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289388527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460b7aa68735f924da842bd8311e9320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knife: {fileID: 9002635449994670754, guid: 17b2f1b4752d3074597896e3ec7d37e8, type: 3}
+  poisonCloud: {fileID: 0}
 --- !u!1 &290918934
 GameObject:
   m_ObjectHideFlags: 0
@@ -59613,7 +59632,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4587633645380473493, guid: d64fd322c2546714785a84d56150045c, type: 3}
   m_PrefabInstance: {fileID: 289388525}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 289388527}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd2027997bb654c4899f17cf555c0785, type: 3}
