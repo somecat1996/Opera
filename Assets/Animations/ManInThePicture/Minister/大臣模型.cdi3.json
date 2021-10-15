@@ -1,0 +1,27 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "挥个刀"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "走两步"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "呼个吸"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "向前戳"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": []
+}

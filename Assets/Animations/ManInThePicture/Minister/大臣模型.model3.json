@@ -1,0 +1,22 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "大臣模型.moc3",
+		"Textures": [
+			"大臣模型.4096/texture_00.png"
+		],
+		"DisplayInfo": "大臣模型.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	]
+}
