@@ -158,8 +158,7 @@ public class CardManager : MonoBehaviour
 
                 foreach(var i in Physics.SphereCastAll(ray, 3))
                 {
-                    if(i.transform.tag == "Enemy")
-                        Debug.Log(i.transform.parent.name);
+
                 }
             }
         }

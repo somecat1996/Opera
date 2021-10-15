@@ -96,7 +96,7 @@ public class PlayerManager : MonoBehaviour
         // Buff相关
         BuffManager.instance.DiableAllBuff(); // 清空BUFF
         EnableCharBuff(); // 启用角色被动
-        BuffManager.instance.EnableAllSelectedBuff(); // 启用所有角色的ID
+        BuffManager.instance.EnableAllSelectedBuff(); // 启用所有选择的BUFF
 
         // 卡牌相关
         CardManager.instance.ClearAllActivatedCard(); // 清除场上所有的卡牌实体
