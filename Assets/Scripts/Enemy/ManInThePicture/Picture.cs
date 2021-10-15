@@ -34,10 +34,13 @@ public class Picture : GameObjectBase, LevelItemInterface
     // Update is called once per frame
     protected override void Update()
     {
-        if (currentStage == 1)
-            Stage1();
-        else if (currentStage == 2)
-            Stage2();
+        if (!EnemyManager.instance.pause)
+        {
+            if (currentStage == 1)
+                Stage1();
+            else if (currentStage == 2)
+                Stage2();
+        }
     }
 
     public void Change()
@@ -85,7 +88,7 @@ public class Picture : GameObjectBase, LevelItemInterface
         }
     }
 
-    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1)
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
         if (currentStage == 2)
         {

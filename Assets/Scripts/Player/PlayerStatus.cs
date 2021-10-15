@@ -31,7 +31,7 @@ public class PlayerStatus : GameObjectBase
     // Update is called once per frame
     protected override void Update()
     {
-        if (started)
+        if (started && !EnemyManager.instance.pause)
         {
             base.Update();
             HandlingImmunity();
@@ -62,7 +62,7 @@ public class PlayerStatus : GameObjectBase
         PlayerManager.instance.SetCurrentHealthPoint(curHealth);
     }
 
-    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1)
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
         if (immunityTime > 0)
         {
@@ -76,7 +76,7 @@ public class PlayerStatus : GameObjectBase
         Debug.Log(damage);
         Debug.Log(curHealth);
 
-        base.Hurt(damage, shieldBreak, damageIncrease);
+        base.Hurt(damage, shieldBreak, damageIncrease, type);
         UpdateHealth();
     }
 

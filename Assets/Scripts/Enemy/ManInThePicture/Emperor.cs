@@ -88,31 +88,37 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
-
-        if (countHurt && douETimer > 0)
+        if (!EnemyManager.instance.pause)
         {
-            douETimer -= Time.deltaTime;
-            if (douETimer <= 0)
+            base.Update();
+
+            if (!stun)
             {
-                countHurt = false;
-                hurtCounter = 0;
-                douETimer = 0;
-                DouEAttack();
+                if (countHurt && douETimer > 0)
+                {
+                    douETimer -= Time.deltaTime;
+                    if (douETimer <= 0)
+                    {
+                        countHurt = false;
+                        hurtCounter = 0;
+                        douETimer = 0;
+                        DouEAttack();
+                    }
+                }
+
+                if (currentStage == 1)
+                    Stage1();
+                else if (currentStage == 2)
+                    Stage2();
+                else if (currentStage == 3)
+                    Stage3();
             }
         }
-
-        if (currentStage == 1)
-            Stage1();
-        else if (currentStage == 2)
-            Stage2();
-        else if (currentStage == 3)
-            Stage3();
     }
 
-    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1)
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
-        base.Hurt(damage, shieldBreak, damageIncrease);
+        base.Hurt(damage, shieldBreak, damageIncrease, type);
         if (countHurt)
             hurtCounter += 1;
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)

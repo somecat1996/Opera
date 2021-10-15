@@ -20,16 +20,19 @@ public class EnemyStatus : GameObjectBase
     // Update is called once per frame
     protected override void Update()
     {
-        HandlingVoodoo();
-        HandlingPoison();
-        HandlingStun();
-        HandlingHealing();
-        HandlingBleeding();
+        if (!EnemyManager.instance.pause)
+        {
+            HandlingVoodoo();
+            HandlingPoison();
+            HandlingStun();
+            HandlingHealing();
+            HandlingBleeding();
+        }
     }
 
-    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1)
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
-        base.Hurt(damage, shieldBreak, damageIncrease);
+        base.Hurt(damage, shieldBreak, damageIncrease, type);
         if (curHealth <= 0)
         {
             Die();
