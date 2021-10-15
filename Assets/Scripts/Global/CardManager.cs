@@ -55,16 +55,16 @@ public class CardManager : MonoBehaviour
             slotPos[i] = slotLayoutGroup.GetChild(i).transform;
         }
 
+        LoadCardLibrary(); // 将所有卡牌信息载入到库中
+        LoadCardInstance(); // 将库中卡牌对应的实例载入到字典中以备使用
     }
 
     void Start()
     {
         // 测试用——会与UI按钮控件相冲突 *****下列方法调用时 不要使用UI中的部分按钮*****
 
-        LoadCardLibrary(); // 将所有卡牌信息载入到库中
-
         //InitializeAllCards(); // 初始化解锁角色所有卡牌 等级设定为 1 同时锁定所有通用卡牌
-        LoadCardInstance(); // 将库中卡牌对应的实例载入到字典中以备使用
+
         LoadAllCardIntoUnselectedList(); // 将卡牌库的信息载入到选择列表中
         LoadAllCardIntoCardList();// 卡牌展示 测试
 
