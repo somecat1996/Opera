@@ -51,7 +51,7 @@ public class EnemyManager : MonoBehaviour
     {
         // ≤‚ ‘
         if (Input.GetKeyDown(KeyCode.Space))
-            PlayerManager.instance.EnterLevel(0)
+            PlayerManager.instance.EnterLevel(0);
     }
 
     public void EnterLevel(int bossIndex)
