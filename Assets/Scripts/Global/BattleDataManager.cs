@@ -253,12 +253,29 @@ public class BattleDataManager : MonoBehaviour
 
         // 随机抽取3张卡
         List<CardBasicInfomation> lootCard = CardManager.instance.GetCardsRandomly(3);
+        // 剧情卡临时列表
+        List<CardBasicInfomation> lootCard_Common = new List<CardBasicInfomation>();
+        foreach(var i in PlayerManager.instance.GetCurrentLevelInfo().lootCard)
+        {
+            // 若对应剧情卡牌未解锁则暂存
+            if(CardManager.instance.cardLibrary_Common[i].level == 0)
+                lootCard_Common.Add(CardManager.instance.cardLibrary_Common[i]);
+        }
+        if(lootCard_Common.Count != 0)
+        {
+            // 先随机移除一个 之后在新增一个
+            lootCard.RemoveAt(Random.Range(0, lootCard.Count));
+            lootCard.Add(lootCard_Common[Random.Range(0, lootCard_Common.Count)]);
+        }
 
         // 实际数值传输到CardManager和PlayerManager;
         PlayerManager.instance.ChangeMoney(loot);
         foreach(var i in lootCard)
         {
-            CardManager.instance.cardLibrary[i.id].quantity++;
+            if (i.belongner != CharacterType.CharacterTag.Common)
+                CardManager.instance.cardLibrary[i.id].quantity++;
+            else
+                CardManager.instance.cardLibrary_Common[i.id].level = 1;
         }
 
         if (_playerVictory)

@@ -67,53 +67,6 @@ public class CardManager : MonoBehaviour
 
         LoadAllCardIntoUnselectedList(); // 将卡牌库的信息载入到选择列表中
         LoadAllCardIntoCardList();// 卡牌展示 测试
-
-        int total = 0, l1 = 0, l2 = 0, l3 = 0, l4 = 0;
-
-        int test = 10;
-        while(test > 0)
-        {
-            string text = null;
-            foreach(var i in GetCardsRandomly(10))
-            {
-                total++;
-                switch (i.rarity){
-                    case 1:
-                        {
-                            l1++;
-                            text += "(普通) ";
-                            break;
-                        }
-                    case 2:
-                        {
-                            l2++;
-                            text += "[稀有] ";
-                            break;
-                        }
-                    case 3:
-                        {
-                            l3++;
-                            text += "{史诗} ";
-                            break;
-                        }
-                    case 4:
-                        {
-                            l4++;
-                            text += "*传说* ";
-                            break;
-                        }
-                    default:break;
-                }
-            }
-
-            test--;
-            Debug.Log(text);
-        }
-
-        Debug.Log("普通卡 : " + l1 / (float)total);
-        Debug.Log("稀有卡 : " + l2 / (float)total);
-        Debug.Log("史诗卡 : " + l3 / (float)total);
-        Debug.Log("传说卡 : " + l4 / (float)total);
     }
 
     private void OnDrawGizmos()
@@ -543,7 +496,7 @@ public class CardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 获得符合相对概率的随机N个卡牌
+    /// 获得符合相对概率的所有角色随机N个卡牌
     /// </summary>
     /// <param name="_count">获得的卡牌数量</param>
     /// <param name="_includeCommonCard">是否包括剧情卡</param>
