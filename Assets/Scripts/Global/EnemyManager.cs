@@ -171,6 +171,15 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void RemovAll()
+    {
+        for (int i = 0; i < generationPoint.Count; i++)
+        {
+            if (i != 4 && generationPointStatus[i])
+                generationPointStatus[i].Die();
+        }
+    }
+
     public void HurtAll(float damage)
     {
         for (int i = 0; i < generationPoint.Count; i++)

@@ -60,13 +60,18 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.instance.CheckIfGameRunning())
+        {
+            return;
+        }
+
         cur_PowerPoint += cur_RecoverySpeed_PowerPoint * Time.deltaTime;
         cur_PowerPoint = Mathf.Clamp(cur_PowerPoint, 0, max_PowerPoint);
         GUIManager.instance.UpdatePowerPoint(cur_PowerPoint/max_PowerPoint,cur_PowerPoint);
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            player.Hurt(2);
+            player.Hurt(5);
         }
     }
 
@@ -102,9 +107,6 @@ public class PlayerManager : MonoBehaviour
 
         // 开启关卡
         GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>().EnterLevel(_levelIndex);
-
-        // 系统
-        GameManager.instance.SetStartGame(true);
 
     }
 
@@ -200,6 +202,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(cur_PowerPoint + _v < 0)
         {
+            GUIManager.instance.SpawnSystemText("心流值不足!");
             return false;
         }
         else
