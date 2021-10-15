@@ -1,0 +1,23 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "0925皇帝BOSS（已分层） - 副本1.moc3",
+		"Textures": [
+			"0925皇帝BOSS（已分层） - 副本1.4096/texture_00.png"
+		],
+		"Physics": "0925皇帝BOSS（已分层） - 副本1.physics3.json",
+		"DisplayInfo": "0925皇帝BOSS（已分层） - 副本1.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	]
+}

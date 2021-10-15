@@ -111,6 +111,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     public float voodoocoolingTime = 15f;
 
     protected bool pause;
+
+    protected Animator animator;
     // 玩家、敌人基类
 
     protected virtual void Awake()
@@ -142,6 +144,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         healingValue = 0;
 
         pause = false;
+
+        animator = transform.Find("Sprite").GetComponent<Animator>();
     }
 
     protected virtual void Start()

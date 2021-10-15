@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Banana : MonoBehaviour
 {
+    public Vector3 offset;
+
     private float damage;
 
     private void Awake()
@@ -19,13 +21,16 @@ public class Banana : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
-            other.GetComponent<EnemyStatus>().Hurt(damage, false, 1, HurtType.Physic);
+        if (other.tag == "Player")
+        {
+            other.GetComponent<PlayerStatus>().Hurt(damage);
+            Destroy(gameObject);
+        }
     }
 
-    public void Instantiate(float d, Vector3 startPosition)
+    public void Instantiate(Vector3 startPosition, float d)
     {
         damage = d;
-        transform.position = startPosition;
+        transform.position = startPosition + offset;
     }
 }

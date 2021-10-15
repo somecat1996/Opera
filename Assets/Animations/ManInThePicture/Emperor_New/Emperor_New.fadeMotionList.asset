@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403ae2dd693bb1d4b924f6b8d206b053, type: 3}
+  m_Name: Emperor_New.fadeMotionList
+  m_EditorClassIdentifier: 
+  MotionInstanceIds: d88df9ffcc8df9ffc48df9ffbc8df9ffb48df9ffac8df9ffa48df9ff9c8df9ff948df9ff8c8df9ff848df9ffa487f9ff280bf9ff
+  CubismFadeMotionObjects:
+  - {fileID: 11400000, guid: d1cd5a5b704cf174889bb6e88efae591, type: 2}
+  - {fileID: 11400000, guid: 3fa3454e2ef653f47abf18c817248e3a, type: 2}
+  - {fileID: 11400000, guid: 1446511869ccb124b9918cc4a5149dba, type: 2}
+  - {fileID: 11400000, guid: 07a90604a27641d46a34f9ad1040d48c, type: 2}
+  - {fileID: 11400000, guid: 211b0a5d5bbee0248962b1b5462a8fb8, type: 2}
+  - {fileID: 11400000, guid: a2d4fe52ab807c74cb6889a80931adef, type: 2}
+  - {fileID: 11400000, guid: 9e510608d59345a4a97f418422ead219, type: 2}
+  - {fileID: 11400000, guid: ebca6cc3ee7174b49a64aca162f39322, type: 2}
+  - {fileID: 11400000, guid: afabc07bb0a09d74e8bfeff47abd4e28, type: 2}
+  - {fileID: 11400000, guid: 6dd9765b9c7454f4d80fddb2e7a20842, type: 2}
+  - {fileID: 11400000, guid: ae5e6c637a723b041923b1a52fcb7fd6, type: 2}
+  - {fileID: 11400000, guid: e1dc147bc18ba1541a9a6d5c3e6cd820, type: 2}
+  - {fileID: 11400000, guid: acec2c49b6392f34cae5adf2dad2cb1b, type: 2}

@@ -118,6 +118,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
+        animator.SetTrigger("Hurt");
         base.Hurt(damage, shieldBreak, damageIncrease, type);
         if (countHurt)
             hurtCounter += 1;
@@ -214,11 +215,15 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 
     private void BananaAttack()
     {
+        animator.SetTrigger("Banana");
         bananaAttackTimer -= Time.deltaTime;
         if (bananaAttackTimer <= 0)
         {
             bananaAttackTimer = bananaAttackTime;
-            player.Hurt(bananaAttackDamage);
+            // player.Hurt(bananaAttackDamage);
+            PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+            Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
+            SummonedObjectManager.instance.SummonBanana(position, bananaAttackDamage);
         }
     }
 
@@ -250,6 +255,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 
     private void SwingSword()
     {
+        animator.SetTrigger("Sword");
         swordAttackTimer -= Time.deltaTime;
         if (swordAttackTimer <= 0)
         {
@@ -260,6 +266,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 
     public override void Die()
     {
+        animator.SetTrigger("Die");
         if (picture)
             Destroy(picture.gameObject);
         EnemyManager.instance.FinishLevel(true);
