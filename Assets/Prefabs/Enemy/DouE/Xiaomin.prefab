@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7049907831289417319}
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
-  - component: {fileID: 5992005644777064876}
+  - component: {fileID: 1527727097573626853}
   m_Layer: 0
   m_Name: Xiaomin
   m_TagString: Enemy
@@ -64,7 +64,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &5992005644777064876
+--- !u!114 &1527727097573626853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,10 +73,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7049907831289417314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909f359dbce760247931b31a4df48531, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b3025ea7dd87944a88c76ed9bb0a034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 100
   offsetPos: {x: 0, y: 0, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
   damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
@@ -87,11 +87,13 @@ MonoBehaviour:
   bleedingTime: 5
   bleedingTickleTime: 1
   bleedingDamage: 5
+  shield: 0
   voodooTime: 10
   voodoocoolingTime: 15
   position: 0
-  reduceRate: -0.05
-  lifeTimer: 3
+  reduceCoolingTime: 10
+  reduceTime: 3
+  reduceRate: 0.1
 --- !u!1 &7049907832430946937
 GameObject:
   m_ObjectHideFlags: 0

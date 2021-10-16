@@ -36,7 +36,7 @@ public class SummonedObjectManager : MonoBehaviour
 
     public void SummonDirtyWater(Vector3 position, Donkey donkey)
     {
-        DirtyWater tmp = Instantiate(banana).GetComponent<DirtyWater>();
+        DirtyWater tmp = Instantiate(dirtyWater).GetComponent<DirtyWater>();
         tmp.Instantiate(position, donkey);
     }
 }

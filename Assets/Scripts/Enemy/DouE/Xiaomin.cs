@@ -6,10 +6,11 @@ public class Xiaomin : EnemyStatus, ReduceDamage
 {
     public float reduceCoolingTime = 10f;
     public float reduceTime = 3f;
-    public float reduceRate = -0.1f;
+    public float reduceRate = 0.1f;
 
     private float reduceCoolingTimer;
     private float reduceTimer;
+    private bool reducing;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -17,6 +18,7 @@ public class Xiaomin : EnemyStatus, ReduceDamage
 
         reduceCoolingTimer = reduceCoolingTime;
         reduceTimer = 0;
+        reducing = false;
     }
 
     // Update is called once per frame
@@ -40,15 +42,23 @@ public class Xiaomin : EnemyStatus, ReduceDamage
 
     public void StartReducing()
     {
-        GlobalValue.damageIncrement_General += reduceRate;
-        reduceCoolingTimer = reduceCoolingTime;
-        reduceTimer = reduceTime;
+        if (!reducing)
+        {
+            GlobalValue.damageDecrement_Player += reduceRate;
+            reduceCoolingTimer = reduceCoolingTime;
+            reduceTimer = reduceTime;
+            reducing = true;
+        }
     }
 
     public void StopReducing()
     {
-        GlobalValue.damageIncrement_General -= reduceRate;
-        reduceTimer = 0;
+        if (reducing)
+        {
+            GlobalValue.damageDecrement_Player -= reduceRate;
+            reduceTimer = 0;
+            reducing = false;
+        }
     }
 
     public override void Die()

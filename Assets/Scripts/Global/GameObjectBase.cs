@@ -94,7 +94,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     protected float invisibleTimer;
     [Header("护盾设置")]
     // 护盾
-    protected float shield;
+    public float shield;
     protected float shieldTimer;
     [Header("持续回复设置")]
     // 持续回复
@@ -192,34 +192,10 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         // 受伤接口，0-真伤，1-物理，2-魔法
         // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
         float trueDamage;
-        if (shield > 0)
-        {
-            // 计算真实伤害
-            if (shieldBreak)
-            {
-                trueDamage = damageIncrease * damage;
-            }
-            else
-            {
-                trueDamage = damage;
-            }
-
-            // 结算真实伤害
-            if (shield > trueDamage)
-            {
-                shield -= trueDamage;
-            }
-            else
-            {
-                curHealth -= trueDamage - shield;
-                shield = 0;
-            }
-        }
+        if (shield > 0 && shieldBreak)
+            trueDamage = damageIncrease * damage;
         else
-        {
             trueDamage = damage;
-            curHealth -= damage;
-        }
 
         // 计算暴击
         switch (type)
@@ -238,6 +214,17 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
                 break;
             default:
                 break;
+        }
+
+        // 结算真实伤害
+        if (shield > trueDamage)
+        {
+            shield -= trueDamage;
+        }
+        else
+        {
+            curHealth -= trueDamage - shield;
+            shield = 0;
         }
 
         if (GlobalValue.poisonAttack)

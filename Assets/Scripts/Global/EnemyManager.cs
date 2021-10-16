@@ -18,6 +18,7 @@ public class EnemyManager : MonoBehaviour
 
     // ¼ÇÂ¼×´Ì¬
     private EnemyStatus [] generationPointStatus;
+    private LevelItemInterface itemInterface;
 
     // ¹Ø¿¨ÉèÖÃ
     public List<GameObject> bossPrefabs;
@@ -34,6 +35,7 @@ public class EnemyManager : MonoBehaviour
     {
         instance = this;
         pause = true;
+        itemInterface = null;
     }
     // Start is called before the first frame update
     void Start()
@@ -148,6 +150,7 @@ public class EnemyManager : MonoBehaviour
     {
         GameObject tmp = Instantiate(prefab, middleGenerationPoint);
         tmp.transform.localPosition = new Vector3(0, 0, 0);
+        itemInterface = tmp.GetComponent<LevelItemInterface>();
         return tmp;
     }
 
@@ -224,5 +227,16 @@ public class EnemyManager : MonoBehaviour
     public void Resume()
     {
         pause = false;
+    }
+
+    public bool ActivateItem()
+    {
+        if (itemInterface)
+        {
+            itemInterface.Activate();
+            return true;
+        }
+        else
+            return false
     }
 }
