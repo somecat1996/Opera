@@ -12302,6 +12302,22 @@ PrefabInstance:
       propertyPath: background
       value: 
       objectReference: {fileID: 490731601}
+    - target: {fileID: 4587633645380473493, guid: d64fd322c2546714785a84d56150045c, type: 3}
+      propertyPath: bossPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587633645380473493, guid: d64fd322c2546714785a84d56150045c, type: 3}
+      propertyPath: bossPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7049907831289417314, guid: 0914c85ec05eb2447aacc9cee9fe3e7b, type: 3}
+    - target: {fileID: 4587633645380473493, guid: d64fd322c2546714785a84d56150045c, type: 3}
+      propertyPath: backgroundImages.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587633645380473493, guid: d64fd322c2546714785a84d56150045c, type: 3}
+      propertyPath: backgroundImages.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: e5d18fcde13c29d449627440fa837a6d, type: 3}
     - target: {fileID: 4587633645380473494, guid: d64fd322c2546714785a84d56150045c, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -89525,6 +89541,10 @@ PrefabInstance:
       propertyPath: banana
       value: 
       objectReference: {fileID: 9002635449994670754, guid: 34fc7d9c84f1c2a48a9c00cfe6207ae8, type: 3}
+    - target: {fileID: 195115935871137157, guid: 61a70be742c861e41867bb66b0d88604, type: 3}
+      propertyPath: dirtyWater
+      value: 
+      objectReference: {fileID: 9002635449994670754, guid: b1e122f40af2d0f40b4af04ad7f401ee, type: 3}
     - target: {fileID: 195115935871137179, guid: 61a70be742c861e41867bb66b0d88604, type: 3}
       propertyPath: m_Name
       value: SummonedObjectsManager

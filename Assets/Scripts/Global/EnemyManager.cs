@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        pause = false;
+        pause = true;
     }
     // Start is called before the first frame update
     void Start()
@@ -51,7 +51,7 @@ public class EnemyManager : MonoBehaviour
     {
         // ≤‚ ‘
         if (Input.GetKeyDown(KeyCode.Space))
-            PlayerManager.instance.EnterLevel(0);
+            PlayerManager.instance.EnterLevel(1);
     }
 
     public void EnterLevel(int bossIndex)
@@ -64,14 +64,20 @@ public class EnemyManager : MonoBehaviour
         ground.material = groundMaterials[bossIndex];
         SummonBoss(bossPrefabs[bossIndex]);
         playerStatus.RestartPlaying();
+
+        pause = false;
     }
 
     public void FinishLevel(bool result)
     {
-        playerStatus.StopPlaying();
-        background.gameObject.SetActive(false);
+        if (!pause)
+        {
+            playerStatus.StopPlaying();
+            background.gameObject.SetActive(false);
 
-        BattleDataManager.instance.EvaluateGameResult(result);
+            BattleDataManager.instance.EvaluateGameResult(result);
+            pause = true;
+        }
     }
 
     public int SummonOne()

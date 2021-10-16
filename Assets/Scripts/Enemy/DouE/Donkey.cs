@@ -10,11 +10,9 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     // ÆÕÍ¨¹¥»÷
     [Header("Normal Attack")]
-    public int normalAttackTimeMin = 1;
-    public int normalAttackTimeMax = 5;
-    public int[] normalAttackDamage;
+    public int normalAttackTime = 1;
+    public int normalAttackDamage = 1;
     private float normalAttackTimer;
-    private int normalAttackTime;
 
     // Ïã½¶Æ¤¹¥»÷
     [Header("Banana Attack")]
@@ -32,6 +30,11 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     public float dirtyWaterAttackTime = 10f;
     public float dirtyWaterAttackDamage = 3f;
     private float dirtyWaterAttackTimer;
+
+    // ÊÐ¾®Ð¡ÃñPrefab
+    [Header("Minions")]
+    public GameObject xiaominPrefab;
+    public GameObject xianguanPrefab;
 
     // ½âÒ©prefab
     [Header("Medicine Prefab")]
@@ -60,7 +63,6 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     {
         base.Start();
 
-        normalAttackTime = NormalAttackTime();
         normalAttackTimer = normalAttackTime;
         bananaAttackTimer = bananaAttackTime;
 
@@ -110,7 +112,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
-        animator.SetTrigger("Hurt");
+        //animator.SetTrigger("Hurt");
         base.Hurt(damage, shieldBreak, damageIncrease, type);
         if (countHurt)
             hurtCounter += 1;
@@ -124,18 +126,22 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     {
         currentStage = 2;
         Speak(stage1To2Line);
+        SummonMedicine();
     }
 
     private void Stage3Start()
     {
         currentStage = 3;
         Speak(stage2To3Line);
+        SummonXianguan();
     }
 
     private void Stage1()
     {
         NormalAttack();
         BananaAttack();
+        AddShield();
+        DirtyWaterAttack();
 
         speakTimer -= Time.deltaTime;
         if (speakTimer <= 0)
@@ -149,12 +155,16 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     {
         NormalAttack();
         BananaAttack();
+        AddShield();
+        DirtyWaterAttack();
     }
 
     private void Stage3()
     {
         NormalAttack();
         BananaAttack();
+        AddShield();
+        DirtyWaterAttack();
     }
 
     public void SummonMinion(GameObject minion, int number = 1)
@@ -168,23 +178,16 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     private void NormalAttack()
     {
         normalAttackTimer -= Time.deltaTime;
-        int damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin];
         if (normalAttackTimer <= 0)
         {
-            normalAttackTime = NormalAttackTime();
             normalAttackTimer = normalAttackTime;
-            player.Hurt(damage);
+            player.Hurt(normalAttackDamage);
         }
-    }
-
-    private int NormalAttackTime()
-    {
-        return Random.Range(normalAttackTimeMin, normalAttackTimeMax + 1);
     }
 
     private void BananaAttack()
     {
-        animator.SetTrigger("Banana");
+        //animator.SetTrigger("Banana");
         bananaAttackTimer -= Time.deltaTime;
         if (bananaAttackTimer <= 0)
         {
@@ -205,6 +208,28 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         }
     }
 
+    private void DirtyWaterAttack()
+    {
+        dirtyWaterAttackTimer -= Time.deltaTime;
+        if (dirtyWaterAttackTimer <= 0)
+        {
+            dirtyWaterAttackTimer = dirtyWaterAttackTime;
+            PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+            Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
+            SummonedObjectManager.instance.SummonDirtyWater(position, this);
+        }
+    }
+
+    public void SummonXiaomin()
+    {
+        EnemyManager.instance.SummonMinion(xiaominPrefab);
+    }
+
+    public void SummonXianguan()
+    {
+        EnemyManager.instance.SummonMinion(xianguanPrefab);
+    }
+
     private void SummonMedicine()
     {
         GameObject tmp = EnemyManager.instance.SummonInMiddle(medicinePrefab);
@@ -218,7 +243,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     public override void Die()
     {
-        animator.SetTrigger("Die");
+        //animator.SetTrigger("Die");
         if (medicine)
             Destroy(medicine.gameObject);
         EnemyManager.instance.FinishLevel(true);

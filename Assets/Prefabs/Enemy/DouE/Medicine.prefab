@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7049907831289417319}
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
-  - component: {fileID: 5992005644777064876}
+  - component: {fileID: 5155661290420696613}
   m_Layer: 0
-  m_Name: Xiaomin
+  m_Name: Medicine
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &5992005644777064876
+--- !u!114 &5155661290420696613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,13 +73,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7049907831289417314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909f359dbce760247931b31a4df48531, type: 3}
+  m_Script: {fileID: 11500000, guid: 92e597da87da79541b44dbfd455e3d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 0
   offsetPos: {x: 0, y: 0, z: 0}
-  healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
-  damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
+  healthBarPrefab: {fileID: 0}
+  damageTextPrefab: {fileID: 0}
   poisonTime: 5
   poisonDamage: 5
   poisonDamageTime: 1
@@ -87,11 +87,12 @@ MonoBehaviour:
   bleedingTime: 5
   bleedingTickleTime: 1
   bleedingDamage: 5
-  voodooTime: 10
-  voodoocoolingTime: 15
-  position: 0
-  reduceRate: -0.05
-  lifeTimer: 3
+  stage1CoolingTime: 20
+  stage1Damage: 250
+  stage1CardNumber: 5
+  stage2DamageNumber: 5
+  stage2PlayerDamage: 20
+  stage2EnemyDamage: 500
 --- !u!1 &7049907832430946937
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,13 +117,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7049907832430946937}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 1.1, z: 0.41}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalRotation: {x: 0.27059805, y: -0.27059805, z: 0.6532815, w: 0.6532815}
+  m_LocalPosition: {x: 0, y: 0.69, z: 0}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 7049907831289417319}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 90}
 --- !u!212 &7049907832430946943
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -164,8 +165,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 320b114dd88a41c4ca89e20b8c5041fa, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0.23018867, b: 0.23018867, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -191,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7049907832633862937
 Transform:
   m_ObjectHideFlags: 0
