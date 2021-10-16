@@ -141,7 +141,9 @@ public static class GlobalValue
     /// <returns></returns>
     public static float GetTrueDamage_ToPlayer(float _damage)
     {
-        return _damage * (1 - damageDecrement_Player);
+        float factor = (1 - damageDecrement_Player);
+        factor = Mathf.Clamp(factor, 0, Mathf.Infinity);
+        return _damage * factor;
     }
 
     /// <summary>
