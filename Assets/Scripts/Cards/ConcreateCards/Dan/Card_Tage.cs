@@ -30,6 +30,13 @@ public class Card_Tage : CardPrototype, ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
+            mouseExit();
+            return;
+        }
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
        

@@ -28,15 +28,21 @@ public class CardManager : MonoBehaviour
     public Dictionary<int, GameObject> instanceCardLibrary = new Dictionary<int, GameObject>(); // 卡牌信息对应实例卡牌
 
     public List<CardBasicInfomation> cardLibrary_Selected = new List<CardBasicInfomation>(); // 玩家选择的卡牌
+    [Space]
+    public bool lockingCards = false;
 
     [Header("Objects")]
     public CardCommonDatas cardCommonData;
-
+    [Space]
     public Transform slotLayoutGroup; // 插槽容器
     public Transform layoutGroup; // 当前操作卡牌容器
     public RectTransform recTran_layoutGroup;
     public Transform tempLayoutGroup; // 临时卡牌容器
     public Transform discardedCardLayoutGroup; // 用于放置一次性卡牌容器
+    [Space]
+    // 卡牌锁定相关
+    public GameObject flap_LayoutGroup;
+    public Coroutine timer_LockCards;
 
     [Header("Optimization Objects")]
     public Transform[] slotPos = new Transform[6]; // 存储插槽坐标
@@ -130,8 +136,27 @@ public class CardManager : MonoBehaviour
         {
             InitializeAllCards();
         }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            //LockCards(1);
+            DiscardCardRandomly(2);
+        }
     }
 
+    private void OnDisable()
+    {
+        if (lockingCards)
+        {
+            lockingCards = false;
+            StopCoroutine(timer_LockCards);
+            flap_LayoutGroup.SetActive(false);
+        }   
+    }
+
+    private void OnDestroy()
+    {
+        OnDisable();
+    }
 
     /// <summary>
     /// 将等待队列中的卡牌送入游戏画面
@@ -162,6 +187,7 @@ public class CardManager : MonoBehaviour
     /// </summary>
     public void ReflashUsableCardPosition()
     {
+        // 刷新可用卡牌的位置
         for(int i = 0; i < layoutGroup.transform.childCount; i++)
         {
             Transform card = layoutGroup.transform.GetChild(i);
@@ -594,5 +620,57 @@ public class CardManager : MonoBehaviour
     public bool CheckInRange(float _cv,float min,float max)
     {
         return min <= _cv && _cv < max;
+    }
+
+    /// <summary>
+    /// 随机丢弃卡牌
+    /// </summary>
+    /// <param name="_count">丢弃数量</param>
+    public void DiscardCardRandomly(int _count)
+    {
+        StartCoroutine(Timer_DiscardCards(_count));
+    }
+
+    IEnumerator Timer_DiscardCards(int _count)
+    {
+        int count = Mathf.Clamp(_count, 0, 6);
+
+        List<GameObject> tempCardList = GetAllUsableCard();
+        while (count-- > 0)
+        {
+            int index = Random.Range(0, tempCardList.Count);
+
+            if (tempCardList[index] == null)
+                break;
+
+            SendToDiscardedCardGroup(tempCardList[index]);
+            tempCardList.Remove(tempCardList[index]);
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    /// <summary>
+    /// 锁定卡牌
+    /// </summary>
+    /// <param name="_time">锁定时间</param>
+    public void LockCards(float _time)
+    {
+        if (lockingCards)
+        {
+            StopCoroutine(timer_LockCards);
+            timer_LockCards = StartCoroutine(Timer_LockCards(_time));
+        }
+        else
+        {
+            lockingCards = true;
+            timer_LockCards = StartCoroutine(Timer_LockCards(_time));
+        }
+    }
+    public IEnumerator Timer_LockCards(float _time)
+    {
+        flap_LayoutGroup.SetActive(true);
+        yield return new WaitForSeconds(_time);
+        flap_LayoutGroup.SetActive(false);
+        lockingCards = false;
     }
 }

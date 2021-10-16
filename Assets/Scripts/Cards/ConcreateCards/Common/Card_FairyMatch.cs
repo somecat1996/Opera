@@ -27,6 +27,13 @@ public class Card_FairyMatch : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
+            mouseExit();
+            return;
+        }
+
         if (CheckOnValidArea())
         {
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
