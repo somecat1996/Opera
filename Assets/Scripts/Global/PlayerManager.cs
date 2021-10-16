@@ -108,7 +108,7 @@ public class PlayerManager : MonoBehaviour
 
         // 通知游戏管理器
         GameManager.instance.SetStartGame(true);
-        EnemyManager.instance.Resume();
+        GameManager.instance.SetPauseGame(false);
 
         // 开启关卡
         GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>().EnterLevel(_levelIndex);
@@ -193,7 +193,7 @@ public class PlayerManager : MonoBehaviour
         GUIManager.instance.ClearUnselectedCardList();
         CardManager.instance.ClearSelectedCard();
 
-        // 重新载入通用卡牌到选择容器中 由于通用卡牌暂未完成 故载入角色卡牌
+        // 重新载入通用卡牌到选择容器中
         CardManager.instance.LoadAllCardIntoUnselectedList();
 
     }

@@ -78,9 +78,22 @@ public class GameManager : MonoBehaviour
         return gameStart && !gamePause;
     }
 
+    /// <summary>
+    /// …Ë÷√ «∑ÒÕ£÷π”Œœ∑
+    /// </summary>
+    /// <param name="_v"></param>
     public void SetPauseGame(bool _v)
     {
         gamePause = _v;
+
+        if (!gamePause)
+        {
+            EnemyManager.instance.Resume();
+        }
+        else
+        {
+            EnemyManager.instance.Pause();
+        }
     }
 
     public void SetStartGame(bool _v)

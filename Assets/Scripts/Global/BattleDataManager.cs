@@ -235,7 +235,7 @@ public class BattleDataManager : MonoBehaviour
     public void EvaluateGameResult(bool _playerVictory)
     {
         GameManager.instance.SetStartGame(false);
-        EnemyManager.instance.Pause();
+        GameManager.instance.SetPauseGame(false);
 
         // 计算金币 仅使用难度1系数 未知关卡难度选择操作
         if (_playerVictory)
@@ -292,9 +292,22 @@ public class BattleDataManager : MonoBehaviour
         foreach(var i in lootCard)
         {
             if (i.belongner != CharacterType.CharacterTag.Common)
+            {
                 CardManager.instance.cardLibrary[i.id].quantity++;
+            }
             else
+            {
                 CardManager.instance.cardLibrary_Common[i.id].level = 1;
+
+                // 获得剧情卡牌 重新刷新玩家所选的卡牌 *****注意***** 此处临时使用 会冲掉玩家所选的卡牌 日后需要优化这个功能
+                // 清除已选择卡牌的信息
+                GUIManager.instance.ClearUnselectedCardList();
+                CardManager.instance.ClearSelectedCard();
+
+                // 重新载入通用卡牌到选择容器中
+                CardManager.instance.LoadAllCardIntoUnselectedList();
+            }
+               
         }
 
         if (_playerVictory)
