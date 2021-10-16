@@ -6,6 +6,12 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 {
     public void mouseDrag()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            mouseExit();
+            return;
+        }
+
         transform.position = Input.mousePosition;
     }
 
@@ -23,6 +29,13 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
+            mouseExit();
+            return;
+        }
+
         if (CheckOnValidArea())
         {
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))

@@ -18,6 +18,12 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void mouseDrag()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            mouseExit();
+            return;
+        }
+
         transform.position = Input.mousePosition;
 
         SetFadeOutAndShowRange(true);
@@ -37,6 +43,13 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void mouseUp()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
+            mouseExit();
+            return;
+        }
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

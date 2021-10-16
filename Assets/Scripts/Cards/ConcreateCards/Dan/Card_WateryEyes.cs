@@ -10,6 +10,12 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseDrag()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            mouseExit();
+            return;
+        }
+
         transform.position = Input.mousePosition;
     }
 
@@ -32,6 +38,13 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
+            mouseExit();
+            return;
+        }
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
