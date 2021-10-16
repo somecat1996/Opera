@@ -384,9 +384,10 @@ public class CardManager : MonoBehaviour
     public void LoadAllCardIntoUnselectedList()
     {
         // 清除卡牌操作由PlayerManager执行 此处临时使用
-       // GUIManager.instance.ClearUnselectedCardList();
-        //ClearSelectedCard();
+        GUIManager.instance.ClearUnselectedCardList();
+        ClearSelectedCard();
 
+        
         // 应遍历通用卡牌库
         foreach (var i in cardLibrary_Common.Values)
         {
