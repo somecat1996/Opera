@@ -8,20 +8,21 @@ public class BattleDataManager : MonoBehaviour
 {
     public static BattleDataManager instance;
     [Header("Real-Time Data")]
-    public float gameTimer = 0;
-    public int loot = 0;
-
+    public float gameTimer = 0; // 游戏市场
+    public int loot = 0; // 战利品金币
+    [Space]
     public float totalDamage = 0; // 由敌人Hurt函数上传伤害信息
     public int totalUsedCard = 0; // 由CardManger.SendToTempLayoutGroup上传
     public GameObjectBase lastTargetEnemy; // 上一个被单体攻击的敌人 由单体输出卡牌上传
-    public float cur_bossHP_Pencentage = 0;
+    public float cur_bossHP_Pencentage = 0; // 当前boss剩余血量百分比
+    public int cur_Stage = 0; // 当前阶段
     [Space]
     public CardPrototype selectingCard; // 玩家当前选中的卡牌 或 即将要使用的卡牌
     public CardPrototype lastUsedCard; // 由CardManger.SendToTempLayoutGroup上传
     [Space]
     public List<GameObjectBase> enemyList = new List<GameObjectBase>(); // 由敌人自身上传信息
     [Space]
-    public bool playerMoving = false;
+    public bool playerMoving = false; // 玩家是否移动
 
     [Header("Obejcts And Related Configuration")]
     // 通用配置
@@ -339,5 +340,14 @@ public class BattleDataManager : MonoBehaviour
     public void UpdateBossHP(float _percentage)
     {
         cur_bossHP_Pencentage = _percentage;
+    }
+
+    /// <summary>
+    /// 更新当前阶段数
+    /// </summary>
+    /// <param name="_v"></param>
+    public void UpdateStage(int _v)
+    {
+        cur_Stage = _v;
     }
 }

@@ -86,7 +86,8 @@ public class Card_SighDecay : CardPrototype,ICardOperation,ICardEffectTrigger
         if (activated)
         {
             activated = false;
-            StopCoroutine(timer);
+            if(timer != null)
+                StopCoroutine(timer);
             RevokeEffect();
         }
     }
