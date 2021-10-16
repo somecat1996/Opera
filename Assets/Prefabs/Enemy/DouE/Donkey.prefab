@@ -112,17 +112,17 @@ MonoBehaviour:
   position: 0
   stage2Start: 0.7
   stage3Start: 0.3
-  normalAttackTimeMin: 1
-  normalAttackTimeMax: 5
-  normalAttackDamage: 
+  normalAttackTime: 0
+  normalAttackDamage: 1
   bananaAttackTime: 10
   bananaAttackDamage: 3
-  ministerPrefab: {fileID: 0}
-  ministerSummonTime: 5
-  imperialDecreeThrowTime: 10
-  swordAttackTime: 5
-  swordAttackIncrease: 2
-  picturePrefab: {fileID: 0}
+  shieldTime: 30
+  shieldValue: 300
+  dirtyWaterAttackTime: 10
+  dirtyWaterAttackDamage: 3
+  xiaominPrefab: {fileID: 0}
+  xianguanPrefab: {fileID: 0}
+  medicinePrefab: {fileID: 0}
   lineTextPrefab: {fileID: 0}
   speakTime: 20
   stage1Lines: []
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 7049907831289417319}
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
-  - component: {fileID: 971092485161312684}
+  - component: {fileID: 6660519800270922619}
   m_Layer: 0
   m_Name: Donkey
   m_TagString: Enemy
@@ -194,7 +194,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &971092485161312684
+--- !u!114 &6660519800270922619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,11 +203,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7049907831289417314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c617b96bd2237e24a8633c082f57b5e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9af44f27bdafdaf46bf670740a04d8b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  offsetPos: {x: 0, y: 3, z: 0}
+  offsetPos: {x: 0, y: 0, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
   damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
   poisonTime: 5
@@ -222,24 +222,24 @@ MonoBehaviour:
   position: 0
   stage2Start: 0.7
   stage3Start: 0.3
-  normalAttackTimeMin: 1
-  normalAttackTimeMax: 5
-  normalAttackDamage: 070000000f000000190000002300000032000000
+  normalAttackTime: 1
+  normalAttackDamage: 1
   bananaAttackTime: 10
-  bananaAttackDamage: 33
-  ministerPrefab: {fileID: 7049907831289417314, guid: cfc4989c03dc8394a80cc7b2daffd54b, type: 3}
-  ministerSummonTime: 10
-  imperialDecreeThrowTime: 15
-  swordAttackTime: 5
-  swordAttackIncrease: 2
-  picturePrefab: {fileID: 7049907831289417314, guid: 64b3fc3a3c190184e9c7213af91987d0, type: 3}
+  bananaAttackDamage: 3
+  shieldTime: 30
+  shieldValue: 300
+  dirtyWaterAttackTime: 10
+  dirtyWaterAttackDamage: 3
+  xiaominPrefab: {fileID: 7049907831289417314, guid: a5ca9b9679d44ae46bc45143fc3c712e, type: 3}
+  xianguanPrefab: {fileID: 7049907831289417314, guid: 0af878d90daade54190cbcb82969732e, type: 3}
+  medicinePrefab: {fileID: 7049907831289417314, guid: 5fefbe98a860f1846882e269c560874b, type: 3}
   lineTextPrefab: {fileID: 3921916031245853504, guid: 7af6adbf22fe4044d8adbad4008c9957, type: 3}
   speakTime: 20
   stage1Lines:
   - ???
   - ???
   stage1To2Line: ???
-  stage2To3Line: "\u7AA6\u5A25\uFF0C\u7CFB\u5185\uFF01"
+  stage2To3Line: SummonXianguan()
   douETime: 10
   douECoefficient: 2
 --- !u!1 &7049907832633862938

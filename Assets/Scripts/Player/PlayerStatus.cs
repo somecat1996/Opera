@@ -84,8 +84,7 @@ public class PlayerStatus : GameObjectBase
 
         if (curHealth <= 0)
         {
-            StopPlaying();
-            BattleDataManager.instance.EvaluateGameResult(false);
+            EnemyManager.instance.FinishLevel(false);
         }
     }
 

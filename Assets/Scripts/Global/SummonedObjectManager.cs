@@ -9,6 +9,7 @@ public class SummonedObjectManager : MonoBehaviour
     public GameObject knife;
     public GameObject poisonCloud;
     public GameObject banana;
+    public GameObject dirtyWater;
 
     private void Start()
     {
@@ -31,5 +32,11 @@ public class SummonedObjectManager : MonoBehaviour
     {
         Banana tmp = Instantiate(banana).GetComponent<Banana>();
         tmp.Instantiate(position, damage);
+    }
+
+    public void SummonDirtyWater(Vector3 position, Donkey donkey)
+    {
+        DirtyWater tmp = Instantiate(banana).GetComponent<DirtyWater>();
+        tmp.Instantiate(position, donkey);
     }
 }
