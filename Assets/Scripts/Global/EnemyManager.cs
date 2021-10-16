@@ -231,12 +231,12 @@ public class EnemyManager : MonoBehaviour
 
     public bool ActivateItem()
     {
-        if (itemInterface)
+        if (itemInterface != null)
         {
             itemInterface.Activate();
             return true;
         }
         else
-            return false
+            return false;
     }
 }
