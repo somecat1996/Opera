@@ -78,8 +78,6 @@ public class Card_RippleUmbrealla : CardPrototype,ICardOperation,ICardEffectTrig
         activated = true;
 
         StartCoroutine(Timer());
-
-
     }
 
     IEnumerator Timer()
@@ -93,7 +91,8 @@ public class Card_RippleUmbrealla : CardPrototype,ICardOperation,ICardEffectTrig
         if (activated)
         {
             activated = false;
-            StopCoroutine(timer);
+            if(timer != null)
+                StopCoroutine(timer);
             RevokeEffect();
         }
     }
