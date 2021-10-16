@@ -12,7 +12,8 @@ public class BattleDataManager : MonoBehaviour
 
     public float totalDamage = 0; // 由敌人Hurt函数上传伤害信息
     public int totalUsedCard = 0; // 由CardManger.SendToTempLayoutGroup上传
-    public GameObjectBase lastTargetEnemy; // 由单体输出卡牌上传
+    public GameObjectBase lastTargetEnemy; // 上一个被单体攻击的敌人 由单体输出卡牌上传
+    public float cur_bossHP_Pencentage = 0;
     [Space]
     public CardPrototype selectingCard; // 玩家当前选中的卡牌 或 即将要使用的卡牌
     public CardPrototype lastUsedCard; // 由CardManger.SendToTempLayoutGroup上传
@@ -84,7 +85,7 @@ public class BattleDataManager : MonoBehaviour
                 if(hit.transform.tag == "Enemy")
                 {
                     targetMarker.SetActive(true);
-                    targetMarker.transform.position = Camera.main.WorldToScreenPoint(hit.transform.position) + markerOffset;
+                    targetMarker.transform.position = (hit.transform.position) + markerOffset;
                 }
                 else
                 {
@@ -237,36 +238,54 @@ public class BattleDataManager : MonoBehaviour
         EnemyManager.instance.Pause();
 
         // 计算金币 仅使用难度1系数 未知关卡难度选择操作
-        int timeReward = 0;
-        if(gameTimer <= 120)
+        if (_playerVictory)
         {
-            timeReward = 100;
-        }else if(gameTimer > 120 && gameTimer < 180)
-        {
-            timeReward = 50;
+            int timeReward = 0;
+            if (gameTimer <= 120)
+            {
+                timeReward = 100;
+            }
+            else if (gameTimer > 120 && gameTimer < 180)
+            {
+                timeReward = 50;
+            }
+            else
+            {
+                timeReward = 0;
+            }
+            loot = (int)((Random.Range(100, 200) + timeReward) * PlayerManager.instance.GetCurrentLevelInfo().rewardFactor[0]);
         }
         else
         {
-            timeReward = 0;
+            // 失败时 金币结算
+            loot = (int)(Random.Range(100, 200) * PlayerManager.instance.GetCurrentLevelInfo().rewardFactor[0] * (1 - cur_bossHP_Pencentage));
         }
-        loot = (int)((Random.Range(100, 200)+timeReward) * PlayerManager.instance.GetCurrentLevelInfo().rewardFactor[0]);
+
 
         // 随机抽取3张卡
         List<CardBasicInfomation> lootCard = CardManager.instance.GetCardsRandomly(3);
-        // 剧情卡临时列表
-        List<CardBasicInfomation> lootCard_Common = new List<CardBasicInfomation>();
-        foreach(var i in PlayerManager.instance.GetCurrentLevelInfo().lootCard)
+        if (_playerVictory)
         {
-            // 若对应剧情卡牌未解锁则暂存
-            if(CardManager.instance.cardLibrary_Common[i].level == 0)
-                lootCard_Common.Add(CardManager.instance.cardLibrary_Common[i]);
+            // 剧情卡临时列表
+            List<CardBasicInfomation> lootCard_Common = new List<CardBasicInfomation>();
+            foreach (var i in PlayerManager.instance.GetCurrentLevelInfo().lootCard)
+            {
+                // 若对应剧情卡牌未解锁则暂存
+                if (CardManager.instance.cardLibrary_Common[i].level == 0)
+                    lootCard_Common.Add(CardManager.instance.cardLibrary_Common[i]);
+            }
+            if (lootCard_Common.Count != 0)
+            {
+                // 先随机移除一个 之后在新增一个
+                lootCard.RemoveAt(Random.Range(0, lootCard.Count));
+                lootCard.Add(lootCard_Common[Random.Range(0, lootCard_Common.Count)]);
+            }
         }
-        if(lootCard_Common.Count != 0)
+        else
         {
-            // 先随机移除一个 之后在新增一个
-            lootCard.RemoveAt(Random.Range(0, lootCard.Count));
-            lootCard.Add(lootCard_Common[Random.Range(0, lootCard_Common.Count)]);
+            lootCard.Clear();
         }
+
 
         // 实际数值传输到CardManager和PlayerManager;
         PlayerManager.instance.ChangeMoney(loot);
@@ -285,5 +304,14 @@ public class BattleDataManager : MonoBehaviour
 
         // GUI 显示
         GUIManager.instance.EnableGameResult(_playerVictory, gameTimer, loot,lootCard);
+    }
+
+    /// <summary>
+    /// 更新BOSS百分比血量
+    /// </summary>
+    /// <param name=""></param>
+    public void UpdateBossHP(float _percentage)
+    {
+        cur_bossHP_Pencentage = _percentage;
     }
 }
