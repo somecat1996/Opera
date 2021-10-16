@@ -5,4 +5,5 @@ using UnityEngine;
 interface LevelItemInterface
 {
     public void Activate();
+    public void Walk();
 }

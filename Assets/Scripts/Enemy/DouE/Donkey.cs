@@ -140,6 +140,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         currentStage = 3;
         Speak(stage2To3Line);
         SummonXianguan();
+        MedicineChange();
     }
 
     private void Stage1()
@@ -256,7 +257,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     private void MedicineChange()
     {
-        
+        medicine.Change();
     }
 
     public override void Die()

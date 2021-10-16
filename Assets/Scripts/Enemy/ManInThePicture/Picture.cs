@@ -125,4 +125,6 @@ public class Picture : GameObjectBase, LevelItemInterface
             player.PercentHurt(stage2PercentDamage);
         }
     }
+
+    public void Walk() { }
 }

@@ -239,4 +239,12 @@ public class EnemyManager : MonoBehaviour
         else
             return false;
     }
+
+    public void Walk()
+    {
+        if (itemInterface != null)
+        {
+            itemInterface.Walk();
+        }
+    }
 }

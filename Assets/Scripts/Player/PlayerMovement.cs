@@ -71,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
                     timer = Random.Range(walkTimeRange[0], walkTimeRange[1]);
                     RandomDirection();
                     rigidbody.velocity = moveDirection * moveSpeed;
+
+                    EnemyManager.instance.Walk();
                 }
             }
             // ÅÐ¶Ï·¶Î§

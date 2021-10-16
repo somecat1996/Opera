@@ -270,16 +270,22 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     {
         // 中毒接口
         // 每次调用增加一层中毒并刷新中毒时间
-        poisonLevel += 1;
-        poisonTotalTimer = poisonTime;
-        poisonTimer = poisonDamageTime;
-        Voodoo();
+        if (!stunImmunity)
+        {
+            poisonLevel += 1;
+            poisonTotalTimer = poisonTime;
+            poisonTimer = poisonDamageTime;
+            Voodoo();
+        }
     }
 
     public void Bleeding()
     {
-        bleedingTimer = bleedingTime;
-        bleedingTickleTimer = bleedingTickleTime;
+        if (!stunImmunity)
+        {
+            bleedingTimer = bleedingTime;
+            bleedingTickleTimer = bleedingTickleTime;
+        }
     }
 
     public virtual void Stun(float time)

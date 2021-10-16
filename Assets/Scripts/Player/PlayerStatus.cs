@@ -76,8 +76,8 @@ public class PlayerStatus : GameObjectBase
             return;
 
         // ≤‚ ‘
-        Debug.Log(damage);
-        Debug.Log(curHealth);
+        //Debug.Log(damage);
+        //Debug.Log(curHealth);
 
         base.Hurt(damage, shieldBreak, damageIncrease, type);
         UpdateHealth();
