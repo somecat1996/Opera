@@ -314,11 +314,25 @@ public class GUIManager : MonoBehaviour
 
         image_Character.sprite = PlayerManager.instance.cur_CharacterInfo.illustration;
 
-        // 卡牌信息
-        for(int i = 0; i < _card.Count; i++)
+        if(_card.Count != 0)
         {
-            card_Loot[i].SetCardInfo(_card[i]);
+            // 卡牌信息
+            for (int i = 0; i < _card.Count; i++)
+            {
+                card_Loot[i].SetCardInfo(_card[i]);
+                card_Loot[i].gameObject.SetActive(true);
+            }
         }
+        // 无战利品卡牌时 则不启用卡牌信息展示插槽
+        else
+        {
+            // 卡牌信息
+            for (int i = 0; i < 3; i++)
+            {
+                card_Loot[i].gameObject.SetActive(false);
+            }
+        }
+
 
         panel_Evaluation.SetActive(true);
     }
