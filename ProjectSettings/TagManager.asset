@@ -14,6 +14,7 @@ TagManager:
   - RangeDisplayer
   - LineCanvas
   - GUI_Stay
+  - UICamera
   layers:
   - Default
   - TransparentFX
