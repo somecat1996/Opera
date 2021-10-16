@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6292966159882018507}
   m_Layer: 0
   m_Name: Knife
-  m_TagString: SummonedOnject
+  m_TagString: SummonedObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
