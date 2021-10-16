@@ -51,7 +51,11 @@ public class Card_FairyMatch : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
-        throw new System.NotImplementedException();
+        // 不存在场景物品
+        if (!EnemyManager.instance.ActivateItem())
+        {
+            PlayerManager.instance.ChangePowerPoint(cardInfo.mainValue_Cur);
+        }
     }
 
     public void TriggerEffect(GameObjectBase _go)
