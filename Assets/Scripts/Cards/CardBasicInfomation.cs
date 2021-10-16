@@ -112,19 +112,19 @@ public class CardBasicInfomation : ScriptableObject
         // 主要参数转换
         if (description.Contains("#MainValue"))
         {
-            text = description.Replace("#MainValue",mainValue_Cur.ToString("0.00") + (mainvalue == mainValue_Cur ? "" : "(+" + (mainvalue-mainValue_Cur).ToString("0.00") + "加成)"));
+            text = description.Replace("#MainValue",mainValue_Cur.ToString("0.0") + (mainvalue == mainValue_Cur ? "" : "(+" + (mainvalue-mainValue_Cur).ToString("0.0") + "加成)"));
         }
         
         // 小数转百分数
         if (description.Contains("%MainValue"))
         {
-            text = description.Replace("%MainValue",(mainValue_Cur * 100).ToString()+'%');
+            text = description.Replace("%MainValue",(mainValue_Cur * 100).ToString("0.0") +'%');
         }
 
         // 乘数替换 duration当作倍数
         if (description.Contains("@MainValue"))
         {
-            text = text.Replace("@MainValue", (mainValue_Cur*duration).ToString("0.00") + (mainvalue * duration == mainValue_Cur * duration ? "" : "(+" + ((mainvalue - mainValue_Cur) * duration).ToString("0.00") + "加成)"));
+            text = text.Replace("@MainValue", (mainValue_Cur*duration).ToString("0.0") + (mainvalue * duration == mainValue_Cur * duration ? "" : "(+" + ((mainvalue - mainValue_Cur) * duration).ToString("0.0") + "加成)"));
         }
             
         

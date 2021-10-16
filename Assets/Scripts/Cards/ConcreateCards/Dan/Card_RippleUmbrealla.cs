@@ -9,6 +9,12 @@ public class Card_RippleUmbrealla : CardPrototype,ICardOperation,ICardEffectTrig
 
     public void mouseDrag()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            mouseExit();
+            return;
+        }
+
         transform.position = Input.mousePosition;
     }
 

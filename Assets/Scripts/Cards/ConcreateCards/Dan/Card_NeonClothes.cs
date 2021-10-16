@@ -6,6 +6,12 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 {
     public void mouseDrag()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            mouseExit();
+            return;
+        }
+
         transform.position = Input.mousePosition;
     }
 

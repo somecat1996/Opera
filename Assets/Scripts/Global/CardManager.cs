@@ -138,7 +138,7 @@ public class CardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            //LockCards(1);
+            LockCards(1);
             DiscardCardRandomly(2);
         }
     }
@@ -645,7 +645,7 @@ public class CardManager : MonoBehaviour
 
             SendToDiscardedCardGroup(tempCardList[index]);
             tempCardList.Remove(tempCardList[index]);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 

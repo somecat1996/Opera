@@ -11,6 +11,12 @@ public class Card_Break : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseDrag()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            mouseExit();
+            return;
+        }
+
         transform.position = Input.mousePosition;
 
         SetFadeOutAndShowTargetMarker(true);

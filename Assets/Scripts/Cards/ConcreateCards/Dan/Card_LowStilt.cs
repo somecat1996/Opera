@@ -10,6 +10,12 @@ public class Card_LowStilt : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void mouseDrag()
     {
+        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        {
+            mouseExit();
+            return;
+        }
+
         transform.position = Input.mousePosition;
     }
 
