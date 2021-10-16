@@ -55,6 +55,9 @@ public class PlayerStatus : GameObjectBase
     {
         started = true;
         playerMovement.StartMovingAt();
+        curHealth = maxHealth;
+        healthBarManager.UpdateHealth(curHealth / maxHealth);
+        UpdateHealth();
     }
 
     private void UpdateHealth()

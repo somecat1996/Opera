@@ -164,7 +164,7 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < generationPoint.Count; i++)
         {
-            if (i != 4 && generationPointStatus[i])
+            if (generationPointStatus[i])
                 generationPointStatus[i].Die();
         }
     }
@@ -173,10 +173,14 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < generationPoint.Count; i++)
         {
-            if (i != 4 && generationPointStatus[i])
+            if (generationPointStatus[i])
                 generationPointStatus[i].Die();
         }
         playerStatus.StopPlaying();
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("SummonedObject"))
+        {
+            Destroy(i);
+        }
     }
 
     public void HurtAll(float damage)
