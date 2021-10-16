@@ -195,6 +195,7 @@ MonoBehaviour:
   bleedingTime: 5
   bleedingTickleTime: 1
   bleedingDamage: 5
+  shield: 0
   voodooTime: 10
   voodoocoolingTime: 15
   playerMovement: {fileID: 3880208515835783630}
