@@ -64,6 +64,10 @@ public class GUIManager : MonoBehaviour
     [Space]
     public Transform spawnPos_SystemText;
     public GameObject prefab_SystemText;
+    [Space]
+    public GameObject panel_Title;
+    public GameObject panel_ConfirmDialog_NewGame;
+    public GameObject panel_ConfirmDialog_Quit;
 
     [Header("Evaluation UI Objects")]
     public GameObject panel_Evaluation;
@@ -344,4 +348,19 @@ public class GUIManager : MonoBehaviour
         panel_Evaluation.SetActive(false);
     }
 
+    /// <summary>
+    /// 显示新游戏询问窗口
+    /// </summary>
+    public void DisplayConfirmDiaglog_NewGame()
+    {
+        panel_ConfirmDialog_NewGame.SetActive(true);
+    }
+    public void DisplayConfirmDiaglog_Quit()
+    {
+        panel_ConfirmDialog_Quit.SetActive(true);
+    }
+    public void SetActivePanelTitle(bool _v)
+    {
+        panel_Title.SetActive(_v);
+    }
 }

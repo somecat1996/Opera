@@ -17,6 +17,7 @@ public class BuffManager : MonoBehaviour
     {
         instance = this;
 
+        // ‘ÿ»Îbuff–≈œ¢
         LoadAllBuffInstances();
     }
 
