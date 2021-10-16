@@ -39,10 +39,12 @@ public class PlayerManager : MonoBehaviour
     {
         instance = this;
 
+        // 载入关卡信息
         foreach(var i in Resources.LoadAll<LevelBasicInfomation>("LevelBasicInfomation"))
         {
             levelInfo.Add(i.id, i);
         }
+        // 载入角色信息
         foreach (var i in Resources.LoadAll<CharacterBasicInfomation>("CharacterInfomation"))
         {
             charInfo.Add(i.id, i);
@@ -143,7 +145,6 @@ public class PlayerManager : MonoBehaviour
         // 初始化关卡数据
         foreach (var i in levelInfo.Values)
             i.InitializeData();
-
     }
 
     /// <summary>

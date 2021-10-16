@@ -337,7 +337,9 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    // 初始化所有卡牌-开始新游戏时调用 (读取后使用)
+    /// <summary>
+    /// 初始化所有卡牌-开始新游戏时调用 (读取后使用)
+    /// </summary>
     public void InitializeAllCards()
     {
         // 初始化角色卡牌
@@ -345,7 +347,7 @@ public class CardManager : MonoBehaviour
         {
             i.InitilizeCard();
         }
-        // 初始化额外卡牌
+        // 初始化剧情卡牌
         foreach(var i in cardLibrary_Common.Values)
         {
             i.LockCard();
