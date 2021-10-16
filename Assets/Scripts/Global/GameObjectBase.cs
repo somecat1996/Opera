@@ -113,6 +113,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     protected bool pause;
 
     protected Animator animator;
+    protected Animator shadowAnimator;
     // 玩家、敌人基类
 
     protected virtual void Awake()
@@ -146,6 +147,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         pause = false;
 
         animator = transform.Find("Sprite").GetComponent<Animator>();
+        shadowAnimator = transform.Find("Shadow").GetComponent<Animator>();
     }
 
     protected virtual void Start()

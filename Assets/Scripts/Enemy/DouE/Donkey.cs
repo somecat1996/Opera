@@ -120,6 +120,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     {
         //animator.SetTrigger("Hurt");
         base.Hurt(damage, shieldBreak, damageIncrease, type);
+        BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth);
         if (countHurt)
             hurtCounter += 1;
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)

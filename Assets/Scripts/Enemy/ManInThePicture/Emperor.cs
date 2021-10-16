@@ -119,7 +119,9 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
         animator.SetTrigger("Hurt");
+        shadowAnimator.SetTrigger("Hurt");
         base.Hurt(damage, shieldBreak, damageIncrease, type);
+        BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth);
         if (countHurt)
             hurtCounter += 1;
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)
@@ -216,6 +218,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     private void BananaAttack()
     {
         animator.SetTrigger("Banana");
+        shadowAnimator.SetTrigger("Banana");
         bananaAttackTimer -= Time.deltaTime;
         if (bananaAttackTimer <= 0)
         {
@@ -256,6 +259,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     private void SwingSword()
     {
         animator.SetTrigger("Sword");
+        shadowAnimator.SetTrigger("Sword");
         swordAttackTimer -= Time.deltaTime;
         if (swordAttackTimer <= 0)
         {
