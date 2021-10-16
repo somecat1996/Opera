@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6335407747437155014}
   - component: {fileID: 6747725325343228300}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5957618543074319672}
   - component: {fileID: 3909657100192384369}
   - component: {fileID: 104844013}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PoisonCloud
   m_TagString: SummonedObject
   m_Icon: {fileID: 0}

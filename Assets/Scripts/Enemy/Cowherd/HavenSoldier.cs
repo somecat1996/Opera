@@ -7,7 +7,7 @@ public class HavenSoldier : EnemyStatus, ReducePower
     public float reduceRate = 0.1f;
     public float rebornTime = 1f;
 
-    private bool status;
+    private bool alive;
     private float rebornTimer;
 
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class HavenSoldier : EnemyStatus, ReducePower
     {
         base.Start();
 
-        status = true;
+        alive = true;
         rebornTimer = 0;
         StartReducing();
     }
@@ -25,7 +25,19 @@ public class HavenSoldier : EnemyStatus, ReducePower
     {
         if (!EnemyManager.instance.pause)
         {
-            base.Update();
+            if (alive)
+            {
+                base.Update();
+            }
+            else
+            {
+                rebornTimer -= Time.deltaTime;
+                if (rebornTimer <= 0)
+                {
+                    rebornTimer = 0;
+                    Reborn();
+                }
+            }
         }
     }
 
@@ -42,12 +54,14 @@ public class HavenSoldier : EnemyStatus, ReducePower
     public override void Die()
     {
         StopReducing();
-        base.Die();
+        alive = false;
+        rebornTimer = rebornTime;
     }
 
     private void Reborn()
     {
-
+        StartReducing();
+        alive = true;
     }
 
     public override void Stun(float time)
