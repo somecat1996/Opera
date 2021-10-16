@@ -113,4 +113,10 @@ public class PlayerStatus : GameObjectBase
     {
         BattleDataManager.instance.UpdatePlayerMovingStatus(false);
     }
+
+    public void PushTo(Vector3 position, float damage)
+    {
+        Hurt(damage);
+        transform.position = position;
+    }
 }

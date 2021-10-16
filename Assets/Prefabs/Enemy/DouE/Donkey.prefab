@@ -107,6 +107,7 @@ MonoBehaviour:
   bleedingTime: 5
   bleedingTickleTime: 1
   bleedingDamage: 5
+  shield: 0
   voodooTime: 10
   voodoocoolingTime: 15
   position: 0
@@ -123,6 +124,9 @@ MonoBehaviour:
   xiaominPrefab: {fileID: 0}
   xianguanPrefab: {fileID: 0}
   medicinePrefab: {fileID: 0}
+  pushPosition: {x: 0, y: 0, z: 0}
+  pushDamage: 3
+  pushTime: 10
   lineTextPrefab: {fileID: 0}
   speakTime: 20
   stage1Lines: []
@@ -217,6 +221,7 @@ MonoBehaviour:
   bleedingTime: 5
   bleedingTickleTime: 1
   bleedingDamage: 5
+  shield: 0
   voodooTime: 10
   voodoocoolingTime: 15
   position: 0
@@ -233,6 +238,9 @@ MonoBehaviour:
   xiaominPrefab: {fileID: 7049907831289417314, guid: a5ca9b9679d44ae46bc45143fc3c712e, type: 3}
   xianguanPrefab: {fileID: 7049907831289417314, guid: 0af878d90daade54190cbcb82969732e, type: 3}
   medicinePrefab: {fileID: 7049907831289417314, guid: 5fefbe98a860f1846882e269c560874b, type: 3}
+  pushPosition: {x: -4.1, y: 0.79, z: -3.31}
+  pushDamage: 3
+  pushTime: 10
   lineTextPrefab: {fileID: 3921916031245853504, guid: 7af6adbf22fe4044d8adbad4008c9957, type: 3}
   speakTime: 20
   stage1Lines:

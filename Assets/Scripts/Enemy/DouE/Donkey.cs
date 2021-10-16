@@ -41,6 +41,11 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     public GameObject medicinePrefab;
     private Medicine medicine;
 
+    public Vector3 pushPosition;
+    public float pushDamage = 3f;
+    public float pushTime = 10f;
+    private float pushTimer;
+
     // ¶Ô»°¿ò
     public GameObject lineTextPrefab;
     public float speakTime = 20f;
@@ -77,6 +82,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
         shieldTimer = shieldTime;
         dirtyWaterAttackTimer = dirtyWaterAttackTime;
+        pushTimer = pushTime;
     }
 
     // Update is called once per frame
@@ -157,6 +163,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         BananaAttack();
         AddShield();
         DirtyWaterAttack();
+        PushAttack();
     }
 
     private void Stage3()
@@ -165,6 +172,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         BananaAttack();
         AddShield();
         DirtyWaterAttack();
+        PushAttack();
     }
 
     public void SummonMinion(GameObject minion, int number = 1)
@@ -217,6 +225,16 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
             SummonedObjectManager.instance.SummonDirtyWater(position, this);
+        }
+    }
+
+    private void PushAttack()
+    {
+        pushTimer -= Time.deltaTime;
+        if (pushTimer <= 0)
+        {
+            pushTimer = pushTime;
+            player.PushTo(pushPosition, pushDamage);
         }
     }
 

@@ -7,16 +7,21 @@ public class Banana : MonoBehaviour
     public Vector3 offset;
 
     private float damage;
+    private Rigidbody rigidbody;
 
     private void Awake()
     {
         damage = 0;
+        rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-
+        if (transform.position.y < 0)
+        {
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
