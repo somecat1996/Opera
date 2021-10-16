@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Emperor : EnemyStatus, SummonEnemy, BossInterface
+public class WesternQueen : EnemyStatus, SummonEnemy, BossInterface
 {
     [Header("Stage Configuration")]
     public float stage2Start = 0.7f;
@@ -10,11 +10,9 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 
     // 普通攻击
     [Header("Normal Attack")]
-    public int normalAttackTimeMin = 1;
-    public int normalAttackTimeMax = 5;
-    public int[] normalAttackDamage;
+    public int normalAttackTime = 1;
+    public int normalAttackDamage = 1;
     private float normalAttackTimer;
-    private int normalAttackTime;
 
     // 香蕉皮攻击
     [Header("Banana Attack")]
@@ -22,28 +20,35 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     public float bananaAttackDamage = 3f;
     private float bananaAttackTimer;
 
-    // 召唤大臣
-    [Header("Summon Minister")]
-    public GameObject ministerPrefab;
-    public float ministerSummonTime = 5f;
-    private float ministerSummonTimer;
+    // 护盾
+    [Header("Shield")]
+    public float shieldTime = 30f;
+    public float shieldValue = 300;
 
-    // 扔出圣旨
-    [Header("Throw Imperial Decree")]
-    public float imperialDecreeThrowTime = 10f;
-    private float imperialDecreeThrowTimer;
+    // 雷劫攻击
+    [Header("Thunder Attack")]
+    public float dirtyWaterAttackTime = 15f;
+    public float dirtyWaterAttackDamage = 3f;
+    private float dirtyWaterAttackTimer;
 
-    // 挥剑
-    [Header("Swing Sword")]
-    public float swordAttackTime = 5f;
-    public float swordAttackIncrease = 2f;
-    private float swordAttackTimer;
-    private bool swordAttack;
+    // 市井小民Prefab
+    [Header("Minions")]
+    public GameObject xiaominPrefab;
+    public GameObject xianguanPrefab;
 
-    // 画卷prefab
-    [Header("Picture Prefab")]
-    public GameObject picturePrefab;
-    private Picture picture;
+    // 解药prefab
+    [Header("Medicine Prefab")]
+    public GameObject medicinePrefab;
+    private Medicine medicine;
+
+    [Header("Push Attack")]
+    public Vector3 pushPosition;
+    public float pushDamage = 3f;
+    public float pushTime = 10f;
+    private float pushTimer;
+
+    [Header("Stage 3 Time Limit")]
+    public float stage3TimeLimit = 60f;
 
     // 对话框
     public GameObject lineTextPrefab;
@@ -62,18 +67,15 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 
     private int currentStage;
     private PlayerStatus player;
+    private float hurtCoefficient;
+    private float damageCoefficient;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
 
-        normalAttackTime = NormalAttackTime();
         normalAttackTimer = normalAttackTime;
         bananaAttackTimer = bananaAttackTime;
-        ministerSummonTimer = ministerSummonTime;
-        imperialDecreeThrowTimer = imperialDecreeThrowTime;
-        swordAttackTimer = swordAttackTime;
-        swordAttack = false;
 
         currentStage = 1;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
@@ -83,6 +85,13 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         douETimer = 0;
 
         speakTimer = speakTime;
+
+        shieldTimer = shieldTime;
+        dirtyWaterAttackTimer = dirtyWaterAttackTime;
+        pushTimer = pushTime;
+
+        hurtCoefficient = 1;
+        damageCoefficient = 1;
 
         BattleDataManager.instance.UpdateStage(1);
     }
@@ -120,9 +129,65 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
-        animator.SetTrigger("Hurt");
-        shadowAnimator.SetTrigger("Hurt");
+        //animator.SetTrigger("Hurt");
+        // 受伤接口，0-真伤，1-物理，2-魔法
+        // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
+        float trueDamage;
+        if (shield > 0 && shieldBreak)
+            trueDamage = damageIncrease * damage;
+        else
+            trueDamage = damage;
+
+        // 计算暴击
+        switch (type)
+        {
+            case HurtType.Physic:
+                if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Physics)
+                {
+                    trueDamage *= 1 + GlobalValue.critIncrement_Physics;
+                }
+                break;
+            case HurtType.Magic:
+                if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Magic)
+                {
+                    trueDamage *= 1 + GlobalValue.critIncrement_Magic;
+                }
+                break;
+            default:
+                break;
+        }
+
+        trueDamage *= hurtCoefficient;
+
+        // 结算真实伤害
+        if (shield > trueDamage)
+        {
+            shield -= trueDamage;
+        }
+        else
+        {
+            curHealth -= trueDamage - shield;
+            shield = 0;
+        }
+
+        if (GlobalValue.poisonAttack)
+            Poisoning();
+
+        if (voodooTimer > 0)
+            voodooHurt += trueDamage;
+
+        BattleDataManager.instance.UpdateDamage(trueDamage);
+        healthBarManager.UpdateHealth(curHealth / maxHealth);
+
+        var col = gameObject.GetComponent<Collider>();
+        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
+        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
+        damageText.Init(trueDamage, topAhcor);
         base.Hurt(damage, shieldBreak, damageIncrease, type);
+        if (curHealth <= 0)
+        {
+            Die();
+        }
         BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth);
         if (countHurt)
             hurtCounter += 1;
@@ -135,17 +200,17 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     private void Stage2Start()
     {
         currentStage = 2;
-        SummonPicture();
         Speak(stage1To2Line);
+        SummonMedicine();
         BattleDataManager.instance.UpdateStage(2);
     }
 
     private void Stage3Start()
     {
         currentStage = 3;
-        PictureChange();
-        EnemyManager.instance.RemoveMinions();
         Speak(stage2To3Line);
+        SummonXianguan();
+        MedicineChange();
         BattleDataManager.instance.UpdateStage(3);
     }
 
@@ -153,7 +218,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     {
         NormalAttack();
         BananaAttack();
-        SummonMinister();
+        AddShield();
 
         speakTimer -= Time.deltaTime;
         if (speakTimer <= 0)
@@ -167,25 +232,20 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     {
         NormalAttack();
         BananaAttack();
-        SummonMinister();
-        ThrowImperialDecree();
+        AddShield();
+        PushAttack();
     }
 
     private void Stage3()
     {
         NormalAttack();
         BananaAttack();
-        SwingSword();
-    }
+        AddShield();
+        PushAttack();
 
-    private void SummonMinister()
-    {
-        ministerSummonTimer -= Time.deltaTime;
-        if (ministerSummonTimer <= 0)
-        {
-            ministerSummonTimer = ministerSummonTime;
-            SummonMinion(ministerPrefab);
-        }
+        stage3TimeLimit -= Time.deltaTime;
+        if (stage3TimeLimit <= 0)
+            Die();
     }
 
     public void SummonMinion(GameObject minion, int number = 1)
@@ -199,84 +259,72 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     private void NormalAttack()
     {
         normalAttackTimer -= Time.deltaTime;
-        int damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin];
         if (normalAttackTimer <= 0)
         {
-            normalAttackTime = NormalAttackTime();
             normalAttackTimer = normalAttackTime;
-            if (swordAttack)
-            {
-                swordAttack = false;
-                player.Hurt(damage * swordAttackIncrease);
-            }
-            else
-                player.Hurt(damage);
+            player.Hurt(normalAttackDamage);
         }
-    }
-
-    private int NormalAttackTime()
-    {
-        return Random.Range(normalAttackTimeMin, normalAttackTimeMax + 1);
     }
 
     private void BananaAttack()
     {
-        animator.SetTrigger("Banana");
-        shadowAnimator.SetTrigger("Banana");
+        //animator.SetTrigger("Banana");
         bananaAttackTimer -= Time.deltaTime;
         if (bananaAttackTimer <= 0)
         {
             bananaAttackTimer = bananaAttackTime;
-            // player.Hurt(bananaAttackDamage);
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
             SummonedObjectManager.instance.SummonBanana(position, bananaAttackDamage);
         }
     }
 
-    private void ThrowImperialDecree()
+    private void AddShield()
     {
-        imperialDecreeThrowTimer -= Time.deltaTime;
-        if (imperialDecreeThrowTimer <= 0)
+        shieldTimer -= Time.deltaTime;
+        if (shieldTimer <= 0)
         {
-            imperialDecreeThrowTimer = imperialDecreeThrowTime;
-            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-            {
-                Minister minister = enemy.GetComponent<Minister>();
-                if (minister)
-                    minister.SummonMinion(minister.soldierPrefab, 4);
-            }
+            shieldTimer = shieldTime;
+            AddShield(shieldValue, Mathf.Infinity);
         }
     }
 
-    private void SummonPicture()
+    private void PushAttack()
     {
-        GameObject tmp = EnemyManager.instance.SummonInMiddle(picturePrefab);
-        picture = tmp.GetComponent<Picture>();
-    }
-
-    private void PictureChange()
-    {
-        picture.Change();
-    }
-
-    private void SwingSword()
-    {
-        animator.SetTrigger("Sword");
-        shadowAnimator.SetTrigger("Sword");
-        swordAttackTimer -= Time.deltaTime;
-        if (swordAttackTimer <= 0)
+        pushTimer -= Time.deltaTime;
+        if (pushTimer <= 0)
         {
-            swordAttackTimer = swordAttackTime;
-            swordAttack = true;
+            pushTimer = pushTime;
+            player.PushTo(pushPosition, pushDamage);
         }
+    }
+
+    public void SummonXiaomin()
+    {
+        EnemyManager.instance.SummonMinion(xiaominPrefab);
+    }
+
+    public void SummonXianguan()
+    {
+        EnemyManager.instance.SummonMinion(xianguanPrefab);
+    }
+
+    private void SummonMedicine()
+    {
+        GameObject tmp = EnemyManager.instance.SummonInMiddle(medicinePrefab);
+        medicine = tmp.GetComponent<Medicine>();
+    }
+
+    private void MedicineChange()
+    {
+        medicine.Change();
     }
 
     public override void Die()
     {
-        animator.SetTrigger("Die");
-        if (picture)
-            Destroy(picture.gameObject);
+        //animator.SetTrigger("Die");
+        if (medicine)
+            Destroy(medicine.gameObject);
         EnemyManager.instance.FinishLevel(true);
         base.Die();
     }
@@ -299,5 +347,15 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
         Line lineText = Instantiate(lineTextPrefab, GameObject.FindGameObjectWithTag("LineCanvas").transform).GetComponent<Line>();
         lineText.Init(line, topAhcor);
+    }
+
+    public void ChangeHurtCoefficient(float value)
+    {
+        hurtCoefficient += value;
+    }
+
+    public void ChangeDamageCoefficient(float value)
+    {
+        damageCoefficient += value;
     }
 }

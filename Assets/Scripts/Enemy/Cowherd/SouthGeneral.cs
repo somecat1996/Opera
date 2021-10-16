@@ -2,68 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HavenSoldier : EnemyStatus, ReducePower
+public class SouthGeneral : EnemyStatus
 {
-    public float reduceRate = 0.1f;
-    public float rebornTime = 1f;
+    public float damage = 1f;
+    public float attackTime = 5f;
 
-    private bool alive;
-    private float rebornTimer;
-    private bool block;
+    public float damageReduce = 0.2f;
 
+    private float attackTimer;
+    private PlayerStatus playerStatus;
+    private WesternQueen westernQueen;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
 
-        alive = true;
-        block = false;
-        rebornTimer = 0;
-        StartReducing();
+        attackTimer = attackTime;
+
+        playerStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
         if (!EnemyManager.instance.pause)
         {
-            if (alive)
-            {
-                base.Update();
-            }
-            else if (!block)
-            {
-                rebornTimer -= Time.deltaTime;
-                if (rebornTimer <= 0)
-                {
-                    rebornTimer = 0;
-                    Reborn();
-                }
-            }
+            base.Update();
+            Attack();
+        }
+    }
+
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
+    {
+        base.Hurt(damage, shieldBreak, damageIncrease, type);
+    }
+
+    private void Attack()
+    {
+        attackTimer -= Time.deltaTime;
+        if (attackTimer <= 0)
+        {
+            attackTimer = attackTime;
+            playerStatus.Hurt(damage);
         }
     }
 
     public void StartReducing()
     {
-        PlayerManager.instance.ChangeRecoverySpeed_PowerPoint(reduceRate);
+        westernQueen.ChangeDamageCoefficient(-damageReduce);
     }
 
     public void StopReducing()
     {
-        PlayerManager.instance.ChangeRecoverySpeed_PowerPoint(-reduceRate);
+        westernQueen.ChangeDamageCoefficient(damageReduce);
     }
 
     public override void Die()
     {
         StopReducing();
-        alive = false;
-        rebornTimer = rebornTime;
-    }
-
-    private void Reborn()
-    {
-        StartReducing();
-        alive = true;
+        base.Die();
     }
 
     public override void Stun(float time)
@@ -103,8 +99,9 @@ public class HavenSoldier : EnemyStatus, ReducePower
         }
     }
 
-    public void Block()
+    public void Instantiate(WesternQueen queen)
     {
-        block = true;
+        westernQueen = queen;
+        westernQueen.ChangeDamageCoefficient(-damageReduce);
     }
 }

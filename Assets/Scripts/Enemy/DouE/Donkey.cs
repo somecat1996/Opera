@@ -41,10 +41,14 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     public GameObject medicinePrefab;
     private Medicine medicine;
 
+    [Header("Push Attack")]
     public Vector3 pushPosition;
     public float pushDamage = 3f;
     public float pushTime = 10f;
     private float pushTimer;
+
+    [Header("Stage 3 Time Limit")]
+    public float stage3TimeLimit = 60f;
 
     // ¶Ô»°¿ò
     public GameObject lineTextPrefab;
@@ -83,6 +87,8 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         shieldTimer = shieldTime;
         dirtyWaterAttackTimer = dirtyWaterAttackTime;
         pushTimer = pushTime;
+
+        BattleDataManager.instance.UpdateStage(1);
     }
 
     // Update is called once per frame
@@ -134,6 +140,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         currentStage = 2;
         Speak(stage1To2Line);
         SummonMedicine();
+        BattleDataManager.instance.UpdateStage(2);
     }
 
     private void Stage3Start()
@@ -142,6 +149,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         Speak(stage2To3Line);
         SummonXianguan();
         MedicineChange();
+        BattleDataManager.instance.UpdateStage(3);
     }
 
     private void Stage1()
@@ -175,6 +183,10 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         AddShield();
         DirtyWaterAttack();
         PushAttack();
+
+        stage3TimeLimit -= Time.deltaTime;
+        if (stage3TimeLimit <= 0)
+            Die();
     }
 
     public void SummonMinion(GameObject minion, int number = 1)

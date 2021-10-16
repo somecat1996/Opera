@@ -2,45 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HavenSoldier : EnemyStatus, ReducePower
+public class EastGeneral : EnemyStatus, ReducePower
 {
-    public float reduceRate = 0.1f;
-    public float rebornTime = 1f;
-
-    private bool alive;
-    private float rebornTimer;
-    private bool block;
-
+    public float reduceRate;
+    public GameObject soldierPrefab;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
 
-        alive = true;
-        block = false;
-        rebornTimer = 0;
         StartReducing();
-    }
-
-    // Update is called once per frame
-    protected override void Update()
-    {
-        if (!EnemyManager.instance.pause)
-        {
-            if (alive)
-            {
-                base.Update();
-            }
-            else if (!block)
-            {
-                rebornTimer -= Time.deltaTime;
-                if (rebornTimer <= 0)
-                {
-                    rebornTimer = 0;
-                    Reborn();
-                }
-            }
-        }
     }
 
     public void StartReducing()
@@ -56,14 +27,15 @@ public class HavenSoldier : EnemyStatus, ReducePower
     public override void Die()
     {
         StopReducing();
-        alive = false;
-        rebornTimer = rebornTime;
+        base.Die();
     }
 
-    private void Reborn()
+    public void SummonMinion(GameObject minion, int number = 1)
     {
-        StartReducing();
-        alive = true;
+        for (int i = 0; i < number; i++)
+        {
+            EnemyManager.instance.SummonMinion(minion);
+        }
     }
 
     public override void Stun(float time)
@@ -103,8 +75,10 @@ public class HavenSoldier : EnemyStatus, ReducePower
         }
     }
 
-    public void Block()
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
-        block = true;
+        animator.SetTrigger("Hurt");
+        shadowAnimator.SetTrigger("Hurt");
+        base.Hurt(damage, shieldBreak, damageIncrease, type);
     }
 }
