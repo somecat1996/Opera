@@ -74,6 +74,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         speakTimer = speakTime;
 
         shieldTimer = shieldTime;
+        dirtyWaterAttackTimer = dirtyWaterAttackTime;
     }
 
     // Update is called once per frame
@@ -128,7 +129,6 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     private void Stage3Start()
     {
         currentStage = 3;
-        EnemyManager.instance.RemoveMinions();
         Speak(stage2To3Line);
     }
 
@@ -192,6 +192,16 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
             SummonedObjectManager.instance.SummonBanana(position, bananaAttackDamage);
+        }
+    }
+
+    private void AddShield()
+    {
+        shieldTimer -= Time.deltaTime;
+        if (shieldTimer <= 0)
+        {
+            shieldTimer = shieldTime;
+            AddShield(shieldValue, Mathf.Infinity);
         }
     }
 
