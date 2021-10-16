@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403ae2dd693bb1d4b924f6b8d206b053, type: 3}
   m_Name: Solider.fadeMotionList
   m_EditorClassIdentifier: 
-  MotionInstanceIds: 828cf9ff768cf9ff6e8cf9ff
+  MotionInstanceIds: d4e5f6ffd0e5f6ffcce5f6ff
   CubismFadeMotionObjects:
   - {fileID: 11400000, guid: 7681ebf2fe7ac584e9cfafcc50f9dbec, type: 2}
   - {fileID: 11400000, guid: 5415a83bd9ffa664fbc33f3f6f7d33cc, type: 2}
