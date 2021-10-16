@@ -93,10 +93,12 @@ MonoBehaviour:
   bossPrefabs:
   - {fileID: 7049907831289417314, guid: 122080d50a4b3cc45bde69af429d6b23, type: 3}
   - {fileID: 7049907831289417314, guid: 0914c85ec05eb2447aacc9cee9fe3e7b, type: 3}
+  - {fileID: 7049907831289417314, guid: 12cc7c854e94da34a9d88fa73e6eea84, type: 3}
   background: {fileID: 0}
   backgroundImages:
   - {fileID: 21300000, guid: a515ba8ddb54bf94fbfe85a3812bddc0, type: 3}
   - {fileID: 21300000, guid: e5d18fcde13c29d449627440fa837a6d, type: 3}
+  - {fileID: 21300000, guid: b313c817b2e91f441b9b5e2d5d663c80, type: 3}
   ground: {fileID: 0}
   groundMaterials:
   - {fileID: 2100000, guid: d046d7cd151ab474ea40b8bebead8f42, type: 2}
