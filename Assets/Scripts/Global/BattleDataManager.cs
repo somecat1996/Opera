@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BattleDataManager : MonoBehaviour
 {
@@ -23,8 +24,12 @@ public class BattleDataManager : MonoBehaviour
     public bool playerMoving = false;
 
     [Header("Obejcts And Related Configuration")]
+    // 通用配置
+    [Space]
+    public float fadeTime = 0.5f;
     // 范围卡牌指示器
     public GameObject rangeDisplayer;
+    public bool activateRangeDIsplayer = false;
     [Space]
     // 单体卡牌指示器
     public Vector3 markerOffset;
@@ -64,7 +69,7 @@ public class BattleDataManager : MonoBehaviour
 
         gameTimer += Time.deltaTime;
 
-        if (rangeDisplayer.activeSelf)
+        if (activateRangeDIsplayer)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -84,17 +89,20 @@ public class BattleDataManager : MonoBehaviour
             {
                 if(hit.transform.tag == "Enemy")
                 {
-                    targetMarker.SetActive(true);
+                    //targetMarker.SetActive(true);
+                    targetMarker.transform.DOScale(Vector3.one, fadeTime);
                     targetMarker.transform.position = (hit.transform.position) + markerOffset;
                 }
                 else
                 {
-                    targetMarker.SetActive(false);
+                    targetMarker.transform.DOScale(Vector3.zero, fadeTime);
+                    //targetMarker.SetActive(false);
                 }
             }
             else
             {
-                targetMarker.SetActive(false);
+                targetMarker.transform.DOScale(Vector3.zero, fadeTime);
+                //targetMarker.SetActive(false);
             }
         }
 
@@ -127,14 +135,18 @@ public class BattleDataManager : MonoBehaviour
     /// <param name="_radius">半径</param>
     public void SetActiveRangeDisplayer(bool _v,float _radius = 0)
     {
+        activateRangeDIsplayer = _v;
+
         if (_v)
         {
-            rangeDisplayer.transform.localScale = new Vector3(_radius, _radius, _radius) * 2;
-            rangeDisplayer.SetActive(_v);
+            //rangeDisplayer.transform.localScale = new Vector3(_radius, _radius, _radius) * 2;
+            //rangeDisplayer.SetActive(_v);
+            rangeDisplayer.transform.DOScale(new Vector3(_radius, _radius, _radius) * 2, fadeTime);
         }
         else
         {
-            rangeDisplayer.SetActive(_v);
+            //rangeDisplayer.SetActive(_v);
+            rangeDisplayer.transform.DOScale(Vector3.zero, fadeTime);
         }
     }
 
@@ -148,7 +160,8 @@ public class BattleDataManager : MonoBehaviour
 
         if(_v == false)
         {
-            targetMarker.SetActive(false);
+            targetMarker.transform.DOScale(Vector3.zero, fadeTime);
+            //targetMarker.SetActive(false);
         }
     }
 
@@ -184,9 +197,9 @@ public class BattleDataManager : MonoBehaviour
         playerMoving = false;
 
         // 指示器
-        directionPointer.SetActive(false);
-        rangeDisplayer.SetActive(false);
-        targetMarker.SetActive(false);
+        //directionPointer.SetActive(false);
+        //rangeDisplayer.SetActive(false);
+        //targetMarker.SetActive(false);
         activateTargetMarker = false;
     }
 
