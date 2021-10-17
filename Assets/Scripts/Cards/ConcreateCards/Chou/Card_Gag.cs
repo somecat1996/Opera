@@ -31,7 +31,7 @@ public class Card_Gag : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
-        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        if (CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();

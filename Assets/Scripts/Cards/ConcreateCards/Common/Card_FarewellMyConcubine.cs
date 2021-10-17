@@ -30,7 +30,7 @@ public class Card_FarewellMyConcubine : CardPrototype,ICardOperation,ICardEffect
 
     public void mouseUp()
     {
-        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        if (CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();

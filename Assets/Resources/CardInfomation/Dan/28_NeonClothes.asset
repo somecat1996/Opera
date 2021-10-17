@@ -25,6 +25,6 @@ MonoBehaviour:
   cost: 2
   duration: 0
   radius: 0
-  mainValue_Cur: 1
-  quantity: 2
+  mainValue_Cur: 3
+  quantity: 1
   level: 1

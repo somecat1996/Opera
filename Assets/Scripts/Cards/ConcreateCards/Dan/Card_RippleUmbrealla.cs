@@ -9,7 +9,7 @@ public class Card_RippleUmbrealla : CardPrototype,ICardOperation,ICardEffectTrig
 
     public void mouseDrag()
     {
-        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        if (CheckAvaliablity())
         {
             mouseExit();
             return;
@@ -32,7 +32,7 @@ public class Card_RippleUmbrealla : CardPrototype,ICardOperation,ICardEffectTrig
 
     public void mouseUp()
     {
-        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        if (CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();

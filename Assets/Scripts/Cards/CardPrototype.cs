@@ -291,6 +291,6 @@ public class CardPrototype : MonoBehaviour
     /// <returns></returns>
     public bool CheckAvaliablity()
     {
-        return !(CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup || GameManager.instance.gamePause);
+        return !(CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup || (!GameManager.instance.gamePause));
     }
 }

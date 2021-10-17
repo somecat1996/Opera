@@ -10,7 +10,7 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseDrag()
     {
-        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        if (CheckAvaliablity())
         {
             mouseExit();
             return;
@@ -38,7 +38,7 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
-        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        if (CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();
