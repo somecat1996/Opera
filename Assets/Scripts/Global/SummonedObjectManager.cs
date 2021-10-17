@@ -10,6 +10,8 @@ public class SummonedObjectManager : MonoBehaviour
     public GameObject poisonCloud;
     public GameObject banana;
     public GameObject dirtyWater;
+    public GameObject moneyDart;
+    public GameObject moneyDartChild;
 
     private void Start()
     {
@@ -38,5 +40,17 @@ public class SummonedObjectManager : MonoBehaviour
     {
         DirtyWater tmp = Instantiate(dirtyWater).GetComponent<DirtyWater>();
         tmp.Instantiate(position, donkey);
+    }
+
+    public void SummonMoneyDart(float damage, float childDamage, float searchRange, GameObject target)
+    {
+        MoneyDart tmp = Instantiate(moneyDart).GetComponent<MoneyDart>();
+        tmp.Instantiate(damage, childDamage, searchRange, target);
+    }
+
+    public void SummonMoneyDartChild(float damage, GameObject target, Vector3 startPosition)
+    {
+        MoneyDartChild tmp = Instantiate(moneyDartChild).GetComponent<MoneyDartChild>();
+        tmp.Instantiate(damage, target, startPosition);
     }
 }

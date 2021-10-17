@@ -43,4 +43,9 @@ public class Player : MonoBehaviour
     {
         playerAnimator.SetTrigger(id.ToString());
     }
+
+    public Vector3 PlayerPosition()
+    {
+        return transform.position;
+    }
 }

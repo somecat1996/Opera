@@ -258,4 +258,25 @@ public class EnemyManager : MonoBehaviour
             itemInterface.Walk();
         }
     }
+
+    public List<int> FindPositionInRange(int p, float range)
+    {
+        List<int> targetList = new List<int>();
+        Vector3 sPosition = generationPoint[p].position;
+        for (int i = 0; i < generationPoint.Count; i++)
+        {
+            if (i != p && generationPointStatus[i] && range > (sPosition - generationPoint[i].position).magnitude)
+                targetList.Add(i);
+        }
+
+        return targetList;
+    }
+
+    public GameObject GetGameObjectAt(int p)
+    {
+        if (generationPointStatus[p])
+            return generationPointStatus[p].gameObject;
+        else
+            return null;
+    }
 }

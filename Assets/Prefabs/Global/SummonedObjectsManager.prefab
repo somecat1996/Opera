@@ -47,3 +47,5 @@ MonoBehaviour:
   poisonCloud: {fileID: 9027905276935323461, guid: 812ee8b57132a4a47a929282a59d18e4, type: 3}
   banana: {fileID: 9002635449994670754, guid: 34fc7d9c84f1c2a48a9c00cfe6207ae8, type: 3}
   dirtyWater: {fileID: 9002635449994670754, guid: b1e122f40af2d0f40b4af04ad7f401ee, type: 3}
+  moneyDart: {fileID: 9002635449994670754, guid: b7a3a15a463bec14993e66dd84f64391, type: 3}
+  moneyDartChild: {fileID: 9002635449994670754, guid: 0155c10f0a2dc6d43b1fae1c51741afb, type: 3}
