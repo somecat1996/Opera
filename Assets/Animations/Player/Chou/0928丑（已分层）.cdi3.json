@@ -80,6 +80,21 @@
 			"Id": "Param15",
 			"GroupId": "",
 			"Name": "左脚绊右脚"
+		},
+		{
+			"Id": "Param17",
+			"GroupId": "",
+			"Name": "受击"
+		},
+		{
+			"Id": "Param19",
+			"GroupId": "",
+			"Name": "受击2"
+		},
+		{
+			"Id": "Param18",
+			"GroupId": "",
+			"Name": "走动"
 		}
 	],
 	"ParameterGroups": [

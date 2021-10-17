@@ -93,8 +93,9 @@ MonoBehaviour:
   position: 0
   stage2Start: 0.7
   stage3Start: 0.3
-  normalAttackTime: 1
-  normalAttackDamage: 1
+  normalAttackTimeMin: 1
+  normalAttackTimeMax: 5
+  normalAttackDamage: 070000000f000000190000002300000032000000
   bananaAttackTime: 10
   bananaAttackDamage: 3
   shieldTime: 30

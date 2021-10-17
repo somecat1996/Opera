@@ -10,9 +10,11 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     // ÆÕÍ¨¹¥»÷
     [Header("Normal Attack")]
-    public int normalAttackTime = 1;
-    public int normalAttackDamage = 1;
+    public int normalAttackTimeMin = 1;
+    public int normalAttackTimeMax = 5;
+    public int[] normalAttackDamage;
     private float normalAttackTimer;
+    private int normalAttackTime;
 
     // Ïã½¶Æ¤¹¥»÷
     [Header("Banana Attack")]
@@ -72,6 +74,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     {
         base.Start();
 
+        normalAttackTime = NormalAttackTime();
         normalAttackTimer = normalAttackTime;
         bananaAttackTimer = bananaAttackTime;
 
@@ -211,11 +214,18 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     private void NormalAttack()
     {
         normalAttackTimer -= Time.deltaTime;
+        int damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin];
         if (normalAttackTimer <= 0)
         {
+            normalAttackTime = NormalAttackTime();
             normalAttackTimer = normalAttackTime;
-            player.Hurt(normalAttackDamage);
+            player.Hurt(damage);
         }
+    }
+
+    private int NormalAttackTime()
+    {
+        return Random.Range(normalAttackTimeMin, normalAttackTimeMax + 1);
     }
 
     private void BananaAttack()

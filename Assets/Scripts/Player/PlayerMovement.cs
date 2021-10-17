@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public List<float> walkTimeRange;
     // 静止时间范围
     public List<float> stayTimeRange;
-    public Transform spriteTransform;
+    private Transform spriteTransform;
 
     // 状态计时器
     private float timer;
@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 startPoint;
     private void Awake()
     {
+        spriteTransform = gameObject.GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody>();
         spriteOriginSacle = spriteTransform.localScale;
         // 初始化为运动状态
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (walk)
                 {
+                    Player.instance.Walk(false);
                     playerStatus.StopMoving();
                     walk = false;
                     timer = Random.Range(stayTimeRange[0], stayTimeRange[1]);
@@ -66,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
+                    Player.instance.Walk(true);
                     playerStatus.StartMoving();
                     walk = true;
                     timer = Random.Range(walkTimeRange[0], walkTimeRange[1]);
@@ -110,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void StartMoving()
     {
+        Player.instance.Walk(true);
         started = true;
         RandomDirection();
         rigidbody.velocity = moveDirection * moveSpeed;
@@ -117,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void StopMoving()
     {
+        Player.instance.Walk(false);
         started = false;
         rigidbody.velocity = Vector3.zero;
     }

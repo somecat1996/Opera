@@ -10,9 +10,11 @@ public class WesternQueen : EnemyStatus, BossInterface
 
     // 普通攻击
     [Header("Normal Attack")]
-    public int normalAttackTime = 1;
-    public int normalAttackDamage = 1;
+    public int normalAttackTimeMin = 1;
+    public int normalAttackTimeMax = 5;
+    public int[] normalAttackDamage;
     private float normalAttackTimer;
+    private int normalAttackTime;
 
     // 香蕉皮攻击
     [Header("Banana Attack")]
@@ -75,6 +77,7 @@ public class WesternQueen : EnemyStatus, BossInterface
     {
         base.Start();
 
+        normalAttackTime = NormalAttackTime();
         normalAttackTimer = normalAttackTime;
         bananaAttackTimer = bananaAttackTime;
 
@@ -134,7 +137,16 @@ public class WesternQueen : EnemyStatus, BossInterface
 
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
-        //animator.SetTrigger("Hurt");
+        if (0.5f > Random.Range(0f, 1f))
+        {
+            animator.SetTrigger("Hurt1");
+            shadowAnimator.SetTrigger("Hurt1");
+        }
+        else
+        {
+            animator.SetTrigger("Hurt2");
+            shadowAnimator.SetTrigger("Hurt2");
+        }
         // 受伤接口，0-真伤，1-物理，2-魔法
         // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
         float trueDamage;
@@ -173,6 +185,8 @@ public class WesternQueen : EnemyStatus, BossInterface
         {
             curHealth -= trueDamage - shield;
             shield = 0;
+            animator.SetBool("Shield", false);
+            shadowAnimator.SetBool("Shield", false);
         }
 
         SummonGeneral();
@@ -202,6 +216,20 @@ public class WesternQueen : EnemyStatus, BossInterface
             Stage2Start();
         if (curHealth <= stage3Start * maxHealth && currentStage == 2)
             Stage3Start();
+    }
+
+    private void SkillAnimation()
+    {
+        if (0.5f > Random.Range(0f, 1f))
+        {
+            animator.SetTrigger("Skill1");
+            shadowAnimator.SetTrigger("Skill1");
+        }
+        else
+        {
+            animator.SetTrigger("Skill2");
+            shadowAnimator.SetTrigger("Skill2");
+        }
     }
 
     private void Stage2Start()
@@ -258,6 +286,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         int index = Random.Range(0, heavenSoliderPosition.Count / 4);
         for (int i = 0; i < 3; i++)
         {
+            SkillAnimation();
             EnemyManager.instance.SummonMinionAt(heavenSolider, index);
             heavenSoliderPosition.RemoveAt(index);
         }
@@ -267,6 +296,7 @@ public class WesternQueen : EnemyStatus, BossInterface
     {
         if (currentStage == 2 && summonedGeneral.Count > 0 && summonChance > Random.Range(0f, 1f))
         {
+            SkillAnimation();
             int index = summonedGeneral[Random.Range(0, summonedGeneral.Count)];
             EnemyManager.instance.SummonMinion(generalPrefabs[index]);
             summonedGeneral.RemoveAt(index);
@@ -276,11 +306,18 @@ public class WesternQueen : EnemyStatus, BossInterface
     private void NormalAttack()
     {
         normalAttackTimer -= Time.deltaTime;
+        int damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin];
         if (normalAttackTimer <= 0)
         {
+            normalAttackTime = NormalAttackTime();
             normalAttackTimer = normalAttackTime;
-            player.Hurt(normalAttackDamage);
+            player.Hurt(damage);
         }
+    }
+
+    private int NormalAttackTime()
+    {
+        return Random.Range(normalAttackTimeMin, normalAttackTimeMax + 1);
     }
 
     private void BananaAttack()
@@ -289,6 +326,8 @@ public class WesternQueen : EnemyStatus, BossInterface
         bananaAttackTimer -= Time.deltaTime;
         if (bananaAttackTimer <= 0)
         {
+            animator.SetTrigger("Banana");
+            shadowAnimator.SetTrigger("Banana");
             bananaAttackTimer = bananaAttackTime;
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
@@ -301,6 +340,9 @@ public class WesternQueen : EnemyStatus, BossInterface
         shieldTimer -= Time.deltaTime;
         if (shieldTimer <= 0)
         {
+            SkillAnimation();
+            animator.SetBool("Shield", true);
+            shadowAnimator.SetBool("Shield", true);
             shieldTimer = shieldTime;
             AddShield(shieldValue, Mathf.Infinity);
         }
@@ -311,9 +353,19 @@ public class WesternQueen : EnemyStatus, BossInterface
         thunderAttackTimer -= Time.deltaTime;
         if (thunderAttackTimer <= 0)
         {
+            SkillAnimation();
             thunderAttackTimer = thunderAttackTime;
             thunderTickTimer = thunderTickTime;
             thunderCounter = thunderCount;
+            if (0.5 > Random.Range(0f, 1f))
+            {
+                CardManager.instance.LockCards(thunderLockTime);
+            }
+            else
+            {
+                CardManager.instance.DiscardCardRandomly(thunderDiscardNum);
+                PlayerManager.instance.ChangePowerPoint(thunderHeartDamage);
+            }
         }
 
         if (thunderCounter > 0)
@@ -324,15 +376,6 @@ public class WesternQueen : EnemyStatus, BossInterface
                 thunderCounter -= 1;
                 thunderTickTimer = thunderTickTime;
                 player.Hurt(thunderAttackDamage);
-                if (0.5 > Random.Range(0f, 1f))
-                {
-                    CardManager.instance.LockCards(thunderLockTime);
-                }
-                else
-                {
-                    CardManager.instance.DiscardCardRandomly(thunderDiscardNum);
-                    PlayerManager.instance.ChangePowerPoint(thunderHeartDamage);
-                }
             }
         }
     }

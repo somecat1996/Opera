@@ -5,10 +5,16 @@ using UnityEngine;
 public class EnemyStatus : GameObjectBase
 {
     public int position;
+
+    protected Animator animator;
+    protected Animator shadowAnimator;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+
+        animator = transform.Find("Sprite").GetComponent<Animator>();
+        shadowAnimator = transform.Find("Shadow").GetComponent<Animator>();
     }
 
     // 记录出生点
