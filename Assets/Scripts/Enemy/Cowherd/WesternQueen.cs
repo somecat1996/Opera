@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Donkey : EnemyStatus, SummonEnemy, BossInterface
+public class WesternQueen : EnemyStatus, BossInterface
 {
     [Header("Stage Configuration")]
     public float stage2Start = 0.7f;
@@ -25,30 +25,31 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     public float shieldTime = 30f;
     public float shieldValue = 300;
 
-    // 污水攻击
-    [Header("Dirty Water Attack")]
-    public float dirtyWaterAttackTime = 10f;
-    public float dirtyWaterAttackDamage = 3f;
-    private float dirtyWaterAttackTimer;
+    // 雷劫攻击
+    [Header("Thunder Attack")]
+    public float thunderAttackTime = 15f;
+    public float thunderTickTime = 0.5f;
+    public int thunderCount = 10;
+    public float thunderAttackDamage = 0.2f;
+    public float thunderLockTime = 0.75f;
+    public int thunderDiscardNum = 2;
+    public float thunderHeartDamage = 1;
+    private float thunderAttackTimer;
+    private float thunderTickTimer;
+    private int thunderCounter;
 
-    // 市井小民Prefab
-    [Header("Minions")]
-    public GameObject xiaominPrefab;
-    public GameObject xianguanPrefab;
+    // 天王Prefab
+    [Header("Generals")]
+    public float summonChance = 0.1f;
+    public GameObject[] generalPrefabs;
+    private List<int> summonedGeneral;
+    public GameObject heavenSolider;
+    private List<int> heavenSoliderPosition;
 
-    // 解药prefab
-    [Header("Medicine Prefab")]
-    public GameObject medicinePrefab;
-    private Medicine medicine;
-
-    [Header("Push Attack")]
-    public Vector3 pushPosition;
-    public float pushDamage = 3f;
-    public float pushTime = 10f;
-    private float pushTimer;
-
-    [Header("Stage 3 Time Limit")]
-    public float stage3TimeLimit = 60f;
+    // 牛prefab
+    [Header("Cow Prefab")]
+    public GameObject cowPrefab;
+    private Medicine cow;
 
     // 对话框
     public GameObject lineTextPrefab;
@@ -67,6 +68,8 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     private int currentStage;
     private PlayerStatus player;
+    private float hurtCoefficient;
+    private float damageCoefficient;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -85,8 +88,15 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         speakTimer = speakTime;
 
         shieldTimer = shieldTime;
-        dirtyWaterAttackTimer = dirtyWaterAttackTime;
-        pushTimer = pushTime;
+        thunderAttackTimer = thunderAttackTime;
+        thunderTickTimer = 0;
+        thunderCounter = 0;
+
+        summonedGeneral = new List<int>() { 0, 1, 2, 3 };
+        heavenSoliderPosition = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+
+        hurtCoefficient = 1;
+        damageCoefficient = 1;
 
         BattleDataManager.instance.UpdateStage(1);
     }
@@ -125,7 +135,66 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
         //animator.SetTrigger("Hurt");
+        // 受伤接口，0-真伤，1-物理，2-魔法
+        // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
+        float trueDamage;
+        if (shield > 0 && shieldBreak)
+            trueDamage = damageIncrease * damage;
+        else
+            trueDamage = damage;
+
+        // 计算暴击
+        switch (type)
+        {
+            case HurtType.Physic:
+                if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Physics)
+                {
+                    trueDamage *= 1 + GlobalValue.critIncrement_Physics;
+                }
+                break;
+            case HurtType.Magic:
+                if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Magic)
+                {
+                    trueDamage *= 1 + GlobalValue.critIncrement_Magic;
+                }
+                break;
+            default:
+                break;
+        }
+
+        trueDamage *= hurtCoefficient;
+
+        // 结算真实伤害
+        if (shield > trueDamage)
+        {
+            shield -= trueDamage;
+        }
+        else
+        {
+            curHealth -= trueDamage - shield;
+            shield = 0;
+        }
+
+        SummonGeneral();
+
+        if (GlobalValue.poisonAttack)
+            Poisoning();
+
+        if (voodooTimer > 0)
+            voodooHurt += trueDamage;
+
+        BattleDataManager.instance.UpdateDamage(trueDamage);
+        healthBarManager.UpdateHealth(curHealth / maxHealth);
+
+        var col = gameObject.GetComponent<Collider>();
+        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
+        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
+        damageText.Init(trueDamage, topAhcor);
         base.Hurt(damage, shieldBreak, damageIncrease, type);
+        if (curHealth <= 0)
+        {
+            Die();
+        }
         BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth);
         if (countHurt)
             hurtCounter += 1;
@@ -139,7 +208,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     {
         currentStage = 2;
         Speak(stage1To2Line);
-        SummonMedicine();
+        //SummonMedicine();
         BattleDataManager.instance.UpdateStage(2);
     }
 
@@ -147,8 +216,9 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     {
         currentStage = 3;
         Speak(stage2To3Line);
-        SummonXianguan();
-        MedicineChange();
+        //MedicineChange();
+        SummonSolider();
+        SummonSolider();
         BattleDataManager.instance.UpdateStage(3);
     }
 
@@ -157,7 +227,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         NormalAttack();
         BananaAttack();
         AddShield();
-        DirtyWaterAttack();
+        ThunderAttack();
 
         speakTimer -= Time.deltaTime;
         if (speakTimer <= 0)
@@ -172,8 +242,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         NormalAttack();
         BananaAttack();
         AddShield();
-        DirtyWaterAttack();
-        PushAttack();
+        ThunderAttack();
     }
 
     private void Stage3()
@@ -181,19 +250,26 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         NormalAttack();
         BananaAttack();
         AddShield();
-        DirtyWaterAttack();
-        PushAttack();
-
-        stage3TimeLimit -= Time.deltaTime;
-        if (stage3TimeLimit <= 0)
-            Die();
+        ThunderAttack();
     }
 
-    public void SummonMinion(GameObject minion, int number = 1)
+    public void SummonSolider()
     {
-        for (int i = 0; i < number; i++)
+        int index = Random.Range(0, heavenSoliderPosition.Count / 4);
+        for (int i = 0; i < 3; i++)
         {
-            EnemyManager.instance.SummonMinion(minion);
+            EnemyManager.instance.SummonMinionAt(heavenSolider, index);
+            heavenSoliderPosition.RemoveAt(index);
+        }
+    }
+
+    private void SummonGeneral()
+    {
+        if (currentStage == 2 && summonedGeneral.Count > 0 && summonChance > Random.Range(0f, 1f))
+        {
+            int index = summonedGeneral[Random.Range(0, summonedGeneral.Count)];
+            EnemyManager.instance.SummonMinion(generalPrefabs[index]);
+            summonedGeneral.RemoveAt(index);
         }
     }
 
@@ -230,54 +306,53 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         }
     }
 
-    private void DirtyWaterAttack()
+    private void ThunderAttack()
     {
-        dirtyWaterAttackTimer -= Time.deltaTime;
-        if (dirtyWaterAttackTimer <= 0)
+        thunderAttackTimer -= Time.deltaTime;
+        if (thunderAttackTimer <= 0)
         {
-            dirtyWaterAttackTimer = dirtyWaterAttackTime;
-            PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-            Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
-            SummonedObjectManager.instance.SummonDirtyWater(position, this);
+            thunderAttackTimer = thunderAttackTime;
+            thunderTickTimer = thunderTickTime;
+            thunderCounter = thunderCount;
+        }
+
+        if (thunderCounter > 0)
+        {
+            thunderTickTimer -= Time.deltaTime;
+            if (thunderTickTimer <= 0)
+            {
+                thunderCounter -= 1;
+                thunderTickTimer = thunderTickTime;
+                player.Hurt(thunderAttackDamage);
+                if (0.5 > Random.Range(0f, 1f))
+                {
+                    CardManager.instance.LockCards(thunderLockTime);
+                }
+                else
+                {
+                    CardManager.instance.DiscardCardRandomly(thunderDiscardNum);
+                    PlayerManager.instance.ChangePowerPoint(thunderHeartDamage);
+                }
+            }
         }
     }
 
-    private void PushAttack()
+    private void SummonCow()
     {
-        pushTimer -= Time.deltaTime;
-        if (pushTimer <= 0)
-        {
-            pushTimer = pushTime;
-            player.PushTo(pushPosition, pushDamage);
-        }
+        GameObject tmp = EnemyManager.instance.SummonInMiddle(cowPrefab);
+        cow = tmp.GetComponent<Medicine>();
     }
 
-    public void SummonXiaomin()
+    private void CowChange()
     {
-        EnemyManager.instance.SummonMinion(xiaominPrefab);
-    }
-
-    public void SummonXianguan()
-    {
-        EnemyManager.instance.SummonMinion(xianguanPrefab);
-    }
-
-    private void SummonMedicine()
-    {
-        GameObject tmp = EnemyManager.instance.SummonInMiddle(medicinePrefab);
-        medicine = tmp.GetComponent<Medicine>();
-    }
-
-    private void MedicineChange()
-    {
-        medicine.Change();
+        cow.Change();
     }
 
     public override void Die()
     {
         //animator.SetTrigger("Die");
-        if (medicine)
-            Destroy(medicine.gameObject);
+        if (cow)
+            Destroy(cow.gameObject);
         EnemyManager.instance.FinishLevel(true);
         base.Die();
     }
@@ -300,5 +375,15 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
         Line lineText = Instantiate(lineTextPrefab, GameObject.FindGameObjectWithTag("LineCanvas").transform).GetComponent<Line>();
         lineText.Init(line, topAhcor);
+    }
+
+    public void ChangeHurtCoefficient(float value)
+    {
+        hurtCoefficient += value;
+    }
+
+    public void ChangeDamageCoefficient(float value)
+    {
+        damageCoefficient += value;
     }
 }

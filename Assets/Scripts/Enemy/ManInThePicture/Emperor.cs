@@ -83,6 +83,8 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         douETimer = 0;
 
         speakTimer = speakTime;
+
+        BattleDataManager.instance.UpdateStage(1);
     }
 
     // Update is called once per frame
@@ -135,6 +137,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         currentStage = 2;
         SummonPicture();
         Speak(stage1To2Line);
+        BattleDataManager.instance.UpdateStage(2);
     }
 
     private void Stage3Start()
@@ -143,6 +146,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         PictureChange();
         EnemyManager.instance.RemoveMinions();
         Speak(stage2To3Line);
+        BattleDataManager.instance.UpdateStage(3);
     }
 
     private void Stage1()

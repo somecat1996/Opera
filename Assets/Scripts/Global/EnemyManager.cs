@@ -128,6 +128,17 @@ public class EnemyManager : MonoBehaviour
         }
         return p;
     }
+    public void SummonMinionAt(GameObject prefab, int p)
+    {
+        if (!generationPointStatus[p])
+        {
+            GameObject tmp = Instantiate(prefab, generationPoint[p]);
+            tmp.transform.localPosition = new Vector3(0, 0, 0);
+            generationPointStatus[p] = tmp.GetComponent<EnemyStatus>();
+            BattleDataManager.instance.AddEnemyData(generationPointStatus[p]);
+            generationPointStatus[p].position = p;
+        }
+    }
 
     // ’ŸªΩBoss£¨’ŸªΩ÷¡Œª÷√4
     public int SummonBoss(GameObject prefab)

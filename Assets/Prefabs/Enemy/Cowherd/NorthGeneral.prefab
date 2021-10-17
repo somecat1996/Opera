@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7049907831289417319}
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
-  - component: {fileID: 5812458391500648083}
+  - component: {fileID: 2622138791593443700}
   m_Layer: 0
-  m_Name: HavenSoldier
+  m_Name: NorthGeneral
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &5812458391500648083
+--- !u!114 &2622138791593443700
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7049907831289417314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02002c36820d834f9f9973f9c836b37, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e36a1205eb25e5498c09b4794f0d0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
@@ -91,8 +91,9 @@ MonoBehaviour:
   voodooTime: 10
   voodoocoolingTime: 15
   position: 0
-  reduceRate: -0.1
-  rebornTime: 1
+  damage: 1
+  attackTime: 5
+  hurtReduce: 0.3
 --- !u!1 &7049907832430946937
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 093ddf899d080b04186a2474c27ba5b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 555ca7f680fc0014b9e08257b26a73e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
