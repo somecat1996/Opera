@@ -7,11 +7,11 @@ public class EastGeneral : EnemyStatus
     public float damage = 1f;
     public float attackTime = 5f;
 
-    public float healingTime = 1f;
+    public float healTime = 1f;
     public float healing = 1f;
 
     private float attackTimer;
-    private float healingTimer;
+    private float healTimer;
     private PlayerStatus playerStatus;
     private WesternQueen westernQueen;
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class EastGeneral : EnemyStatus
         base.Start();
 
         attackTimer = attackTime;
-        healingTimer = healingTime;
+        healTimer = healTime;
 
         playerStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
     }
@@ -52,10 +52,10 @@ public class EastGeneral : EnemyStatus
 
     private void Heal()
     {
-        healingTimer -= Time.deltaTime;
-        if (healingTimer <= 0)
+        healTimer -= Time.deltaTime;
+        if (healTimer <= 0)
         {
-            healingTimer = healingTime;
+            healTimer = healTime;
             westernQueen.InstantHealing(healingValue);
         }
     }

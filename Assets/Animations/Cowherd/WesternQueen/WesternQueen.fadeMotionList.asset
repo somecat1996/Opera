@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403ae2dd693bb1d4b924f6b8d206b053, type: 3}
+  m_Name: WesternQueen.fadeMotionList
+  m_EditorClassIdentifier: 
+  MotionInstanceIds: e252feffd652feffce52feffc652feffbe52feffb652feffae52feffa652feff
+  CubismFadeMotionObjects:
+  - {fileID: 11400000, guid: 7d4c7726489b6934c8dc312c41e6fff3, type: 2}
+  - {fileID: 11400000, guid: 32f76a69b99882c41809ad5f26874cfc, type: 2}
+  - {fileID: 11400000, guid: 949305cc9247e4749ad98d02686a50dd, type: 2}
+  - {fileID: 11400000, guid: 21c34a5e8ebc1dd45be9aaf04cb8bfb8, type: 2}
+  - {fileID: 11400000, guid: 79dc6448f1dcacf43a6d7d7c4c9e6fa6, type: 2}
+  - {fileID: 11400000, guid: 682b839b881e42b42a50ebeca70b4dc4, type: 2}
+  - {fileID: 11400000, guid: 9eeb8860b4980b7449c4d26269df2fa4, type: 2}
+  - {fileID: 11400000, guid: e467d0b4de2c1f74baae2013993174ca, type: 2}
