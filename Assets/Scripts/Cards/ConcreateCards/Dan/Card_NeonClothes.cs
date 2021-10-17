@@ -6,7 +6,7 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 {
     public void mouseDrag()
     {
-        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        if (CheckAvaliablity())
         {
             mouseExit();
             return;
@@ -29,7 +29,7 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
-        if (CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup)
+        if (CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();
@@ -65,7 +65,7 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
-        PlayerManager.instance.player.ImmunityByTime((int)cardInfo.mainValue_Cur);
+        PlayerManager.instance.player.ImmunityByDuration(cardInfo.mainValue_Cur);
     }
 
     public void TriggerEffect(GameObjectBase _go)

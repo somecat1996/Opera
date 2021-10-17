@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 28
   cardName: "\u9713\u88F3\u7FBD\u8863"
-  description: "\u514D\u75AB <color=red>#MainValue</color> \u6B21\u4F24\u5BB3"
+  description: "\u514D\u75AB <color=red>#MainValue</color> \u79D2\u4F24\u5BB3"
   story: 
   illustration: {fileID: 21300000, guid: 9cf834c5d1cee98419134f0673e1ce2d, type: 3}
   rarity: 2
   cardTag: 8
   cardType: 0
   belongner: 1
-  mainValue_Origin: 1
+  mainValue_Origin: 3
   cost: 2
   duration: 0
   radius: 0
   mainValue_Cur: 1
-  quantity: 0
+  quantity: 2
   level: 1
