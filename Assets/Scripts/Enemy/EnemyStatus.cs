@@ -45,4 +45,11 @@ public class EnemyStatus : GameObjectBase
         Destroy(healthBarManager.gameObject);
         Destroy(gameObject);
     }
+
+    public virtual void Kill()
+    {
+        EnemyManager.instance.Die(position);
+        Destroy(healthBarManager.gameObject);
+        Destroy(gameObject);
+    }
 }

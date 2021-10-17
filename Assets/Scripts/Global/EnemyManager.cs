@@ -176,7 +176,7 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < generationPoint.Count; i++)
         {
             if (i!=4 && generationPointStatus[i])
-                generationPointStatus[i].Die();
+                generationPointStatus[i].Kill();
         }
     }
 
@@ -185,7 +185,7 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < generationPoint.Count; i++)
         {
             if (generationPointStatus[i])
-                generationPointStatus[i].Die();
+                generationPointStatus[i].Kill();
         }
     }
 
@@ -194,7 +194,7 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < generationPoint.Count; i++)
         {
             if (generationPointStatus[i])
-                generationPointStatus[i].Die();
+                generationPointStatus[i].Kill();
         }
         playerStatus.StopPlaying();
         foreach (GameObject i in GameObject.FindGameObjectsWithTag("SummonedObject"))
