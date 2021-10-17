@@ -11,7 +11,7 @@ public class Card_BreakDance : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void mouseDrag()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             mouseExit();
             return;
@@ -36,7 +36,7 @@ public class Card_BreakDance : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void mouseUp()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();

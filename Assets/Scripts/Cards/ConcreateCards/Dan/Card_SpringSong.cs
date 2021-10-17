@@ -8,7 +8,7 @@ public class Card_SpringSong :CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseDrag()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             mouseExit();
             return;
@@ -38,7 +38,7 @@ public class Card_SpringSong :CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();
@@ -116,7 +116,7 @@ public class Card_SpringSong :CardPrototype,ICardOperation,ICardEffectTrigger
 
             foreach (var i in temp)
             {
-                i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), false, 1.0f);
+                i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(damage, cardInfo.cost), false, 1.0f);
             }
 
             damage *= 2;

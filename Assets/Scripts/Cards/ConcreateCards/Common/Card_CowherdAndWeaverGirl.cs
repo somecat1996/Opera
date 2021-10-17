@@ -35,7 +35,7 @@ public class Card_CowherdAndWeaverGirl : CardPrototype,ICardOperation,ICardEffec
 
     public void mouseUp()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();

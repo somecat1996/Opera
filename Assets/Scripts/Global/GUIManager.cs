@@ -86,6 +86,7 @@ public class GUIManager : MonoBehaviour
     public Animator ani_Curtain;
 
 
+
     private void Awake()
     {
         instance = this;
@@ -111,8 +112,6 @@ public class GUIManager : MonoBehaviour
             open = !open;
         }
     }
-
-
     
     /// <summary>
     /// 修改BOSS血条 传入百分值

@@ -6,7 +6,7 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 {
     public void mouseDrag()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             mouseExit();
             return;
@@ -29,7 +29,7 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();
