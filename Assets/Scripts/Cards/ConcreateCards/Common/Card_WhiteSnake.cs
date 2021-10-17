@@ -30,7 +30,7 @@ public class Card_WhiteSnake : CardPrototype, ICardOperation, ICardEffectTrigger
 
     public void mouseUp()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();

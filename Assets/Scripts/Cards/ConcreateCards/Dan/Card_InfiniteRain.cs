@@ -18,7 +18,7 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void mouseDrag()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             mouseExit();
             return;
@@ -43,7 +43,7 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void mouseUp()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("ÎÞ·¨ÊÍ·Å¿¨ÅÆ!");
             mouseExit();
@@ -113,7 +113,7 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
 
             foreach (var i in temp)
             {
-                i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost) * alpha,false,1);
+                i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost) * alpha,false,1, HurtType.Magic);
             }
 
             if(Random.Range(0,1.0f) > probability)

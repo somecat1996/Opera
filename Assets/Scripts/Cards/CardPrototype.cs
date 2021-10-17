@@ -131,7 +131,9 @@ public class CardPrototype : MonoBehaviour
     {
         // 获得该卡牌在父亲下的坐标
         int index = transform.GetSiblingIndex();
-        originPos = CardManager.instance.slotPos[index].position;
+
+        if(!CheckAvaliablity())
+            originPos = CardManager.instance.slotPos[index].position;
     }
 
     /// <summary>
@@ -291,6 +293,6 @@ public class CardPrototype : MonoBehaviour
     /// <returns></returns>
     public bool CheckAvaliablity()
     {
-        return !(CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup || (!GameManager.instance.gamePause));
+        return !(CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup || GameManager.instance.gamePause);
     }
 }

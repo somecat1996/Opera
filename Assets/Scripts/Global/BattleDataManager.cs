@@ -16,6 +16,7 @@ public class BattleDataManager : MonoBehaviour
     public GameObjectBase lastTargetEnemy; // 上一个被单体攻击的敌人 由单体输出卡牌上传
     public float cur_bossHP_Pencentage = 0; // 当前boss剩余血量百分比
     public int cur_Stage = 0; // 当前阶段
+    public float timer_LastStage = 0; // 上一阶段进行的时间
     [Space]
     public CardPrototype selectingCard; // 玩家当前选中的卡牌 或 即将要使用的卡牌
     public CardPrototype lastUsedCard; // 由CardManger.SendToTempLayoutGroup上传
@@ -69,6 +70,7 @@ public class BattleDataManager : MonoBehaviour
         }
 
         gameTimer += Time.deltaTime;
+        timer_LastStage += gameTimer;
 
         if (activateRangeDIsplayer)
         {
@@ -202,6 +204,10 @@ public class BattleDataManager : MonoBehaviour
         //rangeDisplayer.SetActive(false);
         //targetMarker.SetActive(false);
         activateTargetMarker = false;
+
+        // 阶段信息
+        cur_Stage = 0;
+        timer_LastStage = 0;
     }
 
     // 更新伤害数据
@@ -353,5 +359,10 @@ public class BattleDataManager : MonoBehaviour
     public void UpdateStage(int _v)
     {
         cur_Stage = _v;
+
+
+
+        // 重置阶段计时器
+        timer_LastStage = 0;
     }
 }

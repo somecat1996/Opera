@@ -10,7 +10,7 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseDrag()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             mouseExit();
             return;
@@ -38,7 +38,7 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void mouseUp()
     {
-        if (CheckAvaliablity())
+        if (!CheckAvaliablity())
         {
             GUIManager.instance.SpawnSystemText("Œﬁ∑® Õ∑≈ø®≈∆!");
             mouseExit();
@@ -124,11 +124,11 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
             {
                 if (i.IsStun())
                 {
-                    i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost) * 2, false, 1.0f);
+                    i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost) * 2, false, 1.0f, HurtType.Magic);
                 }
                 else
                 {
-                    i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), false, 1.0f);
+                    i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), false, 1.0f, HurtType.Magic);
                 }
                 
             }
