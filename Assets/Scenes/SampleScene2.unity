@@ -83170,22 +83170,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 195115935871137157, guid: 61a70be742c861e41867bb66b0d88604, type: 3}
-      propertyPath: banana
-      value: 
-      objectReference: {fileID: 9002635449994670754, guid: 34fc7d9c84f1c2a48a9c00cfe6207ae8, type: 3}
-    - target: {fileID: 195115935871137157, guid: 61a70be742c861e41867bb66b0d88604, type: 3}
-      propertyPath: moneyDart
-      value: 
-      objectReference: {fileID: 9002635449994670754, guid: b7a3a15a463bec14993e66dd84f64391, type: 3}
-    - target: {fileID: 195115935871137157, guid: 61a70be742c861e41867bb66b0d88604, type: 3}
-      propertyPath: dirtyWater
-      value: 
-      objectReference: {fileID: 9002635449994670754, guid: b1e122f40af2d0f40b4af04ad7f401ee, type: 3}
-    - target: {fileID: 195115935871137157, guid: 61a70be742c861e41867bb66b0d88604, type: 3}
-      propertyPath: moneyDartChild
-      value: 
-      objectReference: {fileID: 9002635449994670754, guid: 0155c10f0a2dc6d43b1fae1c51741afb, type: 3}
     - target: {fileID: 195115935871137179, guid: 61a70be742c861e41867bb66b0d88604, type: 3}
       propertyPath: m_Name
       value: SummonedObjectsManager
