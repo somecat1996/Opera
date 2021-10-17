@@ -66,12 +66,14 @@ public static class GlobalValue
             float trueDamage = _damage;
 
             trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Physics) * (1 + damageIncrement_Special) + extraDamage * (1 + damageIncrement_General);
-
+            
+            /*
             // ÅÐ¶ÏÊÇ·ñ±©»÷
             if (Random.Range(0, 1.0f) < probability_Crit_Physics)
             {
                 trueDamage *= (1 + critIncrement_Physics);
             }
+            */
 
             return trueDamage;
         }
@@ -81,11 +83,13 @@ public static class GlobalValue
 
             trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Physics) + extraDamage * (1 + damageIncrement_General);
 
+            /*
             // ÅÐ¶ÏÊÇ·ñ±©»÷
             if (Random.Range(0, 1.0f) < probability_Crit_Physics)
             {
                 trueDamage *= (1 + critIncrement_Physics);
             }
+            */
 
             return trueDamage;
         }
@@ -107,12 +111,13 @@ public static class GlobalValue
 
             trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Magic) * (1 + damageIncrement_Special) + extraDamage * (1 + damageIncrement_General);
 
+            /*
             // ÅÐ¶ÏÊÇ·ñ±©»÷
             if (Random.Range(0, 1.0f) < probability_Crit_Magic)
             {
                 trueDamage *= (1 + critIncrement_Magic);
             }
-
+            */
             return trueDamage;
 
         }
@@ -122,11 +127,13 @@ public static class GlobalValue
 
             trueDamage = trueDamage * (1 + damageIncrement_General) * (1 + damageIncrement_Magic) + extraDamage * (1 + damageIncrement_General);
 
+            /*
             // ÅÐ¶ÏÊÇ·ñ±©»÷
             if (Random.Range(0, 1.0f) < probability_Crit_Magic)
             {
                 trueDamage *= (1 + critIncrement_Magic);
             }
+            */
 
             return trueDamage;
         }

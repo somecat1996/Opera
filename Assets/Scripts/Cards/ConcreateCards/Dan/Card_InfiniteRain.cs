@@ -113,7 +113,7 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
 
             foreach (var i in temp)
             {
-                i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost) * alpha,false,1);
+                i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost) * alpha,false,1, HurtType.Magic);
             }
 
             if(Random.Range(0,1.0f) > probability)
