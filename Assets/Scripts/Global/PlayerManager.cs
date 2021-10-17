@@ -91,9 +91,10 @@ public class PlayerManager : MonoBehaviour
 
         cur_LevelIndex = _levelIndex;
 
-        // 通知GUI关闭无关UI且显示关卡信息
+        // 通知GUI关闭无关UI且显示关卡信息,重置Boss血条
         GUIManager.instance.DisableAllGUI();
         GUIManager.instance.SpawnLevelName(levelInfo[cur_LevelIndex].levelName);
+        GUIManager.instance.UpdateBossHealthPoint(1);
 
         // Buff相关
         BuffManager.instance.DiableAllBuff(); // 清空BUFF
@@ -111,9 +112,41 @@ public class PlayerManager : MonoBehaviour
         GameManager.instance.SetStartGame(true);
         GameManager.instance.SetPauseGame(false);
 
-        // 开启关卡
-        GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>().EnterLevel(_levelIndex);
+        // 清空战场上所有实体并重置BDM
+        EnemyManager.instance.Clear();
+        BattleDataManager.instance.ResetAllData();
 
+        // 开启关卡
+        EnemyManager.instance.EnterLevel(_levelIndex);
+    }
+    /// <summary>
+    /// 重启关卡
+    /// </summary>
+    public void RestartLevel()
+    {
+        Invoke("restartLevel", Time.deltaTime);
+    }
+    void restartLevel()
+    {
+        EnterLevel(cur_LevelIndex);
+    }
+    /// <summary>
+    /// 进入下一关卡
+    /// </summary>
+    public void EnterNextLevel()
+    {
+        Invoke("enterNextLevel", Time.deltaTime);
+    }
+    void enterNextLevel()
+    {
+        if (cur_LevelIndex == levelInfo.Count - 1)
+        {
+            EnterLevel(cur_LevelIndex);
+        }
+        else
+        {
+            EnterLevel(++cur_LevelIndex);
+        }
     }
 
     /// <summary>
@@ -271,6 +304,7 @@ public class PlayerManager : MonoBehaviour
     // 解锁关卡
     public void UnlockLevel(int _id)
     {
+        _id = Mathf.Clamp(_id, 0, levelInfo.Count - 1);
         levelInfo[_id].unlocked = true;
     }
     // 记录关卡通关次数

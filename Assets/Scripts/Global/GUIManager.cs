@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class GUIManager : MonoBehaviour
 {
@@ -78,6 +79,9 @@ public class GUIManager : MonoBehaviour
     public TextMeshProUGUI text_GameTime;
     public Image image_Character;
     public ListCardSetter[] card_Loot = new ListCardSetter[3];
+    [Space]
+    public GameObject btn_Restart;
+    public GameObject btn_NextLevel;
 
 
     private void Awake()
@@ -109,8 +113,10 @@ public class GUIManager : MonoBehaviour
     /// <param name="_v"></param>
     public void UpdateBossHealthPoint(float _v)
     {
-        boss_HealthPoint.fillAmount = _v;
+        DOTween.To(() => boss_HealthPoint.fillAmount, x => boss_HealthPoint.fillAmount = x, _v, 0.25f);
+        //boss_HealthPoint.fillAmount = _v;
     }
+
     /// <summary>
     /// 修改心流值 传入百分值 和 真实值
     /// </summary>
@@ -312,7 +318,7 @@ public class GUIManager : MonoBehaviour
     public void SpawnLevelName(string _text)
     {
         GameObject go = Instantiate(prefab_LevelName);
-        go.transform.parent = panel_Common;
+        go.transform.parent = spawnPos_LevelName.transform;
         go.transform.localScale = Vector3.one;
         go.transform.position = spawnPos_LevelName.position;
         go.GetComponent<SystemText>().SetText(_text);
@@ -349,6 +355,17 @@ public class GUIManager : MonoBehaviour
             {
                 card_Loot[i].gameObject.SetActive(false);
             }
+        }
+
+        if (_playerVictory)
+        {
+            btn_NextLevel.SetActive(true);
+            btn_Restart.SetActive(false);
+        }
+        else
+        {
+            btn_NextLevel.SetActive(false);
+            btn_Restart.SetActive(true);
         }
 
 

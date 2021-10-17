@@ -36,8 +36,9 @@ public class CardManager : MonoBehaviour
     [Space]
     public Transform slotLayoutGroup; // 插槽容器
     public Transform layoutGroup; // 当前操作卡牌容器
-    public RectTransform recTran_layoutGroup;
+    public RectTransform recTran_LayoutGroup;
     public Transform tempLayoutGroup; // 临时卡牌容器
+    public RectTransform recTran_TempLayoutGroup;
     public Transform discardedCardLayoutGroup; // 用于放置一次性卡牌容器
     [Space]
     // 卡牌锁定相关
@@ -210,6 +211,9 @@ public class CardManager : MonoBehaviour
         _card.transform.parent = tempLayoutGroup;
         cardQueue_Waitting.Add(_card);
 
+        // 临时使用 刷新弃牌队列
+        ReflashTempLayoutGroup();
+
         cur_Card--;
 
         if (cardQueue.Count == 0)
@@ -238,6 +242,10 @@ public class CardManager : MonoBehaviour
     public void ReflashLayoutGroup()
     {
         //LayoutRebuilder.ForceRebuildLayoutImmediate(recTran_layoutGroup);
+    }
+    public void ReflashTempLayoutGroup()
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(recTran_TempLayoutGroup);
     }
 
     // 载入所有卡牌信息

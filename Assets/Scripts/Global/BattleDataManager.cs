@@ -327,6 +327,8 @@ public class BattleDataManager : MonoBehaviour
         if (_playerVictory)
         {
             PlayerManager.instance.UpdateVictoryTime();
+            // 解锁下一关
+            PlayerManager.instance.UnlockLevel(PlayerManager.instance.cur_LevelIndex + 1);
         }
 
         // GUI 显示
@@ -340,6 +342,8 @@ public class BattleDataManager : MonoBehaviour
     public void UpdateBossHP(float _percentage)
     {
         cur_bossHP_Pencentage = _percentage;
+        cur_bossHP_Pencentage = Mathf.Clamp(cur_bossHP_Pencentage, 0, Mathf.Infinity);
+        GUIManager.instance.UpdateBossHealthPoint(cur_bossHP_Pencentage);
     }
 
     /// <summary>
