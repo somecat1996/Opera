@@ -82,6 +82,8 @@ public class GUIManager : MonoBehaviour
     [Space]
     public GameObject btn_Restart;
     public GameObject btn_NextLevel;
+    [Space]
+    public Animator ani_Curtain;
 
 
     private void Awake()
@@ -100,9 +102,14 @@ public class GUIManager : MonoBehaviour
         
     }
 
+    bool open = true;
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            SetDisplayCurtain(open);
+            open = !open;
+        }
     }
 
 
@@ -393,5 +400,21 @@ public class GUIManager : MonoBehaviour
     public void SetActivePanelTitle(bool _v)
     {
         panel_Title.SetActive(_v);
+    }
+
+    /// <summary>
+    /// …Ë÷√œ‘ æƒª≤º
+    /// </summary>
+    public void SetDisplayCurtain(bool _v)
+    {
+        if (_v)
+        {
+            ani_Curtain.gameObject.SetActive(true);
+            ani_Curtain.Play("Curtain_Close");
+        }
+        else
+        {
+            ani_Curtain.Play("Curtain_Open");
+        }
     }
 }
