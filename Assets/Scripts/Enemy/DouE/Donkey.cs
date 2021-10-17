@@ -124,7 +124,16 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
-        //animator.SetTrigger("Hurt");
+        if (0.5f > Random.Range(0f, 1f))
+        {
+            animator.SetTrigger("Hurt1");
+            shadowAnimator.SetTrigger("Hurt1");
+        }
+        else
+        {
+            animator.SetTrigger("Hurt2");
+            shadowAnimator.SetTrigger("Hurt2");
+        }
         base.Hurt(damage, shieldBreak, damageIncrease, type);
         BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth);
         if (countHurt)
@@ -191,6 +200,8 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     public void SummonMinion(GameObject minion, int number = 1)
     {
+        animator.SetTrigger("Summon");
+        shadowAnimator.SetTrigger("Summon");
         for (int i = 0; i < number; i++)
         {
             EnemyManager.instance.SummonMinion(minion);
@@ -209,10 +220,11 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     private void BananaAttack()
     {
-        //animator.SetTrigger("Banana");
         bananaAttackTimer -= Time.deltaTime;
         if (bananaAttackTimer <= 0)
         {
+            animator.SetTrigger("Banana");
+            shadowAnimator.SetTrigger("Banana");
             bananaAttackTimer = bananaAttackTime;
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
@@ -225,6 +237,8 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         shieldTimer -= Time.deltaTime;
         if (shieldTimer <= 0)
         {
+            animator.SetTrigger("Shield");
+            shadowAnimator.SetTrigger("Shield");
             shieldTimer = shieldTime;
             AddShield(shieldValue, Mathf.Infinity);
         }
@@ -235,6 +249,8 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         dirtyWaterAttackTimer -= Time.deltaTime;
         if (dirtyWaterAttackTimer <= 0)
         {
+            animator.SetTrigger("DirtyWater");
+            shadowAnimator.SetTrigger("DirtyWater");
             dirtyWaterAttackTimer = dirtyWaterAttackTime;
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
@@ -247,6 +263,8 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         pushTimer -= Time.deltaTime;
         if (pushTimer <= 0)
         {
+            animator.SetTrigger("Push");
+            shadowAnimator.SetTrigger("Push");
             pushTimer = pushTime;
             player.PushTo(pushPosition, pushDamage);
         }

@@ -1,0 +1,94 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "Param_Cloth",
+			"GroupId": "",
+			"Name": "衣服飘动"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "飞鸟"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "受击"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "受击(后仰"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "技能发送"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "上下"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "香蕉透明度"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "鸟的透明度"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "西王母透明度"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part3",
+			"Name": "道具.psd"
+		},
+		{
+			"Id": "Part",
+			"Name": "0929西王母（分层）.psd(未找到对应图层)"
+		},
+		{
+			"Id": "Part2",
+			"Name": "组 1"
+		},
+		{
+			"Id": "Tou",
+			"Name": "Tou"
+		},
+		{
+			"Id": "shenti",
+			"Name": "shenti"
+		},
+		{
+			"Id": "zuoshou",
+			"Name": "zuoshou"
+		},
+		{
+			"Id": "qunzi",
+			"Name": "qunzi"
+		},
+		{
+			"Id": "youtui",
+			"Name": "youtui"
+		},
+		{
+			"Id": "zuotui",
+			"Name": "zuotui"
+		}
+	]
+}

@@ -1,0 +1,143 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "药水透明度"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "香蕉透明度"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "上半身转动"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "全身呼吸"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "撒药水"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "飘动的布"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "扔香蕉皮"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "抬起来前半段"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "",
+			"Name": "受击"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "",
+			"Name": "推人下水"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "摇头晃脑"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "",
+			"Name": "召唤护盾"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "",
+			"Name": "召唤小民"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "",
+			"Name": "掏出药水"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "",
+			"Name": "boss狂喜"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part7",
+			"Name": "道具.psd"
+		},
+		{
+			"Id": "Part5",
+			"Name": "daoju.psd"
+		},
+		{
+			"Id": "Part",
+			"Name": "组 2"
+		},
+		{
+			"Id": "R",
+			"Name": "R"
+		},
+		{
+			"Id": "Part2",
+			"Name": "组 3"
+		},
+		{
+			"Id": "Part3",
+			"Name": "hou zuo tui"
+		},
+		{
+			"Id": "Part4",
+			"Name": "hou  you  tui"
+		},
+		{
+			"Id": "L",
+			"Name": "L"
+		},
+		{
+			"Id": "Part6",
+			"Name": "组 1"
+		},
+		{
+			"Id": "Tou",
+			"Name": "Tou"
+		},
+		{
+			"Id": "shenti",
+			"Name": "shenti"
+		},
+		{
+			"Id": "zuoshou",
+			"Name": "zuoshou"
+		},
+		{
+			"Id": "qunzi",
+			"Name": "qunzi"
+		},
+		{
+			"Id": "youtui",
+			"Name": "youtui"
+		},
+		{
+			"Id": "zuotui",
+			"Name": "zuotui"
+		}
+	]
+}
