@@ -17,7 +17,7 @@ public class CardPrototype : MonoBehaviour
     public Vector3 originPos;
     public float returnTime = 0.2f;
 
-    private Vector3 scale_Selected= new Vector3(1.3f,1.3f,1.3f);
+    private Vector3 scale_Selected= new Vector3(1.2f,1.2f,1.2f);
     private Vector3 offset_Selected = new Vector3(0, 0, 0);
     private float scaleTime = 0.1f;
 

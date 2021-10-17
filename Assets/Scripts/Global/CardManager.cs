@@ -12,7 +12,7 @@ public class CardManager : MonoBehaviour
     [Header("Configuration")]
     public int max_Total_Card = 30; // 牌库最大可持有卡牌数
     public int min_Total_Card = 15; // 牌库最小持有数量
-    public int max_Cur_Card = 6; // 当前最大可使用卡牌数
+    public int max_Cur_Card = 5; // 当前最大可使用卡牌数
 
     public LayerMask groundLayer;
 

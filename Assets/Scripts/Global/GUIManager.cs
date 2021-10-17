@@ -82,9 +82,10 @@ public class GUIManager : MonoBehaviour
     [Space]
     public GameObject btn_Restart;
     public GameObject btn_NextLevel;
-    [Space]
+    
+    [Header("Curtain")]
     public Animator ani_Curtain;
-
+    public Curtain curtain;
 
 
     private void Awake()
@@ -402,18 +403,33 @@ public class GUIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 设置显示幕布
+    /// 设置显示幕布 
     /// </summary>
-    public void SetDisplayCurtain(bool _v)
+    /// <param name="_v">1 则拉上幕布</param>
+    /// <param name="_fun">动画结束时的回调函数</param>
+    public void SetDisplayCurtain(bool _v,callbackFun _fun = null)
     {
         if (_v)
         {
+            if(_fun != null)
+                curtain.SetCallbackFun_Close(_fun);
             ani_Curtain.gameObject.SetActive(true);
             ani_Curtain.Play("Curtain_Close");
         }
         else
         {
+            if (_fun != null)
+                curtain.SetCallbackFun_Open(_fun);
             ani_Curtain.Play("Curtain_Open");
         }
+    }
+
+    /// <summary>
+    /// 显示幕布拉上后自动拉开 转场用
+    /// </summary>
+    public void DisplayCurtain(callbackFun _fun)
+    {
+        curtain.SetCallbackFun_CloseAndOpen(_fun);
+        ani_Curtain.Play("Curtain_CloseAndOpen");
     }
 }

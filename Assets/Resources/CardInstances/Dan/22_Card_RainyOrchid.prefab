@@ -310,7 +310,7 @@ RectTransform:
   m_GameObject: {fileID: 4073385000741474099}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.78343, y: 0.78343, z: 0.78343}
+  m_LocalScale: {x: 0.629, y: 0.629, z: 0.629}
   m_Children:
   - {fileID: 6631347796522985239}
   - {fileID: 6691981213009552021}
@@ -320,7 +320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 34.5}
+  m_AnchoredPosition: {x: -0.34, y: 30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6503458165765360442
@@ -496,7 +496,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 403, y: 328}
-  m_SizeDelta: {x: 80, y: 106.667}
+  m_SizeDelta: {x: 65, y: 86.667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7703119135247134840
 CanvasRenderer:
@@ -686,5 +686,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardInfo: {fileID: 11400000, guid: afb8e79fcd2fb7045a6f480ebfdefa12, type: 2}
+  fadeOut_Duration: 0.25
+  fadeOut: 0
+  canChangePos: 1
+  originPos: {x: 0, y: 0, z: 0}
+  returnTime: 0.2
+  originIndex: 0
   healing: 0
   time: 0

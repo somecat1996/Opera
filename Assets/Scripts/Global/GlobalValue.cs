@@ -165,4 +165,25 @@ public static class GlobalValue
 
         return temp;
     }
+
+    /// <summary>
+    /// 获得真实关卡结算金币值
+    /// </summary>
+    /// <returns></returns>
+    public static int GetTrueLoot(float _v)
+    {
+        float factor = 1 + lootIncrement;
+        return (int)(_v * factor);
+    }
+
+    /// <summary>
+    /// 获得真实阶段性奖赏 喝彩值和赏钱
+    /// </summary>
+    /// <param name="_v"></param>
+    /// <returns></returns>
+    public static int GetTrueReward(float _v)
+    {
+        float factor = 1 + rewardIncrement;
+        return (int)(_v * factor);
+    }
 }

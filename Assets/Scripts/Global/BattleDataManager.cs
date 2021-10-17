@@ -24,6 +24,8 @@ public class BattleDataManager : MonoBehaviour
     public List<GameObjectBase> enemyList = new List<GameObjectBase>(); // 由敌人自身上传信息
     [Space]
     public bool playerMoving = false; // 玩家是否移动
+    [Space]
+    public float appealPoint = 0;// 喝彩值
 
     [Header("Obejcts And Related Configuration")]
     // 通用配置
@@ -41,6 +43,12 @@ public class BattleDataManager : MonoBehaviour
     // 方向性卡牌指示器
     public LineRenderer lineRender_Dp;
     public GameObject directionPointer;
+    [Header("Spectator Objects")]
+    // 观众实体
+    public List<GameObject> spectatorList = new List<GameObject>();
+    public GameObject spectator_Spectial;
+    // 已点亮的观众
+    public List<GameObject> activatedSpectatorList = new List<GameObject>();
 
     private void Awake()
     {
@@ -70,7 +78,7 @@ public class BattleDataManager : MonoBehaviour
         }
 
         gameTimer += Time.deltaTime;
-        timer_LastStage += gameTimer;
+        timer_LastStage = gameTimer;
 
         if (activateRangeDIsplayer)
         {
@@ -132,6 +140,51 @@ public class BattleDataManager : MonoBehaviour
     }
 
     /// <summary>
+    ///  重设数据——开启新关卡时调用
+    /// </summary>
+    public void ResetAllData()
+    {
+        // 系统信息
+        gameTimer = 0;
+
+        // 伤害数值
+        totalDamage = 0;
+        totalUsedCard = 0;
+        lastTargetEnemy = null;
+        lastUsedCard = null;
+
+        // 场上敌人列表
+        enemyList.Clear();
+
+        // 玩家信息
+        playerMoving = false;
+
+        // 指示器
+        //directionPointer.SetActive(false);
+        //rangeDisplayer.SetActive(false);
+        //targetMarker.SetActive(false);
+        activateTargetMarker = false;
+
+        // 阶段信息
+        cur_Stage = 0;
+        timer_LastStage = 0;
+
+        // 喝彩值相关
+        appealPoint = 0;
+
+        // 观众相关
+        // 将所有已经激活的观众设置成剪影
+        while (activatedSpectatorList.Count != 0)
+        {
+            spectatorList.Add(activatedSpectatorList[0]);
+            activatedSpectatorList[0].GetComponent<Image>().color = Color.black;
+            activatedSpectatorList.RemoveAt(0);
+        }
+        spectator_Spectial.GetComponent<Image>().color = Color.black;
+    }
+
+
+    /// <summary>
     /// 开启范围显示器
     /// </summary>
     /// <param name="_v"></param>
@@ -175,39 +228,6 @@ public class BattleDataManager : MonoBehaviour
     public void SetActiveDirectionPointer(bool _v)
     {
         directionPointer.SetActive(_v);
-    }
-
-
-
-    /// <summary>
-    ///  重设数据——开启新关卡时调用
-    /// </summary>
-    public void ResetAllData()
-    {
-        // 系统信息
-        gameTimer = 0;
-
-        // 伤害数值
-        totalDamage = 0;
-        totalUsedCard = 0;
-        lastTargetEnemy = null;
-        lastUsedCard = null;
-
-        // 场上敌人列表
-        enemyList.Clear();
-
-        // 玩家信息
-        playerMoving = false;
-
-        // 指示器
-        //directionPointer.SetActive(false);
-        //rangeDisplayer.SetActive(false);
-        //targetMarker.SetActive(false);
-        activateTargetMarker = false;
-
-        // 阶段信息
-        cur_Stage = 0;
-        timer_LastStage = 0;
     }
 
     // 更新伤害数据
@@ -273,12 +293,12 @@ public class BattleDataManager : MonoBehaviour
             {
                 timeReward = 0;
             }
-            loot = (int)((Random.Range(100, 200) + timeReward) * PlayerManager.instance.GetCurrentLevelInfo().rewardFactor[0]);
+            loot = GlobalValue.GetTrueLoot(((Random.Range(100, 200) + timeReward) * PlayerManager.instance.GetCurrentLevelInfo().rewardFactor[0]));
         }
         else
         {
             // 失败时 金币结算
-            loot = (int)(Random.Range(100, 200) * PlayerManager.instance.GetCurrentLevelInfo().rewardFactor[0] * (1 - cur_bossHP_Pencentage));
+            loot = GlobalValue.GetTrueLoot((Random.Range(100, 200) * PlayerManager.instance.GetCurrentLevelInfo().rewardFactor[0] * (1 - cur_bossHP_Pencentage)));
         }
 
 
@@ -358,9 +378,61 @@ public class BattleDataManager : MonoBehaviour
     /// <param name="_v"></param>
     public void UpdateStage(int _v)
     {
-        cur_Stage = _v;
+        // 开头和最后阶段不进行结算
+        if (cur_Stage == 0 || cur_Stage == 3)
+        {
+            cur_Stage++;
+            return;
+        }
 
+        GameManager.instance.SetPauseGame(true);
+        GUIManager.instance.SetDisplayCurtain(true, updateStage);
+        
+    }
 
+    /// <summary>
+    /// 该方法由幕布回调函数执行
+    /// </summary>
+    void updateStage()
+    {
+        // 计算上一阶段喝彩值和赏钱
+        int tempAP = 0;
+        if (timer_LastStage <= 30)
+        {
+            tempAP = 120 - (int)timer_LastStage;
+        }
+        else if (timer_LastStage > 30 && timer_LastStage <= 60)
+        {
+            tempAP = 150 - 2 * (int)timer_LastStage;
+        }
+        else
+        {
+            tempAP = 30;
+        }
+
+        // 获得真实喝彩值
+        tempAP = GlobalValue.GetTrueReward(tempAP);
+
+        // 根据喝彩值回复血量
+        if (tempAP >= 30 && tempAP <= 49)
+        {
+            PlayerManager.instance.player.InstantHealing(60);
+        }
+        else if (tempAP >= 50 && tempAP <= 79)
+        {
+            PlayerManager.instance.player.InstantHealing(80);
+        }
+        else if (tempAP >= 80)
+        {
+            PlayerManager.instance.player.InstantHealing(100);
+        }
+
+        if (tempAP <= 60)
+            PlayerManager.instance.player.InstantHealing(100);
+        appealPoint += tempAP;
+
+        // 更新阶段数
+        cur_Stage++;
 
         // 重置阶段计时器
         timer_LastStage = 0;

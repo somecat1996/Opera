@@ -39,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 403, y: 328}
-  m_SizeDelta: {x: 80, y: 106.667}
+  m_SizeDelta: {x: 65, y: 86.667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1098694885782268654
 CanvasRenderer:
@@ -229,6 +229,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardInfo: {fileID: 11400000, guid: 73c741b051f720849a0933f841e9bc9c, type: 2}
+  fadeOut_Duration: 0.25
+  fadeOut: 0
+  canChangePos: 1
+  originPos: {x: 0, y: 0, z: 0}
+  returnTime: 0.2
+  originIndex: 0
 --- !u!1 &2509003659588611125
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +679,7 @@ RectTransform:
   m_GameObject: {fileID: 8504458329350131358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.78343, y: 0.78343, z: 0.78343}
+  m_LocalScale: {x: 0.629, y: 0.629, z: 0.629}
   m_Children:
   - {fileID: 7713377503274223679}
   - {fileID: 8436474323793190585}
@@ -683,6 +689,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 34.5}
+  m_AnchoredPosition: {x: -0.2, y: 30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
