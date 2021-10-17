@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u53D7\u51FB(\u540E\u4EF0).anim"
+  m_Name: "\u53D7\u51FB(\u540E\u4EF0)"
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -668,5 +668,5 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: -109914
+    intParameter: -574920
     messageOptions: 1

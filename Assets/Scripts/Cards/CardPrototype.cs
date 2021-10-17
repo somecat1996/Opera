@@ -284,4 +284,13 @@ public class CardPrototype : MonoBehaviour
 
         return false;
     }
+
+    /// <summary>
+    /// 检测卡牌是否可以触发效果
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckAvaliablity()
+    {
+        return !(CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup);
+    }
 }
