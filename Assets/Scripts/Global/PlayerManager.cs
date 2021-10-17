@@ -91,8 +91,9 @@ public class PlayerManager : MonoBehaviour
 
         cur_LevelIndex = _levelIndex;
 
-        // 关闭无关UI
+        // 通知GUI关闭无关UI且显示关卡信息
         GUIManager.instance.DisableAllGUI();
+        GUIManager.instance.SpawnLevelName(levelInfo[cur_LevelIndex].levelName);
 
         // Buff相关
         BuffManager.instance.DiableAllBuff(); // 清空BUFF

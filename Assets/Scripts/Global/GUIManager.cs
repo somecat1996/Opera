@@ -64,6 +64,8 @@ public class GUIManager : MonoBehaviour
     [Space]
     public Transform spawnPos_SystemText;
     public GameObject prefab_SystemText;
+    public Transform spawnPos_LevelName;
+    public GameObject prefab_LevelName;
     [Space]
     public GameObject panel_Title;
     public GameObject panel_ConfirmDialog_NewGame;
@@ -301,6 +303,18 @@ public class GUIManager : MonoBehaviour
         go.transform.parent = panel_Common;
         go.transform.localScale = Vector3.one;
         go.transform.position = spawnPos_SystemText.position;
+        go.GetComponent<SystemText>().SetText(_text);
+    }
+    /// <summary>
+    /// 生成关卡名字
+    /// </summary>
+    /// <param name="_text"></param>
+    public void SpawnLevelName(string _text)
+    {
+        GameObject go = Instantiate(prefab_LevelName);
+        go.transform.parent = panel_Common;
+        go.transform.localScale = Vector3.one;
+        go.transform.position = spawnPos_LevelName.position;
         go.GetComponent<SystemText>().SetText(_text);
     }
 
