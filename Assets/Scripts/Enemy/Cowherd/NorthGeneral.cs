@@ -48,12 +48,14 @@ public class NorthGeneral : EnemyStatus
 
     public void StartReducing()
     {
-        westernQueen.ChangeHurtCoefficient(-hurtReduce);
+        if (westernQueen)
+            westernQueen.ChangeHurtCoefficient(-hurtReduce);
     }
 
     public void StopReducing()
     {
-        westernQueen.ChangeHurtCoefficient(hurtReduce);
+        if (westernQueen)
+            westernQueen.ChangeHurtCoefficient(hurtReduce);
     }
 
     public override void Die()
