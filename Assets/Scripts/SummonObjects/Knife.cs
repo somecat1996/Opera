@@ -39,6 +39,6 @@ public class Knife : SummonedObjectPrototype
     {
         damage = d;
         transform.position = startPosition;
-        rigidbody.velocity = speed * direction.normalized;
+        rigidbody.velocity = -speed * direction.normalized;
     }
 }

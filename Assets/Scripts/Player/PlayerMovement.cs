@@ -40,13 +40,11 @@ public class PlayerMovement : MonoBehaviour
         timer = Random.Range(walkTimeRange[0], walkTimeRange[1]);
 
         playerStatus = gameObject.GetComponent<PlayerStatus>();
-
-        StopMoving();
     }
     // Start is called before the first frame update
     void Start()
     {
-
+        StopMoving();
     }
 
     // Update is called once per frame
