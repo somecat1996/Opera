@@ -41,6 +41,21 @@ public class MaterialController : MonoBehaviour
     }
 
     /// <summary>
+    /// 重新寻找渲染器
+    /// </summary>
+    public void ResearchRenderer()
+    {
+        foreach (var i in parent_MainSprites.GetComponentsInChildren<Renderer>())
+        {
+            mainRenderer.Add(i);
+        }
+        foreach (var i in parent_ShadowSprites.GetComponentsInChildren<Renderer>())
+        {
+            outlineRenderer.Add(i);
+        }
+    }
+
+    /// <summary>
     /// 清除所有效果
     /// </summary>
     public void ClearEffect()

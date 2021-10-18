@@ -7,7 +7,8 @@ public class BuffManager : MonoBehaviour
     [HideInInspector]
     public static BuffManager instance;
 
-    public Dictionary<int, GameObject> buffLibrary = new Dictionary<int, GameObject>(); // BUFF实体库——用于载入
+    public Dictionary<int, BuffBasicInfomation> buffLibrary = new Dictionary<int, BuffBasicInfomation>();
+    public Dictionary<int, GameObject> buffInstanceLibrary = new Dictionary<int, GameObject>(); // BUFF实体库——用于载入
 
     public List<int> deactivateBuffList = new List<int>(); // 未激活BUFF的ID库
     public Dictionary<int, GameObject> activiatedBuffList = new Dictionary<int, GameObject>(); // 存放已经激活的Buff信息
@@ -18,6 +19,7 @@ public class BuffManager : MonoBehaviour
         instance = this;
 
         // 载入buff信息
+        LoadAllBuffInfo();
         LoadAllBuffInstances();
     }
 
@@ -45,12 +47,25 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    // 载入所有Buff实体到库中
+    /// <summary>
+    /// 载入所有Buff信息
+    /// </summary>
+    public void LoadAllBuffInfo()
+    {
+        foreach (var i in Resources.LoadAll<BuffBasicInfomation>("BuffBasicInfomation"))
+        {
+             buffLibrary.Add(i.id, i);
+        }
+    }
+
+    /// <summary>
+    ///  载入所有Buff实体到库中
+    /// </summary>
     public void LoadAllBuffInstances()
     {
         foreach(var i in Resources.LoadAll<GameObject>("BuffInstances"))
         {
-            buffLibrary.Add(i.GetComponent<BuffPrototype>().GetID(), i);
+            buffInstanceLibrary.Add(i.GetComponent<BuffPrototype>().GetID(), i);
             deactivateBuffList.Add(i.GetComponent<BuffPrototype>().GetID());
 
             i.GetComponent<BuffPrototype>().ReflashData(); // 刷新数据
@@ -62,7 +77,7 @@ public class BuffManager : MonoBehaviour
     {
         foreach(var i in deactivateBuffList)
         {
-            buffLibrary[i].GetComponent<BuffPrototype>().ReflashData();
+            buffInstanceLibrary[i].GetComponent<BuffPrototype>().ReflashData();
         }
     }
 
@@ -72,9 +87,9 @@ public class BuffManager : MonoBehaviour
     /// <param name="_id">BUFF ID</param>
     public void EnableBuff(int _id)
     {
-        if (buffLibrary.ContainsKey(_id))
+        if (buffInstanceLibrary.ContainsKey(_id))
         {
-            GameObject go = Instantiate(buffLibrary[_id]);
+            GameObject go = Instantiate(buffInstanceLibrary[_id]);
             go.transform.parent = transform;
             activiatedBuffList.Add(_id, go);
 
@@ -165,5 +180,38 @@ public class BuffManager : MonoBehaviour
         {
             return activiatedBuffList[303].GetComponent<BuffPrototype>().GetTrueMainValue();
         }
+    }
+
+    /// <summary>
+    /// 随机获得未激活Buff信息
+    /// </summary>
+    public List<BuffBasicInfomation> GetBuffInfoRandomly(int _count)
+    {
+        // 刷新卡牌数据
+        ReflashAllBuffData();
+
+        List<BuffBasicInfomation> tempBuffInfoList = new List<BuffBasicInfomation>();
+        List<int> idList = new List<int>();
+
+        // 移除角色的专属buff
+        for(int i = 0; i < deactivateBuffList.Count; i++)
+        {
+            if(deactivateBuffList[i] < 300)
+            {
+                idList.Add(deactivateBuffList[i]);
+            }
+        }
+
+        while(idList.Count > _count)
+        {
+            idList.RemoveAt(Random.Range(0, idList.Count));
+        }
+
+        foreach(var i in idList)
+        {
+            tempBuffInfoList.Add(buffLibrary[i]);
+        }
+
+        return tempBuffInfoList;
     }
 }

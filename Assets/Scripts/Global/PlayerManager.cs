@@ -19,6 +19,8 @@ public class PlayerManager : MonoBehaviour
     public float cur_RecoverySpeed_PowerPoint = 0;
 
     public int cur_LevelIndex = -1;
+    // 一句游戏下来的随机关卡序列
+    public List<int> levelIndexList = new List<int>();
     [Space]
     [Header("Player")]
     public GameObjectBase player;
@@ -76,20 +78,40 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+
     /// <summary>
-    /// 进入游戏
+    /// 生成随机的关卡编号序列并进入关卡——难度选择界面的进入按钮使用
     /// </summary>
-    /// <param name="_levelIndex">关卡ID</param>
-    public void EnterLevel(int _levelIndex)
+    public void SpawnLevelIndexList()
     {
-        // 判断关卡是否解锁
-        if (!levelInfo[_levelIndex].unlocked)
+        // 重新生成 关卡序列
+        List<int> tempList = new List<int>();
+        foreach(var i in levelInfo.Values)
         {
-            GUIManager.instance.SpawnSystemText("关卡未解锁!");
-            return;
+            tempList.Add(i.id);
         }
 
-        cur_LevelIndex = _levelIndex;
+        levelIndexList.Clear();
+        while(tempList.Count != 0)
+        {
+            int index = Random.Range(0, tempList.Count);
+            levelIndexList.Add(tempList[index]);
+            tempList.RemoveAt(index);
+        }
+    }
+
+    /// <summary>
+    /// 进入关卡
+    /// </summary>
+    public void EnterLevel(bool _restart = false)
+    {
+        // 若非重开关卡 则当前关卡下标不变
+        if (!_restart)
+        {
+            cur_LevelIndex = levelIndexList[0];
+            levelIndexList.RemoveAt(0);
+        }
+
 
         // 通知GUI关闭无关UI且显示关卡信息,重置Boss血条
         GUIManager.instance.DisableAllGUI();
@@ -117,8 +139,9 @@ public class PlayerManager : MonoBehaviour
         BattleDataManager.instance.ResetAllData();
 
         // 开启关卡
-        EnemyManager.instance.EnterLevel(_levelIndex);
+        EnemyManager.instance.EnterLevel(cur_LevelIndex);
     }
+
     /// <summary>
     /// 重启关卡
     /// </summary>
@@ -128,7 +151,7 @@ public class PlayerManager : MonoBehaviour
     }
     void restartLevel()
     {
-        EnterLevel(cur_LevelIndex);
+        EnterLevel(true);
     }
     /// <summary>
     /// 进入下一关卡
@@ -141,11 +164,11 @@ public class PlayerManager : MonoBehaviour
     {
         if (cur_LevelIndex == levelInfo.Count - 1)
         {
-            EnterLevel(cur_LevelIndex);
+            // 此处已经结束所有关卡 可以返回游戏界面
         }
         else
         {
-            EnterLevel(++cur_LevelIndex);
+            EnterLevel(false);
         }
     }
 
@@ -313,5 +336,38 @@ public class PlayerManager : MonoBehaviour
     public void UpdateVictoryTime()
     {
         levelInfo[cur_LevelIndex].victoryTime++;
+    }
+
+    public void EnterLevel_Test(int _index)
+    {
+        cur_LevelIndex = _index;
+
+        // 通知GUI关闭无关UI且显示关卡信息,重置Boss血条
+        GUIManager.instance.DisableAllGUI();
+        GUIManager.instance.SpawnLevelName(levelInfo[cur_LevelIndex].levelName);
+        GUIManager.instance.UpdateBossHealthPoint(1);
+
+        // Buff相关
+        BuffManager.instance.DiableAllBuff(); // 清空BUFF
+        EnableCharBuff(); // 启用角色被动
+        BuffManager.instance.EnableAllSelectedBuff(); // 启用所有选择的BUFF
+
+        // 卡牌相关
+        CardManager.instance.ClearAllActivatedCard(); // 清除场上所有的卡牌实体
+        CardManager.instance.RealignAndLoadCards(); // 增加场上卡牌
+
+        // 玩家角色相关
+        ResetBattleData();
+
+        // 通知游戏管理器
+        GameManager.instance.SetStartGame(true);
+        GameManager.instance.SetPauseGame(false);
+
+        // 清空战场上所有实体并重置BDM
+        EnemyManager.instance.Clear();
+        BattleDataManager.instance.ResetAllData();
+
+        // 开启关卡
+        EnemyManager.instance.EnterLevel(cur_LevelIndex);
     }
 }

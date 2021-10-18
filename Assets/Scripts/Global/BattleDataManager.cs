@@ -585,7 +585,8 @@ public class BattleDataManager : MonoBehaviour
             spectator_Spectial.GetComponent<Spectator>().Highlight();
         }
 
-        Curtain.instance.SetActivatable(true);
+        // 显示buff选择栏
+        BuffSelector.instance.EnablePanel();
     }
 
     // 显示喝彩值文本

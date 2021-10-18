@@ -88,7 +88,7 @@ public class CharacterSelector : MonoBehaviour
     {
         int buffID = charInfo[selectedId].buffID[_index];
         selectedBuffIndex = _index;
-        charDesc.text = BuffManager.instance.buffLibrary[buffID].GetComponent<BuffPrototype>().buffInfo.description;
+        charDesc.text = BuffManager.instance.buffInstanceLibrary[buffID].GetComponent<BuffPrototype>().buffInfo.description;
 
         for(int i = 0; i < image_BuffSelector.Length; i++)
         {
@@ -104,7 +104,7 @@ public class CharacterSelector : MonoBehaviour
 
         for (int i = 0; i < text_BuffName.Length; i++)
         {
-            text_BuffName[i].text = BuffManager.instance.buffLibrary[charInfo[selectedId].buffID[i]].GetComponent<BuffPrototype>().buffInfo.buffName;
+            text_BuffName[i].text = BuffManager.instance.buffInstanceLibrary[charInfo[selectedId].buffID[i]].GetComponent<BuffPrototype>().buffInfo.buffName;
         }
     }
 

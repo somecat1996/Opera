@@ -5,6 +5,13 @@ using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
 
+
+/**
+ *                  *************注意*************
+ *  LevelSelector转变为难度选择器 关卡选择界面不在有选择指定关卡的功能
+ *  仅用于选择相对应的难度系数
+ * 
+ */
 public class LevelSelector : MonoBehaviour
 {
     List<GameObject> buttonList = new List<GameObject>();
@@ -71,7 +78,7 @@ public class LevelSelector : MonoBehaviour
     /// </summary>
     public void ConfirmLevel()
     {
-        PlayerManager.instance.EnterLevel(currentIndex);
+        PlayerManager.instance.SpawnLevelIndexList();
     }
 
     // 左旋
