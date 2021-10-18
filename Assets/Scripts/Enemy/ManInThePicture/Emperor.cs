@@ -281,6 +281,11 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         base.Die();
     }
 
+    public override void Kill()
+    {
+        Die();
+    }
+
     public void DouE()
     {
         countHurt = true;
