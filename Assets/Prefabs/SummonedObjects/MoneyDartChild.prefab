@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   speed: 10
-  life: 20
+  life: 10
 --- !u!96 &9112296074064720016
 TrailRenderer:
   serializedVersion: 2
@@ -204,7 +204,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -220,6 +220,24 @@ TrailRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.20490654
+        value: 0.2952447
+        inSlope: -1.7006284
+        outSlope: -1.7006284
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.84036696
+        value: 0
+        inSlope: -0.025123019
+        outSlope: -0.025123019
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
