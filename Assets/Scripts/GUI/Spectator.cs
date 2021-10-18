@@ -11,8 +11,8 @@ public class Spectator : MonoBehaviour
 
     public float animationSpeed = 0.5f;
 
-    public static Color color_Activated;
-    public static Color color_Highligh;
+    public static Color color_Activated = new Color(0.8f,0.8f,0.8f,1);
+    public static Color color_Highlight = Color.white;
 
     void Start()
     {
@@ -30,5 +30,19 @@ public class Spectator : MonoBehaviour
     {
         image_OnGameScene.DOColor(color_Activated, animationSpeed);
         image_UnderCurtain.DOColor(color_Activated, animationSpeed);
+    }
+
+    // 高光观众
+    public void Highlight()
+    {
+        image_OnGameScene.DOColor(color_Highlight, animationSpeed);
+        image_UnderCurtain.DOColor(color_Highlight, animationSpeed);
+    }
+
+    // 反激活
+    public void Deactivate()
+    {
+        image_OnGameScene.DOColor(Color.black, 0.01f);
+        image_UnderCurtain.DOColor(Color.black, 0.01f);
     }
 }

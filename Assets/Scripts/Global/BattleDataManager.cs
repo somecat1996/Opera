@@ -46,7 +46,7 @@ public class BattleDataManager : MonoBehaviour
     public GameObject directionPointer;
     [Header("Spectator Objects")]
     // 观众实体
-    public List<Image> spectatorList = new List<Image>();
+    public List<Image> deactivatedSpectatorList = new List<Image>();
     public Image spectator_Spectial;
     // 已点亮的观众
     public List<Image> activatedSpectatorList = new List<Image>();
@@ -178,8 +178,8 @@ public class BattleDataManager : MonoBehaviour
         // 将所有已经激活的观众设置成剪影
         while (activatedSpectatorList.Count != 0)
         {
-            spectatorList.Add(activatedSpectatorList[0]);
-            activatedSpectatorList[0].color = Color.black;
+            deactivatedSpectatorList.Add(activatedSpectatorList[0]);
+            activatedSpectatorList[0].transform.GetComponent<Spectator>().Deactivate();
             activatedSpectatorList.RemoveAt(0);
         }
         spectator_Spectial.color = Color.black;
@@ -442,6 +442,28 @@ public class BattleDataManager : MonoBehaviour
         appealPoint += tempAP;
 
         // 根据喝彩值显示观众人数
+        if (CheckInRange(appealPoint, 30, 39))
+        {
+
+        }else if (CheckInRange(appealPoint, 40, 79))
+        {
+
+        }else if (CheckInRange(appealPoint,80, 119))
+        {
+
+        }else if (CheckInRange(appealPoint, 120, 149))
+        {
+
+        }else if (CheckInRange(appealPoint, 150, 179))
+        {
+
+        }else if (CheckInRange(appealPoint, 180, 219))
+        {
+
+        }else if (appealPoint >= 220)
+        {
+
+        }
 
         // 更新阶段数
         cur_Stage++;
@@ -450,7 +472,16 @@ public class BattleDataManager : MonoBehaviour
         timer_LastStage = 0;
     }
 
+    IEnumerator HandleSpcetator()
+    {
+        yield return new WaitForSeconds(0.5f);
+    }
+
     bool CheckInRange(int _v,int _min,int _max)
+    {
+        return _v >= _min && _v <= _max;
+    }
+    bool CheckInRange(float _v, int _min, int _max)
     {
         return _v >= _min && _v <= _max;
     }
