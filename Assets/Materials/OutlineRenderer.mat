@@ -37,6 +37,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - ActiveSelf: 0
+    - DisslutionValue: 0
+    - DissolutionValue: 0
     - OutlineSize: 0.00651
     m_Colors:
     - OutlineColor: {r: 1, g: 1, b: 1, a: 1}
