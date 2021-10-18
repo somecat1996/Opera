@@ -49,6 +49,7 @@ public class MoneyDart : SummonedObjectPrototype
                     targetList.RemoveAt(index);
                 }
             }
+            Destroy(gameObject);
         }
     }
 

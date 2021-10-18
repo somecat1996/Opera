@@ -35,6 +35,7 @@ public class MoneyDartChild : SummonedObjectPrototype
         if (other.tag == "Enemy" && other.GetComponent<EnemyStatus>().position == target.position)
         {
             other.GetComponent<EnemyStatus>().Hurt(damage, false, 1, HurtType.Physic);
+            Destroy(gameObject);
         }
     }
 

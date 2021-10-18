@@ -74,7 +74,7 @@ public class Picture : GameObjectBase, LevelItemInterface
             if (!lastUsedCard || lastUsedCard != BattleDataManager.instance.lastUsedCard)
             {
                 lastUsedCard = BattleDataManager.instance.lastUsedCard;
-                if (lastUsedCard.CheckIfDamageCard())
+                if (lastUsedCard && lastUsedCard.CheckIfDamageCard())
                 {
                     stage1CardCounter -= 1;
                     if (stage1CardCounter <= 0)

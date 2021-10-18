@@ -401,6 +401,11 @@ public class WesternQueen : EnemyStatus, BossInterface
         base.Die();
     }
 
+    public override void Kill()
+    {
+        Die();
+    }
+
     public void DouE()
     {
         countHurt = true;
