@@ -45,7 +45,7 @@ public class MoneyDart : SummonedObjectPrototype
                 if (targetList.Count > 0)
                 {
                     int index = Random.Range(0, targetList.Count);
-                    SummonedObjectManager.instance.SummonMoneyDartChild(childDamage, EnemyManager.instance.GetGameObjectAt(targetList[index]), EnemyManager.instance.generationPoint[index].position);
+                    SummonedObjectManager.instance.SummonMoneyDartChild(childDamage, EnemyManager.instance.GetGameObjectAt(targetList[index]), target.transform.position);
                     targetList.RemoveAt(index);
                 }
             }
