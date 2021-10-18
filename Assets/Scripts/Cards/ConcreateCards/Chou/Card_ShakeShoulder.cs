@@ -63,6 +63,8 @@ public class Card_ShakeShoulder : CardPrototype,ICardOperation,ICardEffectTrigge
 
     public void TriggerEffect()
     {
+        PlayAnimation();
+
         increment = PlayerManager.instance.cur_RecoverySpeed_PowerPoint * cardInfo.mainValue_Cur;
 
         if (!activated)

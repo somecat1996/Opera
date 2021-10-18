@@ -18,6 +18,7 @@ MonoBehaviour:
     \u7684\u4F7F\u7528\u6548\u679C"
   story: 
   illustration: {fileID: 21300000, guid: e2aeb6d793c563f4085889bdfb2f5be7, type: 3}
+  animationID: 201
   rarity: 4
   cardTag: 6
   cardType: 0

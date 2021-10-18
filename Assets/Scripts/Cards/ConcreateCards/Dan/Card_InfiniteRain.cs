@@ -136,6 +136,8 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
+        PlayAnimation();
+
         if (!executing)
         {
             executing = true;

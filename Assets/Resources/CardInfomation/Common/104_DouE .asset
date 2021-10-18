@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 104
   cardName: "\u300A\u7AA6\u5A25\u51A4\u300B"
   description: "\u8BB0\u5F55Boss 10 \u79D2\u5185 [\u6240\u53D7\u653B\u51FB\u9891\u6B21]\uFF0C\u7136\u540E\u4E00\u6B21\u6027\u9020\u6210
-    <color=red>[\u653B\u51FB\u9891\u6B21]\u7684\u5E73\u65B9e</color> \u70B9\u771F\u5B9E\u4F24\u5BB3"
+    <color=red>[\u653B\u51FB\u9891\u6B21]\u7684\u5E73\u65B9</color> \u70B9\u771F\u5B9E\u4F24\u5BB3"
   story: 
   illustration: {fileID: 21300000, guid: b3b30a8e1fab35e46ab8290bcdd8c3db, type: 3}
   rarity: 4

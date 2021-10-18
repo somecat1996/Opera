@@ -79,6 +79,8 @@ public class Card_GroundDragon : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
+        PlayAnimation();
+
         if (activated_5s)
         {
             StopCoroutine(timer_5s);

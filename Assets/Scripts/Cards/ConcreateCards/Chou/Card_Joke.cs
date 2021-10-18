@@ -87,6 +87,8 @@ public class Card_Joke : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
+        PlayAnimation();
+
         foreach (var i in _gos)
             i.Stun(cardInfo.mainValue_Cur);
     }

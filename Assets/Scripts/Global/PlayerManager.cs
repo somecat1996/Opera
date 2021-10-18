@@ -220,8 +220,10 @@ public class PlayerManager : MonoBehaviour
         if (_v == cur_Character)
             return;
 
+        // 切换角色信息 且 切换场景角色实体
         cur_CharacterInfo = _info;
         cur_Character = _v;
+        Player.instance.ChangeCharacter(cur_CharacterInfo.id);
 
         // 清除已选择卡牌的信息
         GUIManager.instance.ClearUnselectedCardList();

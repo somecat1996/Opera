@@ -75,6 +75,8 @@ public class Card_Break : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect(GameObjectBase _go)
     {
+        PlayAnimation();
+
         _go.Hurt(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur,cardInfo.cost), true, 3);
         BattleDataManager.instance.UpdateTargetEnemy(_go);
     }

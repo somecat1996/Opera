@@ -67,6 +67,8 @@ public class Card_HalfStepCrazy : CardPrototype,ICardOperation,ICardEffectTrigge
 
     public void TriggerEffect(GameObjectBase _go)
     {
+        PlayAnimation();
+
         int time = (int)cardInfo.mainValue_Cur;
 
         while(time-- > 0)

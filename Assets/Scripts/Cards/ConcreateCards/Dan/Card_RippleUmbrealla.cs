@@ -68,6 +68,8 @@ public class Card_RippleUmbrealla : CardPrototype,ICardOperation,ICardEffectTrig
 
     public void TriggerEffect()
     {
+        PlayAnimation();
+
         // 效果正在激活中 重新激活
         if (activated)
         {

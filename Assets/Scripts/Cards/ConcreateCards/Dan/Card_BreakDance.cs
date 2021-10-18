@@ -88,6 +88,7 @@ public class Card_BreakDance : CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
+        PlayAnimation();
         PlayerManager.instance.player.StunImmunity(cardInfo.duration);
 
         foreach (var i in _gos)

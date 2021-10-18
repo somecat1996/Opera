@@ -295,4 +295,13 @@ public class CardPrototype : MonoBehaviour
     {
         return !(CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup || GameManager.instance.gamePause);
     }
+
+    // ²¥·Å¶¯»­
+    public void PlayAnimation()
+    {
+        if (cardInfo.animationID == -1)
+            return;
+        else
+            Player.instance.TriggerAnimation(cardInfo.animationID);
+    }
 }

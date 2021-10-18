@@ -19,6 +19,7 @@ MonoBehaviour:
     \u79D2\uFF08\u6BD2\u4F24\u6301\u7EED 5 \u79D2\uFF0C\u53EF\u5237\u65B0\uFF09"
   story: 
   illustration: {fileID: 21300000, guid: ea5eed88b071fe4419dcee65ed105c04, type: 3}
+  animationID: 208
   rarity: 3
   cardTag: 9
   cardType: 0
@@ -28,5 +29,5 @@ MonoBehaviour:
   duration: 0
   radius: 4
   mainValue_Cur: 5
-  quantity: 0
+  quantity: 1
   level: 1

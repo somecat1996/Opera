@@ -66,6 +66,8 @@ public class Card_Gag : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect(GameObjectBase _go)
     {
+        PlayAnimation();
+
         _go.Stun(cardInfo.mainValue_Cur);
     }
 

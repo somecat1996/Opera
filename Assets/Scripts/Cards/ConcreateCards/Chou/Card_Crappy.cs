@@ -64,6 +64,8 @@ public class Card_Crappy : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
+        PlayAnimation();
+
         if (healing == false)
         {
             timer = StartCoroutine(Effect());

@@ -60,6 +60,7 @@ public class Card_TurnOver : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
+        PlayAnimation();
         PlayerManager.instance.player.AddShield(cardInfo.mainValue_Cur, cardInfo.duration);
     }
 

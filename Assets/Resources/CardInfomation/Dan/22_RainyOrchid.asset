@@ -19,6 +19,7 @@ MonoBehaviour:
     6 \u79D2"
   story: 
   illustration: {fileID: 21300000, guid: 897d75e2a42ca6d4f83a7d605092aff3, type: 3}
+  animationID: 103
   rarity: 1
   cardTag: 3
   cardType: 0

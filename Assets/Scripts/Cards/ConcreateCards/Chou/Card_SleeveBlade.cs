@@ -46,6 +46,8 @@ public class Card_SleeveBlade : CardPrototype,ICardOperation,ICardEffectTrigger
         {
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
             {
+                PlayAnimation();
+
                 Vector3 origin = PlayerManager.instance.player.transform.position;
                 origin.y = 0;
 

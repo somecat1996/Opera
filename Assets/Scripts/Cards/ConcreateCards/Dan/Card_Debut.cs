@@ -92,6 +92,8 @@ public class Card_Debut : CardPrototype, ICardEffectTrigger,ICardOperation
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
+        PlayAnimation();
+
         if (!executing)
         {
             executing = true;

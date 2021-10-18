@@ -70,7 +70,9 @@ public class Card_RainyOrchid :CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
-        if(healing == false)
+        PlayAnimation();
+
+        if (healing == false)
         {
             timer = StartCoroutine(Effect());
             healing = true;

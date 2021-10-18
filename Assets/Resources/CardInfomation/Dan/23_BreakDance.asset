@@ -18,6 +18,7 @@ MonoBehaviour:
     <color=#9932CC>#MainValue</color> \u70B9\u6CD5\u672F\u4F24\u5BB3"
   story: 
   illustration: {fileID: 21300000, guid: 5110f04977b7a9a4189949fc1d69c0b0, type: 3}
+  animationID: 101
   rarity: 2
   cardTag: 1
   cardType: 2

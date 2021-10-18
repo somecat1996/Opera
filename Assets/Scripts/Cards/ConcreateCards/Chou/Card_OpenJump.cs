@@ -81,6 +81,8 @@ public class Card_OpenJump : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
+        PlayAnimation();
+
         foreach (var i in _gos)
             i.Hurt(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), false, 1.0f);
     }

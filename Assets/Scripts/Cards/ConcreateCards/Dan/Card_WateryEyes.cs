@@ -92,6 +92,8 @@ public class Card_WateryEyes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
+        PlayAnimation();
+
         if (!executing)
         {
             executing = true;
