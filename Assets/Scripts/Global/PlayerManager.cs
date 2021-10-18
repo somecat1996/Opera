@@ -98,6 +98,8 @@ public class PlayerManager : MonoBehaviour
             levelIndexList.Add(tempList[index]);
             tempList.RemoveAt(index);
         }
+
+        EnterLevel();
     }
 
     /// <summary>
@@ -118,10 +120,12 @@ public class PlayerManager : MonoBehaviour
         GUIManager.instance.SpawnLevelName(levelInfo[cur_LevelIndex].levelName);
         GUIManager.instance.UpdateBossHealthPoint(1);
 
-        // Buff相关
+        /*
+        // Buff相关 Buff在进入关卡时不在清除
         BuffManager.instance.DiableAllBuff(); // 清空BUFF
         EnableCharBuff(); // 启用角色被动
         BuffManager.instance.EnableAllSelectedBuff(); // 启用所有选择的BUFF
+        */
 
         // 卡牌相关
         CardManager.instance.ClearAllActivatedCard(); // 清除场上所有的卡牌实体
@@ -165,6 +169,23 @@ public class PlayerManager : MonoBehaviour
         if (cur_LevelIndex == levelInfo.Count - 1)
         {
             // 此处已经结束所有关卡 可以返回游戏界面
+            GUIManager.instance.SpawnSystemText("没有下一关啦 还没做");
+
+            // BUFF 卡牌相关
+            BuffManager.instance.DiableAllBuff(); // 清空BUFF
+            CardManager.instance.ClearAllActivatedCard(); // 清除场上所有的卡牌实体
+
+            ResetBattleData();
+
+            // 通知游戏管理器
+            GameManager.instance.SetStartGame(false);
+            GameManager.instance.SetPauseGame(false);
+
+            // 清空战场上所有实体并重置BDM
+            EnemyManager.instance.Clear();
+            BattleDataManager.instance.ResetAllData();
+
+            // 回到主界面
         }
         else
         {

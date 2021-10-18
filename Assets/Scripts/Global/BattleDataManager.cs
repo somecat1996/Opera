@@ -377,6 +377,7 @@ public class BattleDataManager : MonoBehaviour
 
         }
 
+        // 下面代码已无用
         if (playerVictory)
         {
             PlayerManager.instance.UpdateVictoryTime();

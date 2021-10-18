@@ -74,9 +74,9 @@ public class LevelSelector : MonoBehaviour
     }
 
     /// <summary>
-    /// 通知PlayManager进入对应关卡
+    /// 通知PlayManager生成关卡队列并进入关卡
     /// </summary>
-    public void ConfirmLevel()
+    public void Confirm()
     {
         PlayerManager.instance.SpawnLevelIndexList();
     }
