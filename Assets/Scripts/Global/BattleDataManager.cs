@@ -10,6 +10,7 @@ public class BattleDataManager : MonoBehaviour
     [Header("Real-Time Data")]
     public float gameTimer = 0; // 游戏市场
     public int loot = 0; // 战利品金币
+    public bool playerVictory = false;
     [Space]
     public float totalDamage = 0; // 由敌人Hurt函数上传伤害信息
     public int totalUsedCard = 0; // 由CardManger.SendToTempLayoutGroup上传
@@ -45,10 +46,11 @@ public class BattleDataManager : MonoBehaviour
     public GameObject directionPointer;
     [Header("Spectator Objects")]
     // 观众实体
-    public List<GameObject> spectatorList = new List<GameObject>();
-    public GameObject spectator_Spectial;
+    public List<Image> spectatorList = new List<Image>();
+    public Image spectator_Spectial;
     // 已点亮的观众
-    public List<GameObject> activatedSpectatorList = new List<GameObject>();
+    public List<Image> activatedSpectatorList = new List<Image>();
+    public List<Image> highlightSpectatorList = new List<Image>();
 
     private void Awake()
     {
@@ -177,10 +179,11 @@ public class BattleDataManager : MonoBehaviour
         while (activatedSpectatorList.Count != 0)
         {
             spectatorList.Add(activatedSpectatorList[0]);
-            activatedSpectatorList[0].GetComponent<Image>().color = Color.black;
+            activatedSpectatorList[0].color = Color.black;
             activatedSpectatorList.RemoveAt(0);
         }
-        spectator_Spectial.GetComponent<Image>().color = Color.black;
+        spectator_Spectial.color = Color.black;
+        highlightSpectatorList.Clear();
     }
 
 
@@ -274,11 +277,17 @@ public class BattleDataManager : MonoBehaviour
     /// <param name="_playerVictory">玩家是否胜利</param>
     public void EvaluateGameResult(bool _playerVictory)
     {
+        playerVictory = _playerVictory;
+
         GameManager.instance.SetStartGame(false);
         GameManager.instance.SetPauseGame(false);
 
+        GUIManager.instance.DisplayCurtain(evaluateGameResult);
+    }
+    void evaluateGameResult()
+    {
         // 计算金币 仅使用难度1系数 未知关卡难度选择操作
-        if (_playerVictory)
+        if (playerVictory)
         {
             int timeReward = 0;
             if (gameTimer <= 120)
@@ -304,7 +313,7 @@ public class BattleDataManager : MonoBehaviour
 
         // 随机抽取3张卡
         List<CardBasicInfomation> lootCard = CardManager.instance.GetCardsRandomly(3);
-        if (_playerVictory)
+        if (playerVictory)
         {
             // 剧情卡临时列表
             List<CardBasicInfomation> lootCard_Common = new List<CardBasicInfomation>();
@@ -329,7 +338,7 @@ public class BattleDataManager : MonoBehaviour
 
         // 实际数值传输到CardManager和PlayerManager;
         PlayerManager.instance.ChangeMoney(loot);
-        foreach(var i in lootCard)
+        foreach (var i in lootCard)
         {
             if (i.belongner != CharacterType.CharacterTag.Common)
             {
@@ -347,10 +356,10 @@ public class BattleDataManager : MonoBehaviour
                 // 重新载入通用卡牌到选择容器中
                 CardManager.instance.LoadAllCardIntoUnselectedList();
             }
-               
+
         }
 
-        if (_playerVictory)
+        if (playerVictory)
         {
             PlayerManager.instance.UpdateVictoryTime();
             // 解锁下一关
@@ -358,8 +367,9 @@ public class BattleDataManager : MonoBehaviour
         }
 
         // GUI 显示
-        GUIManager.instance.EnableGameResult(_playerVictory, gameTimer, loot,lootCard);
+        GUIManager.instance.EnableGameResult(playerVictory, gameTimer, loot, lootCard);
     }
+
 
     /// <summary>
     /// 更新BOSS百分比血量
@@ -431,10 +441,17 @@ public class BattleDataManager : MonoBehaviour
             PlayerManager.instance.player.InstantHealing(100);
         appealPoint += tempAP;
 
+        // 根据喝彩值显示观众人数
+
         // 更新阶段数
         cur_Stage++;
 
         // 重置阶段计时器
         timer_LastStage = 0;
+    }
+
+    bool CheckInRange(int _v,int _min,int _max)
+    {
+        return _v >= _min && _v <= _max;
     }
 }

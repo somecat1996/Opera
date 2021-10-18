@@ -429,7 +429,9 @@ public class GUIManager : MonoBehaviour
     /// </summary>
     public void DisplayCurtain(callbackFun _fun)
     {
-        curtain.SetCallbackFun_CloseAndOpen(_fun);
+        ani_Curtain.gameObject.SetActive(true);
+        if (_fun != null)
+            curtain.SetCallbackFun_CloseAndOpen(_fun);
         ani_Curtain.Play("Curtain_CloseAndOpen");
     }
 }
