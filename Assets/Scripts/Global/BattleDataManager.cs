@@ -44,13 +44,19 @@ public class BattleDataManager : MonoBehaviour
     // 方向性卡牌指示器
     public LineRenderer lineRender_Dp;
     public GameObject directionPointer;
-    [Header("Spectator Objects")]
-    // 观众实体
+    [Header("Spectator Objects And RealTime Data")]
+    public int activatedSpectator = 0;
+    public int highlightSpectator = 0;
+
+    [Space]
+    // 观众实体 分别为 未激活-点亮-高光
     public List<Image> deactivatedSpectatorList = new List<Image>();
-    public Image spectator_Spectial;
-    // 已点亮的观众
     public List<Image> activatedSpectatorList = new List<Image>();
     public List<Image> highlightSpectatorList = new List<Image>();
+
+    public Image spectator_Spectial;
+
+
 
     private void Awake()
     {
@@ -179,11 +185,21 @@ public class BattleDataManager : MonoBehaviour
         while (activatedSpectatorList.Count != 0)
         {
             deactivatedSpectatorList.Add(activatedSpectatorList[0]);
-            activatedSpectatorList[0].transform.GetComponent<Spectator>().Deactivate();
             activatedSpectatorList.RemoveAt(0);
         }
-        spectator_Spectial.color = Color.black;
-        highlightSpectatorList.Clear();
+        while(highlightSpectatorList.Count != 0)
+        {
+            deactivatedSpectatorList.Add(highlightSpectatorList[0]);
+            highlightSpectatorList.RemoveAt(0);
+        }
+        foreach(var i in deactivatedSpectatorList)
+        {
+            i.GetComponent<Spectator>().Deactivate();
+        }
+        spectator_Spectial.GetComponent<Spectator>().Deactivate();
+
+        activatedSpectator = 0;
+        highlightSpectator = 0;
     }
 
 
@@ -444,25 +460,74 @@ public class BattleDataManager : MonoBehaviour
         // 根据喝彩值显示观众人数
         if (CheckInRange(appealPoint, 30, 39))
         {
+            int rSpect_Act = 1 - activatedSpectator + highlightSpectator; // 剩余需要激活的观众
+            int rSpect_Hl = 0 - highlightSpectator; // 剩余需要高光的观众
 
-        }else if (CheckInRange(appealPoint, 40, 79))
+            rSpect_Act = Mathf.Clamp(rSpect_Act, 0, 8);
+            rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
+
+            StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+            
+        }
+        else if (CheckInRange(appealPoint, 40, 79))
         {
+            int rSpect_Act = 3 - activatedSpectator + highlightSpectator; // 剩余需要激活的观众
+            int rSpect_Hl = 1 - highlightSpectator; // 剩余需要高光的观众
 
-        }else if (CheckInRange(appealPoint,80, 119))
+            rSpect_Act = Mathf.Clamp(rSpect_Act, 0, 8);
+            rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
+
+            StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+        }
+        else if (CheckInRange(appealPoint,80, 119))
         {
+            int rSpect_Act = 5 - activatedSpectator + highlightSpectator; // 剩余需要激活的观众
+            int rSpect_Hl = 1 - highlightSpectator; // 剩余需要高光的观众
 
-        }else if (CheckInRange(appealPoint, 120, 149))
+            rSpect_Act = Mathf.Clamp(rSpect_Act, 0, 8);
+            rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
+
+            StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+        }
+        else if (CheckInRange(appealPoint, 120, 149))
         {
+            int rSpect_Act = 5 - activatedSpectator + highlightSpectator; // 剩余需要激活的观众
+            int rSpect_Hl = 2 - highlightSpectator; // 剩余需要高光的观众
 
-        }else if (CheckInRange(appealPoint, 150, 179))
+            rSpect_Act = Mathf.Clamp(rSpect_Act, 0, 8);
+            rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
+
+            StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+        }
+        else if (CheckInRange(appealPoint, 150, 179))
         {
+            int rSpect_Act = 6 - activatedSpectator + highlightSpectator; // 剩余需要激活的观众
+            int rSpect_Hl = 2 - highlightSpectator; // 剩余需要高光的观众
 
-        }else if (CheckInRange(appealPoint, 180, 219))
+            rSpect_Act = Mathf.Clamp(rSpect_Act, 0, 8);
+            rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
+
+            StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+        }
+        else if (CheckInRange(appealPoint, 180, 219))
         {
+            int rSpect_Act = 6 - activatedSpectator + highlightSpectator; // 剩余需要激活的观众
+            int rSpect_Hl = 3 - highlightSpectator; // 剩余需要高光的观众
 
-        }else if (appealPoint >= 220)
+            rSpect_Act = Mathf.Clamp(rSpect_Act, 0, 8);
+            rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
+
+            StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+        }
+        else if (appealPoint >= 220)
         {
+            int rSpect_Act = 6 - activatedSpectator + highlightSpectator; // 剩余需要激活的观众
+            int rSpect_Hl = 6 - highlightSpectator; // 剩余需要高光的观众
 
+            rSpect_Act = Mathf.Clamp(rSpect_Act, 0, 8);
+            rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
+
+            StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
         }
 
         // 更新阶段数
@@ -472,9 +537,61 @@ public class BattleDataManager : MonoBehaviour
         timer_LastStage = 0;
     }
 
-    IEnumerator HandleSpcetator()
+    IEnumerator HandleSpcetator(int _remainActivated,int _remainHighlight)
     {
-        yield return new WaitForSeconds(0.5f);
+        // 首先激活观众
+        while(_remainActivated-- > 0)
+        {
+            if (deactivatedSpectatorList.Count == 0)
+                break;
+
+            int index = Random.Range(0, deactivatedSpectatorList.Count);
+
+            activatedSpectatorList.Add(deactivatedSpectatorList[index]);
+            deactivatedSpectatorList[index].GetComponent<Spectator>().Activate();
+            deactivatedSpectatorList.RemoveAt(index);
+            activatedSpectator++;
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        // 之后高光已经激活的观众
+        while (_remainHighlight-- > 0)
+        {
+            int index = Random.Range(0, activatedSpectatorList.Count);
+
+            highlightSpectatorList.Add(activatedSpectatorList[index]);
+            activatedSpectatorList[index].GetComponent<Spectator>().Highlight();
+            activatedSpectatorList.RemoveAt(index);
+            highlightSpectator++;
+            activatedSpectator--;
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        // 符合富婆激活条件
+        if(appealPoint >= 150 && spectator_Spectial.color == Color.black)
+        {
+            spectator_Spectial.GetComponent<Spectator>().Activate();
+        }else if(appealPoint >= 220)
+        {
+            spectator_Spectial.GetComponent<Spectator>().Highlight();
+        }
+
+        Curtain.instance.SetActivatable(true);
+    }
+
+    // 激活特殊观众
+    void ActivatedFinalSpectator()
+    {
+        spectator_Spectial.GetComponent<Spectator>().Activate();
+    }
+    // 高光特殊观众
+    void HighlightFinalSpectator()
+    {
+        spectator_Spectial.GetComponent<Spectator>().Highlight();
     }
 
     bool CheckInRange(int _v,int _min,int _max)

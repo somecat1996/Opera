@@ -7,6 +7,8 @@ public delegate void callbackFun_Int(int _v);
 
 public class Curtain : MonoBehaviour
 {
+    public static Curtain instance;
+
     // 无参回调函数
     callbackFun callback_Open;
     callbackFun callback_Close;
@@ -17,7 +19,7 @@ public class Curtain : MonoBehaviour
 
     private void Awake()
     {
-
+        instance = this;
     }
 
     // Start is called before the first frame update
@@ -30,6 +32,11 @@ public class Curtain : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetActivatable(bool _v)
+    {
+        activatable = _v;
     }
 
     /// <summary>
@@ -54,21 +61,21 @@ public class Curtain : MonoBehaviour
     {
         if (callback_Close != null)
             callback_Close();
-        activatable = true;
+        //activatable = true;
     }
 
     public void Callback_Open()
     {
         if (callback_Open != null)
             callback_Open();
-        activatable = true;
+        //activatable = true;
     }
 
     public void Callback_CloseAndOpen()
     {
         if (callback_CloseAndOpen != null)
             callback_CloseAndOpen();
-        activatable = true;
+        //activatable = true;
     }
 
     /// <summary>

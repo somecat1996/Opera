@@ -11,8 +11,12 @@ public class Spectator : MonoBehaviour
 
     public float animationSpeed = 0.5f;
 
-    public static Color color_Activated = new Color(0.8f,0.8f,0.8f,1);
+    public static Color color_Activated = new Color(0.3f,0.3f,0.3f,1);
     public static Color color_Highlight = Color.white;
+
+    public float blinkInterval = 0.5f;
+    public Coroutine timer;
+    public GameObject moodImage;
 
     void Start()
     {
@@ -37,6 +41,20 @@ public class Spectator : MonoBehaviour
     {
         image_OnGameScene.DOColor(color_Highlight, animationSpeed);
         image_UnderCurtain.DOColor(color_Highlight, animationSpeed);
+
+        timer = StartCoroutine(Blink());
+    }
+
+    IEnumerator Blink()
+    {
+        while (moodImage.transform.parent.parent.parent.gameObject.activeSelf)
+        {
+            moodImage.SetActive(!moodImage.activeSelf);
+
+            yield return new WaitForSeconds(blinkInterval);
+        }
+        moodImage.SetActive(false);
+        StopCoroutine(timer);
     }
 
     // ·´¼¤»î
