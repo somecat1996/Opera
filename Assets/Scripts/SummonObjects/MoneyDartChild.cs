@@ -42,7 +42,7 @@ public class MoneyDartChild : SummonedObjectPrototype
     {
         damage = d;
         transform.position = startPosition;
-        rigidbody.velocity = speed * new Vector3(transform.position.x - o.transform.position.x, 0, transform.position.z - o.transform.position.z).normalized;
+        rigidbody.velocity = -speed * new Vector3(transform.position.x - o.transform.position.x, 0, transform.position.z - o.transform.position.z).normalized;
 
         target = o.GetComponent<EnemyStatus>();
     }

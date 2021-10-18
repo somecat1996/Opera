@@ -57,7 +57,7 @@ public class MoneyDart : SummonedObjectPrototype
         damage = d;
         childDamage = cd;
         transform.position = Player.instance.PlayerPosition();
-        rigidbody.velocity = speed * new Vector3(transform.position.x - o.transform.position.x, 0, transform.position.z - o.transform.position.z).normalized;
+        rigidbody.velocity = -speed * new Vector3(transform.position.x - o.transform.position.x, 0, transform.position.z - o.transform.position.z).normalized;
 
         target = o.GetComponent<EnemyStatus>();
         range = searchRange;
