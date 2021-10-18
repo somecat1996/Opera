@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-
+using TMPro;
 public class BattleDataManager : MonoBehaviour
 {
     public static BattleDataManager instance;
@@ -55,7 +55,9 @@ public class BattleDataManager : MonoBehaviour
     public List<Image> highlightSpectatorList = new List<Image>();
 
     public Image spectator_Spectial;
-
+    [Space]
+    public TextMeshProUGUI text_AppeapPoint;
+    public TextMeshProUGUI text_AppealPoint_Label;
 
 
     private void Awake()
@@ -535,6 +537,9 @@ public class BattleDataManager : MonoBehaviour
 
         // 重置阶段计时器
         timer_LastStage = 0;
+
+        // 显示喝彩值文本
+        DisplayAppealPoint();
     }
 
     IEnumerator HandleSpcetator(int _remainActivated,int _remainHighlight)
@@ -581,6 +586,19 @@ public class BattleDataManager : MonoBehaviour
         }
 
         Curtain.instance.SetActivatable(true);
+    }
+
+    // 显示喝彩值文本
+    public void DisplayAppealPoint()
+    {
+        text_AppeapPoint.text = appealPoint.ToString();
+        text_AppeapPoint.DOFade(1, 0.35f);
+        text_AppealPoint_Label.DOFade(1, 0.35f);
+    }
+    public void DisappealAppealPoint()
+    {
+        text_AppeapPoint.DOFade(0, 0.35f);
+        text_AppealPoint_Label.DOFade(0, 0.35f);
     }
 
     // 激活特殊观众
