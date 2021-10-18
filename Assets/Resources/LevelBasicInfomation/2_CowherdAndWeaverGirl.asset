@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   levelName: "\u725B\u90CE\u7EC7\u5973 "
+  bossIcon: {fileID: 21300000, guid: b678ed34c92c2c14ea94e2093c3d9c17, type: 3}
   rewardFactor:
   - 2
   - 3

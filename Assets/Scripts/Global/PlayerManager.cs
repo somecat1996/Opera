@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
 
     public int cur_LevelIndex = -1;
     // 一句游戏下来的随机关卡序列
-    public List<int> levelIndexList = new List<int>();
+    public List<int> levelIndexQueue = new List<int>();
     [Space]
     [Header("Player")]
     public GameObjectBase player;
@@ -91,11 +91,11 @@ public class PlayerManager : MonoBehaviour
             tempList.Add(i.id);
         }
 
-        levelIndexList.Clear();
+        levelIndexQueue.Clear();
         while(tempList.Count != 0)
         {
             int index = Random.Range(0, tempList.Count);
-            levelIndexList.Add(tempList[index]);
+            levelIndexQueue.Add(tempList[index]);
             tempList.RemoveAt(index);
         }
 
@@ -110,15 +110,16 @@ public class PlayerManager : MonoBehaviour
         // 若非重开关卡 则当前关卡下标不变
         if (!_restart)
         {
-            cur_LevelIndex = levelIndexList[0];
-            levelIndexList.RemoveAt(0);
+            cur_LevelIndex = levelIndexQueue[0];
+            levelIndexQueue.RemoveAt(0);
         }
 
 
-        // 通知GUI关闭无关UI且显示关卡信息,重置Boss血条
+        // 通知GUI关闭无关UI且显示关卡信息,重置Boss血条 修改Boss头像
         GUIManager.instance.DisableAllGUI();
         GUIManager.instance.SpawnLevelName(levelInfo[cur_LevelIndex].levelName);
         GUIManager.instance.UpdateBossHealthPoint(1);
+        GUIManager.instance.SetBossIcon(levelInfo[cur_LevelIndex].bossIcon);
 
         /*
         // Buff相关 Buff在进入关卡时不在清除
@@ -168,8 +169,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (cur_LevelIndex == levelInfo.Count - 1)
         {
-            // 此处已经结束所有关卡 可以返回游戏界面
-            GUIManager.instance.SpawnSystemText("没有下一关啦 还没做");
+            levelIndexQueue.RemoveAt(0);
 
             // BUFF 卡牌相关
             BuffManager.instance.DiableAllBuff(); // 清空BUFF
@@ -186,6 +186,7 @@ public class PlayerManager : MonoBehaviour
             BattleDataManager.instance.ResetAllData();
 
             // 回到主界面
+            GUIManager.instance.ReturnToMainUI();
         }
         else
         {

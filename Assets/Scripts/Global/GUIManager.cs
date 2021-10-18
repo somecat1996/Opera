@@ -50,6 +50,8 @@ public class GUIManager : MonoBehaviour
     public Button button_Contiune;
     public GameObject canvas;
 
+    public GameObject panel_MainUI;
+
     [Header("GameScene Objects")]
     public Image player_PowerPoint;
     public TextMeshProUGUI text_PowerPoint;
@@ -59,6 +61,8 @@ public class GUIManager : MonoBehaviour
     [Space]
     public GameObject panel_BuffIcon;
     public GameObject prefab_BuffIcon;
+    [Space]
+    public Image image_BossIcon;
 
     [Header("System Objects")]
     public Transform panel_Common;
@@ -433,5 +437,22 @@ public class GUIManager : MonoBehaviour
         if (_fun != null)
             curtain.SetCallbackFun_CloseAndOpen(_fun);
         ani_Curtain.Play("Curtain_CloseAndOpen");
+    }
+
+    /// <summary>
+    /// 返回主要界面
+    /// </summary>
+    public void ReturnToMainUI()
+    {
+        DisableAllGUI();
+        panel_MainUI.SetActive(true);
+    }
+
+    /// <summary>
+    /// 设置Boss血条头像
+    /// </summary>
+    public void SetBossIcon(Sprite _sprite)
+    {
+        image_BossIcon.sprite = _sprite;
     }
 }

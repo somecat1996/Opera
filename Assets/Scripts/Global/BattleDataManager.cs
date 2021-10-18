@@ -581,7 +581,8 @@ public class BattleDataManager : MonoBehaviour
         if(appealPoint >= 150 && spectator_Spectial.color == Color.black)
         {
             spectator_Spectial.GetComponent<Spectator>().Activate();
-        }else if(appealPoint >= 220)
+        }
+        if(appealPoint >= 220)
         {
             spectator_Spectial.GetComponent<Spectator>().Highlight();
         }

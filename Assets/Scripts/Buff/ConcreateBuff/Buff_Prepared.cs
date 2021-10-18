@@ -21,7 +21,7 @@ public class Buff_Prepared : BuffPrototype
             if (activated)
             {
                 // 所使用卡牌为伤害卡
-                if (BattleDataManager.instance.lastUsedCard.CheckIfDamageCard())
+                if (BattleDataManager.instance.lastUsedCard != null && BattleDataManager.instance.lastUsedCard.CheckIfDamageCard())
                 {
                     // 收回效果
                     GlobalValue.damageIncrement_General -= increment;
