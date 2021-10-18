@@ -145,9 +145,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animators:
   - {fileID: 722968342635699084}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 1930678861179385535}
   shadowAnimators:
   - {fileID: 1738249597444948046}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 8442267672780132752}
 --- !u!1001 &3949572226926418019
 PrefabInstance:
