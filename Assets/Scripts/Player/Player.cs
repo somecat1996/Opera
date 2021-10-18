@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private void ChangeCharacter(int index)
+    public void ChangeCharacter(int index)
     {
         playerAnimator.ChangeCharacter(index);
     }
