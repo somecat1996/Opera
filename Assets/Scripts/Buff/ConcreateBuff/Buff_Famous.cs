@@ -9,15 +9,18 @@ public class Buff_Famous : BuffPrototype
 
     void Update()
     {
-        if(cur_Spectator != BattleDataManager.instance.activatedSpectator + BattleDataManager.instance.highlightSpectator)
+        if (activated)
         {
-            cur_Spectator = BattleDataManager.instance.activatedSpectator + BattleDataManager.instance.highlightSpectator;
+            if (cur_Spectator != BattleDataManager.instance.activatedSpectator + BattleDataManager.instance.highlightSpectator)
+            {
+                cur_Spectator = BattleDataManager.instance.activatedSpectator + BattleDataManager.instance.highlightSpectator;
 
-            // 先收回
-            GlobalValue.damageIncrement_General -= damageIncrement;
-            damageIncrement = cur_Spectator * 0.03f;
-            GlobalValue.damageIncrement_General += damageIncrement;
-        }    
+                // 先收回
+                GlobalValue.damageIncrement_General -= damageIncrement;
+                damageIncrement = cur_Spectator * 0.03f;
+                GlobalValue.damageIncrement_General += damageIncrement;
+            }
+        }
     }
 
     private void OnEnable()
