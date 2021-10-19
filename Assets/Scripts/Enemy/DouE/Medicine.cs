@@ -24,6 +24,9 @@ public class Medicine : GameObjectBase, LevelItemInterface
     public float stage2SunnyTimer;
     private int stage2Counter;
 
+    public GameObject medicine;
+    public GameObject doll;
+
     private PlayerStatus player;
     // Start is called before the first frame update
     protected override void Start()
@@ -63,6 +66,8 @@ public class Medicine : GameObjectBase, LevelItemInterface
     public void Change()
     {
         currentStage = 2;
+        medicine.SetActive(false);
+        doll.SetActive(true);
         lastUsedCard = BattleDataManager.instance.lastUsedCard;
         if (stage1ImmunityTimer > 0)
         {
