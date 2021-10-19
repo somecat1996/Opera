@@ -230,6 +230,18 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public GameObject RandomChoose()
+    {
+        int p = -1;
+        List<int> avaliablePosition = new List<int>();
+        for (int i = 0; i < generationPoint.Count; i++)
+        {
+            if (generationPointStatus[i])
+                avaliablePosition.Add(i);
+        }
+        return generationPointStatus[avaliablePosition[Random.Range(0, avaliablePosition.Count)]].gameObject;
+    }
+
     public void Pause()
     {
         pause = true;
@@ -278,5 +290,11 @@ public class EnemyManager : MonoBehaviour
             return generationPointStatus[p].gameObject;
         else
             return null;
+    }
+
+    public void StopRebornAt(int p)
+    {
+        if (generationPointStatus[p] && generationPointStatus[p].GetComponent<HavenSoldier>())
+            generationPointStatus[p].GetComponent<HavenSoldier>().StopReborn();
     }
 }

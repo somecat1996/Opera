@@ -66,6 +66,11 @@ public class HavenSoldier : EnemyStatus, ReducePower
         alive = true;
     }
 
+    public void StopReborn()
+    {
+        block = true;
+    }
+
     public override void Stun(float time)
     {
         // яётн╫с©з

@@ -47,11 +47,12 @@ public class WesternQueen : EnemyStatus, BossInterface
     private List<int> summonedGeneral;
     public GameObject heavenSolider;
     private List<int> heavenSoliderPosition;
+    private List<int> aliveHeavenSoliderPosition;
 
     // Å£prefab
     [Header("Cow Prefab")]
     public GameObject cowPrefab;
-    private Medicine cow;
+    private Cow cow;
 
     // ¶Ô»°¿ò
     public GameObject lineTextPrefab;
@@ -97,6 +98,7 @@ public class WesternQueen : EnemyStatus, BossInterface
 
         summonedGeneral = new List<int>() { 0, 1, 2, 3 };
         heavenSoliderPosition = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+        aliveHeavenSoliderPosition = new List<int>();
 
         hurtCoefficient = 1;
         damageCoefficient = 1;
@@ -236,7 +238,7 @@ public class WesternQueen : EnemyStatus, BossInterface
     {
         currentStage = 2;
         Speak(stage1To2Line);
-        //SummonMedicine();
+        SummonCow();
         BattleDataManager.instance.UpdateStage(2);
     }
 
@@ -244,7 +246,7 @@ public class WesternQueen : EnemyStatus, BossInterface
     {
         currentStage = 3;
         Speak(stage2To3Line);
-        //MedicineChange();
+        CowChange();
         SummonSolider();
         SummonSolider();
         BattleDataManager.instance.UpdateStage(3);
@@ -288,7 +290,17 @@ public class WesternQueen : EnemyStatus, BossInterface
         {
             SkillAnimation();
             EnemyManager.instance.SummonMinionAt(heavenSolider, index);
+            aliveHeavenSoliderPosition.Add(index);
             heavenSoliderPosition.RemoveAt(index);
+        }
+    }
+
+    public void StopSoliderReborn()
+    {
+        int index = Random.Range(0, aliveHeavenSoliderPosition.Count / 4);
+        for (int i = 0; i < 3; i++)
+        {
+            EnemyManager.instance.StopRebornAt(index);
         }
     }
 
@@ -383,7 +395,8 @@ public class WesternQueen : EnemyStatus, BossInterface
     private void SummonCow()
     {
         GameObject tmp = EnemyManager.instance.SummonInMiddle(cowPrefab);
-        cow = tmp.GetComponent<Medicine>();
+        cow = tmp.GetComponent<Cow>();
+        cow.Instantiate(this);
     }
 
     private void CowChange()
