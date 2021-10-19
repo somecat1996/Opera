@@ -79,7 +79,57 @@ public class PlayerStatus : GameObjectBase
         //Debug.Log(damage);
         //Debug.Log(curHealth);
 
-        base.Hurt(damage, shieldBreak, damageIncrease, type);
+        // 受伤接口，0-真伤，1-物理，2-魔法
+        // 传入damage伤害数值，shieldBreak是否对护盾增伤，damageIncrease增伤比例
+        float trueDamage;
+        if (shield > 0 && shieldBreak)
+            trueDamage = damageIncrease * damage;
+        else
+            trueDamage = damage;
+
+        // 计算暴击
+        switch (type)
+        {
+            case HurtType.Physic:
+                if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Physics)
+                {
+                    trueDamage *= 1 + GlobalValue.critIncrement_Physics;
+                }
+                break;
+            case HurtType.Magic:
+                if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Magic)
+                {
+                    trueDamage *= 1 + GlobalValue.critIncrement_Magic;
+                }
+                break;
+            default:
+                break;
+        }
+
+        // 结算真实伤害
+        if (shield > trueDamage)
+        {
+            shield -= trueDamage;
+        }
+        else
+        {
+            curHealth -= trueDamage - shield;
+            shield = 0;
+        }
+
+        if (GlobalValue.poisonAttack)
+            Poisoning();
+
+        if (voodooTimer > 0)
+            voodooHurt += trueDamage;
+
+        healthBarManager.UpdateHealth(curHealth / maxHealth);
+
+        var col = gameObject.GetComponent<Collider>();
+        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
+        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
+        damageText.Init(trueDamage, topAhcor);
+
         UpdateHealth();
 
         if (curHealth <= 0)

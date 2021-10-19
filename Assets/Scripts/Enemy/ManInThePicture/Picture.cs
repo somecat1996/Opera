@@ -71,7 +71,7 @@ public class Picture : GameObjectBase, LevelItemInterface
     {
         if (stage1CoolingTimer <= 0)
         {
-            if (!lastUsedCard || lastUsedCard != BattleDataManager.instance.lastUsedCard)
+            if (!lastUsedCard || !BattleDataManager.instance.lastUsedCard || lastUsedCard != BattleDataManager.instance.lastUsedCard)
             {
                 lastUsedCard = BattleDataManager.instance.lastUsedCard;
                 if (lastUsedCard && lastUsedCard.CheckIfDamageCard())

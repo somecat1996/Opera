@@ -88,7 +88,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
             stage2CoolingTimer -= Time.deltaTime;
         if (stage2CoolingTimer <= 0)
         {
-            if (!lastUsedCard || lastUsedCard != BattleDataManager.instance.lastUsedCard)
+            if (!lastUsedCard || !BattleDataManager.instance.lastUsedCard || lastUsedCard != BattleDataManager.instance.lastUsedCard)
             {
                 lastUsedCard = BattleDataManager.instance.lastUsedCard;
                 if (!lastUsedCard.CheckIfDamageCard())
