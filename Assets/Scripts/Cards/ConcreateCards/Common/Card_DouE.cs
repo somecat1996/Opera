@@ -11,6 +11,12 @@ public class Card_DouE : CardPrototype, ICardOperation, ICardEffectTrigger
 
     public void mouseDrag()
     {
+        if (!CheckAvaliablity())
+        {
+            mouseExit();
+            return;
+        }
+
         transform.position = Input.mousePosition;
     }
 
@@ -21,6 +27,7 @@ public class Card_DouE : CardPrototype, ICardOperation, ICardEffectTrigger
 
     public void mouseExit()
     {
+        // 当未检测到目标或因其他原因失效时 返回位置
         CardManager.instance.ReflashLayoutGroup();
         SetOnSelected(false);
     }
@@ -45,7 +52,6 @@ public class Card_DouE : CardPrototype, ICardOperation, ICardEffectTrigger
             {
                 mouseExit();
             }
-
         }
         else
             mouseExit();
@@ -58,7 +64,12 @@ public class Card_DouE : CardPrototype, ICardOperation, ICardEffectTrigger
 
     public void TriggerEffect()
     {
-        throw new System.NotImplementedException();
+        GameObject go = EnemyManager.instance.GetGameObjectAt(4);
+
+        if (go)
+        {
+            go.GetComponent<BossInterface>().DouE();
+        }
     }
 
     public void TriggerEffect(GameObjectBase _go)
@@ -68,6 +79,6 @@ public class Card_DouE : CardPrototype, ICardOperation, ICardEffectTrigger
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
-        throw new System.NotImplementedException();
+
     }
 }
