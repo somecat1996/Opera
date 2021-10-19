@@ -297,6 +297,12 @@ public class BattleDataManager : MonoBehaviour
     {
         playerVictory = _playerVictory;
 
+        if (PlayerManager.instance.CheckIfFinalLevel())
+            GUIManager.instance.SetInteractable_btn_NextLevel(false);
+        else
+            GUIManager.instance.SetInteractable_btn_NextLevel(true);
+
+
         GameManager.instance.SetStartGame(false);
         GameManager.instance.SetPauseGame(false);
 
@@ -445,19 +451,26 @@ public class BattleDataManager : MonoBehaviour
         // 根据喝彩值回复血量
         if (tempAP >= 30 && tempAP <= 49)
         {
-            PlayerManager.instance.player.InstantHealing(60);
+            PlayerManager.instance.player.InstantHealing(60 + GlobalValue.hpIncrement_Reward);
+            GUIManager.instance.SpawnSystemText("回复 " + (60 + GlobalValue.hpIncrement_Reward) + " 氛围值");
         }
         else if (tempAP >= 50 && tempAP <= 79)
         {
-            PlayerManager.instance.player.InstantHealing(80);
+            PlayerManager.instance.player.InstantHealing(80 + GlobalValue.hpIncrement_Reward);
+            GUIManager.instance.SpawnSystemText("回复 " + (80 + GlobalValue.hpIncrement_Reward) + " 氛围值");
         }
         else if (tempAP >= 80)
         {
-            PlayerManager.instance.player.InstantHealing(100);
+            PlayerManager.instance.player.InstantHealing(100 + GlobalValue.hpIncrement_Reward);
+            GUIManager.instance.SpawnSystemText("回复 " + (100 + GlobalValue.hpIncrement_Reward) + " 氛围值");
         }
 
         if (tempAP <= 60)
-            PlayerManager.instance.player.InstantHealing(100);
+        {
+            PlayerManager.instance.player.InstantHealing(100 + GlobalValue.hpIncrement_Reward);
+            GUIManager.instance.SpawnSystemText("回复 " + (100 + GlobalValue.hpIncrement_Reward) + " 氛围值");
+        }
+
         appealPoint += tempAP;
 
         // 根据喝彩值显示观众人数
@@ -587,8 +600,18 @@ public class BattleDataManager : MonoBehaviour
             spectator_Spectial.GetComponent<Spectator>().Highlight();
         }
 
-        // 显示buff选择栏
-        BuffSelector.instance.EnablePanel();
+        // 根据当前已选BUFF数决定是否再让玩家选择Buff
+        if(BuffManager.instance.activiatedBuffList.Count >= 7)
+        {
+            // Buff已满
+            Curtain.instance.SetActivatable(true);
+        }
+        else
+        {
+            // 显示buff选择栏
+            BuffSelector.instance.EnablePanel();
+        }
+
     }
 
     // 显示喝彩值文本

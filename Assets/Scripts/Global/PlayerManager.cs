@@ -167,31 +167,7 @@ public class PlayerManager : MonoBehaviour
     }
     void enterNextLevel()
     {
-        if (cur_LevelIndex == levelInfo.Count - 1)
-        {
-            levelIndexQueue.RemoveAt(0);
-
-            // BUFF 卡牌相关
-            BuffManager.instance.DiableAllBuff(); // 清空BUFF
-            CardManager.instance.ClearAllActivatedCard(); // 清除场上所有的卡牌实体
-
-            ResetBattleData();
-
-            // 通知游戏管理器
-            GameManager.instance.SetStartGame(false);
-            GameManager.instance.SetPauseGame(false);
-
-            // 清空战场上所有实体并重置BDM
-            EnemyManager.instance.Clear();
-            BattleDataManager.instance.ResetAllData();
-
-            // 回到主界面
-            GUIManager.instance.ReturnToMainUI();
-        }
-        else
-        {
-            EnterLevel(false);
-        }
+        EnterLevel(false);
     }
 
     /// <summary>
@@ -391,5 +367,13 @@ public class PlayerManager : MonoBehaviour
 
         // 开启关卡
         EnemyManager.instance.EnterLevel(cur_LevelIndex);
+    }
+
+    /// <summary>
+    /// 检测当前关卡是否为最终关卡
+    /// </summary>
+    public bool CheckIfFinalLevel()
+    {
+        return levelIndexQueue.Count == 0;
     }
 }

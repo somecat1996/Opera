@@ -455,4 +455,13 @@ public class GUIManager : MonoBehaviour
     {
         image_BossIcon.sprite = _sprite;
     }
+
+    /// <summary>
+    /// 设置下一关按钮是否可交互
+    /// </summary>
+    /// <param name="_v"></param>
+    public void SetInteractable_btn_NextLevel(bool _v)
+    {
+        btn_NextLevel.GetComponent<Button>().interactable = _v;
+    }
 }

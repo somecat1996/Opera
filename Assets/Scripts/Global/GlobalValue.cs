@@ -28,6 +28,7 @@ public static class GlobalValue
     // 奖赏增幅
     public static float lootIncrement = 0;
     public static float rewardIncrement = 0;
+    public static int hpIncrement_Reward = 0;
 
     // 特殊伤害增量及其心流值阈值条件
     public static int costThreshold = -1;
@@ -38,18 +39,27 @@ public static class GlobalValue
 
     public static void ResetAllData()
     {
+        extraDamage = 0;
+
         damageIncrement_General = 0;
         damageIncrement_Physics = 0;
         damageIncrement_Magic = 0;
 
         critIncrement_Magic = 0;
         probability_Crit_Magic = 0;
+        critIncrement_Physics = 0;
+        probability_Crit_Physics = 0;
 
         probabilityIncrement_Event = 0;
         damageDecrement_Player = 0;
 
         lootIncrement = 0; // 战利品 增量
         rewardIncrement = 0; // 观众奖赏 增量
+
+        costThreshold = -1;
+        damageIncrement_Special = 0;
+
+
     }
 
     /// <summary>

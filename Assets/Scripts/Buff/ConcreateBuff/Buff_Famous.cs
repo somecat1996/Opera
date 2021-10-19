@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class Buff_Famous : BuffPrototype
 {
+    public int cur_Spectator = 0;
+    public float damageIncrement = 0;
+
+    void Update()
+    {
+        if(cur_Spectator != BattleDataManager.instance.activatedSpectator + BattleDataManager.instance.highlightSpectator)
+        {
+            cur_Spectator = BattleDataManager.instance.activatedSpectator + BattleDataManager.instance.highlightSpectator;
+
+            // œ» ’ªÿ
+            GlobalValue.damageIncrement_General -= damageIncrement;
+            damageIncrement = cur_Spectator * 0.03f;
+            GlobalValue.damageIncrement_General += damageIncrement;
+        }    
+    }
+
     private void OnEnable()
     {
         if (!activated)
@@ -17,6 +33,7 @@ public class Buff_Famous : BuffPrototype
         if (activated)
         {
             activated = false;
+            GlobalValue.damageIncrement_General -= damageIncrement;
         }
     }
 
