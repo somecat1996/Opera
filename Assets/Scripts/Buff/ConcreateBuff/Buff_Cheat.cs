@@ -69,7 +69,8 @@ public class Buff_Cheat : BuffPrototype
                     }
                 }
             }
-            
+
+            buffGUIScript.UpdateCounter(counter);
         }
 
         // 检测减费卡牌是否已经被使用
@@ -88,9 +89,17 @@ public class Buff_Cheat : BuffPrototype
 
     private void OnEnable()
     {
+        Invoke("EnableCounter",Time.deltaTime);
+
         activated = true;
         counter = counter_Origin;
         cur_UsedCard = BattleDataManager.instance.totalUsedCard;
+
+        Invoke("FirstUpdateCounter", Time.deltaTime);
+    }
+    void FirstUpdateCounter()
+    {
+        buffGUIScript.UpdateCounter(counter);
     }
 
     private void OnDisable()

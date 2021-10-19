@@ -48,6 +48,9 @@ public class Buff_Prepared : BuffPrototype
                     GlobalValue.damageIncrement_General += increment;
                     activated = true;
                 }
+
+
+                buffGUIScript.UpdateCounter(counter);
             }
         }
     }
@@ -57,6 +60,15 @@ public class Buff_Prepared : BuffPrototype
         activated = false;
         counter = counter_Origin;
         cur_UsedCard = BattleDataManager.instance.totalUsedCard;
+
+        Invoke("EnableCounter",Time.deltaTime);
+
+        Invoke("FirstUpdateCounter", Time.deltaTime);
+    }
+
+    void FirstUpdateCounter()
+    {
+        buffGUIScript.UpdateCounter(counter);
     }
 
     private void OnDisable()

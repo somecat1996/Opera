@@ -27,13 +27,25 @@ public class Buff_WhiteFace : BuffPrototype
                 counter = counter_Origin;
             }
 
+
+            buffGUIScript.UpdateCounter((int)counter);
+
         }
     }
 
     private void OnEnable()
     {
+        Invoke("EnableCounter",Time.deltaTime);
+
         totalDamage = BattleDataManager.instance.totalDamage;
         counter = counter_Origin;
+
+        Invoke("FirstUpdateCounter", Time.deltaTime);
+    }
+
+    void FirstUpdateCounter()
+    {
+        buffGUIScript.UpdateCounter((int)counter);
     }
 
     private void OnDisable()

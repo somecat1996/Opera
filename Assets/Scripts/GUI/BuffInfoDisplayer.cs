@@ -13,6 +13,9 @@ public class BuffInfoDisplayer : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject panel_Desc;
 
+    public GameObject panel_Counter;
+    public TextMeshProUGUI text_Counter;
+
     public void SetInfo(BuffPrototype _buff)
     {
         buff = _buff;
@@ -40,5 +43,14 @@ public class BuffInfoDisplayer : MonoBehaviour
 
         panel_Desc.SetActive(_v);
         
+    }
+    
+    public void EnableCounter()
+    {
+        panel_Counter.SetActive(true);
+    }
+    public void UpdateCounter(int _v)
+    {
+        text_Counter.text = _v.ToString();
     }
 }

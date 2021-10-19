@@ -11,6 +11,9 @@ public class BuffPrototype : MonoBehaviour
     public bool activated = false;
 
     public GameObject buffGUIicon;
+
+    // UI脚本
+    public BuffInfoDisplayer buffGUIScript;
     // 初始化数据
     virtual public void ReflashData() { }
 
@@ -50,5 +53,10 @@ public class BuffPrototype : MonoBehaviour
     public virtual float GetMainValue()
     {
         return -1;
+    }
+
+    public void EnableCounter()
+    {
+        buffGUIScript.EnableCounter();
     }
 }

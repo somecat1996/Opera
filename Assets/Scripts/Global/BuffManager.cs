@@ -97,7 +97,11 @@ public class BuffManager : MonoBehaviour
 
             // ‘⁄GUI…œœ‘ æBuff
             if (!go.GetComponent<BuffPrototype>().buffInfo.hideInGUI)
+            {
                 go.GetComponent<BuffPrototype>().buffGUIicon = GUIManager.instance.SpawnBuffIcon(go.GetComponent<BuffPrototype>());
+                go.GetComponent<BuffPrototype>().buffGUIScript = go.GetComponent<BuffPrototype>().buffGUIicon.GetComponent<BuffInfoDisplayer>();
+            }
+                
         }
     }
 
