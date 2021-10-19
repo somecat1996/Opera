@@ -508,4 +508,9 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     {
         return maxHealth;
     }
+
+    public bool IsStunImmunity()
+    {
+        return stunImmunity;
+    }
 }

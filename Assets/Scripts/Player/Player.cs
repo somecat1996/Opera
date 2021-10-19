@@ -48,4 +48,9 @@ public class Player : MonoBehaviour
     {
         return transform.position;
     }
+
+    public bool IsStunImmunity()
+    {
+        return playerStatus.IsStunImmunity();
+    }
 }

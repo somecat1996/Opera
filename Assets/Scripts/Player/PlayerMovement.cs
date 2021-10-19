@@ -76,19 +76,19 @@ public class PlayerMovement : MonoBehaviour
                     EnemyManager.instance.Walk();
                 }
             }
-            // ÅÐ¶Ï·¶Î§
-            if (transform.position.x < moveAera[0].position.x && moveDirection.x < 0 || transform.position.x > moveAera[1].position.x && moveDirection.x > 0)
-            {
-                moveDirection.x = -moveDirection.x;
-                rigidbody.velocity = moveDirection * moveSpeed;
-                Flip();
-            }
-            if (transform.position.z < moveAera[0].position.z && moveDirection.z < 0 || transform.position.z > moveAera[1].position.z && moveDirection.z > 0)
-            {
-                moveDirection.z = -moveDirection.z;
-                rigidbody.velocity = moveDirection * moveSpeed;
-                Flip();
-            }
+        }
+        // ÅÐ¶Ï·¶Î§
+        if (transform.position.x < moveAera[0].position.x && moveDirection.x < 0 || transform.position.x > moveAera[1].position.x && moveDirection.x > 0)
+        {
+            moveDirection.x = -moveDirection.x;
+            rigidbody.velocity = moveDirection * moveSpeed;
+            Flip();
+        }
+        if (transform.position.z < moveAera[0].position.z && moveDirection.z < 0 || transform.position.z > moveAera[1].position.z && moveDirection.z > 0)
+        {
+            moveDirection.z = -moveDirection.z;
+            rigidbody.velocity = moveDirection * moveSpeed;
+            Flip();
         }
     }
 

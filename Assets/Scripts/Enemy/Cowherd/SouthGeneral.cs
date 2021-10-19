@@ -48,12 +48,14 @@ public class SouthGeneral : EnemyStatus
 
     public void StartReducing()
     {
-        westernQueen.ChangeDamageCoefficient(-damageReduce);
+        if (westernQueen)
+            westernQueen.ChangeDamageCoefficient(-damageReduce);
     }
 
     public void StopReducing()
     {
-        westernQueen.ChangeDamageCoefficient(damageReduce);
+        if (westernQueen)
+            westernQueen.ChangeDamageCoefficient(damageReduce);
     }
 
     public override void Die()
