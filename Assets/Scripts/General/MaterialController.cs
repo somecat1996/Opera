@@ -147,7 +147,7 @@ public class MaterialController : MonoBehaviour
     /// ÉèÖÃ¿ª¹Ø±ßÔµäÖÈ¾Æ÷
     /// </summary>
     /// <param name="_v"></param>
-    public void SetDisableOutlineSprites(bool _v)
+    void SetDisableOutlineSprites(bool _v)
     {
         foreach(var i in outlineRenderer)
         {

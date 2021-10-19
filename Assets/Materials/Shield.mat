@@ -104,7 +104,7 @@ Material:
     m_Floats:
     - Appear: 1
     - CrackFresnelPower: 0.23
-    - CrackValue: 0.15
+    - CrackValue: 0.2
     - EdgeSize: 0.49
     - Fill: 0.1
     - FlashSpeed: 0
