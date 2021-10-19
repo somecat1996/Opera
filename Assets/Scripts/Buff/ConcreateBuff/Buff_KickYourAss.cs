@@ -18,16 +18,7 @@ public class Buff_KickYourAss : BuffPrototype
     // Update is called once per frame
     void Update()
     {
-        if(lastEnemy != BattleDataManager.instance.lastTargetEnemy)
-        {
-            lastEnemy = BattleDataManager.instance.lastTargetEnemy;
 
-            if(Random.Range(0,1f) < GetTrueMainValue())
-            {
-                // ²¹³äÕÙ»½Î×¶¾ÍÞÍÞµÄ´úÂë
-
-            }
-        }
     }
 
     public override float GetTrueMainValue()
@@ -38,7 +29,7 @@ public class Buff_KickYourAss : BuffPrototype
 
     private void OnEnable()
     {
-        lastEnemy = BattleDataManager.instance.lastTargetEnemy;
+
     }
 
     private void OnDisable()
