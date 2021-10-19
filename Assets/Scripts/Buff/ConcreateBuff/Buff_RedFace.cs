@@ -30,7 +30,7 @@ public class Buff_RedFace : BuffPrototype
 
                     PlayerManager.instance.ChangePowerPoint(cost);
                     PlayerManager.instance.ChangeHealthPoint(-cost);
-
+                        
                     activated = false;
                 }
                 else
