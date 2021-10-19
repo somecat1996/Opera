@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (started)
+        if (started && !EnemyManager.instance.pause)
         {
             timer -= Time.deltaTime;
             // 计时器归零后改变状态
