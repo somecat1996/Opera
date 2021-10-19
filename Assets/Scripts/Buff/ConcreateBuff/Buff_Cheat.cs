@@ -20,7 +20,7 @@ public class Buff_Cheat : BuffPrototype
         // 检测到使用卡牌数已更新
         if (cur_UsedCard != BattleDataManager.instance.totalUsedCard)
         {
-            cur_UsedCard++;
+            cur_UsedCard = BattleDataManager.instance.totalUsedCard;
             counter--;
 
             // 计数器以达到预定值

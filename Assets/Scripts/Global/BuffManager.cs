@@ -36,7 +36,7 @@ public class BuffManager : MonoBehaviour
             ReflashAllBuffData();
         }else if (Input.GetKeyDown(KeyCode.S))
         {
-            EnableBuff(213);
+            EnableBuff(211);
             return;
             int index = deactivateBuffList[Random.Range(0, deactivateBuffList.Count)];
             EnableBuff(index);
@@ -80,6 +80,18 @@ public class BuffManager : MonoBehaviour
         foreach(var i in deactivateBuffList)
         {
             buffInstanceLibrary[i].GetComponent<BuffPrototype>().ReflashData();
+        }
+    }
+
+    /// <summary>
+    /// 重设Buff数据
+    /// </summary>
+    public void ResetActivatedBuffData()
+    {
+        foreach(var i in activiatedBuffList.Values)
+        {
+            i.GetComponent<BuffPrototype>().SendMessage("OnDisable");
+            i.GetComponent<BuffPrototype>().SendMessage("OnEnable");
         }
     }
 

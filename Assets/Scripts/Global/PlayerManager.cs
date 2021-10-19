@@ -143,6 +143,9 @@ public class PlayerManager : MonoBehaviour
         EnemyManager.instance.Clear();
         BattleDataManager.instance.ResetAllData();
 
+        // Buff相关 重置已经选择的buff数据
+        BuffManager.instance.ResetActivatedBuffData();
+
         // 开启关卡
         EnemyManager.instance.EnterLevel(cur_LevelIndex);
     }

@@ -58,6 +58,21 @@ public class ShopManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 通过消耗金钱来强制刷新
+    /// </summary>
+    public void ReflashItenByMoney()
+    {
+        if (PlayerManager.instance.ChangeMoney(-50))
+        {
+            ReflashItem();
+        }
+        else
+        {
+            GUIManager.instance.SpawnSystemText("金钱不足!");
+        }
+    }
+
+    /// <summary>
     /// 刷新商品
     /// </summary>
     public void ReflashItem()

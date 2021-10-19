@@ -29,7 +29,6 @@ public class Buff_WhiteFace : BuffPrototype
 
 
             buffGUIScript.UpdateCounter((int)counter);
-
         }
     }
 
