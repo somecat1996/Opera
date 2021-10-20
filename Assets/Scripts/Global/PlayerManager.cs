@@ -186,7 +186,7 @@ public class PlayerManager : MonoBehaviour
         BuffManager.instance.ResetActivatedBuffData();
 
         // ¿ªÆô¹Ø¿¨
-        EnemyManager.instance.EnterLevel(cur_BossIndex,cur_LevelIndex,cur_Difficity);
+        EnemyManager.instance.EnterLevel(cur_BossIndex,cur_Difficity);
     }
 
     /// <summary>
