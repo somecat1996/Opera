@@ -66,13 +66,13 @@ public class EnemyManager : MonoBehaviour
             PlayerManager.instance.EnterLevel_Test(0);
     }
 
-    public void EnterLevel(int bossIndex, int levelIndex = 0, int difficultyIndex = 0)
+    public void EnterLevel(int bossIndex, int difficultyIndex = 0)
     {
         /// test
         /// GameManager.instance.SetStartGame(true);
 
         difficulty = difficultyIndex;
-        level = levelIndex;
+        level = PlayerManager.instance.GetLevelIndex();
 
         background.gameObject.SetActive(true);
         background.sprite = backgroundImages[bossIndex];
