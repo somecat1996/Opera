@@ -68,6 +68,7 @@ public class BuffSelector : MonoBehaviour
         // 退出Buff选择框且根据阶段是否拉开幕布
         DisablePanel();
         BattleDataManager.instance.DisappealAppealPoint();
+
     }
     
     // 关闭BUFF选择面板且根据阶段拉开幕布
@@ -76,9 +77,17 @@ public class BuffSelector : MonoBehaviour
         transform.DOLocalMoveY(y_Disable, moveDuration);
         GameManager.instance.SetPauseGame(false);
 
-        // 若为阶段4 则选择buff界面不在拥有拉开幕布的功能
+        
         if(BattleDataManager.instance.cur_Stage != 4)
+        {
             GUIManager.instance.SetDisplayCurtain(false);
+        }
+        // 若为阶段4 则选择buff界面不在拥有拉开幕布的功能 且在选择完BUFF后进行结算
+        else if (BattleDataManager.instance.cur_Stage == 4)
+        {
+            BattleDataManager.instance.EvaluateGameResult(true, false);
+        }
+            
     }
     public void EnablePanel()
     {

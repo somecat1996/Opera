@@ -620,12 +620,6 @@ public class BattleDataManager : MonoBehaviour
             // 显示buff选择栏
             BuffSelector.instance.EnablePanel();
         }
-
-        // 阶段4 则表示 boss已经死亡 可以开始进行关卡结算
-        if (cur_Stage == 4)
-        {
-            EvaluateGameResult(true, false);
-        }
     }
 
     // 显示喝彩值文本
