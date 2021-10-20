@@ -10,7 +10,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
     public int stage1WalkNumber = 5;
     private int stage1WalkCounter;
     private float stage1ImmunityTimer;
-    public float stage1MagicIncrease = 0.3f;
+    public float stage1DamageIncrease = 0.3f;
 
     public float stage2CoolingTime = 20f;
     public float stage2Time = 8f;
@@ -71,7 +71,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
         lastUsedCard = BattleDataManager.instance.lastUsedCard;
         if (stage1ImmunityTimer > 0)
         {
-            GlobalValue.damageIncrement_Magic -= stage1MagicIncrease;
+            GlobalValue.damageIncrement_General -= stage1DamageIncrease;
         }
     }
 
@@ -82,7 +82,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
             stage1ImmunityTimer -= Time.deltaTime;
             if (stage1ImmunityTimer <= 0)
             {
-                GlobalValue.damageIncrement_Magic -= stage1MagicIncrease;
+                GlobalValue.damageIncrement_General -= stage1DamageIncrease;
             }
         }
     }
@@ -157,7 +157,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
     {
         player.ImmunityByDuration(stage1ImmunityTime);
         stage1ImmunityTimer = stage1ImmunityTime;
-        GlobalValue.damageIncrement_Magic += stage1MagicIncrease;
+        GlobalValue.damageIncrement_General += stage1DamageIncrease;
 
         Debug.Log("½âÒ©£¡");
     }

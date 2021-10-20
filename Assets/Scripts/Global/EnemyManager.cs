@@ -77,7 +77,7 @@ public class EnemyManager : MonoBehaviour
             playerStatus.StopPlaying();
             background.gameObject.SetActive(false);
 
-            BattleDataManager.instance.EvaluateGameResult(result);
+            // BattleDataManager.instance.EvaluateGameResult(result);
             pause = true;
         }
     }
