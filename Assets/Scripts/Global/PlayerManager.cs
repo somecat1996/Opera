@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     [Space]
     public float max_HealthPoint;
 
+    public List<Sprite> bossIcon = new List<Sprite>();
     [Header("Real-Time Data")]
     public float cur_PowerPoint = 0;
     public float cur_HealthPoint = 0;
@@ -22,8 +23,10 @@ public class PlayerManager : MonoBehaviour
     public float cur_RecoverySpeed_PP_Decrement = 0;
 
     public int cur_LevelIndex = -1;
+    public int cur_BossIndex = -1;
+    public int cur_Difficity = 0; // 默认难度为0
     // 一句游戏下来的随机关卡序列
-    public List<int> levelIndexQueue = new List<int>();
+    public List<int> bossIndexQueue = new List<int>();
     [Space]
     [Header("Player")]
     public GameObjectBase player;
@@ -111,18 +114,21 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void SpawnLevelIndexList()
     {
-        // 重新生成 关卡序列
+        // 重设关卡序列
+        ResetLevelIndex();
+
+        // 重新生成 boss序列
         List<int> tempList = new List<int>();
         foreach(var i in levelInfo.Values)
         {
             tempList.Add(i.id);
         }
 
-        levelIndexQueue.Clear();
+        bossIndexQueue.Clear();
         while(tempList.Count != 0)
         {
             int index = Random.Range(0, tempList.Count);
-            levelIndexQueue.Add(tempList[index]);
+            bossIndexQueue.Add(tempList[index]);
             tempList.RemoveAt(index);
         }
 
@@ -137,8 +143,8 @@ public class PlayerManager : MonoBehaviour
         // 若非重开关卡 则当前关卡下标不变
         if (!_restart)
         {
-            cur_LevelIndex = levelIndexQueue[0];
-            levelIndexQueue.RemoveAt(0);
+            cur_BossIndex = bossIndexQueue[0];
+            bossIndexQueue.RemoveAt(0);
         }
 
         // 阶段4 则表示 boss已经死亡 由PM代替关闭幕布 此处判断需要在重置BDM数据之前
@@ -152,7 +158,7 @@ public class PlayerManager : MonoBehaviour
         GUIManager.instance.DisableAllGUI();
         GUIManager.instance.SpawnLevelName(levelInfo[cur_LevelIndex].levelName);
         GUIManager.instance.UpdateBossHealthPoint(1);
-        GUIManager.instance.SetBossIcon(levelInfo[cur_LevelIndex].bossIcon);
+        GUIManager.instance.SetBossIcon(bossIcon[cur_BossIndex]);
 
         /*
         // Buff相关 Buff在进入关卡时不在清除
@@ -180,7 +186,7 @@ public class PlayerManager : MonoBehaviour
         BuffManager.instance.ResetActivatedBuffData();
 
         // 开启关卡
-        EnemyManager.instance.EnterLevel(cur_LevelIndex);
+        EnemyManager.instance.EnterLevel(cur_BossIndex,cur_LevelIndex,cur_Difficity);
     }
 
     /// <summary>
@@ -199,11 +205,18 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void EnterNextLevel()
     {
+        // 关卡下标增1
+        cur_LevelIndex++;
         Invoke("enterNextLevel", Time.deltaTime);
     }
     void enterNextLevel()
     {
         EnterLevel(false);
+    }
+
+    public void ResetLevelIndex()
+    {
+        cur_LevelIndex = 0;
     }
 
     /// <summary>
@@ -413,6 +426,6 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public bool CheckIfFinalLevel()
     {
-        return levelIndexQueue.Count == 0;
+        return bossIndexQueue.Count == 0;
     }
 }

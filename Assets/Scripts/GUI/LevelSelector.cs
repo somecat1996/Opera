@@ -87,7 +87,7 @@ public class LevelSelector : MonoBehaviour
         if (currentIndex == 0 || !enable)
             return;
         currentIndex--;
-
+        PlayerManager.instance.cur_Difficity = currentIndex;
 
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -131,7 +131,7 @@ public class LevelSelector : MonoBehaviour
         if (currentIndex == transform.childCount-1 || !enable)
             return;
         currentIndex++;
-
+        PlayerManager.instance.cur_Difficity = currentIndex;
 
         for (int i = 0; i < transform.childCount; i++)
         {
