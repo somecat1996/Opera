@@ -65,6 +65,7 @@ public class Buff_PoliticalDebut : BuffPrototype
                 counter = counter_Origin;
             }
 
+            buffGUIScript.UpdateCounter(counter);
         }
     }
 
@@ -72,10 +73,19 @@ public class Buff_PoliticalDebut : BuffPrototype
     {
         if (!activated)
         {
+            Invoke("EnableCounter", Time.deltaTime);
+
             activated = true;
             counter = counter_Origin;
             lastUsesdCard = BattleDataManager.instance.lastUsedCard;
+
+            Invoke("FirstUpdateCounter", Time.deltaTime);
         }
+    }
+
+    void FirstUpdateCounter()
+    {
+        buffGUIScript.UpdateCounter(counter);
     }
 
     private void OnDisable()
