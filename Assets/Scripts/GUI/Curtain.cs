@@ -48,6 +48,7 @@ public class Curtain : MonoBehaviour
         {
             GUIManager.instance.SetDisplayCurtain(false);
             GameManager.instance.SetPauseGame(false);
+            activatable = false;
         }
     }
 

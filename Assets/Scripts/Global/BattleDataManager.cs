@@ -293,7 +293,8 @@ public class BattleDataManager : MonoBehaviour
     /// 游戏结束 结算游戏结果——游戏结束时调用
     /// </summary>
     /// <param name="_playerVictory">玩家是否胜利</param>
-    public void EvaluateGameResult(bool _playerVictory)
+    ///     /// <param name="_animate">是否需要幕布动画</param>
+    public void EvaluateGameResult(bool _playerVictory,bool _animate = true)
     {
         playerVictory = _playerVictory;
 
@@ -306,7 +307,15 @@ public class BattleDataManager : MonoBehaviour
         GameManager.instance.SetStartGame(false);
         GameManager.instance.SetPauseGame(false);
 
-        GUIManager.instance.DisplayCurtain(evaluateGameResult);
+        if (_animate)
+        {
+            GUIManager.instance.DisplayCurtain(evaluateGameResult);
+        }
+        else
+        {
+            evaluateGameResult();
+        }
+
     }
     void evaluateGameResult()
     {
@@ -413,10 +422,10 @@ public class BattleDataManager : MonoBehaviour
     /// <param name="_v"></param>
     public void UpdateStage(int _v)
     {
-        // 开头和最后阶段不进行结算
-        if (cur_Stage == 0 || cur_Stage == 3)
+        // 开头不进行结算
+        if (cur_Stage == 0)
         {
-            cur_Stage++;
+            cur_Stage = _v; ;
             return;
         }
 
@@ -601,7 +610,7 @@ public class BattleDataManager : MonoBehaviour
         }
 
         // 根据当前已选BUFF数决定是否再让玩家选择Buff
-        if(BuffManager.instance.activiatedBuffList.Count >= 7)
+        if(BuffManager.instance.activiatedBuffList.Count >= 10)
         {
             // Buff已满
             Curtain.instance.SetActivatable(true);
@@ -612,6 +621,11 @@ public class BattleDataManager : MonoBehaviour
             BuffSelector.instance.EnablePanel();
         }
 
+        // 阶段4 则表示 boss已经死亡 可以开始进行关卡结算
+        if (cur_Stage == 4)
+        {
+            EvaluateGameResult(true, false);
+        }
     }
 
     // 显示喝彩值文本
