@@ -202,7 +202,8 @@ public class WesternQueen : EnemyStatus, BossInterface
             voodooHurt += trueDamage;
 
         BattleDataManager.instance.UpdateDamage(trueDamage);
-        healthBarManager.UpdateHealth(curHealth / maxHealth);
+        if (healthBarManager.gameObject.activeInHierarchy)
+            healthBarManager.UpdateHealth(curHealth / maxHealth);
 
         var col = gameObject.GetComponent<Collider>();
         var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);

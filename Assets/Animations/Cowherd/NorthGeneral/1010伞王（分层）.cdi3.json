@@ -1,0 +1,31 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "受击"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "buff"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "伞  多闻天王"
+		},
+		{
+			"Id": "san",
+			"Name": "san"
+		}
+	]
+}
