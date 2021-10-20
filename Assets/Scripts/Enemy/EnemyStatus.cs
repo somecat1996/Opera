@@ -11,6 +11,9 @@ public class EnemyStatus : GameObjectBase
     // Start is called before the first frame update
     protected override void Start()
     {
+        maxHealth *= EnemyManager.instance.EnemyHealthCoefficient();
+        curHealth = maxHealth;
+
         base.Start();
 
         animator = transform.Find("Sprite").GetComponent<Animator>();

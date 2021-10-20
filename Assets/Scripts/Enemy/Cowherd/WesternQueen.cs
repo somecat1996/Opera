@@ -78,6 +78,8 @@ public class WesternQueen : EnemyStatus, BossInterface
     {
         base.Start();
 
+        healthBarManager.gameObject.SetActive(false);
+
         normalAttackTime = NormalAttackTime();
         normalAttackTimer = normalAttackTime;
         bananaAttackTimer = bananaAttackTime;
@@ -318,7 +320,7 @@ public class WesternQueen : EnemyStatus, BossInterface
     private void NormalAttack()
     {
         normalAttackTimer -= Time.deltaTime;
-        int damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin];
+        float damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin] * EnemyManager.instance.EnemyAttackCoefficient();
         if (normalAttackTimer <= 0)
         {
             normalAttackTime = NormalAttackTime();
@@ -387,7 +389,7 @@ public class WesternQueen : EnemyStatus, BossInterface
             {
                 thunderCounter -= 1;
                 thunderTickTimer = thunderTickTime;
-                player.Hurt(thunderAttackDamage);
+                player.Hurt(thunderAttackDamage * EnemyManager.instance.EnemyAttackCoefficient());
             }
         }
     }

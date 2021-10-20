@@ -22,6 +22,14 @@ public class EnemyManager : MonoBehaviour
 
     // πÿø®…Ë÷√
     public List<GameObject> bossPrefabs;
+    public List<float> enemyHealthCoefficientLevel1;
+    public List<float> enemyHealthCoefficientLevel2;
+    public List<float> enemyHealthCoefficientLevel3;
+    public List<float> enemyAttackCoefficientLevel1;
+    public List<float> enemyAttackCoefficientLevel2;
+    public List<float> enemyAttackCoefficientLevel3;
+    private int difficulty;
+    private int level;
 
     private PlayerStatus playerStatus;
 
@@ -36,6 +44,8 @@ public class EnemyManager : MonoBehaviour
         instance = this;
         pause = true;
         itemInterface = null;
+        difficulty = 0;
+        level = 0;
     }
     // Start is called before the first frame update
     void Start()
@@ -56,10 +66,13 @@ public class EnemyManager : MonoBehaviour
             PlayerManager.instance.EnterLevel_Test(0);
     }
 
-    public void EnterLevel(int bossIndex)
+    public void EnterLevel(int bossIndex, int difficultyIndex = 0, int levelIndex = 0)
     {
         /// test
         /// GameManager.instance.SetStartGame(true);
+
+        difficulty = difficultyIndex;
+        level = levelIndex;
 
         background.gameObject.SetActive(true);
         background.sprite = backgroundImages[bossIndex];
@@ -296,5 +309,35 @@ public class EnemyManager : MonoBehaviour
     {
         if (generationPointStatus[p] && generationPointStatus[p].GetComponent<HavenSoldier>())
             generationPointStatus[p].GetComponent<HavenSoldier>().StopReborn();
+    }
+
+    public float EnemyHealthCoefficient()
+    {
+        switch (level)
+        {
+            case 0:
+                return enemyHealthCoefficientLevel1[difficulty];
+            case 1:
+                return enemyHealthCoefficientLevel2[difficulty];
+            case 2:
+                return enemyHealthCoefficientLevel3[difficulty];
+            default:
+                return enemyHealthCoefficientLevel1[difficulty];
+        }
+    }
+
+    public float EnemyAttackCoefficient()
+    {
+        switch (level)
+        {
+            case 0:
+                return enemyAttackCoefficientLevel1[difficulty];
+            case 1:
+                return enemyAttackCoefficientLevel2[difficulty];
+            case 2:
+                return enemyAttackCoefficientLevel3[difficulty];
+            default:
+                return enemyAttackCoefficientLevel1[difficulty];
+        }
     }
 }

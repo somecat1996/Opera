@@ -27,7 +27,7 @@ public class DamageText : MonoBehaviour
     public void Init(float damage, Vector3 t)
     {
         Text text = gameObject.GetComponent<Text>();
-        text.text = damage.ToString();
+        text.text = System.Math.Round(damage, 1).ToString();
         tarPosition = t;
         //转化为屏幕坐标
         gameObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(tarPosition);

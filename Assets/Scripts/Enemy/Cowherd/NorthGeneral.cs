@@ -42,7 +42,7 @@ public class NorthGeneral : EnemyStatus
         if (attackTimer <= 0)
         {
             attackTimer = attackTime;
-            playerStatus.Hurt(damage);
+            playerStatus.Hurt(damage * EnemyManager.instance.EnemyAttackCoefficient());
         }
     }
 

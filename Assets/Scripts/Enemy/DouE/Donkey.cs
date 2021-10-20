@@ -74,6 +74,8 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     {
         base.Start();
 
+        healthBarManager.gameObject.SetActive(false);
+
         normalAttackTime = NormalAttackTime();
         normalAttackTimer = normalAttackTime;
         bananaAttackTimer = bananaAttackTime;
@@ -214,7 +216,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     private void NormalAttack()
     {
         normalAttackTimer -= Time.deltaTime;
-        int damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin];
+        float damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin] * EnemyManager.instance.EnemyAttackCoefficient();
         if (normalAttackTimer <= 0)
         {
             normalAttackTime = NormalAttackTime();
@@ -276,7 +278,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
             animator.SetTrigger("Push");
             shadowAnimator.SetTrigger("Push");
             pushTimer = pushTime;
-            player.PushTo(pushPosition, pushDamage);
+            player.PushTo(pushPosition, pushDamage * EnemyManager.instance.EnemyAttackCoefficient());
         }
     }
 
