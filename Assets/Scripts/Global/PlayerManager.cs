@@ -18,6 +18,9 @@ public class PlayerManager : MonoBehaviour
     public float cur_HealthPoint = 0;
     public float cur_RecoverySpeed_PowerPoint = 0;
 
+    public bool slowDownRecoverSpeed_PowerPoint = false;
+    public float cur_RecoverySpeed_PP_Decrement = 0;
+
     public int cur_LevelIndex = -1;
     // 一句游戏下来的随机关卡序列
     public List<int> levelIndexQueue = new List<int>();
@@ -68,9 +71,24 @@ public class PlayerManager : MonoBehaviour
             return;
         }
 
-        cur_PowerPoint += cur_RecoverySpeed_PowerPoint * Time.deltaTime;
-        cur_PowerPoint = Mathf.Clamp(cur_PowerPoint, 0, max_PowerPoint);
-        GUIManager.instance.UpdatePowerPoint(cur_PowerPoint/max_PowerPoint,cur_PowerPoint);
+        // 判断是否开启了心流值减速状态
+        if (slowDownRecoverSpeed_PowerPoint)
+        {
+            float temp = cur_RecoverySpeed_PowerPoint - cur_RecoverySpeed_PP_Decrement;
+            temp = Mathf.Clamp(temp, lowBoundary_RecoverySpeed, max_PowerPoint);
+
+            cur_PowerPoint += (temp) * Time.deltaTime;
+            cur_PowerPoint = Mathf.Clamp(cur_PowerPoint, 0, max_PowerPoint);
+            GUIManager.instance.UpdatePowerPoint(cur_PowerPoint / max_PowerPoint, cur_PowerPoint);
+        }
+        else
+        {
+            cur_PowerPoint += cur_RecoverySpeed_PowerPoint * Time.deltaTime;
+            cur_PowerPoint = Mathf.Clamp(cur_PowerPoint, 0, max_PowerPoint);
+            GUIManager.instance.UpdatePowerPoint(cur_PowerPoint / max_PowerPoint, cur_PowerPoint);
+        }
+
+
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -78,6 +96,15 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 通过增量设置心流值回复减少速度 返还效果时传入负数
+    /// </summary>
+    /// <param name="_v">增量</param>
+    public void ChangeDecrement_RecoverySpeed_PowerPoint(float _v)
+    {
+        slowDownRecoverSpeed_PowerPoint = true;
+        cur_RecoverySpeed_PP_Decrement += _v;
+    }
 
     /// <summary>
     /// 生成随机的关卡编号序列并进入关卡——难度选择界面的进入按钮使用
@@ -315,6 +342,9 @@ public class PlayerManager : MonoBehaviour
         cur_HealthPoint = max_HealthPoint;
         cur_PowerPoint = 0;
         cur_RecoverySpeed_PowerPoint = default_RecoverySpeed_PowerPoint;
+        cur_RecoverySpeed_PP_Decrement = 0;
+        slowDownRecoverSpeed_PowerPoint = false;
+
 
         player.SetMaxHealth(max_HealthPoint);
     }
