@@ -646,6 +646,15 @@ public class BattleDataManager : MonoBehaviour
         spectator_Spectial.GetComponent<Spectator>().Highlight();
     }
 
+    /// <summary>
+    /// 检测最后的特殊观众是否被激活
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckActivated_FInalSpectator()
+    {
+        return !(spectator_Spectial.color == Color.black);
+    }
+
     bool CheckInRange(int _v,int _min,int _max)
     {
         return _v >= _min && _v <= _max;

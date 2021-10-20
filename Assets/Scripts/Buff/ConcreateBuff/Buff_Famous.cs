@@ -14,6 +14,10 @@ public class Buff_Famous : BuffPrototype
             if (cur_Spectator != BattleDataManager.instance.activatedSpectator + BattleDataManager.instance.highlightSpectator)
             {
                 cur_Spectator = BattleDataManager.instance.activatedSpectator + BattleDataManager.instance.highlightSpectator;
+                if (BattleDataManager.instance.CheckActivated_FInalSpectator())
+                {
+                    cur_Spectator += 1;
+                }
 
                 // œ» ’ªÿ
                 GlobalValue.damageIncrement_General -= damageIncrement;
@@ -37,6 +41,7 @@ public class Buff_Famous : BuffPrototype
         {
             activated = false;
             GlobalValue.damageIncrement_General -= damageIncrement;
+            damageIncrement = 0;
         }
     }
 
