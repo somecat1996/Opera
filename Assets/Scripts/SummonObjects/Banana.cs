@@ -29,7 +29,7 @@ public class Banana : MonoBehaviour
         if (other.tag == "Player")
         {
             if (other.GetComponent<PlayerStatus>().IsStunImmunity())
-                other.GetComponent<PlayerStatus>().Hurt(damage);
+                other.GetComponent<PlayerStatus>().Hurt(damage * EnemyManager.instance.EnemyAttackCoefficient());
             Destroy(gameObject);
         }
     }

@@ -67,6 +67,8 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     {
         base.Start();
 
+        healthBarManager.gameObject.SetActive(false);
+
         normalAttackTime = NormalAttackTime();
         normalAttackTimer = normalAttackTime;
         bananaAttackTimer = bananaAttackTime;
@@ -199,7 +201,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     private void NormalAttack()
     {
         normalAttackTimer -= Time.deltaTime;
-        int damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin];
+        float damage = normalAttackDamage[normalAttackTime - normalAttackTimeMin] * EnemyManager.instance.EnemyAttackCoefficient();
         if (normalAttackTimer <= 0)
         {
             normalAttackTime = NormalAttackTime();

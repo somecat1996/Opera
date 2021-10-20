@@ -57,7 +57,7 @@ public class EastGeneral : EnemyStatus
         {
             healTimer = healTime;
             if (westernQueen)
-                westernQueen.InstantHealing(healingValue);
+                westernQueen.InstantHealing(healingValue * EnemyManager.instance.EnemyAttackCoefficient());
         }
     }
 

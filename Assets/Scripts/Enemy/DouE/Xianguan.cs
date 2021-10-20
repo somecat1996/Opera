@@ -33,7 +33,7 @@ public class Xianguan : EnemyStatus
 
     private void NormalAttack()
     {
-        player.Hurt(attackDamage);
+        player.Hurt(attackDamage * EnemyManager.instance.EnemyAttackCoefficient());
         attackTimer = attackTime;
     }
 }
