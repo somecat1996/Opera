@@ -65,17 +65,20 @@ public class BuffSelector : MonoBehaviour
         activated = false;
         BuffManager.instance.EnableBuff(buffID[_btnIndex]);
 
-        // 退出Buff选择框且拉开幕布继续游戏
+        // 退出Buff选择框且根据阶段是否拉开幕布
         DisablePanel();
         BattleDataManager.instance.DisappealAppealPoint();
     }
     
-    // 拉开幕布
+    // 关闭BUFF选择面板且根据阶段拉开幕布
     public void DisablePanel()
     {
         transform.DOLocalMoveY(y_Disable, moveDuration);
-        GUIManager.instance.SetDisplayCurtain(false);
         GameManager.instance.SetPauseGame(false);
+
+        // 若为阶段4 则选择buff界面不在拥有拉开幕布的功能
+        if(BattleDataManager.instance.cur_Stage != 4)
+            GUIManager.instance.SetDisplayCurtain(false);
     }
     public void EnablePanel()
     {

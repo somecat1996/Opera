@@ -141,6 +141,12 @@ public class PlayerManager : MonoBehaviour
             levelIndexQueue.RemoveAt(0);
         }
 
+        // 阶段4 则表示 boss已经死亡 由PM代替关闭幕布 此处判断需要在重置BDM数据之前
+        if (BattleDataManager.instance.cur_Stage == 4)
+        {
+            GUIManager.instance.SetDisplayCurtain(false);
+        }
+
 
         // 通知GUI关闭无关UI且显示关卡信息,重置Boss血条 修改Boss头像
         GUIManager.instance.DisableAllGUI();
