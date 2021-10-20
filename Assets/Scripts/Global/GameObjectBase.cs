@@ -330,7 +330,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         curHealth += healingValue;
         if (curHealth > maxHealth)
             curHealth = maxHealth;
-        healthBarManager.UpdateHealth(curHealth / maxHealth);
+        if (healthBarManager.gameObject.activeInHierarchy)
+            healthBarManager.UpdateHealth(curHealth / maxHealth);
 
 
         var col = gameObject.GetComponent<Collider>();
