@@ -66,7 +66,7 @@ public class EnemyManager : MonoBehaviour
             PlayerManager.instance.EnterLevel_Test(0);
     }
 
-    public void EnterLevel(int bossIndex, int difficultyIndex = 0, int levelIndex = 0)
+    public void EnterLevel(int bossIndex, int levelIndex = 0, int difficultyIndex = 0)
     {
         /// test
         /// GameManager.instance.SetStartGame(true);
