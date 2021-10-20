@@ -428,4 +428,13 @@ public class PlayerManager : MonoBehaviour
     {
         return bossIndexQueue.Count == 0;
     }
+
+    /// <summary>
+    /// 获得当前关卡下标
+    /// </summary>
+    /// <returns></returns>
+    public int GetLevelIndex()
+    {
+        return cur_LevelIndex;
+    }
 }
