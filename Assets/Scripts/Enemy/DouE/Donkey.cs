@@ -314,7 +314,9 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     public override void Kill()
     {
-        Die();
+        if (medicine)
+            Destroy(medicine.gameObject);
+        base.Die();
     }
 
     public void DouE()

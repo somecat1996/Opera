@@ -285,7 +285,10 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 
     public override void Kill()
     {
-        Die();
+        animator.SetTrigger("Die");
+        if (picture)
+            Destroy(picture.gameObject);
+        base.Die();
     }
 
     public void DouE()

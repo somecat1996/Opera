@@ -418,7 +418,9 @@ public class WesternQueen : EnemyStatus, BossInterface
 
     public override void Kill()
     {
-        Die();
+        if (cow)
+            Destroy(cow.gameObject);
+        base.Die();
     }
 
     public void DouE()
