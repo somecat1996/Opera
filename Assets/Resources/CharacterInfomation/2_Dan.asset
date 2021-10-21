@@ -16,6 +16,7 @@ MonoBehaviour:
   charName: "\u65E6"
   description: AS
   story: DSA
-  icon: {fileID: 21300000, guid: 74ab5323d2fded947821804f16c189ba, type: 3}
+  icon: {fileID: 21300000, guid: 87b692fae728f7e47a2ccd006d1defd0, type: 3}
+  illustration: {fileID: 21300000, guid: de00fd650cad84a4aba51cb6cce66995, type: 3}
   charTag: 1
   buffID: 2d0100002e010000
