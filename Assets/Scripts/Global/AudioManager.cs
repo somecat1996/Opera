@@ -10,6 +10,9 @@ public class AudioManager : MonoBehaviour
 
     [Header("Configuration")]
     public int max_AudioSources_SE = 5;
+    public float fadeTime = 2f;
+
+    public List<AudioClip> sound_BossBGM = new List<AudioClip>();
 
     [Header("Audiosources")]
     public AudioSource audio_BGM;
@@ -49,10 +52,22 @@ public class AudioManager : MonoBehaviour
         audio_SE.Add(tempAS);
     }
 
-    public void PlayBGM(AudioClip _clip)
+    /// <summary>
+    /// 播放boss BGM
+    /// </summary>
+    /// <param name="_bossIndex"></param>
+    public void PlayBossBGM(int _bossIndex)
     {
-        audio_BGM.clip = _clip;
+        audio_BGM.clip = sound_BossBGM[_bossIndex];
         audio_BGM.Play();
+    }
+
+    /// <summary>
+    /// 暂停boss BGM
+    /// </summary>
+    public void PauseBossBGM()
+    {
+
     }
 
     // 重置所有设置

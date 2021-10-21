@@ -423,7 +423,6 @@ public class BattleDataManager : MonoBehaviour
     public void UpdateStage(int _v)
     {
 
-        Debug.Log("我被调用了");
         // 开头不进行结算
         if (cur_Stage == 0)
         {
