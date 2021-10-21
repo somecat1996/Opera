@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1ee1adc36a8a04a8d7c42ac5d6bc27, type: 3}
   m_Name: "\u9F13\u821E\u58EB\u6C14.fade"
   m_EditorClassIdentifier: 
-  MotionName: "Assets/Animations/Cowherd/HeavenSolider/motions/\u9F13\u821E\u58EB\u6C14.motion3.json"
+  MotionName: "Assets/Animations/Cowherd/HavenSolider/motions/\u9F13\u821E\u58EB\u6C14.motion3.json"
   FadeInTime: 1
   FadeOutTime: 1
   ParameterIds:

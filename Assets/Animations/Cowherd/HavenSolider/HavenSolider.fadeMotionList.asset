@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403ae2dd693bb1d4b924f6b8d206b053, type: 3}
+  m_Name: HavenSolider.fadeMotionList
+  m_EditorClassIdentifier: 
+  MotionInstanceIds: 34e4fdff2edaffff26daffff
+  CubismFadeMotionObjects:
+  - {fileID: 11400000, guid: 7c8ad5ffb6c3009408d8c18a80a056f7, type: 2}
+  - {fileID: 11400000, guid: c1a9a733532b43048acb62490d554be5, type: 2}
+  - {fileID: 11400000, guid: afe04cda1c4be2b4cb10d7ecfe9241ad, type: 2}

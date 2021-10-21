@@ -78,7 +78,7 @@ public class MaterialController : MonoBehaviour
         {
             foreach (var i in mainRenderer)
             {
-                i.material.DOFloat(0, "DissolutionValue", _duration).OnComplete(() => { SetDisableOutlineSprites(false); });
+                i.material.DOFloat(0, "DissolutionValue", _duration);
             }
             foreach (var i in outlineRenderer)
             {
