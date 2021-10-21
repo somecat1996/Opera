@@ -136,6 +136,7 @@ public class PlayerStatus : GameObjectBase
         if (curHealth <= 0)
         {
             Player.instance.PlayerDie(true, EnemyManager.instance.GameOver, 3);
+            Player.instance.PlayerStopMoving();
         }
     }
 

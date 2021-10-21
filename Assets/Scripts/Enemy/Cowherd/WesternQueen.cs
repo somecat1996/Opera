@@ -313,7 +313,9 @@ public class WesternQueen : EnemyStatus, BossInterface
         {
             SkillAnimation();
             int index = summonedGeneral[Random.Range(0, summonedGeneral.Count)];
-            EnemyManager.instance.SummonMinion(generalPrefabs[index]);
+            Debug.Log(index);
+            Debug.Log(summonedGeneral);
+            EnemyManager.instance.SummonMinion(generalPrefabs[summonedGeneral[index]]);
             summonedGeneral.RemoveAt(index);
         }
     }

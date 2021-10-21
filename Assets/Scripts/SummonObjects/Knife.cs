@@ -31,7 +31,7 @@ public class Knife : SummonedObjectPrototype
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && other.GetComponent<EnemyStatus>())
             other.GetComponent<EnemyStatus>().Hurt(damage, false, 1, HurtType.Physic);
     }
 

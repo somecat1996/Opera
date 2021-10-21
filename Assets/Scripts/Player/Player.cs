@@ -67,4 +67,9 @@ public class Player : MonoBehaviour
     {
         materialController.SetEnableStealth(true, duration);
     }
+
+    public void PlayerStopMoving()
+    {
+        playerMovement.StopMoving();
+    }
 }
