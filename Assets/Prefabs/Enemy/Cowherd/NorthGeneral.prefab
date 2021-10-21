@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
   - component: {fileID: 2622138791593443700}
+  - component: {fileID: 3432800615002476667}
   m_Layer: 0
   m_Name: NorthGeneral
   m_TagString: Enemy
@@ -94,6 +95,20 @@ MonoBehaviour:
   damage: 1
   attackTime: 5
   hurtReduce: 0.3
+--- !u!114 &3432800615002476667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049907831289417314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43316e78b5823064e9e86ea217d0ceef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent_MainSprite: {fileID: 1384546208309856317}
+  parent_OutlineSprite: {fileID: 8979115396908002253}
 --- !u!1001 &2967720906524798541
 PrefabInstance:
   m_ObjectHideFlags: 0

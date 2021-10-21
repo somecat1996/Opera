@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7380756455320557130}
   - component: {fileID: 3119156894438287037}
   m_Layer: 0
-  m_Name: Bridge
+  m_Name: BirdBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
   - component: {fileID: 5812458391500648083}
+  - component: {fileID: 725315744023537277}
   m_Layer: 0
   m_Name: HavenSoldier
   m_TagString: Enemy
@@ -197,6 +198,20 @@ MonoBehaviour:
   position: 0
   reduceRate: -0.1
   rebornTime: 1
+--- !u!114 &725315744023537277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049907831289417314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43316e78b5823064e9e86ea217d0ceef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent_MainSprite: {fileID: 7058081116682003659}
+  parent_OutlineSprite: {fileID: 5942311977339274895}
 --- !u!1001 &6718461738990876959
 PrefabInstance:
   m_ObjectHideFlags: 0

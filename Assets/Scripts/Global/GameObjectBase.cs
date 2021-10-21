@@ -110,6 +110,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     public float voodooTime = 10f;
     public float voodoocoolingTime = 15f;
 
+    protected MaterialController materialController;
+
     protected bool pause;
     // 玩家、敌人基类
 
@@ -142,6 +144,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         healingValue = 0;
 
         pause = false;
+
+        materialController = gameObject.GetComponent<MaterialController>();
     }
 
     protected virtual void Start()
@@ -273,6 +277,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
             poisonTotalTimer = poisonTime;
             poisonTimer = poisonDamageTime;
             Voodoo();
+            if (materialController)
+                materialController.SetEnableChangeColor_Poison(true, poisonTime);
         }
     }
 

@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
   - component: {fileID: 5155661290420696613}
+  - component: {fileID: 6022353402135371989}
   m_Layer: 0
   m_Name: Picture
   m_TagString: Enemy
@@ -178,6 +179,20 @@ MonoBehaviour:
   stage1CardNumber: 5
   stage2DamageNumber: 5
   stage2PercentDamage: 0.05
+--- !u!114 &6022353402135371989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049907831289417314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43316e78b5823064e9e86ea217d0ceef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent_MainSprite: {fileID: 7049907832430946936}
+  parent_OutlineSprite: {fileID: 3543918338762623714}
 --- !u!1 &7049907832430946937
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
   - component: {fileID: 971092485161312684}
+  - component: {fileID: 5004386816490790887}
   m_Layer: 0
   m_Name: Emperor
   m_TagString: Enemy
@@ -113,6 +114,20 @@ MonoBehaviour:
   stage2To3Line: "\u8150\u8349\u4E4B\u8424\u5149\uFF0C\u600E\u53CA\u5929\u5FC3\u4E4B\u7693\u6708\uFF01"
   douETime: 10
   douECoefficient: 2
+--- !u!114 &5004386816490790887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049907831289417314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43316e78b5823064e9e86ea217d0ceef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent_MainSprite: {fileID: 1316591106600627885}
+  parent_OutlineSprite: {fileID: 2268699454642161227}
 --- !u!1001 &4845595375857611570
 PrefabInstance:
   m_ObjectHideFlags: 0

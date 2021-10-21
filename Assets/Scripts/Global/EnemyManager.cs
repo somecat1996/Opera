@@ -95,6 +95,16 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        FinishLevel(false);
+    }
+
+    public void Win()
+    {
+        FinishLevel(true);
+    }
+
     public int SummonOne()
     {
         int p = -1;

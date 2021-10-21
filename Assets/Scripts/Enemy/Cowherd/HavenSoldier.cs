@@ -47,6 +47,16 @@ public class HavenSoldier : EnemyStatus, ReducePower
         }
     }
 
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
+    {
+        if (alive)
+        {
+            animator.SetTrigger("Hurt");
+            shadowAnimator.SetTrigger("Hurt");
+            base.Hurt(damage, shieldBreak, damageIncrease, type);
+        }
+    }
+
     public void StartReducing()
     {
         PlayerManager.instance.ChangeDecrement_RecoverySpeed_PowerPoint(reduceRate);
@@ -62,17 +72,26 @@ public class HavenSoldier : EnemyStatus, ReducePower
         StopReducing();
         alive = false;
         rebornTimer = rebornTime;
+        animator.gameObject.SetActive(false);
+        shadowAnimator.gameObject.SetActive(false);
     }
 
     private void Reborn()
     {
         StartReducing();
         alive = true;
+        animator.gameObject.SetActive(true);
+        shadowAnimator.gameObject.SetActive(true);
     }
 
     public void StopReborn()
     {
         block = true;
+        birdBridge.SetActive(true);
+        animator.gameObject.SetActive(false);
+        shadowAnimator.gameObject.SetActive(false);
+        animator.SetTrigger("Hurt");
+        shadowAnimator.SetTrigger("Hurt");
     }
 
     public override void Stun(float time)

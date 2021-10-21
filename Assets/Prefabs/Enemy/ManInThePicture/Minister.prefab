@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
   - component: {fileID: 7238555648347591937}
+  - component: {fileID: 6413283052376794235}
   m_Layer: 0
   m_Name: Minister
   m_TagString: Enemy
@@ -93,6 +94,20 @@ MonoBehaviour:
   position: 0
   reduceRate: -0.1
   soldierPrefab: {fileID: 7049907831289417314, guid: 308586f8778ab72428266361f7c41532, type: 3}
+--- !u!114 &6413283052376794235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049907831289417314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43316e78b5823064e9e86ea217d0ceef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent_MainSprite: {fileID: 1809124231996862320}
+  parent_OutlineSprite: {fileID: 5392003378458328580}
 --- !u!1001 &3749045329809950050
 PrefabInstance:
   m_ObjectHideFlags: 0

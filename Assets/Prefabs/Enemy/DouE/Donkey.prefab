@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
   - component: {fileID: 6660519800270922619}
+  - component: {fileID: 4425881617407006909}
   m_Layer: 0
   m_Name: Donkey
   m_TagString: Enemy
@@ -118,6 +119,20 @@ MonoBehaviour:
   stage2To3Line: "\u7AA6\u5A25\uFF0C\u7CFB\u5185\uFF01"
   douETime: 10
   douECoefficient: 2
+--- !u!114 &4425881617407006909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049907831289417314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43316e78b5823064e9e86ea217d0ceef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent_MainSprite: {fileID: 3278970986398119669}
+  parent_OutlineSprite: {fileID: 4225679633271033978}
 --- !u!1001 &968548593819021351
 PrefabInstance:
   m_ObjectHideFlags: 0

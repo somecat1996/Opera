@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class Player : MonoBehaviour
     private PlayerAnimator playerAnimator;
     private PlayerMovement playerMovement;
     private PlayerStatus playerStatus;
+    private MaterialController materialController;
 
     private void Awake()
     {
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour
         playerAnimator = gameObject.GetComponent<PlayerAnimator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerStatus = gameObject.GetComponent<PlayerStatus>();
+        materialController = gameObject.GetComponent<MaterialController>();
     }
 
     // Start is called before the first frame update
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour
     public void ChangeCharacter(int index)
     {
         playerAnimator.ChangeCharacter(index);
+        materialController.ResearchRenderer(playerAnimator.animators[index].transform, playerAnimator.shadowAnimators[index].transform);
     }
 
     public void Walk(bool walk)
@@ -52,5 +56,15 @@ public class Player : MonoBehaviour
     public bool IsStunImmunity()
     {
         return playerStatus.IsStunImmunity();
+    }
+
+    public void PlayerDie(TweenCallback _callbackFun = null)
+    {
+        materialController.SetEnableDissolution(true);
+    }
+
+    public void PlayerStealth(float duration)
+    {
+        materialController.SetEnableStealth(true, duration);
     }
 }
