@@ -12,12 +12,13 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Awake()
     {
-        currentAnimator = animators[0];
-        currentShadowAnimator = shadowAnimators[0];
+        currentAnimator = animators[1];
+        currentShadowAnimator = shadowAnimators[1];
     }
 
     public void ChangeCharacter(int index)
     {
+        Debug.Log(index);
         if (currentAnimator)
         {
             currentAnimator.gameObject.SetActive(false);
