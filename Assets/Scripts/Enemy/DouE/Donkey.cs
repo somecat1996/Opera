@@ -309,7 +309,6 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         if (medicine)
             Destroy(medicine.gameObject);
         EnemyManager.instance.FinishLevel(true);
-        BattleDataManager.instance.UpdateStage(4);
         base.Die();
     }
 

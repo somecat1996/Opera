@@ -90,7 +90,11 @@ public class EnemyManager : MonoBehaviour
             playerStatus.StopPlaying();
             background.gameObject.SetActive(false);
 
-            // BattleDataManager.instance.EvaluateGameResult(result);
+            if (result)
+                BattleDataManager.instance.UpdateStage(4);
+            else
+                BattleDataManager.instance.EvaluateGameResult(result);
+            EnemyManager.instance.Clear();
             pause = true;
         }
     }

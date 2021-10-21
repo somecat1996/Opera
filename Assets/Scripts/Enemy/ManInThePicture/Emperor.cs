@@ -280,7 +280,6 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         if (picture)
             Destroy(picture.gameObject);
         EnemyManager.instance.FinishLevel(true);
-        BattleDataManager.instance.UpdateStage(4);
         base.Die();
     }
 

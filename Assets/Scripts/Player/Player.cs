@@ -58,9 +58,9 @@ public class Player : MonoBehaviour
         return playerStatus.IsStunImmunity();
     }
 
-    public void PlayerDie(TweenCallback _callbackFun = null)
+    public void PlayerDie(TweenCallback _callbackFun = null, float _duration = 1.5f)
     {
-        materialController.SetEnableDissolution(true);
+        materialController.SetEnableDissolution(true, _duration, _callbackFun);
     }
 
     public void PlayerStealth(float duration)

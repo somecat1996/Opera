@@ -412,9 +412,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         //animator.SetTrigger("Die");
         if (cow)
             Destroy(cow.gameObject);
-        EnemyManager.instance.RemoveMinions();
         EnemyManager.instance.FinishLevel(true);
-        BattleDataManager.instance.UpdateStage(4);
         base.Die();
     }
 

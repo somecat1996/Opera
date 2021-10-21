@@ -134,7 +134,7 @@ public class PlayerStatus : GameObjectBase
 
         if (curHealth <= 0)
         {
-            Player.instance.PlayerDie(EnemyManager.instance.GameOver);
+            Player.instance.PlayerDie(EnemyManager.instance.GameOver, 3);
         }
     }
 
