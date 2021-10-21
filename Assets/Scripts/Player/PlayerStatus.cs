@@ -58,6 +58,7 @@ public class PlayerStatus : GameObjectBase
         curHealth = maxHealth;
         healthBarManager.UpdateHealth(curHealth / maxHealth);
         UpdateHealth();
+        Player.instance.PlayerDie();
     }
 
     private void UpdateHealth()
@@ -134,7 +135,7 @@ public class PlayerStatus : GameObjectBase
 
         if (curHealth <= 0)
         {
-            Player.instance.PlayerDie(EnemyManager.instance.GameOver, 3);
+            Player.instance.PlayerDie(true, EnemyManager.instance.GameOver, 3);
         }
     }
 

@@ -93,7 +93,7 @@ public class EnemyManager : MonoBehaviour
             if (result)
                 BattleDataManager.instance.UpdateStage(4);
             else
-                BattleDataManager.instance.EvaluateGameResult(result);
+                BattleDataManager.instance.EvaluateGameResult(result, false);
             EnemyManager.instance.Clear();
             pause = true;
         }

@@ -292,9 +292,9 @@ public class WesternQueen : EnemyStatus, BossInterface
         for (int i = 0; i < 3; i++)
         {
             SkillAnimation();
-            EnemyManager.instance.SummonMinionAt(heavenSolider, index);
-            aliveHeavenSoliderPosition.Add(index);
-            heavenSoliderPosition.RemoveAt(index);
+            EnemyManager.instance.SummonMinionAt(heavenSolider, heavenSoliderPosition[index * 3 + i]);
+            aliveHeavenSoliderPosition.Add(index * 3 + i);
+            heavenSoliderPosition.RemoveAt(index * 3 + i);
         }
     }
 

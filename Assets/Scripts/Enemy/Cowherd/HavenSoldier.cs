@@ -18,7 +18,7 @@ public class HavenSoldier : EnemyStatus, ReducePower
     {
         base.Start();
 
-        birdBridge = transform.Find("BirdBirdge").gameObject;
+        birdBridge = transform.Find("BirdBridge").gameObject;
 
         alive = true;
         block = false;
