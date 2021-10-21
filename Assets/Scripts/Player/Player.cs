@@ -72,4 +72,9 @@ public class Player : MonoBehaviour
     {
         playerMovement.StopMoving();
     }
+
+    public void PlayerStartMoving()
+    {
+        playerMovement.StartMoving();
+    }
 }
