@@ -11,10 +11,14 @@ public class HavenSoldier : EnemyStatus, ReducePower
     private float rebornTimer;
     private bool block;
 
+    private GameObject birdBridge;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+
+        birdBridge = transform.Find("BirdBirdge").gameObject;
 
         alive = true;
         block = false;

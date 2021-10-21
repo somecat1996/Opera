@@ -33,6 +33,8 @@ public class NorthGeneral : EnemyStatus
 
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
+        animator.SetTrigger("Hurt");
+        shadowAnimator.SetTrigger("Hurt");
         base.Hurt(damage, shieldBreak, damageIncrease, type);
     }
 

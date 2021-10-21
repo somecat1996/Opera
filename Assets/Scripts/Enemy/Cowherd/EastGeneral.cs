@@ -37,6 +37,8 @@ public class EastGeneral : EnemyStatus
 
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
+        animator.SetTrigger("Hurt");
+        shadowAnimator.SetTrigger("Hurt");
         base.Hurt(damage, shieldBreak, damageIncrease, type);
     }
 
@@ -55,6 +57,8 @@ public class EastGeneral : EnemyStatus
         healTimer -= Time.deltaTime;
         if (healTimer <= 0)
         {
+            animator.SetTrigger("Buff");
+            shadowAnimator.SetTrigger("Buff");
             healTimer = healTime;
             if (westernQueen)
                 westernQueen.InstantHealing(healingValue * EnemyManager.instance.EnemyAttackCoefficient());
