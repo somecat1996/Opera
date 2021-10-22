@@ -1,0 +1,22 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "1008县官（分层）(1).moc3",
+		"Textures": [
+			"1008县官（分层）(1).4096/texture_00.png"
+		],
+		"DisplayInfo": "1008县官（分层）(1).cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	]
+}

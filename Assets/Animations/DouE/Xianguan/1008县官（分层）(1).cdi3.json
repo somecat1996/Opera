@@ -1,0 +1,60 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "歪脑袋"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "杖刑"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "受击"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part2",
+			"Name": "道具.psd"
+		},
+		{
+			"Id": "Part",
+			"Name": "组 1"
+		},
+		{
+			"Id": "Tou",
+			"Name": "Tou"
+		},
+		{
+			"Id": "shenti2",
+			"Name": "shenti"
+		},
+		{
+			"Id": "zuoshou",
+			"Name": "zuoshou"
+		},
+		{
+			"Id": "qunzi",
+			"Name": "qunzi"
+		},
+		{
+			"Id": "youtui",
+			"Name": "youtui"
+		},
+		{
+			"Id": "zuotui",
+			"Name": "zuotui"
+		}
+	]
+}

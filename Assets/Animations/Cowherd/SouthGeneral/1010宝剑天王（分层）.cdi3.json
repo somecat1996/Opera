@@ -1,0 +1,27 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "加buff"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "受击"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "宝剑 增长天王"
+		}
+	]
+}

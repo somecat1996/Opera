@@ -54,6 +54,8 @@ public class WestGeneral : EnemyStatus
         summonTimer -= Time.deltaTime;
         if (summonTimer <= 0)
         {
+            animator.SetTrigger("Buff");
+            shadowAnimator.SetTrigger("Buff");
             summonTimer = summonTime;
             EnemyManager.instance.SummonMinion(snakePrefab);
         }
@@ -61,8 +63,8 @@ public class WestGeneral : EnemyStatus
 
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
-        //animator.SetTrigger("Hurt");
-        //shadowAnimator.SetTrigger("Hurt");
+        animator.SetTrigger("Hurt");
+        shadowAnimator.SetTrigger("Hurt");
         base.Hurt(damage, shieldBreak, damageIncrease, type);
     }
 }

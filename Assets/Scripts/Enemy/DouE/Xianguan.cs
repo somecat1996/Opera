@@ -33,7 +33,16 @@ public class Xianguan : EnemyStatus
 
     private void NormalAttack()
     {
+        animator.SetTrigger("Attack");
+        shadowAnimator.SetTrigger("Attack");
         player.Hurt(attackDamage * EnemyManager.instance.EnemyAttackCoefficient());
         attackTimer = attackTime;
+    }
+
+    public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
+    {
+        animator.SetTrigger("Hurt");
+        shadowAnimator.SetTrigger("Hurt");
+        base.Hurt(damage, shieldBreak, damageIncrease, type);
     }
 }

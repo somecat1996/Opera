@@ -25,17 +25,23 @@ public class EffectsManager : MonoBehaviour
         tmp.GetComponent<EffectBase>().Instantiate(_life, position, offset);
     }
 
-    public void CreateFollowEffect(int id, float _life, Transform _target, Vector3 _offset)
+    public void CreateEffectFollow(int id, float _life, Transform _target, Vector3 _offset)
     {
         GameObject tmp = Instantiate(effects[id]);
         tmp.GetComponent<EffectFollow>().InstantiateFollow(_life, _target, _offset);
+    }
+
+    public void CreateEffectFollowPlayer(int id, float _life, Vector3 _offset)
+    {
+        GameObject tmp = Instantiate(effects[id]);
+        tmp.GetComponent<EffectFollow>().InstantiateFollow(_life, GameObject.FindGameObjectWithTag("Player").transform, _offset);
     }
 
     private void Test()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            CreateFollowEffect(0, 3f, GameObject.FindGameObjectWithTag("Player").transform, Vector3.zero);
+            CreateEffectFollowPlayer(0, 3f, Vector3.zero);
         }
     }
 }

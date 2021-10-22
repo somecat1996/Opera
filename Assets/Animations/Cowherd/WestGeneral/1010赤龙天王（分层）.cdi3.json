@@ -1,0 +1,27 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "受击"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "加buff"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "蛇   广目天王"
+		}
+	]
+}

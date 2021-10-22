@@ -33,6 +33,8 @@ public class SouthGeneral : EnemyStatus
 
     public override void Hurt(float damage, bool shieldBreak = false, float damageIncrease = 1, HurtType type = HurtType.None)
     {
+        animator.SetTrigger("Hurt");
+        shadowAnimator.SetTrigger("Hurt");
         base.Hurt(damage, shieldBreak, damageIncrease, type);
     }
 
@@ -49,7 +51,11 @@ public class SouthGeneral : EnemyStatus
     public void StartReducing()
     {
         if (westernQueen)
+        {
+            animator.SetTrigger("Buff");
+            shadowAnimator.SetTrigger("Buff");
             westernQueen.ChangeDamageCoefficient(-damageReduce);
+        }
     }
 
     public void StopReducing()

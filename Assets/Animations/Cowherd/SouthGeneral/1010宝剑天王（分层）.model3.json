@@ -1,0 +1,22 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "1010宝剑天王（分层）.moc3",
+		"Textures": [
+			"1010宝剑天王（分层）.4096/texture_00.png"
+		],
+		"DisplayInfo": "1010宝剑天王（分层）.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	]
+}

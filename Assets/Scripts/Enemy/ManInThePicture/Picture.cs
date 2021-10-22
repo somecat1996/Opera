@@ -17,6 +17,9 @@ public class Picture : GameObjectBase, LevelItemInterface
     private CardPrototype lastUsedCard;
     public float stage2PercentDamage = 0.05f;
 
+    public GameObject picture;
+    public GameObject clothes;
+
     private PlayerStatus player;
     // Start is called before the first frame update
     protected override void Start()
@@ -46,6 +49,8 @@ public class Picture : GameObjectBase, LevelItemInterface
     public void Change()
     {
         currentStage = 2;
+        picture.SetActive(false);
+        clothes.SetActive(true);
         lastUsedCard = BattleDataManager.instance.lastUsedCard;
     }
 
@@ -112,6 +117,7 @@ public class Picture : GameObjectBase, LevelItemInterface
 
     private void Stage1Attack()
     {
+        picture.GetComponent<Animator>().SetTrigger("Open");
         EnemyManager.instance.HurtAll(stage1Damage);
     }
 
