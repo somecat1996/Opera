@@ -65,6 +65,7 @@ public class Card_NeonClothes : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
+        EffectsManager.instance.CreateEffectFollowPlayer(0, cardInfo.mainValue_Cur, Vector3.zero);
         PlayerManager.instance.player.ImmunityByDuration(cardInfo.mainValue_Cur);
     }
 
