@@ -16,12 +16,17 @@ public class EffectBase : MonoBehaviour
     {
         life -= Time.deltaTime;
         if (life <= 0)
-            Destroy(gameObject);
+            DestoryObject();
     }
 
     public virtual void Instantiate(float _life, Vector3 position, Vector3 offset)
     {
         life = _life;
         transform.position = position + offset;
+    }
+
+    public virtual void DestoryObject()
+    {
+        Destroy(gameObject);
     }
 }
