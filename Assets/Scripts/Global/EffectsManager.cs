@@ -55,7 +55,7 @@ public class EffectsManager : MonoBehaviour
     public void CreateEffectFollowPlayer(int id, float _life, Vector3 _offset)
     {
         GameObject tmp = Instantiate(effects[id]);
-        tmp.GetComponent<EffectFollow>().InstantiateFollow(_life, GameObject.FindGameObjectWithTag("Player").transform, _offset);
+        tmp.GetComponent<EffectFollow>().InstantiateFollow(_life, PlayerManager.instance.player.transform, _offset);
     }
 
     private void Test()
@@ -63,6 +63,10 @@ public class EffectsManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             CreateEffectFollowPlayer(0, 3f, Vector3.zero);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            CreateEffectFollowPlayer(1, 3f, Vector3.zero);
         }
     }
 }
