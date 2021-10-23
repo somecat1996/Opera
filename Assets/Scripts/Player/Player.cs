@@ -63,9 +63,9 @@ public class Player : MonoBehaviour
         materialController.SetEnableDissolution(_v, _duration, _callbackFun);
     }
 
-    public void PlayerStealth(float duration)
+    public void PlayerStealth(bool v)
     {
-        materialController.SetEnableStealth(true, duration);
+        materialController.SetEnableStealth(v);
     }
 
     public void PlayerStopMoving()

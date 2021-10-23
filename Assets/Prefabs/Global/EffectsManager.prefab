@@ -46,3 +46,4 @@ MonoBehaviour:
   test: 0
   effects:
   - {fileID: 3551158238227105910, guid: f2c993941ac275743a0feef9ef55de36, type: 3}
+  - {fileID: 6972675812384714203, guid: f2d54ac1afd3df34d92a2d151f97eb03, type: 3}
