@@ -373,7 +373,7 @@ MonoBehaviour:
   voodooTime: 10
   voodoocoolingTime: 15
   stage1CoolingTime: 20
-  stage1Damage: 250
+  stage1Damage: 200
   stage1CardNumber: 5
   stage2DamageNumber: 5
   stage2PercentDamage: 0.05

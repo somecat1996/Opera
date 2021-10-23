@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c617b96bd2237e24a8633c082f57b5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 20000
   offsetPos: {x: 0, y: 3, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
   damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
@@ -99,6 +99,8 @@ MonoBehaviour:
   normalAttackDamage: 070000000f000000190000002300000032000000
   bananaAttackTime: 10
   bananaAttackDamage: 33
+  shieldTime: 30
+  shieldValue: 400
   ministerPrefab: {fileID: 7049907831289417314, guid: cfc4989c03dc8394a80cc7b2daffd54b, type: 3}
   ministerSummonTime: 10
   imperialDecreeThrowTime: 15
@@ -108,10 +110,12 @@ MonoBehaviour:
   lineTextPrefab: {fileID: 3921916031245853504, guid: 7af6adbf22fe4044d8adbad4008c9957, type: 3}
   speakTime: 20
   stage1Lines:
-  - "\u4EFF\u4F5B\u516E\u82E5\u8F7B\u4E91\u4E4B\u853D\u6708\uFF0C\u98D8\u98D6\u516E\u82E5\u4F20\u4E16\u4E4B\u4F73\u753B\u3002"
-  - ???
-  stage1To2Line: "\u5927\u7586\u5343\u91CC\uFF0C\u65E0\u6C5D\u7B49\u5BB9\u8EAB\u4E4B\u6240\uFF01"
-  stage2To3Line: "\u8150\u8349\u4E4B\u8424\u5149\uFF0C\u600E\u53CA\u5929\u5FC3\u4E4B\u7693\u6708\uFF01"
+  - "\u6C11\u95F4\u7ADF\u6709\u5982\u6B64\u4E4B\u7F8E\u8272"
+  - "\u4E7E\u5764\u7EC8\u4E0D\u8D1F\u5929\u5B50\uFF0C\u6625\u98CE\u53C8\u9001\u753B\u4E2D\u4EBA"
+  - "\u5C71\u91CE\u5201\u6C11\uFF0C\u95EF\u5BAB\u60CA\u9A7E\uFF0C\u8BBA\u5F8B\u5F53\u65A9"
+  - "\u5F11\u541B\u5927\u7F6A\uFF0C\u5929\u5FC5\u4E0D\u5BB9"
+  stage1To2Line: "\u5927\u7586\u5343\u91CC\uFF0C\u65E0\u6C5D\u7B49\u5BB9\u8EAB\u4E4B\u6240"
+  stage2To3Line: "\u8150\u8349\u4E4B\u8424\u5149\uFF0C\u600E\u53CA\u5929\u5FC3\u4E4B\u7693\u6708"
   douETime: 10
   douECoefficient: 2
 --- !u!114 &5004386816490790887

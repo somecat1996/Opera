@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 55
   cardName: "\u63D0\u80EF\u6B65"
   description: "\u63D0\u5347\u6240\u6709\u4F24\u5BB3 <color=red>%MainValue</color>\uFF0C\u6301\u7EED
-    6 \u79D2"
+    13 \u79D2"
   story: 
   illustration: {fileID: 21300000, guid: 6426911835d8d1a4691b547fc59756af, type: 3}
   animationID: 203
@@ -23,10 +23,10 @@ MonoBehaviour:
   cardTag: 6
   cardType: 0
   belongner: 3
-  mainValue_Origin: 0.5
+  mainValue_Origin: 0.3
   cost: 3
-  duration: 6
+  duration: 13
   radius: 0
-  mainValue_Cur: 0.5
+  mainValue_Cur: 0.3
   quantity: 0
   level: 1

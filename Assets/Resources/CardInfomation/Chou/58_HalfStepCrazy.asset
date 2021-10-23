@@ -16,7 +16,7 @@ MonoBehaviour:
   cardName: "\u534A\u6B65\u98A0"
   description: "\u4E00\u6B21\u6027\u7ED9\u4E00\u4E2A\u654C\u65B9\u5355\u4F4D\u9644\u52A0
     <color=#006400>#MainValue</color> \u5C42\u6BD2\u4F24\uFF0C\u6BCF\u79D2\u9020\u6210
-    <color=#006400>5*\u5C42\u6570</color> \u70B9\u6BD2\u4F24\uFF08\u6BD2\u4F24\u6301\u7EED
+    <color=#006400>5\xD7\u5C42\u6570</color> \u70B9\u6BD2\u4F24\uFF08\u6BD2\u4F24\u6301\u7EED
     5 \u79D2\uFF0C\u53EF\u5237\u65B0\uFF09"
   story: 
   illustration: {fileID: 21300000, guid: da35b4f5e8d51b04a82e0fa5c6e8a5a8, type: 3}

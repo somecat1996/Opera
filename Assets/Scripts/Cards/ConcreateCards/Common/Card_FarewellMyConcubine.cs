@@ -80,7 +80,7 @@ public class Card_FarewellMyConcubine : CardPrototype,ICardOperation,ICardEffect
         while(count-- > 0)
         {
             if((PlayerManager.instance.cur_HealthPoint / PlayerManager.instance.max_HealthPoint) > 0.2f)
-                PlayerManager.instance.ChangeHealthPoint(-1);
+                PlayerManager.instance.ChangeHealthPoint(-10);
 
             yield return new WaitForSeconds(1);
         }

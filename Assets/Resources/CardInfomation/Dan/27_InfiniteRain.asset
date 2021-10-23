@@ -15,9 +15,9 @@ MonoBehaviour:
   id: 27
   cardName: "\u7EF5\u96E8\u7EB7\u7EB7"
   description: "\u5BF9\u533A\u57DF\u5185\u6240\u6709\u654C\u65B9\u5355\u4F4D\u6BCF\u79D2\u9020\u6210
-    <color=#9932CC>#MainValue</color>*\u03B1 \u70B9\u6CD5\u672F\u4F24\u5BB3\uFF0C\u6BCF\u6B21\u4F24\u5BB3\u6709
-    50% \u51E0\u7387\u4F7F \u03B1+1 \uFF0C1\u2264\u03B1\u22645 \uFF0C\u6301\u7EED
-    5 \u79D2"
+    <color=#9932CC>#MainValue</color>\xD7\u03B1 \u70B9\u6CD5\u672F\u4F24\u5BB3\uFF0C\u6BCF\u6B21\u4F24\u5BB3\u6709
+    25% \u51E0\u7387\u4F7F \u03B1+1 \uFF0C1\u2264\u03B1\u22649 \uFF0C\u6301\u7EED
+    6 \u79D2"
   story: 
   illustration: {fileID: 21300000, guid: e5f777324663a7c4d92c049096bee46a, type: 3}
   animationID: 103
@@ -25,10 +25,10 @@ MonoBehaviour:
   cardTag: 5
   cardType: 2
   belongner: 1
-  mainValue_Origin: 25
+  mainValue_Origin: 20
   cost: 8
-  duration: 5
-  radius: 5
-  mainValue_Cur: 25
+  duration: 6
+  radius: 3
+  mainValue_Cur: 20
   quantity: 0
   level: 1

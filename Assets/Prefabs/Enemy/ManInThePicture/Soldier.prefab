@@ -92,8 +92,8 @@ MonoBehaviour:
   voodooTime: 10
   voodoocoolingTime: 15
   position: 0
-  reduceRate: -0.05
-  lifeTimer: 3
+  reduceRate: -0.01
+  lifeTimer: 5
 --- !u!114 &1095146561697679962
 MonoBehaviour:
   m_ObjectHideFlags: 0

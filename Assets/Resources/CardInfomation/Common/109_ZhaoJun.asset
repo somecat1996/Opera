@@ -15,9 +15,10 @@ MonoBehaviour:
   id: 109
   cardName: "\u300A\u738B\u662D\u541B\u300B"
   description: "\u6C38\u4E45\u51CF\u5C11\u5F53\u524D\u624B\u724C\u4E2D\u5176\u4ED6\u4E09\u5F20\u724C\u7684\u8D39\u7528
-    <color=red>#MainValue</color> \u70B9\uFF0C\u7136\u540E\u79FB\u51FA\u724C\u5E93"
+    <color=red>#MainValue</color> \u70B9\uFF0C\u5E76\u5C06\u672C\u5361\u79FB\u51FA\u724C\u5E93"
   story: 
   illustration: {fileID: 21300000, guid: c7fc0a28aec0e6841a9a608bb8f1b92e, type: 3}
+  animationID: -1
   rarity: 4
   cardTag: 6
   cardType: 0

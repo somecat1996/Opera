@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 105
   cardName: "\u300A\u9738\u738B\u522B\u59EC\u300B"
-  description: "\u6BCF\u79D2\u6263\u9664 1 \u70B9\u6C1B\u56F4\u503C\uFF0C\u63D0\u5347\u6240\u6709\u4F24\u5BB3
+  description: "\u6BCF\u79D2\u6263\u9664 10 \u70B9\u6C1B\u56F4\u503C\uFF0C\u63D0\u5347\u6240\u6709\u4F24\u5BB3
     <color=red>%MainValue</color>\uFF0C\u6301\u7EED 6 \u79D2\uFF0C\u5F53\u89D2\u8272\u6C1B\u56F4\u503C\u4F4E\u4E8E
     20% \u65F6\uFF0C\u4E0D\u518D\u7EE7\u7EED\u6263\u9664"
   story: 
   illustration: {fileID: 21300000, guid: a289f02896e59094198066a18aa20051, type: 3}
+  animationID: -1
   rarity: 4
   cardTag: 6
   cardType: 0

@@ -91,7 +91,7 @@ MonoBehaviour:
   voodooTime: 10
   voodoocoolingTime: 15
   position: 0
-  reduceRate: -0.05
+  reduceRate: -0.01
   lifeTimer: 3
 --- !u!1001 &3407122921771607140
 PrefabInstance:
