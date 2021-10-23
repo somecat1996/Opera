@@ -78,7 +78,7 @@ public class Card_MoneyDart : CardPrototype,ICardOperation,ICardEffectTrigger
 
 
         // 首个目标5倍伤害
-        _go.Hurt(GlobalValue.GetTruePhysicsDamage_ToEnemy(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur * firstObjectMultiple, cardInfo.cost)), false, 1.0f);
+        _go.Hurt(GlobalValue.GetTruePhysicsDamage_ToEnemy(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur * cardInfo.duration, cardInfo.cost)), false, 1.0f);
         BattleDataManager.instance.UpdateTargetEnemy(_go);
 
         // 进行散射伤害 不记录单体攻击对象
