@@ -39,6 +39,7 @@ public class WesternQueen : EnemyStatus, BossInterface
     private float thunderAttackTimer;
     private float thunderTickTimer;
     private int thunderCounter;
+    public AudioClip thunderSound;
 
     // ÌìÍõPrefab
     [Header("Generals")]
@@ -371,6 +372,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         if (thunderAttackTimer <= 0)
         {
             EffectsManager.instance.CreateEffectFollowPlayer(3, thunderCount * thunderTickTime, Vector3.zero);
+            AudioManager.instance.PlaySound(thunderSound);
             SkillAnimation();
             thunderAttackTimer = thunderAttackTime;
             thunderTickTimer = thunderTickTime;

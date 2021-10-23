@@ -108,6 +108,7 @@ MonoBehaviour:
   thunderLockTime: 1.5
   thunderDiscardNum: 2
   thunderHeartDamage: 2
+  thunderSound: {fileID: 8300000, guid: d392d4c6ccf6f3b4c9b0c93b5934b9f7, type: 3}
   summonChance: 0.1
   generalPrefabs:
   - {fileID: 7049907831289417314, guid: b14ad5c60b4cfe94e8574e79aad19d88, type: 3}
