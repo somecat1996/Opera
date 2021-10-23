@@ -22,6 +22,11 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     public float bananaAttackDamage = 3f;
     private float bananaAttackTimer;
 
+    // ª§∂‹
+    [Header("Shield")]
+    public float shieldTime = 30f;
+    public float shieldValue = 300;
+
     // ’ŸªΩ¥Û≥º
     [Header("Summon Minister")]
     public GameObject ministerPrefab;
@@ -85,6 +90,8 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         douETimer = 0;
 
         speakTimer = speakTime;
+
+        shieldTimer = shieldTime;
 
         BattleDataManager.instance.UpdateStage(1);
     }
@@ -155,6 +162,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     {
         NormalAttack();
         BananaAttack();
+        AddShield();
         SummonMinister();
 
         speakTimer -= Time.deltaTime;
@@ -169,6 +177,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     {
         NormalAttack();
         BananaAttack();
+        AddShield();
         SummonMinister();
         ThrowImperialDecree();
     }
@@ -177,6 +186,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     {
         NormalAttack();
         BananaAttack();
+        AddShield();
         SwingSword();
     }
 
@@ -233,6 +243,18 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
             SummonedObjectManager.instance.SummonBanana(position, bananaAttackDamage);
+        }
+    }
+
+    private void AddShield()
+    {
+        shieldTimer -= Time.deltaTime;
+        if (shieldTimer <= 0)
+        {
+            animator.SetBool("Shield", true);
+            shadowAnimator.SetBool("Shield", true);
+            shieldTimer = shieldTime;
+            AddShield(shieldValue, Mathf.Infinity);
         }
     }
 
