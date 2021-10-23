@@ -9,6 +9,7 @@ public class LevelBasicInfomation : ScriptableObject
     public int id;
     public string levelName;
     public Sprite bossIcon;
+    public AudioClip sound;
     [Header("关卡奖励系数")]
     public float[] rewardFactor = new float[5];
     [Header("战利品卡牌ID")]

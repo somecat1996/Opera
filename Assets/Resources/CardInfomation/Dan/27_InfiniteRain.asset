@@ -21,6 +21,7 @@ MonoBehaviour:
   story: 
   illustration: {fileID: 21300000, guid: e5f777324663a7c4d92c049096bee46a, type: 3}
   animationID: 103
+  sound: {fileID: 8300000, guid: 6e61f675f74c41c42afa52379ea56203, type: 3}
   rarity: 4
   cardTag: 5
   cardType: 2

@@ -79,7 +79,7 @@ public class Card_GroundDragon : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
-        PlayAnimation();
+        PlayAnimationAndSound();
 
         if (activated_5s)
         {

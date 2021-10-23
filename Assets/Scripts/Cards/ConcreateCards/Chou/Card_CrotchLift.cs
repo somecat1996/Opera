@@ -62,7 +62,7 @@ public class Card_CrotchLift : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
-        PlayAnimation();
+        PlayAnimationAndSound();
 
         // 效果正在激活中 重新激活
         if (activated)

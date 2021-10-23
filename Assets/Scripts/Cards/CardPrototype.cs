@@ -296,12 +296,18 @@ public class CardPrototype : MonoBehaviour
         return !(CardManager.instance.lockingCards || transform.parent != CardManager.instance.layoutGroup || GameManager.instance.gamePause);
     }
 
-    // 播放动画
-    public void PlayAnimation()
+    // 播放动画及音乐
+    public void PlayAnimationAndSound()
     {
-        if (cardInfo.animationID == -1)
-            return;
-        else
+        AudioManager.instance.PlaySound_ReleaseCard();
+
+        if (cardInfo.animationID != -1)
             Player.instance.TriggerAnimation(cardInfo.animationID);
+
+
+        if (cardInfo.sound != null)
+            AudioManager.instance.PlaySound(cardInfo.sound);
+
+
     }
 }

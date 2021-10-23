@@ -153,6 +153,8 @@ public class PlayerManager : MonoBehaviour
             GUIManager.instance.SetDisplayCurtain(false);
         }
 
+        // 通知AudioManager播放开头音效
+        AudioManager.instance.PlaySound(levelInfo[cur_BossIndex].sound);
 
         // 通知GUI关闭无关UI且显示关卡信息,重置Boss血条 修改Boss头像
         GUIManager.instance.DisableAllGUI();

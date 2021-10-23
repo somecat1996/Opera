@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 1
   levelName: "\u7AA6\u5A25\u51A4"
   bossIcon: {fileID: 21300000, guid: 55e6f44e6f1d9a24487b0a71e6e1d514, type: 3}
+  sound: {fileID: 8300000, guid: 38db1a9b0abc0714b83de28620fa1f97, type: 3}
   rewardFactor:
   - 1.5
   - 2

@@ -51,7 +51,7 @@ public class Card_MoneyDart : CardPrototype,ICardOperation,ICardEffectTrigger
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
             {
                 SummonedObjectManager.instance.SummonMoneyDart(GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost) * 5, GlobalValue.GetTruePhysicsDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost), cardInfo.radius, hit.transform.gameObject);
-                PlayAnimation();
+                PlayAnimationAndSound();
                 //TriggerEffect(hit.transform.GetComponent<GameObjectBase>());
                 CardManager.instance.SendToDiscardedCardGroup(gameObject);
                 return;

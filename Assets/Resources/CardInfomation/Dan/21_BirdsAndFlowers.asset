@@ -19,6 +19,7 @@ MonoBehaviour:
   story: 
   illustration: {fileID: 21300000, guid: 85fe4e2807cf703409cc3fae6626dd6c, type: 3}
   animationID: 103
+  sound: {fileID: 8300000, guid: 03260b900b855ce49b2d4e917f433e7e, type: 3}
   rarity: 2
   cardTag: 3
   cardType: 0
@@ -28,5 +29,5 @@ MonoBehaviour:
   duration: 0
   radius: 0
   mainValue_Cur: 50
-  quantity: 2
+  quantity: 3
   level: 1

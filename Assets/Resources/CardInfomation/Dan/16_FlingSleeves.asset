@@ -19,6 +19,7 @@ MonoBehaviour:
   story: Im fine thank you and you
   illustration: {fileID: 21300000, guid: 5120a41a6093c5542ab3227a2829482d, type: 3}
   animationID: 101
+  sound: {fileID: 8300000, guid: 01255a8e304503946a4167a2b64d5e21, type: 3}
   rarity: 1
   cardTag: 2
   cardType: 1
@@ -28,5 +29,5 @@ MonoBehaviour:
   duration: 0
   radius: 0
   mainValue_Cur: 100
-  quantity: 0
+  quantity: 1
   level: 1
