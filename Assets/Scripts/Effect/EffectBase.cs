@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class EffectBase : MonoBehaviour
 {
-    protected float life;
-
-    protected virtual void Awake()
-    {
-        life = Mathf.Infinity;
-    }
+    public float life = Mathf.Infinity;
 
     // Update is called once per frame
     protected virtual void Update()
