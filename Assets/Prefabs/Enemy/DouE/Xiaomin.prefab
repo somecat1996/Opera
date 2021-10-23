@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3025ea7dd87944a88c76ed9bb0a034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 300
   offsetPos: {x: 0, y: 0, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
   damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
@@ -101,6 +101,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7049907831289417319}
     m_Modifications:
+    - target: {fileID: 1154690756778583949, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1257633160630650513, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -165,10 +169,30 @@ PrefabInstance:
       propertyPath: _lastOpacity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3042926601756754981, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3200800645221151459, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416038973662466383, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3811624065954155095, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
       propertyPath: CubismFadeMotionList
       value: 
       objectReference: {fileID: 11400000, guid: fc449c5cf70bec5418bbf7939065e134, type: 2}
+    - target: {fileID: 5407224995682177248, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609411380775198639, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8930887208094993590, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
       propertyPath: m_Name
       value: Shadow
@@ -187,6 +211,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7049907831289417319}
     m_Modifications:
+    - target: {fileID: 1154690756778583949, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1257633160630650513, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -251,10 +279,30 @@ PrefabInstance:
       propertyPath: _lastOpacity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3042926601756754981, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3200800645221151459, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416038973662466383, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3811624065954155095, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
       propertyPath: CubismFadeMotionList
       value: 
       objectReference: {fileID: 11400000, guid: fc449c5cf70bec5418bbf7939065e134, type: 2}
+    - target: {fileID: 5407224995682177248, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609411380775198639, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8930887208094993590, guid: 99c77ef9002e95843b88869a46fad9c9, type: 3}
       propertyPath: m_Name
       value: Sprite

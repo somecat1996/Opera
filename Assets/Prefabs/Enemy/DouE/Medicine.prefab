@@ -288,14 +288,14 @@ MonoBehaviour:
   shield: 0
   voodooTime: 10
   voodoocoolingTime: 15
-  stage1ImmunityTime: 5
-  stage1WalkNumber: 5
-  stage1MagicIncrease: 0.3
+  stage1ImmunityTime: 3
+  stage1WalkNumber: 8
+  stage1DamageIncrease: 0.3
   stage2CoolingTime: 20
   stage2Time: 8
-  stage2Num: 6
-  stage2HeartIncreaseRate: 1
-  stage2DamageIncreaseRate: 0.5
+  stage2Num: 3
+  stage2HeartIncreaseRate: 0.5
+  stage2DamageIncreaseRate: 0.2
   stage2SnowyTimer: 0
   stage2SunnyTimer: 0
   medicine: {fileID: 7185754989411239442}

@@ -11,22 +11,22 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45d192056b336d2459d3b0891b12eb1e, type: 3}
   m_Name: 57_Deceive
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   id: 57
   cardName: "\u7792\u4E5D\u5929"
-  description: "\u9690\u8EAB\uFF0C\u514D\u75AB\u4F24\u5BB3 3 \u79D2\uFF0C\u63D0\u5347\u6240\u6709\u4F24\u5BB3
-    <color=red>%MainValue</color> \uFF0C\u6301\u7EED 3 \u79D2"
-  story: 
+  description: "\u9690\u8EAB\uFF0C\u671F\u95F4\u514D\u75AB\u4F24\u5BB3\u5E76\u63D0\u5347\u6240\u6709\u4F24\u5BB3
+    <color=red>%MainValue</color> \uFF0C\u6301\u7EED 4 \u79D2"
+  story:
   illustration: {fileID: 21300000, guid: 728196ad922c9dd438a49bfd01e0569a, type: 3}
   animationID: -1
   rarity: 3
   cardTag: 6
   cardType: 0
   belongner: 3
-  mainValue_Origin: 1
+  mainValue_Origin: 0.6
   cost: 4
-  duration: 3
+  duration: 4
   radius: 0
-  mainValue_Cur: 1
+  mainValue_Cur: 0.6
   quantity: 0
   level: 1

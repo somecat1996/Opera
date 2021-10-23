@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42be1b2226303494b8182d5a95887a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 1500
   offsetPos: {x: 0, y: 0, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
   damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
@@ -92,7 +92,7 @@ MonoBehaviour:
   voodoocoolingTime: 15
   position: 0
   attackTime: 5
-  attackDamage: 1
+  attackDamage: 20
 --- !u!1001 &259692741237752654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,10 +104,26 @@ PrefabInstance:
       propertyPath: _lastOpacity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1829375433166974754, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3106702223363622266, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 691601bcee0c23e4ca228603e1b9e030, type: 2}
+    - target: {fileID: 4085551450622889702, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195629838975621848, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507911368691438864, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5906806898694103816, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
       propertyPath: m_Name
       value: Sprite
@@ -168,6 +184,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6558146276767207204, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449249747705718866, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122302914358205310, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359512571811105297, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8396832075445990568, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
       propertyPath: CubismFadeMotionList
       value: 
@@ -190,10 +222,26 @@ PrefabInstance:
       propertyPath: _lastOpacity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1829375433166974754, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3106702223363622266, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 691601bcee0c23e4ca228603e1b9e030, type: 2}
+    - target: {fileID: 4085551450622889702, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195629838975621848, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507911368691438864, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5906806898694103816, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
       propertyPath: m_Name
       value: Shadow
@@ -253,6 +301,22 @@ PrefabInstance:
     - target: {fileID: 6470026575372106408, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6558146276767207204, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449249747705718866, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122302914358205310, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359512571811105297, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8396832075445990568, guid: b5578a9991f3b184886d0f6d2354f9ac, type: 3}
       propertyPath: CubismFadeMotionList

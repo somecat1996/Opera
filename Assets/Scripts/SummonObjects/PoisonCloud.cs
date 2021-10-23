@@ -8,9 +8,9 @@ public class PoisonCloud : MonoBehaviour
 
     private List<GameObjectInterface> enemies;
     private float poisonTimer;
-    private float life;
-    // Start is called before the first frame update
-    void Start()
+    public float life;
+
+    private void Awake()
     {
         life = Mathf.Infinity;
         poisonTimer = poisonTime;

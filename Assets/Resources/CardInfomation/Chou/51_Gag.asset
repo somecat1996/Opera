@@ -23,10 +23,10 @@ MonoBehaviour:
   cardTag: 4
   cardType: 0
   belongner: 3
-  mainValue_Origin: 2
+  mainValue_Origin: 3
   cost: 1
   duration: 0
   radius: 0
-  mainValue_Cur: 2
+  mainValue_Cur: 3
   quantity: 0
   level: 1

@@ -17,6 +17,7 @@ MonoBehaviour:
   description: "\u514D\u75AB <color=red>#MainValue</color> \u79D2\u4F24\u5BB3"
   story: 
   illustration: {fileID: 21300000, guid: 9cf834c5d1cee98419134f0673e1ce2d, type: 3}
+  animationID: -1
   rarity: 2
   cardTag: 8
   cardType: 0
@@ -26,5 +27,5 @@ MonoBehaviour:
   duration: 0
   radius: 0
   mainValue_Cur: 3
-  quantity: 1
+  quantity: 0
   level: 1

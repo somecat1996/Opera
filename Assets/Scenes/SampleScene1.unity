@@ -2183,6 +2183,7 @@ MonoBehaviour:
   - {fileID: 1700789864}
   button_Contiune: {fileID: 998515945}
   canvas: {fileID: 1227182493}
+  panel_MainUI: {fileID: 0}
   player_PowerPoint: {fileID: 0}
   text_PowerPoint: {fileID: 1590556366}
   boss_HealthPoint: {fileID: 0}
@@ -2190,9 +2191,28 @@ MonoBehaviour:
   text_CardDesc: {fileID: 1351019370}
   panel_BuffIcon: {fileID: 1913919744}
   prefab_BuffIcon: {fileID: 2006184719}
+  image_BossIcon: {fileID: 0}
   panel_Common: {fileID: 0}
   spawnPos_SystemText: {fileID: 0}
   prefab_SystemText: {fileID: 0}
+  spawnPos_LevelName: {fileID: 0}
+  prefab_LevelName: {fileID: 0}
+  panel_Title: {fileID: 0}
+  panel_ConfirmDialog_NewGame: {fileID: 0}
+  panel_ConfirmDialog_Quit: {fileID: 0}
+  panel_Evaluation: {fileID: 0}
+  text_GameResult: {fileID: 0}
+  text_Loot_Money: {fileID: 0}
+  text_GameTime: {fileID: 0}
+  image_Character: {fileID: 0}
+  card_Loot:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  btn_Restart: {fileID: 0}
+  btn_NextLevel: {fileID: 0}
+  ani_Curtain: {fileID: 0}
+  curtain: {fileID: 0}
 --- !u!1 &95612125
 GameObject:
   m_ObjectHideFlags: 0
@@ -14872,12 +14892,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_PowerPoint: 10
-  default_RecoverySpeed_PowerPoint: 1
-  lowBoundary_RecoverySpeed: 0.5
+  default_RecoverySpeed_PowerPoint: 0.5
+  lowBoundary_RecoverySpeed: 0.4
   max_HealthPoint: 10
+  bossIcon: []
   cur_PowerPoint: 0
   cur_HealthPoint: 0
   cur_RecoverySpeed_PowerPoint: 0
+  slowDownRecoverSpeed_PowerPoint: 0
+  cur_RecoverySpeed_PP_Decrement: 0
+  cur_LevelIndex: -1
+  cur_BossIndex: -1
+  cur_Difficity: 0
+  bossIndexQueue: 
   player: {fileID: 0}
   cur_Character: 2
   cur_CharBuffID: 0
@@ -17489,6 +17516,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8249a75253f224394279f5447c4ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStart: 0
+  gamePause: 0
 --- !u!4 &733680458
 Transform:
   m_ObjectHideFlags: 0
@@ -18091,6 +18120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deactivateBuffList: 
+  selectedBuff: 
 --- !u!1 &789554422
 GameObject:
   m_ObjectHideFlags: 0
@@ -18827,7 +18857,15 @@ MonoBehaviour:
   charName: {fileID: 565099671}
   charDesc: {fileID: 980677882}
   charStory: {fileID: 546785193}
-  charIcon: {fileID: 1910393604}
+  characterIcon: {fileID: 0}
+  image_BuffSelector:
+  - {fileID: 0}
+  - {fileID: 0}
+  text_BuffName:
+  - {fileID: 0}
+  - {fileID: 0}
+  sprite_SelectedBuff: {fileID: 0}
+  sprite_UnselectedBuff: {fileID: 0}
   selectedCharTag:
   - {fileID: 444507834}
   - {fileID: 470796270}
@@ -32748,17 +32786,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc89c6d95bf5a14b86e47cdb15aa606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameTimer: 0
+  loot: 0
+  playerVictory: 0
   totalDamage: 0
   totalUsedCard: 0
   lastTargetEnemy: {fileID: 0}
+  cur_bossHP_Pencentage: 0
+  cur_Stage: 0
+  timer_LastStage: 0
   selectingCard: {fileID: 0}
   lastUsedCard: {fileID: 0}
   enemyList: []
   playerMoving: 0
+  appealPoint: 0
+  fadeTime: 0.5
   rangeDisplayer: {fileID: 629819403}
+  activateRangeDIsplayer: 0
   markerOffset: {x: 0, y: 70, z: 0}
   activateTargetMarker: 0
   targetMarker: {fileID: 414803858}
+  lineRender_Dp: {fileID: 0}
+  directionPointer: {fileID: 0}
+  activatedSpectator: 0
+  highlightSpectator: 0
+  deactivatedSpectatorList: []
+  activatedSpectatorList: []
+  highlightSpectatorList: []
+  spectator_Spectial: {fileID: 0}
+  text_AppeapPoint: {fileID: 0}
+  text_AppealPoint_Label: {fileID: 0}
 --- !u!1 &1466964247
 GameObject:
   m_ObjectHideFlags: 0
@@ -35026,12 +35083,15 @@ MonoBehaviour:
   cardQueue: []
   cardQueue_Waitting: []
   cardLibrary_Selected: []
+  lockingCards: 0
   cardCommonData: {fileID: 11400000, guid: 72b242035d7d1aa498fd73cbe6ae2286, type: 2}
   slotLayoutGroup: {fileID: 418364206}
   layoutGroup: {fileID: 853103446}
-  recTran_layoutGroup: {fileID: 853103446}
+  recTran_LayoutGroup: {fileID: 0}
   tempLayoutGroup: {fileID: 1920690236}
+  recTran_TempLayoutGroup: {fileID: 0}
   discardedCardLayoutGroup: {fileID: 1386052731}
+  flap_LayoutGroup: {fileID: 0}
   slotPos:
   - {fileID: 0}
   - {fileID: 0}

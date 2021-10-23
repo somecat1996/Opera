@@ -18,14 +18,15 @@ MonoBehaviour:
     <color=#4169E1>#MainValue</color> \u79D2\uFF0CBoss\u51CF\u534A"
   story: 
   illustration: {fileID: 21300000, guid: 8c29626b56d3eb1448ab94a772de9a9d, type: 3}
+  animationID: -1
   rarity: 4
   cardTag: 4
   cardType: 0
   belongner: -1
-  mainValue_Origin: 6
+  mainValue_Origin: 10
   cost: 0
   duration: 0
   radius: 0
-  mainValue_Cur: 6
+  mainValue_Cur: 10
   quantity: 0
   level: 0

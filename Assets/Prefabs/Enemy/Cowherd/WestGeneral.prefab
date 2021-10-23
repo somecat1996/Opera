@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cfe7d0735f93e4191fd6b7d610820a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 1000
   offsetPos: {x: 0, y: 0, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
   damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
@@ -91,7 +91,7 @@ MonoBehaviour:
   voodooTime: 10
   voodoocoolingTime: 15
   position: 0
-  damage: 1
+  damage: 10
   attackTime: 5
   summonTime: 10
   snakePrefab: {fileID: 7049907831289417314, guid: e355865c815fea14a8bfda3eefd5c830, type: 3}
@@ -102,6 +102,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7049907831289417319}
     m_Modifications:
+    - target: {fileID: 9925963418036778, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 711989181807020903, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2113699705445154940, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553976853999751399, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3182522891969160246, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
       propertyPath: CubismFadeMotionList
       value: 
@@ -166,9 +182,21 @@ PrefabInstance:
       propertyPath: _lastOpacity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7168796586088100102, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500515345347733458, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8379904802246404905, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
       propertyPath: m_Name
       value: Sprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441990832116462136, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8902650403925217039, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
       propertyPath: m_Controller
@@ -188,6 +216,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7049907831289417319}
     m_Modifications:
+    - target: {fileID: 9925963418036778, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 711989181807020903, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2113699705445154940, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553976853999751399, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3182522891969160246, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
       propertyPath: CubismFadeMotionList
       value: 
@@ -252,9 +296,21 @@ PrefabInstance:
       propertyPath: _lastOpacity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7168796586088100102, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500515345347733458, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8379904802246404905, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
       propertyPath: m_Name
       value: Shadow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441990832116462136, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8902650403925217039, guid: fd62a1fd9a952954a987bda53c6c3f6e, type: 3}
       propertyPath: m_Controller

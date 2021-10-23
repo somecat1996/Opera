@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 48
   cardName: "\u7FFB\u8EAB\u620F"
-  description: "\u7ACB\u5373\u83B7\u5F97 <color=#20B2AA>#MainValue</color> \u70B9\u62A4\u76FE\u503C\uFF0C3
+  description: "\u7ACB\u5373\u83B7\u5F97 <color=#20B2AA>#MainValue</color> \u70B9\u62A4\u76FE\u503C\uFF0C6
     \u79D2\u540E\u6D88\u5931"
   story: 
   illustration: {fileID: 21300000, guid: 153e4bb029e57cf4eaf1befe4c285061, type: 3}
@@ -23,10 +23,10 @@ MonoBehaviour:
   cardTag: 7
   cardType: 0
   belongner: 3
-  mainValue_Origin: 4
+  mainValue_Origin: 60
   cost: 2
-  duration: 3
+  duration: 6
   radius: 0
-  mainValue_Cur: 4
+  mainValue_Cur: 60
   quantity: 0
   level: 1

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 56
   cardName: "\u6EDA\u5730\u9F99"
   description: "\u51C0\u5316\u81EA\u8EAB\uFF0C\u7ACB\u5373\u83B7\u5F97 <color=red>\u201C\u8E69\u811A\u6B65/\u6296\u80A9\u6B65/\u63D0\u80EF\u6B65\u201D</color>
-    \u7684\u4F7F\u7528\u6548\u679C"
+    \u7684\u5168\u90E8\u6548\u679C"
   story: 
   illustration: {fileID: 21300000, guid: e2aeb6d793c563f4085889bdfb2f5be7, type: 3}
   animationID: 201

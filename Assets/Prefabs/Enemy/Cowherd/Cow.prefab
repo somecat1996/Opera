@@ -270,7 +270,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7049907831289417314}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 855d6bf5e419cc04e9f3f741d81e9548, type: 3}
   m_Name: 
@@ -291,7 +291,7 @@ MonoBehaviour:
   voodoocoolingTime: 15
   stage1ImmunityTime: 5
   stage1WalkNumber: 5
-  stage1MagicIncrease: 0.3
+  stage1DamageIncrease: 0.3
   stage2CoolingTime: 20
   stage2Time: 8
   stage2Num: 6
@@ -328,7 +328,7 @@ MonoBehaviour:
   voodooTime: 10
   voodoocoolingTime: 15
   stage1CoolingTime: 20
-  stage1Damage: 200
+  stage1Damage: 999
   stage1CardNumber: 5
   stage2CardNumber: 8
   cow: {fileID: 1222454697469712473}
