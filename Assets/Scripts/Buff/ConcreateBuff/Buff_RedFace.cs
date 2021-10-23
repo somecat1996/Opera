@@ -6,7 +6,7 @@ public class Buff_RedFace : BuffPrototype
 {
     private int counter_Origin = 5;
     public int counter;
-    public float increment = 1f;
+    public float increment = 0.1f;
 
     private int cur_UsedCard;
 
@@ -29,8 +29,8 @@ public class Buff_RedFace : BuffPrototype
                     int cost = BattleDataManager.instance.lastUsedCard.cardInfo.cost;
 
                     PlayerManager.instance.ChangePowerPoint(cost);
-                    PlayerManager.instance.ChangeHealthPoint(-cost);
-                        
+                    //PlayerManager.instance.ChangeHealthPoint(-cost);
+                    PlayerManager.instance.player.Hurt(cost);
                     activated = false;
                 }
                 else

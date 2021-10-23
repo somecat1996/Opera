@@ -5,7 +5,7 @@ using UnityEngine;
 public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
 {
     public int alpha = 1;
-    public float probability = 0.5f;
+    public float probability = 0.25f;
     public float time = 0;
     public bool executing = false;
     private Coroutine coroutine;
@@ -114,14 +114,16 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
             foreach (var i in temp)
             {
                 i.Hurt(GlobalValue.GetTrueMagicDamage_ToEnemy(cardInfo.mainValue_Cur, cardInfo.cost) * alpha,false,1, HurtType.Magic);
+
+                if (Random.Range(0, 1.0f) <= probability)
+                {
+                    alpha++;
+                }
+
+                alpha = Mathf.Clamp(alpha, 1, 9);
             }
 
-            if(Random.Range(0,1.0f) > probability)
-            {
-                alpha++;
-            }
 
-            alpha = Mathf.Clamp(alpha, 1, 5);
 
             yield return new WaitForSeconds(1);
         }

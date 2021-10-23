@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffInfo: {fileID: 11400000, guid: b8b4720b8944a3d4cbf2a741e2448d27, type: 2}
-  replaceText: 
+  replaceValue: 0
   activated: 0
+  buffGUIicon: {fileID: 0}
+  buffGUIScript: {fileID: 0}
   counter: 0
-  increment: 1
+  increment: 0.1

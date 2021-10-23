@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffInfo: {fileID: 11400000, guid: b14b99329ab394343bc7c9e56b47cb9c, type: 2}
-  replaceText: 
+  replaceValue: 0
   activated: 0
+  buffGUIicon: {fileID: 0}
+  buffGUIScript: {fileID: 0}
   counter_Origin: 100
   counter: 0
-  totalDamage: 0
-  hpIncrement: 10
+  appealPoint: 0
+  hpIncrement: 100

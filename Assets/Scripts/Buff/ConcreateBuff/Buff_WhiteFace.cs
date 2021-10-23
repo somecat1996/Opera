@@ -9,7 +9,7 @@ public class Buff_WhiteFace : BuffPrototype
 
     public float totalDamage;
 
-    public float hpIncrement = 1;
+    public float hpIncrement = 10;
 
 
     private void Update()

@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffInfo: {fileID: 11400000, guid: 7fcf0326ec52d764f8fded87865094ac, type: 2}
-  replaceText: 
+  replaceValue: 0
   activated: 0
+  buffGUIicon: {fileID: 0}
+  buffGUIScript: {fileID: 0}
   curStatus: 0
-  probability: 0.3
+  probability: 0.1
   ppIncrement: 1

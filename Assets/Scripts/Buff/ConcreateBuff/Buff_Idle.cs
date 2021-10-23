@@ -5,7 +5,7 @@ using UnityEngine;
 public class Buff_Idle : BuffPrototype
 {
     public bool curStatus = false;
-    public float probability = 0.3f;
+    public float probability = 0.1f;
     public float ppIncrement = 1;
 
     private void Update()
