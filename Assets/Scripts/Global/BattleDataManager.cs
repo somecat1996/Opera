@@ -59,7 +59,6 @@ public class BattleDataManager : MonoBehaviour
     public TextMeshProUGUI text_AppeapPoint;
     public TextMeshProUGUI text_AppealPoint_Label;
 
-
     private void Awake()
     {
         instance = this;
