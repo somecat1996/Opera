@@ -56,6 +56,7 @@ public class Card_Deceive : CardPrototype,ICardOperation,ICardEffectTrigger
     }
     public void RevokeEffect()
     {
+        Player.instance.PlayerStealth(false);
         GlobalValue.damageIncrement_General -= cardInfo.mainValue_Cur;
         activated = false;
     }
@@ -68,6 +69,8 @@ public class Card_Deceive : CardPrototype,ICardOperation,ICardEffectTrigger
             OnDisable();
         }
 
+
+        Player.instance.PlayerStealth(true);
         PlayerManager.instance.player.ImmunityByDuration(cardInfo.duration);
         PlayerManager.instance.player.Invisible(cardInfo.duration);
 
@@ -75,7 +78,6 @@ public class Card_Deceive : CardPrototype,ICardOperation,ICardEffectTrigger
         activated = true;
 
         timer = StartCoroutine(Timer());
-
 
     }
 

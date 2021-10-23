@@ -94,7 +94,7 @@ public class MaterialController : MonoBehaviour
     /// <param name="_v"></param>
     /// <param name="_duration">持续时间</param>
     /// <param name="_callbackFun"></param>
-    public void SetEnableStealth(bool _v,float _duration = 1.5f)
+    public void SetEnableStealth(bool _v,float _duration = 1f)
     {
         if (_v)
         {
