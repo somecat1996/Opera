@@ -377,8 +377,8 @@ MonoBehaviour:
   stage1CardNumber: 5
   stage2DamageNumber: 5
   stage2PercentDamage: 0.05
-  picture: {fileID: 0}
-  clothes: {fileID: 0}
+  picture: {fileID: 7899647656031437426}
+  clothes: {fileID: 4556371158139325784}
 --- !u!114 &6022353402135371989
 MonoBehaviour:
   m_ObjectHideFlags: 0
