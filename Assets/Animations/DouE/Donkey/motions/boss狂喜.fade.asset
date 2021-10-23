@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1ee1adc36a8a04a8d7c42ac5d6bc27, type: 3}
   m_Name: "boss\u72C2\u559C.fade"
   m_EditorClassIdentifier: 
-  MotionName: "Assets/Animations/dOUe/Donkey/motions/boss\u72C2\u559C.motion3.json"
+  MotionName: "Assets/Animations/DouE/Donkey/motions/boss\u72C2\u559C.motion3.json"
   FadeInTime: 1
   FadeOutTime: 1
   ParameterIds:

@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 250
-  offsetPos: {x: 0, y: 0, z: 0}
+  offsetPos: {x: 0.16, y: 0.59, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
   damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
   poisonTime: 5
@@ -149,15 +149,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9167832843839069371, guid: fea5b5d829ef9b941878d30907a5f087, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9167832843839069371, guid: fea5b5d829ef9b941878d30907a5f087, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9167832843839069371, guid: fea5b5d829ef9b941878d30907a5f087, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9167832843839069371, guid: fea5b5d829ef9b941878d30907a5f087, type: 3}
       propertyPath: m_LocalPosition.x
@@ -287,15 +287,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9167832843839069371, guid: fea5b5d829ef9b941878d30907a5f087, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9167832843839069371, guid: fea5b5d829ef9b941878d30907a5f087, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9167832843839069371, guid: fea5b5d829ef9b941878d30907a5f087, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9167832843839069371, guid: fea5b5d829ef9b941878d30907a5f087, type: 3}
       propertyPath: m_LocalPosition.x

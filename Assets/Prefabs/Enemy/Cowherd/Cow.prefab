@@ -209,7 +209,6 @@ GameObject:
   - component: {fileID: 7049907831289417319}
   - component: {fileID: 7049907831289417312}
   - component: {fileID: 7049907831289417313}
-  - component: {fileID: 1959859019025010730}
   - component: {fileID: 4093902245859494272}
   m_Layer: 0
   m_Name: Cow
@@ -263,44 +262,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1959859019025010730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7049907831289417314}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 855d6bf5e419cc04e9f3f741d81e9548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
-  offsetPos: {x: 0, y: 0, z: 0}
-  healthBarPrefab: {fileID: 0}
-  damageTextPrefab: {fileID: 0}
-  poisonTime: 5
-  poisonDamage: 5
-  poisonDamageTime: 1
-  stunEffect: 1
-  bleedingTime: 5
-  bleedingTickleTime: 1
-  bleedingDamage: 5
-  shield: 0
-  voodooTime: 10
-  voodoocoolingTime: 15
-  stage1ImmunityTime: 5
-  stage1WalkNumber: 5
-  stage1DamageIncrease: 0.3
-  stage2CoolingTime: 20
-  stage2Time: 8
-  stage2Num: 6
-  stage2HeartIncreaseRate: 1
-  stage2DamageIncreaseRate: 0.5
-  stage2SnowyTimer: 0
-  stage2SunnyTimer: 0
-  medicine: {fileID: 0}
-  doll: {fileID: 0}
 --- !u!114 &4093902245859494272
 MonoBehaviour:
   m_ObjectHideFlags: 0
