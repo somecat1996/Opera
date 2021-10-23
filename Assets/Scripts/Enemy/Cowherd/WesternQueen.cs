@@ -370,6 +370,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         thunderAttackTimer -= Time.deltaTime;
         if (thunderAttackTimer <= 0)
         {
+            EffectsManager.instance.CreateEffectFollowPlayer(3, thunderCount * thunderTickTime, Vector3.zero);
             SkillAnimation();
             thunderAttackTimer = thunderAttackTime;
             thunderTickTimer = thunderTickTime;
