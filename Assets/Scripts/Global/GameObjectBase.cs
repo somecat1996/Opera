@@ -299,6 +299,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         {
             stun = true;
             stunTimer = time * stunEffect;
+
+            EffectsManager.instance.CreateEffectFollow(4, time * stunEffect, transform, Vector3.zero);
         }
     }
 

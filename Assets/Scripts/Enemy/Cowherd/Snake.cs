@@ -49,6 +49,8 @@ public class Snake : EnemyStatus, ReducePower
             stunTimer = time * stunEffect;
             // 停止减少心流回复
             StopReducing();
+
+            EffectsManager.instance.CreateEffectFollow(4, time * stunEffect, transform, Vector3.zero);
         }
     }
 
