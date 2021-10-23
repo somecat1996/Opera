@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     [Header("Configuration")]
-    public int max_AudioSources_SE = 5;
+    public int max_AudioSources_SE = 10;
     public float fadeTime = 2f;
 
     public List<AudioClip> sound_BossBGM = new List<AudioClip>();
@@ -21,6 +21,14 @@ public class AudioManager : MonoBehaviour
     [Header("Real-TIme Setting")]
     public float volume_BGM = 1f;
     public float volume_SE = 1f;
+
+    [Header("Global Sound Clip")]
+    public AudioClip sound_ReleaseCard;
+
+    [Header("Music Score")]
+    public int scroeIndex = 0;
+    public List<int> musicScroe = new List<int>();
+    public List<AudioClip> sound_btn = new List<AudioClip>();
 
     [Header("Objects")]
     public Slider slider_BGM;
@@ -107,5 +115,24 @@ public class AudioManager : MonoBehaviour
     public void AddVolume_SE(float _v)
     {
         slider_SE.value += _v;
+    }
+
+    /// <summary>
+    /// 播放按钮音效 按照谱子行进
+    /// </summary>
+    public void PlaySound_Button()
+    {
+        PlaySound(sound_btn[musicScroe[scroeIndex++]]);
+
+        if (scroeIndex == musicScroe.Count)
+            scroeIndex = 0;
+    }
+
+    /// <summary>
+    /// 释放卡牌音效
+    /// </summary>
+    public void PlaySound_ReleaseCard()
+    {
+        PlaySound(sound_ReleaseCard);
     }
 }

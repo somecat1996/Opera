@@ -66,7 +66,7 @@ public class Card_BirdsAndFlowers : CardPrototype,ICardEffectTrigger,ICardOperat
 
     public void TriggerEffect()
     {
-        PlayAnimation();
+        PlayAnimationAndSound();
         PlayerManager.instance.ChangeHealthPoint(cardInfo.mainValue_Cur);
     }
 

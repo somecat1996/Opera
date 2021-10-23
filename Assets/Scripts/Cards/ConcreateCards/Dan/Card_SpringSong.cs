@@ -92,7 +92,7 @@ public class Card_SpringSong :CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
-        PlayAnimation();
+        PlayAnimationAndSound();
         StartCoroutine(Timer(_gos));
     }
 

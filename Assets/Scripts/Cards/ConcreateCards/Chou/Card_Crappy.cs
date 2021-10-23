@@ -64,7 +64,7 @@ public class Card_Crappy : CardPrototype,ICardOperation,ICardEffectTrigger
 
     public void TriggerEffect()
     {
-        PlayAnimation();
+        PlayAnimationAndSound();
 
         if (healing == false)
         {

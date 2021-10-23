@@ -72,6 +72,7 @@ public class Card_GuanKou : CardPrototype,ICardOperation,ICardEffectTrigger
     public void TriggerEffect(GameObjectBase _go)
     {
         StartCoroutine(Timer(_go));
+        PlayAnimationAndSound();
         BattleDataManager.instance.UpdateTargetEnemy(_go);
     }
 

@@ -50,7 +50,7 @@ public class Card_UmbrellaSword : CardPrototype, ICardEffectTrigger,ICardOperati
         {
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
             {
-                PlayAnimation();
+                PlayAnimationAndSound();
                 StartCoroutine(Delay(1, hit.transform.GetComponent<GameObjectBase>()));
                 CardManager.instance.SendToDiscardedCardGroup(gameObject);
                 return;

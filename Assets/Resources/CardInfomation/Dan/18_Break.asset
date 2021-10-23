@@ -20,6 +20,7 @@ MonoBehaviour:
   story: 6666666666as4d65as4d5a6sd4as56d4a5s64d5a6sd4as65d4as56d4as6d4as56da4s5d4as6d45asda6sd45a6d5as4da65sd4a5s6d4as56d4a6s5d4a6s5d4a65sd4a65sd4a65sdas65d4a65s4d
   illustration: {fileID: 21300000, guid: da2be43c52cbd0a42bfe8fa6653aff70, type: 3}
   animationID: 104
+  sound: {fileID: 8300000, guid: 01255a8e304503946a4167a2b64d5e21, type: 3}
   rarity: 1
   cardTag: 2
   cardType: 1
@@ -29,5 +30,5 @@ MonoBehaviour:
   duration: 0
   radius: 0
   mainValue_Cur: 80
-  quantity: 1
+  quantity: 3
   level: 1

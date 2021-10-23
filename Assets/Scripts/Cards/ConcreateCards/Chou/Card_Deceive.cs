@@ -69,7 +69,7 @@ public class Card_Deceive : CardPrototype,ICardOperation,ICardEffectTrigger
             OnDisable();
         }
 
-
+        PlayAnimationAndSound();
         Player.instance.PlayerStealth(true);
         PlayerManager.instance.player.ImmunityByDuration(cardInfo.duration);
         PlayerManager.instance.player.Invisible(cardInfo.duration);

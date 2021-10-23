@@ -92,7 +92,7 @@ public class Card_YarnDance :CardPrototype,ICardEffectTrigger,ICardOperation
 
     public void TriggerEffect(GameObjectBase[] _gos)
     {
-        PlayAnimation();
+        PlayAnimationAndSound();
 
         foreach (var i in _gos)
             i.Stun(cardInfo.mainValue_Cur);

@@ -19,6 +19,7 @@ MonoBehaviour:
   story: 
   illustration: {fileID: 21300000, guid: f6597d4abfa8a1840a3bb96260e0cb1f, type: 3}
   animationID: 203
+  sound: {fileID: 8300000, guid: 9c1d1a4d954356448b705048678f1dcf, type: 3}
   rarity: 2
   cardTag: 6
   cardType: 0

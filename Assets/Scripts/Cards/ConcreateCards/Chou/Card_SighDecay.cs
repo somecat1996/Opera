@@ -67,6 +67,7 @@ public class Card_SighDecay : CardPrototype,ICardOperation,ICardEffectTrigger
             OnDisable();
         }
 
+        PlayAnimationAndSound();
         GlobalValue.poisonAttack = true;
         activated = true;
 

@@ -45,7 +45,7 @@ public class Card_Cliche : CardPrototype,ICardOperation,ICardEffectTrigger
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
             {
 
-                PlayAnimation();
+                PlayAnimationAndSound();
                 SummonedObjectManager.instance.SummonPoisonCloud(hit.point,cardInfo.mainValue_Cur, cardInfo.radius);
 
                 CardManager.instance.SendToDiscardedCardGroup(gameObject);
