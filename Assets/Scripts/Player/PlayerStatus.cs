@@ -10,6 +10,8 @@ public class PlayerStatus : GameObjectBase
     private float magicDamage;
     private float physicDamage;
 
+    private EffectFollow shieldScript;
+
     private bool started;
 
     protected override void Awake()
@@ -125,6 +127,11 @@ public class PlayerStatus : GameObjectBase
             voodooHurt += trueDamage;
 
         healthBarManager.UpdateHealth(curHealth / maxHealth);
+        if (shieldScript && shield <= 0)
+        {
+            shieldScript.DestoryObject();
+            shieldScript = null;
+        }
 
         var col = gameObject.GetComponent<Collider>();
         var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
@@ -170,5 +177,11 @@ public class PlayerStatus : GameObjectBase
     {
         Hurt(damage);
         transform.position = position;
+    }
+
+    public override void AddShield(float shieldValue, float time)
+    {
+        base.AddShield(shieldValue, time);
+        shieldScript = EffectsManager.instance.CreateEffectFollowPlayer(1, time, Vector3.zero).GetComponent<EffectFollow>();
     }
 }

@@ -27,6 +27,7 @@ public class WesternQueen : EnemyStatus, BossInterface
     public float shieldTime = 30f;
     public float shieldValue = 300;
     private EffectFollow shieldScript;
+    public AudioClip shieldSound;
 
     // À×½Ù¹¥»÷
     [Header("Thunder Attack")]
@@ -101,7 +102,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         thunderCounter = 0;
 
         summonedGeneral = new List<int>() { 0, 1, 2, 3 };
-        heavenSoliderPosition = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+        heavenSoliderPosition = new List<int> { 6, 7, 8, 9, 10, 11 };
         aliveHeavenSoliderPosition = new List<int>();
 
         hurtCoefficient = 1;
@@ -366,9 +367,10 @@ public class WesternQueen : EnemyStatus, BossInterface
             SkillAnimation();
             animator.SetBool("Shield", true);
             shadowAnimator.SetBool("Shield", true);
+            AudioManager.instance.PlaySound(shieldSound);
             shieldTimer = shieldTime;
             if (shield <= 0)
-                shieldScript = EffectsManager.instance.CreateEffectFollow(1, Mathf.Infinity, transform, Vector3.zero).GetComponent<EffectFollow>();
+                shieldScript = EffectsManager.instance.CreateEffectFollow(1, Mathf.Infinity, transform, new Vector3(0, 1.28f, -0.42f)).GetComponent<EffectFollow>();
             AddShield(shieldValue, Mathf.Infinity);
         }
     }

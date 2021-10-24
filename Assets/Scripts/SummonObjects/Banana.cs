@@ -5,6 +5,7 @@ using UnityEngine;
 public class Banana : MonoBehaviour
 {
     public Vector3 offset;
+    public AudioClip bananaSound;
 
     private float damage;
     private Rigidbody rigidbody;
@@ -29,7 +30,10 @@ public class Banana : MonoBehaviour
         if (other.tag == "Player")
         {
             if (other.GetComponent<PlayerStatus>().IsStunImmunity())
+            {
                 other.GetComponent<PlayerStatus>().Hurt(damage * EnemyManager.instance.EnemyAttackCoefficient());
+                AudioManager.instance.PlaySound(bananaSound);
+            }
             Destroy(gameObject);
         }
     }

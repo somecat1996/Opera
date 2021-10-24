@@ -101,6 +101,7 @@ MonoBehaviour:
   bananaAttackDamage: 33
   shieldTime: 30
   shieldValue: 400
+  shieldSound: {fileID: 8300000, guid: a1ef887a4164b2240a3189369e75734c, type: 3}
   thunderAttackTime: 15
   thunderTickTime: 0.5
   thunderCount: 10

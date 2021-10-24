@@ -27,6 +27,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     public float shieldTime = 30f;
     public float shieldValue = 300;
     private EffectFollow shieldScript;
+    public AudioClip shieldSound;
 
     // ÕÙ»½´ó³¼
     [Header("Summon Minister")]
@@ -38,6 +39,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     [Header("Throw Imperial Decree")]
     public float imperialDecreeThrowTime = 10f;
     private float imperialDecreeThrowTimer;
+    public AudioClip imperialDecreeSound;
 
     // »Ó½£
     [Header("Swing Sword")]
@@ -45,6 +47,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     public float swordAttackIncrease = 2f;
     private float swordAttackTimer;
     private bool swordAttack;
+    public AudioClip swordSound;
 
     // »­¾íprefab
     [Header("Picture Prefab")]
@@ -259,9 +262,10 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         {
             animator.SetBool("Shield", true);
             shadowAnimator.SetBool("Shield", true);
+            AudioManager.instance.PlaySound(shieldSound);
             shieldTimer = shieldTime;
             if (shield <= 0)
-                shieldScript = EffectsManager.instance.CreateEffectFollow(1, Mathf.Infinity, transform, Vector3.zero).GetComponent<EffectFollow>();
+                shieldScript = EffectsManager.instance.CreateEffectFollow(1, Mathf.Infinity, transform, new Vector3(0, 0.48f, 0.25f)).GetComponent<EffectFollow>();
             AddShield(shieldValue, Mathf.Infinity);
         }
     }
@@ -272,6 +276,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         if (imperialDecreeThrowTimer <= 0)
         {
             imperialDecreeThrowTimer = imperialDecreeThrowTime;
+            AudioManager.instance.PlaySound(imperialDecreeSound);
             foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
                 Minister minister = enemy.GetComponent<Minister>();
@@ -299,6 +304,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         swordAttackTimer -= Time.deltaTime;
         if (swordAttackTimer <= 0)
         {
+            AudioManager.instance.PlaySound(swordSound);
             swordAttackTimer = swordAttackTime;
             swordAttack = true;
         }

@@ -358,7 +358,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         healingValue = value;
     }
 
-    public void AddShield(float shieldValue, float time)
+    public virtual void AddShield(float shieldValue, float time)
     {
         shield = shieldValue;
         shieldTimer = time;

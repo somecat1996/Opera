@@ -101,11 +101,14 @@ MonoBehaviour:
   bananaAttackDamage: 33
   shieldTime: 30
   shieldValue: 400
+  shieldSound: {fileID: 8300000, guid: a1ef887a4164b2240a3189369e75734c, type: 3}
   ministerPrefab: {fileID: 7049907831289417314, guid: cfc4989c03dc8394a80cc7b2daffd54b, type: 3}
   ministerSummonTime: 10
   imperialDecreeThrowTime: 15
+  imperialDecreeSound: {fileID: 8300000, guid: 0da1d08f244b37141b1e86ce5a50ec9a, type: 3}
   swordAttackTime: 5
   swordAttackIncrease: 2
+  swordSound: {fileID: 8300000, guid: 05ec803373d487740a9be00c7ebe8433, type: 3}
   picturePrefab: {fileID: 7049907831289417314, guid: 64b3fc3a3c190184e9c7213af91987d0, type: 3}
   lineTextPrefab: {fileID: 3921916031245853504, guid: 7af6adbf22fe4044d8adbad4008c9957, type: 3}
   speakTime: 20
@@ -581,7 +584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6648167853572044153, guid: 76e3a8a07aa13f24f80eee5126876c9f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.7
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 6648167853572044153, guid: 76e3a8a07aa13f24f80eee5126876c9f, type: 3}
       propertyPath: m_LocalRotation.w

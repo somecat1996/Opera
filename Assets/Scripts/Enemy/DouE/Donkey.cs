@@ -27,12 +27,14 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     public float shieldTime = 30f;
     public float shieldValue = 300;
     private EffectFollow shieldScript;
+    public AudioClip shieldSound;
 
     // 污水攻击
     [Header("Dirty Water Attack")]
     public float dirtyWaterAttackTime = 10f;
     public float dirtyWaterAttackDamage = 3f;
     private float dirtyWaterAttackTimer;
+    public AudioClip dirtyWaterSound;
 
     // 市井小民Prefab
     [Header("Minions")]
@@ -257,9 +259,10 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         {
             animator.SetTrigger("Shield");
             shadowAnimator.SetTrigger("Shield");
+            AudioManager.instance.PlaySound(shieldSound);
             shieldTimer = shieldTime;
             if (shield <= 0)
-                shieldScript = EffectsManager.instance.CreateEffectFollow(1, Mathf.Infinity, transform, Vector3.zero).GetComponent<EffectFollow>();
+                shieldScript = EffectsManager.instance.CreateEffectFollow(1, Mathf.Infinity, transform, new Vector3(0, 0.99f, -0.47f)).GetComponent<EffectFollow>();
             AddShield(shieldValue, Mathf.Infinity);
         }
     }
@@ -271,6 +274,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         {
             animator.SetTrigger("DirtyWater");
             shadowAnimator.SetTrigger("DirtyWater");
+            AudioManager.instance.PlaySound(dirtyWaterSound);
             dirtyWaterAttackTimer = dirtyWaterAttackTime;
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             Vector3 position = new Vector3(Random.Range(playerMovement.moveAera[0].position.x, playerMovement.moveAera[1].position.x), 0, Random.Range(playerMovement.moveAera[0].position.z, playerMovement.moveAera[1].position.z));
