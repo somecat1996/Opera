@@ -375,8 +375,10 @@ MonoBehaviour:
   stage1CoolingTime: 20
   stage1Damage: 200
   stage1CardNumber: 5
+  stage1Sound: {fileID: 8300000, guid: 48f7ce607b8b35249a8f2a98c7b52479, type: 3}
   stage2DamageNumber: 5
   stage2PercentDamage: 0.05
+  stage2Sound: {fileID: 8300000, guid: 926073367aae63d47a713e44ab21448d, type: 3}
   picture: {fileID: 7899647656031437426}
   clothes: {fileID: 4556371158139325784}
 --- !u!114 &6022353402135371989

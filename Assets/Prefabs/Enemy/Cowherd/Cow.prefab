@@ -291,7 +291,9 @@ MonoBehaviour:
   stage1CoolingTime: 20
   stage1Damage: 999
   stage1CardNumber: 5
+  stage1Sound: {fileID: 8300000, guid: 263b229b9216b8843bf3c0c9b8005f11, type: 3}
   stage2CardNumber: 8
+  stage2Sound: {fileID: 8300000, guid: 67c787b5d06f4004cb215cbe1cc59f6b, type: 3}
   cow: {fileID: 1222454697469712473}
   magpie: {fileID: 8661791059009968193}
 --- !u!1 &7049907832430946937

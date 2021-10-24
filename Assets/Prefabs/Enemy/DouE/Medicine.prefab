@@ -291,6 +291,7 @@ MonoBehaviour:
   stage1ImmunityTime: 3
   stage1WalkNumber: 8
   stage1DamageIncrease: 0.3
+  stage1Sound: {fileID: 8300000, guid: 443e2a957f8b00c4eab947e4c98c44b4, type: 3}
   stage2CoolingTime: 20
   stage2Time: 8
   stage2Num: 3
@@ -298,6 +299,7 @@ MonoBehaviour:
   stage2DamageIncreaseRate: 0.2
   stage2SnowyTimer: 0
   stage2SunnyTimer: 0
+  stage2Sound: {fileID: 8300000, guid: 49de7ef9822c6b141bbbc4e40c63aac9, type: 3}
   medicine: {fileID: 7185754989411239442}
   doll: {fileID: 3827142357793748336}
 --- !u!1 &7049907832430946937

@@ -11,6 +11,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
     private int stage1WalkCounter;
     private float stage1ImmunityTimer;
     public float stage1DamageIncrease = 0.3f;
+    public AudioClip stage1Sound;
 
     public float stage2CoolingTime = 20f;
     public float stage2Time = 8f;
@@ -23,6 +24,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
     public float stage2SnowyTimer;
     public float stage2SunnyTimer;
     private int stage2Counter;
+    public AudioClip stage2Sound;
 
     public GameObject medicine;
     public GameObject doll;
@@ -155,6 +157,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
 
     private void Stage1Attack()
     {
+        AudioManager.instance.PlaySound(stage1Sound);
         player.ImmunityByDuration(stage1ImmunityTime);
         stage1ImmunityTimer = stage1ImmunityTime;
         GlobalValue.damageIncrement_General += stage1DamageIncrease;
@@ -164,6 +167,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
 
     private void Stage2Attack()
     {
+        AudioManager.instance.PlaySound(stage2Sound);
         if (sunny)
         {
             sunny = false;

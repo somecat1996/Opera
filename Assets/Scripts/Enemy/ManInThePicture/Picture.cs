@@ -11,11 +11,13 @@ public class Picture : GameObjectBase, LevelItemInterface
     private float stage1CoolingTimer;
     public int stage1CardNumber = 5;
     private int stage1CardCounter;
+    public AudioClip stage1Sound;
 
     public int stage2DamageNumber = 5;
     private int stage2DamageCounter;
     private CardPrototype lastUsedCard;
     public float stage2PercentDamage = 0.05f;
+    public AudioClip stage2Sound;
 
     public GameObject picture;
     public GameObject clothes;
@@ -117,12 +119,14 @@ public class Picture : GameObjectBase, LevelItemInterface
 
     private void Stage1Attack()
     {
+        AudioManager.instance.PlaySound(stage1Sound);
         picture.GetComponent<Animator>().SetTrigger("Open");
         EnemyManager.instance.HurtAll(stage1Damage);
     }
 
     private void Stage2Attack()
     {
+        AudioManager.instance.PlaySound(stage2Sound);
         EnemyManager.instance.RemoveShieldAll();
         EnemyManager.instance.PercentHurtAll(stage2PercentDamage);
         if (player)
