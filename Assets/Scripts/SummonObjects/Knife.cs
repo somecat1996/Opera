@@ -32,7 +32,10 @@ public class Knife : SummonedObjectPrototype
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy" && other.GetComponent<EnemyStatus>())
+        {
+            EffectsManager.instance.CreateEffect(11, 0.2f, other.transform.position, Vector3.zero);
             other.GetComponent<EnemyStatus>().Hurt(damage, false, 1, HurtType.Physic);
+        }
     }
 
     public void Instantiate(float d, Vector3 startPosition, Vector3 direction)

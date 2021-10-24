@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class EffectFollow_Material : EffectFollow
 {
+    public float appearTime = 1.5f;
     Renderer renderer;
 
     void Start()
@@ -12,7 +13,7 @@ public class EffectFollow_Material : EffectFollow
         renderer = transform.GetComponentInChildren<Renderer>();
 
         renderer.material.SetFloat("Appear", 0);
-        renderer.material.DOFloat(1, "Appear", 1.5f);
+        renderer.material.DOFloat(1, "Appear", appearTime);
     }
 
     protected override void Update()
@@ -22,6 +23,6 @@ public class EffectFollow_Material : EffectFollow
 
     public override void DestoryObject()
     {
-        renderer.material.DOFloat(0, "Appear", 1.5f).OnComplete(() =>{ Destroy(gameObject); });
+        renderer.material.DOFloat(0, "Appear", appearTime).OnComplete(() =>{ Destroy(gameObject); });
     }
 }

@@ -38,6 +38,7 @@ public class MoneyDart : SummonedObjectPrototype
         if (other.tag == "Enemy" && other.GetComponent<EnemyStatus>().position == target.position)
         {
             other.GetComponent<EnemyStatus>().Hurt(damage, false, 1, HurtType.Physic);
+            EffectsManager.instance.CreateEffect(11, 0.2f, other.transform.position, Vector3.zero);
 
             List<int> targetList = EnemyManager.instance.FindPositionInRange(target.position, range);
             for (int i = 0; i < childNum; i++)
