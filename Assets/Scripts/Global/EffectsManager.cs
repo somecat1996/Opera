@@ -27,10 +27,11 @@ public class EffectsManager : MonoBehaviour
     /// <param name="_life">生存时间</param>
     /// <param name="position">位置</param>
     /// <param name="offset">对位置的偏移</param>
-    public void CreateEffect(int id, float _life, Vector3 position, Vector3 offset)
+    public GameObject CreateEffect(int id, float _life, Vector3 position, Vector3 offset)
     {
         GameObject tmp = Instantiate(effects[id]);
         tmp.GetComponent<EffectBase>().Instantiate(_life, position, offset);
+        return tmp;
     }
 
     /// <summary>
@@ -40,10 +41,11 @@ public class EffectsManager : MonoBehaviour
     /// <param name="_life">生存时间</param>
     /// <param name="_target">目标transform</param>
     /// <param name="offset">对位置的偏移</param>
-    public void CreateEffectFollow(int id, float _life, Transform _target, Vector3 _offset)
+    public GameObject CreateEffectFollow(int id, float _life, Transform _target, Vector3 _offset)
     {
         GameObject tmp = Instantiate(effects[id]);
         tmp.GetComponent<EffectFollow>().InstantiateFollow(_life, _target, _offset);
+        return tmp;
     }
 
     /// <summary>
@@ -52,10 +54,11 @@ public class EffectsManager : MonoBehaviour
     /// <param name="id">特效ID</param>
     /// <param name="_life">生存时间</param>
     /// <param name="offset">对位置的偏移</param>
-    public void CreateEffectFollowPlayer(int id, float _life, Vector3 _offset)
+    public GameObject CreateEffectFollowPlayer(int id, float _life, Vector3 _offset)
     {
         GameObject tmp = Instantiate(effects[id]);
         tmp.GetComponent<EffectFollow>().InstantiateFollow(_life, PlayerManager.instance.player.transform, _offset);
+        return tmp;
     }
 
     private void Test()

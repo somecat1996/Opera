@@ -26,6 +26,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     [Header("Shield")]
     public float shieldTime = 30f;
     public float shieldValue = 300;
+    private EffectFollow shieldScript;
 
     // ÎÛË®¹¥»÷
     [Header("Dirty Water Attack")]
@@ -140,6 +141,11 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
             shadowAnimator.SetTrigger("Hurt2");
         }
         base.Hurt(damage, shieldBreak, damageIncrease, type);
+        if (shieldScript && shield <= 0)
+        {
+            shieldScript.DestoryObject();
+            shieldScript = null;
+        }
         BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth);
         if (countHurt)
             hurtCounter += 1;
@@ -252,6 +258,8 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
             animator.SetTrigger("Shield");
             shadowAnimator.SetTrigger("Shield");
             shieldTimer = shieldTime;
+            if (shield <= 0)
+                shieldScript = EffectsManager.instance.CreateEffectFollow(1, Mathf.Infinity, transform, Vector3.zero).GetComponent<EffectFollow>();
             AddShield(shieldValue, Mathf.Infinity);
         }
     }

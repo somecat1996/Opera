@@ -26,6 +26,7 @@ public class WesternQueen : EnemyStatus, BossInterface
     [Header("Shield")]
     public float shieldTime = 30f;
     public float shieldValue = 300;
+    private EffectFollow shieldScript;
 
     // À×½Ù¹¥»÷
     [Header("Thunder Attack")]
@@ -202,6 +203,12 @@ public class WesternQueen : EnemyStatus, BossInterface
         if (voodooTimer > 0)
             voodooHurt += trueDamage;
 
+        if (shieldScript && shield <= 0)
+        {
+            shieldScript.DestoryObject();
+            shieldScript = null;
+        }
+
         BattleDataManager.instance.UpdateDamage(trueDamage);
         if (healthBarManager.gameObject.activeInHierarchy)
             healthBarManager.UpdateHealth(curHealth / maxHealth);
@@ -360,6 +367,8 @@ public class WesternQueen : EnemyStatus, BossInterface
             animator.SetBool("Shield", true);
             shadowAnimator.SetBool("Shield", true);
             shieldTimer = shieldTime;
+            if (shield <= 0)
+                shieldScript = EffectsManager.instance.CreateEffectFollow(1, Mathf.Infinity, transform, Vector3.zero).GetComponent<EffectFollow>();
             AddShield(shieldValue, Mathf.Infinity);
         }
     }
