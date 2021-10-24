@@ -12,17 +12,17 @@ public class AudioManager : MonoBehaviour
     public int max_AudioSources_SE = 10;
     public float fadeTime = 2f;
 
-    public List<AudioClip> sound_BossBGM = new List<AudioClip>();
-
     [Header("Audiosources")]
     public AudioSource audio_BGM;
     public List<AudioSource> audio_SE = new List<AudioSource>();
 
     [Header("Real-TIme Setting")]
-    public float volume_BGM = 1f;
-    public float volume_SE = 1f;
+    public int cur_BGM_Index = -1;
+    public float volume_BGM = 0.4f;
+    public float volume_SE = 0.7f;
 
     [Header("Global Sound Clip")]
+    public List<AudioClip> sound_BossBGM = new List<AudioClip>();
     public AudioClip sound_ReleaseCard;
 
     [Header("Music Score")]
@@ -45,6 +45,7 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         ResetData();
+        PlayBGM(3);
     }
 
     /// <summary>
@@ -63,33 +64,70 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// 播放boss BGM
     /// </summary>
-    /// <param name="_bossIndex"></param>
-    public void PlayBossBGM(int _bossIndex)
+    /// <param name="_index">012分别对应画中人 马人 丈母娘 3是主界面BGM</param>
+    public void PlayBGM(int _index)
     {
-        audio_BGM.clip = sound_BossBGM[_bossIndex];
+        cur_BGM_Index = _index;
+
+        if (!audio_BGM.isPlaying)
+        {
+            playBGM();
+        }
+        else
+        {
+            FadeOutBGM(playBGM);
+        }
+    }
+    void playBGM()
+    {
+        // 渐入
+        float temp = slider_BGM.value;
+        audio_BGM.volume = 0;
+
+        audio_BGM.clip = sound_BossBGM[cur_BGM_Index];
         audio_BGM.Play();
+
+        DOTween.To(() => audio_BGM.volume, x => audio_BGM.volume = x, temp, 1f);
     }
 
     /// <summary>
-    /// 暂停boss BGM
+    /// 关停BGM 使其渐出
     /// </summary>
-    public void PauseBossBGM()
+    public void FadeOutBGM(TweenCallback _callback)
     {
+        DOTween.To(() => audio_BGM.volume, x => audio_BGM.volume = x, 0, 1f).OnComplete(()=> { if (_callback != null) _callback(); });
+    }
 
+    /// <summary>
+    /// 设置是否降低BGM
+    /// </summary>
+    /// <param name="_v"></param>
+    public void SetTurnDownBGM(bool _v)
+    {
+        if (_v)
+        {
+            DOTween.To(() => audio_BGM.volume, x => audio_BGM.volume = x, 0.05f, 1f);
+        }
+        else
+        {
+            DOTween.To(() => audio_BGM.volume, x => audio_BGM.volume = x, volume_BGM, 1f);
+        }
     }
 
     // 重置所有设置
     public void ResetData()
     {
-        audio_BGM.volume = 1;
-        audio_BGM.playOnAwake = false;
+        slider_BGM.value = volume_BGM;
+        audio_BGM.volume = volume_BGM;
+        audio_BGM.playOnAwake = true;
 
         // 补充音效音频
         audio_SE.Clear();
         for(int i = 0;i< max_AudioSources_SE;i++)
         {
             audio_SE.Add(gameObject.AddComponent<AudioSource>());
-            audio_SE[i].volume = 1;
+            slider_SE.value = volume_SE;
+            audio_SE[i].volume = volume_SE;
             audio_SE[i].playOnAwake = false;
         }
     }
@@ -98,10 +136,12 @@ public class AudioManager : MonoBehaviour
     public void ChangeVolume_BGM(float _v)
     {
         audio_BGM.volume = _v;
+        volume_BGM = _v;
     }
 
     public void ChangeVolume_SE(float _v)
     {
+        volume_SE = _v;
         foreach (var i in audio_SE)
         {
             i.volume = _v;

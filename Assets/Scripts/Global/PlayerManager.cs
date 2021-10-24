@@ -42,7 +42,6 @@ public class PlayerManager : MonoBehaviour
     public PlayerData data;
     [Space]
     public Dictionary<int, LevelBasicInfomation> levelInfo = new Dictionary<int, LevelBasicInfomation>();
-
     private void Awake()
     {
         instance = this;
@@ -155,6 +154,7 @@ public class PlayerManager : MonoBehaviour
 
         // 通知AudioManager播放开头音效
         AudioManager.instance.PlaySound(levelInfo[cur_BossIndex].sound);
+        AudioManager.instance.PlayBGM(cur_BossIndex);
 
         // 通知GUI关闭无关UI且显示关卡信息,重置Boss血条 修改Boss头像
         GUIManager.instance.DisableAllGUI();

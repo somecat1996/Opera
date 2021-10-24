@@ -52,6 +52,16 @@ public class Curtain : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 强制打开幕布
+    /// </summary>
+    public void ForceOpenCurtain()
+    {
+        GUIManager.instance.SetDisplayCurtain(false);
+        GameManager.instance.SetPauseGame(false);
+        activatable = false;
+    }
+
     public void DisableGameobject()
     {
         gameObject.SetActive(false);

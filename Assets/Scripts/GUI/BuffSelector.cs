@@ -81,6 +81,7 @@ public class BuffSelector : MonoBehaviour
         if(BattleDataManager.instance.cur_Stage != 4)
         {
             GUIManager.instance.SetDisplayCurtain(false);
+            AudioManager.instance.SetTurnDownBGM(false);
         }
         // 若为阶段4 则选择buff界面不在拥有拉开幕布的功能 且在选择完BUFF后进行结算
         else if (BattleDataManager.instance.cur_Stage == 4)

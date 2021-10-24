@@ -59,6 +59,12 @@ public class BattleDataManager : MonoBehaviour
     public TextMeshProUGUI text_AppeapPoint;
     public TextMeshProUGUI text_AppealPoint_Label;
 
+
+    [Header("Sound Configurtaion")]
+    public AudioClip sound_Victory;
+    public AudioClip sound_Defeated;
+    public AudioClip[] sound_Applause = new AudioClip[3];
+
     private void Awake()
     {
         instance = this;
@@ -397,6 +403,12 @@ public class BattleDataManager : MonoBehaviour
             PlayerManager.instance.UpdateVictoryTime();
             // 解锁下一关
             PlayerManager.instance.UnlockLevel(PlayerManager.instance.cur_LevelIndex + 1);
+
+            AudioManager.instance.PlaySound(sound_Victory);
+        }
+        else
+        {
+            AudioManager.instance.PlaySound(sound_Defeated);
         }
 
         // GUI 显示
@@ -421,7 +433,6 @@ public class BattleDataManager : MonoBehaviour
     /// <param name="_v"></param>
     public void UpdateStage(int _v)
     {
-
         // 开头不进行结算
         if (cur_Stage == 0)
         {
@@ -429,6 +440,7 @@ public class BattleDataManager : MonoBehaviour
             return;
         }
 
+        AudioManager.instance.SetTurnDownBGM(true);
         GameManager.instance.SetPauseGame(true);
         GUIManager.instance.SetDisplayCurtain(true, updateStage);
         
@@ -457,7 +469,7 @@ public class BattleDataManager : MonoBehaviour
         // 获得真实喝彩值
         tempAP = GlobalValue.GetTrueReward(tempAP);
 
-        // 根据喝彩值回复血量
+        // 根据单阶段喝彩值回复血量
         if (tempAP >= 30 && tempAP <= 49)
         {
             PlayerManager.instance.player.InstantHealing(60 + GlobalValue.hpIncrement_Reward);
@@ -492,6 +504,8 @@ public class BattleDataManager : MonoBehaviour
             rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
 
             StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+
+            AudioManager.instance.PlaySound(sound_Applause[0]);
             
         }
         else if (CheckInRange(appealPoint, 40, 79))
@@ -503,6 +517,8 @@ public class BattleDataManager : MonoBehaviour
             rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
 
             StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+
+            AudioManager.instance.PlaySound(sound_Applause[0]);
         }
         else if (CheckInRange(appealPoint,80, 119))
         {
@@ -513,6 +529,8 @@ public class BattleDataManager : MonoBehaviour
             rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
 
             StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+
+            AudioManager.instance.PlaySound(sound_Applause[1]);
         }
         else if (CheckInRange(appealPoint, 120, 149))
         {
@@ -523,6 +541,8 @@ public class BattleDataManager : MonoBehaviour
             rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
 
             StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+
+            AudioManager.instance.PlaySound(sound_Applause[1]);
         }
         else if (CheckInRange(appealPoint, 150, 179))
         {
@@ -533,6 +553,8 @@ public class BattleDataManager : MonoBehaviour
             rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
 
             StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+
+            AudioManager.instance.PlaySound(sound_Applause[2]);
         }
         else if (CheckInRange(appealPoint, 180, 219))
         {
@@ -543,6 +565,8 @@ public class BattleDataManager : MonoBehaviour
             rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
 
             StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+
+            AudioManager.instance.PlaySound(sound_Applause[2]);
         }
         else if (appealPoint >= 220)
         {
@@ -553,6 +577,8 @@ public class BattleDataManager : MonoBehaviour
             rSpect_Hl = Mathf.Clamp(rSpect_Hl, 0, 8);
 
             StartCoroutine(HandleSpcetator(rSpect_Act, rSpect_Hl));
+
+            AudioManager.instance.PlaySound(sound_Applause[2]);
         }
 
         // 更新阶段数
