@@ -11,11 +11,13 @@ public class Cow : GameObjectBase, LevelItemInterface
     private float stage1CoolingTimer;
     public int stage1CardNumber = 5;
     private int stage1CardCounter;
+    public AudioClip stage1Sound;
 
     public int stage2CardNumber = 8;
     private int stage2CardCounter;
     private CardPrototype lastUsedCard;
     private WesternQueen westernQueen;
+    public AudioClip stage2Sound;
 
     public GameObject cow;
     public GameObject magpie;
@@ -126,12 +128,14 @@ public class Cow : GameObjectBase, LevelItemInterface
 
     private void Stage1Attack()
     {
+        AudioManager.instance.PlaySound(stage1Sound);
         GameObject tmp = EnemyManager.instance.RandomChoose();
         tmp.GetComponent<EnemyStatus>().Hurt(stage1Damage);
     }
 
     private void Stage2Attack()
     {
+        AudioManager.instance.PlaySound(stage2Sound);
         westernQueen.StopSoliderReborn();
     }
 
