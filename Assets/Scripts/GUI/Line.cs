@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Line : MonoBehaviour
 {
     public float life = 5f;
+    public Text text;
 
     private Vector3 tarPosition;
     // Update is called once per frame
@@ -20,7 +21,6 @@ public class Line : MonoBehaviour
 
     public void Init(string line, Vector3 t)
     {
-        Text text = gameObject.GetComponent<Text>();
         text.text = line;
         tarPosition = t;
         //转化为屏幕坐标

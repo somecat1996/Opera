@@ -77,6 +77,8 @@ public class WesternQueen : EnemyStatus, BossInterface
     private PlayerStatus player;
     private float hurtCoefficient;
     private float damageCoefficient;
+
+    private List<GameObject> effects;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -112,6 +114,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         damageCoefficient = 1;
 
         BattleDataManager.instance.UpdateStage(1);
+        effects = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -165,6 +168,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         else
             trueDamage = damage;
 
+        bool critical = false;
         // ¼ÆËã±©»÷
         switch (type)
         {
@@ -172,12 +176,14 @@ public class WesternQueen : EnemyStatus, BossInterface
                 if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Physics)
                 {
                     trueDamage *= 1 + GlobalValue.critIncrement_Physics;
+                    critical = true;
                 }
                 break;
             case HurtType.Magic:
                 if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Magic)
                 {
                     trueDamage *= 1 + GlobalValue.critIncrement_Magic;
+                    critical = true;
                 }
                 break;
             default:
@@ -219,7 +225,7 @@ public class WesternQueen : EnemyStatus, BossInterface
 
         var col = gameObject.GetComponent<Collider>();
         var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
-        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
+        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform, critical).GetComponent<DamageText>();
         damageText.Init(trueDamage, topAhcor);
         base.Hurt(damage, shieldBreak, damageIncrease, type);
         if (curHealth <= 0)
@@ -312,12 +318,15 @@ public class WesternQueen : EnemyStatus, BossInterface
         if (aliveHeavenSoliderPosition.Count > 0)
         {
             int index = Random.Range(0, aliveHeavenSoliderPosition.Count / 3);
-            EnemyManager.instance.StopRebornAt(aliveHeavenSoliderPosition[index * 2 + 1]);
-            aliveHeavenSoliderPosition.RemoveAt(index * 2 + 1);
+            int offset = aliveHeavenSoliderPosition.Count / 2;
+
+            effects.Add(EffectsManager.instance.CreateEffect(16, Mathf.Infinity, (EnemyManager.instance.generationPoint[aliveHeavenSoliderPosition[index * 2 + offset]].position + EnemyManager.instance.generationPoint[aliveHeavenSoliderPosition[index * 2]].position) / 2, Vector3.zero).gameObject);
+            
+            EnemyManager.instance.StopRebornAt(aliveHeavenSoliderPosition[index * 2 + offset]);
+            aliveHeavenSoliderPosition.RemoveAt(index * 2 + offset);
             EnemyManager.instance.StopRebornAt(aliveHeavenSoliderPosition[index * 2]);
             aliveHeavenSoliderPosition.RemoveAt(index * 2);
         }
-
     }
 
     private void SummonGeneral()
@@ -433,6 +442,8 @@ public class WesternQueen : EnemyStatus, BossInterface
         if (cow)
             Destroy(cow.gameObject);
         EnemyManager.instance.FinishLevel(true);
+        foreach (GameObject tmp in effects)
+            tmp.GetComponent<EffectFollow>().DestoryObject();
         base.Die();
     }
 

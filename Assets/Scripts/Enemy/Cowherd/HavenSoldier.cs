@@ -82,6 +82,9 @@ public class HavenSoldier : EnemyStatus, ReducePower
         alive = true;
         animator.gameObject.SetActive(true);
         shadowAnimator.gameObject.SetActive(true);
+
+        curHealth = maxHealth;
+        healthBarManager.UpdateHealth(curHealth / maxHealth);
     }
 
     public void StopReborn()
@@ -90,8 +93,8 @@ public class HavenSoldier : EnemyStatus, ReducePower
         birdBridge.SetActive(true);
         animator.gameObject.SetActive(false);
         shadowAnimator.gameObject.SetActive(false);
-        animator.SetTrigger("Hurt");
-        shadowAnimator.SetTrigger("Hurt");
+
+        Kill();
     }
 
     public override void Stun(float time)

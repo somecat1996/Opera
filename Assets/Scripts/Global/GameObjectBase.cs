@@ -197,6 +197,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         else
             trueDamage = damage;
 
+        bool critical = false;
         // ¼ÆËã±©»÷
         switch (type)
         {
@@ -204,12 +205,14 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
                 if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Physics)
                 {
                     trueDamage *= 1 + GlobalValue.critIncrement_Physics;
+                    critical = true;
                 }
                 break;
             case HurtType.Magic:
                 if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Magic)
                 {
                     trueDamage *= 1 + GlobalValue.critIncrement_Magic;
+                    critical = true;
                 }
                 break;
             default:
@@ -239,7 +242,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
 
         var col = gameObject.GetComponent<Collider>();
         var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
-        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
+        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform, critical).GetComponent<DamageText>();
         damageText.Init(trueDamage, topAhcor); 
     }
 

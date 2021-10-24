@@ -7,6 +7,8 @@ public class DamageText : MonoBehaviour
 {
     public float life;
     public float speed;
+    public GameObject background;
+    public GameObject text;
 
     private Vector3 tarPosition;
     // Update is called once per frame
@@ -24,12 +26,27 @@ public class DamageText : MonoBehaviour
         }
     }
 
-    public void Init(float damage, Vector3 t)
+    public void Init(float damage, Vector3 t, bool critical = false)
     {
-        Text text = gameObject.GetComponent<Text>();
-        text.text = System.Math.Round(damage, 1).ToString();
-        tarPosition = t;
-        //转化为屏幕坐标
-        gameObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(tarPosition);
+        if (critical)
+        {
+            background.SetActive(true);
+            Text tmp = text.GetComponent<Text>();
+            tmp.color = Color.white;
+            tmp.text = System.Math.Round(damage, 0).ToString();
+            tarPosition = t;
+            //转化为屏幕坐标
+            gameObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(tarPosition);
+        }
+        else
+        {
+            background.SetActive(false);
+            Text tmp = text.GetComponent<Text>();
+            tmp.color = Color.black;
+            tmp.text = System.Math.Round(damage, 0).ToString();
+            tarPosition = t;
+            //转化为屏幕坐标
+            gameObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(tarPosition);
+        }
     }
 }
