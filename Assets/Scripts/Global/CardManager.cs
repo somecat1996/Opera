@@ -139,7 +139,7 @@ public class CardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            LockCards(1);
+            //LockCards(1);
             DiscardCardRandomly(2);
         }
     }
@@ -210,6 +210,8 @@ public class CardManager : MonoBehaviour
     {
         _card.transform.parent = tempLayoutGroup;
         cardQueue_Waitting.Add(_card);
+
+        _card.transform.localScale = Vector3.one;
 
         // 临时使用 刷新弃牌队列
         ReflashTempLayoutGroup();
