@@ -26,6 +26,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
     [Header("Shield")]
     public float shieldTime = 30f;
     public float shieldValue = 300;
+    private EffectFollow shieldScript;
 
     // ’ŸªΩ¥Û≥º
     [Header("Summon Minister")]
@@ -132,6 +133,11 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         animator.SetTrigger("Hurt");
         shadowAnimator.SetTrigger("Hurt");
         base.Hurt(damage, shieldBreak, damageIncrease, type);
+        if (shieldScript && shield <= 0)
+        {
+            shieldScript.DestoryObject();
+            shieldScript = null;
+        }
         BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth);
         if (countHurt)
             hurtCounter += 1;
@@ -254,6 +260,8 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
             animator.SetBool("Shield", true);
             shadowAnimator.SetBool("Shield", true);
             shieldTimer = shieldTime;
+            if (shield <= 0)
+                shieldScript = EffectsManager.instance.CreateEffectFollow(1, Mathf.Infinity, transform, Vector3.zero).GetComponent<EffectFollow>();
             AddShield(shieldValue, Mathf.Infinity);
         }
     }
