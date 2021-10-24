@@ -106,6 +106,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (!pause)
         {
+            Player.instance.ClearPlayerEffect();
             playerStatus.StopPlaying();
             background.gameObject.SetActive(false);
 

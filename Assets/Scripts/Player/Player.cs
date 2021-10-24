@@ -77,4 +77,9 @@ public class Player : MonoBehaviour
     {
         playerMovement.StartMoving();
     }
+
+    public void ClearPlayerEffect()
+    {
+        materialController.ClearEffect();
+    }
 }
