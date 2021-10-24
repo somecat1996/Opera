@@ -223,5 +223,6 @@ public class Medicine : GameObjectBase, LevelItemInterface
     {
         if (stage2SunnyTimer > 0)
             StopIncreasing();
+        Destroy(energyBarManager.gameObject);
     }
 }

@@ -90,24 +90,27 @@ public class PlayerStatus : GameObjectBase
         else
             trueDamage = damage;
 
-        // ¼ÆËã±©»÷
-        switch (type)
-        {
-            case HurtType.Physic:
-                if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Physics)
-                {
-                    trueDamage *= 1 + GlobalValue.critIncrement_Physics;
-                }
-                break;
-            case HurtType.Magic:
-                if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Magic)
-                {
-                    trueDamage *= 1 + GlobalValue.critIncrement_Magic;
-                }
-                break;
-            default:
-                break;
-        }
+        //bool critical = false;
+        //// ¼ÆËã±©»÷
+        //switch (type)
+        //{
+        //    case HurtType.Physic:
+        //        if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Physics)
+        //        {
+        //            trueDamage *= 1 + GlobalValue.critIncrement_Physics;
+        //            critical = true;
+        //        }
+        //        break;
+        //    case HurtType.Magic:
+        //        if (Random.Range(0, 1f) < GlobalValue.probability_Crit_Magic)
+        //        {
+        //            trueDamage *= 1 + GlobalValue.critIncrement_Magic;
+        //            critical = true;
+        //        }
+        //        break;
+        //    default:
+        //        break;
+        //}
 
         // ½áËãÕæÊµÉËº¦
         if (shield > trueDamage)
@@ -136,7 +139,7 @@ public class PlayerStatus : GameObjectBase
         var col = gameObject.GetComponent<Collider>();
         var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
         DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
-        damageText.Init(trueDamage, topAhcor);
+        damageText.Init(trueDamage, topAhcor, false);
 
         UpdateHealth();
 

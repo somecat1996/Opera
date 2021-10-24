@@ -225,9 +225,9 @@ public class WesternQueen : EnemyStatus, BossInterface
 
         var col = gameObject.GetComponent<Collider>();
         var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
-        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform, critical).GetComponent<DamageText>();
-        damageText.Init(trueDamage, topAhcor);
-        base.Hurt(damage, shieldBreak, damageIncrease, type);
+        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
+        damageText.Init(trueDamage, topAhcor, critical);
+        //base.Hurt(damage, shieldBreak, damageIncrease, type);
         if (curHealth <= 0)
         {
             Die();

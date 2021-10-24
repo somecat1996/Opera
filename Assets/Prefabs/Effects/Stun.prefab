@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455795a88beea0f40bd879031a6c022f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: Infinity
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
+  appearTime: 1.5
 --- !u!1 &8661121275256447574
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +121,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9f15f7e0a3ab4ed4fa992f3bc7b03567, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.36078432}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

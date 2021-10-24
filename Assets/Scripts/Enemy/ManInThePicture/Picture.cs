@@ -24,6 +24,10 @@ public class Picture : GameObjectBase, LevelItemInterface
     public GameObject picture;
     public GameObject clothes;
 
+    public GameObject lineTextPrefab;
+    public string stage1Line;
+    public string stage2Line;
+
     private PlayerStatus player;
     // Start is called before the first frame update
     protected override void Start()
@@ -43,6 +47,8 @@ public class Picture : GameObjectBase, LevelItemInterface
         energyBarManager.UpdateHealth((float)(stage1CardNumber - stage1CardCounter) / stage1CardNumber);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
+
+        //Speak(stage1Line);
     }
 
     // Update is called once per frame
@@ -64,6 +70,8 @@ public class Picture : GameObjectBase, LevelItemInterface
         clothes.SetActive(true);
         lastUsedCard = BattleDataManager.instance.lastUsedCard;
         energyBarManager.UpdateHealth((float)(stage2DamageNumber - stage2DamageCounter) / stage2DamageNumber);
+
+        //Speak(stage2Line);
     }
 
     private void Stage1()
@@ -149,4 +157,17 @@ public class Picture : GameObjectBase, LevelItemInterface
     }
 
     public void Walk() { }
+
+    private void Speak(string line)
+    {
+        var col = gameObject.GetComponent<Collider>();
+        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
+        Line lineText = Instantiate(lineTextPrefab, GameObject.FindGameObjectWithTag("LineCanvas").transform).GetComponent<Line>();
+        lineText.Init(line, topAhcor);
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(energyBarManager.gameObject);
+    }
 }

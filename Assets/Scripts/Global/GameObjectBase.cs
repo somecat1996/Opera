@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -242,8 +243,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
 
         var col = gameObject.GetComponent<Collider>();
         var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
-        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform, critical).GetComponent<DamageText>();
-        damageText.Init(trueDamage, topAhcor); 
+        DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
+        damageText.Init(trueDamage, topAhcor, critical); 
     }
 
     public void PercentHurt(float percent, float max = Mathf.Infinity)
@@ -350,7 +351,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
         var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
         DamageText damageText = Instantiate(damageTextPrefab, GameObject.FindGameObjectWithTag("DamageCanvas").transform).GetComponent<DamageText>();
         damageText.Init(healingValue, topAhcor);
-        damageText.GetComponent<Text>().color = Color.green;
+        damageText.text.GetComponent<TMP_Text>().color = Color.green;
     }
 
     public void ContinuousHealing(float time, float tickle, float value)

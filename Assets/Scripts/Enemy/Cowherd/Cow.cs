@@ -157,4 +157,9 @@ public class Cow : GameObjectBase, LevelItemInterface
     }
 
     public void Walk() { }
+
+    private void OnDestroy()
+    {
+        Destroy(energyBarManager.gameObject);
+    }
 }
