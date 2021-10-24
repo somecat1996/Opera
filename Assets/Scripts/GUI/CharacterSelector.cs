@@ -18,6 +18,7 @@ public class CharacterSelector : MonoBehaviour
     public Image characterIcon;
     [Space]
     public Image[] image_BuffSelector = new Image[2];
+    public Image[] image_BuffIcon = new Image[2];
     public TextMeshProUGUI[] text_BuffName = new TextMeshProUGUI[2];
     public Sprite sprite_SelectedBuff;
     public Sprite sprite_UnselectedBuff;
@@ -105,6 +106,7 @@ public class CharacterSelector : MonoBehaviour
         for (int i = 0; i < text_BuffName.Length; i++)
         {
             text_BuffName[i].text = BuffManager.instance.buffInstanceLibrary[charInfo[selectedId].buffID[i]].GetComponent<BuffPrototype>().buffInfo.buffName;
+            image_BuffIcon[i].sprite = BuffManager.instance.buffInstanceLibrary[charInfo[selectedId].buffID[i]].GetComponent<BuffPrototype>().buffInfo.icon;
         }
     }
 
