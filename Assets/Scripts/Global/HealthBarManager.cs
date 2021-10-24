@@ -10,7 +10,7 @@ public class HealthBarManager : MonoBehaviour
 
     private Transform target;
     // 头顶偏移量
-    private Vector3 offsetPos; 
+    public Vector3 offsetPos; 
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class HealthBarManager : MonoBehaviour
 
         //通过Collider来获取头顶坐标
         var col = target.GetComponent<Collider>();
-        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
+        var topAhcor = new Vector3(col.bounds.max.x, col.bounds.center.y, col.bounds.center.z);
         //加上头顶偏移量
         Vector3 tarPos = topAhcor;
 

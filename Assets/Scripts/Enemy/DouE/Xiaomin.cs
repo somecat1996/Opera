@@ -28,8 +28,8 @@ public class Xiaomin : EnemyStatus, ReduceDamage
         {
             base.Update();
 
-            reduceCoolingTime -= Time.deltaTime;
-            if (reduceCoolingTime <= 0)
+            reduceCoolingTimer -= Time.deltaTime;
+            if (reduceCoolingTimer <= 0)
                 StartReducing();
             if (reduceTimer > 0)
             {
@@ -44,6 +44,7 @@ public class Xiaomin : EnemyStatus, ReduceDamage
     {
         if (!reducing)
         {
+            EffectsManager.instance.CreateEffectFollow(7, reduceTime, transform, Vector3.zero);
             GlobalValue.damageDecrement_Player += reduceRate;
             reduceCoolingTimer = reduceCoolingTime;
             reduceTimer = reduceTime;

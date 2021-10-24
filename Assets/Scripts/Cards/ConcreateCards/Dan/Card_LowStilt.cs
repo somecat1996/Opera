@@ -71,6 +71,7 @@ public class Card_LowStilt : CardPrototype,ICardEffectTrigger,ICardOperation
     {
         PlayAnimationAndSound();
         increment = PlayerManager.instance.cur_RecoverySpeed_PowerPoint * cardInfo.mainValue_Cur;
+        EffectsManager.instance.CreateEffectFollowPlayer(9, cardInfo.duration, Vector3.zero);
 
         if (!activated)
         {
