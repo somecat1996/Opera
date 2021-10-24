@@ -55,7 +55,6 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
 
         if (CheckOnValidArea() && Physics.Raycast(ray, out hit, 1000, CardManager.instance.groundLayer))
         {
-            EffectsManager.instance.CreateEffect(5, cardInfo.duration, hit.point, Vector3.zero);
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
             {
                 tempRay = ray;
@@ -70,6 +69,7 @@ public class Card_InfiniteRain : CardPrototype,ICardEffectTrigger,ICardOperation
                 }
 
                 TriggerEffect(temp.ToArray());
+                EffectsManager.instance.CreateEffect(5, cardInfo.duration, hit.point, Vector3.zero);
                 CardManager.instance.SendToDiscardedCardGroup(gameObject);
             }
             else
