@@ -43,14 +43,7 @@ public class Card_Joke : CardPrototype,ICardOperation,ICardEffectTrigger
         {
             if (PlayerManager.instance.ChangePowerPoint(-cardInfo.cost))
             {
-                List<GameObjectBase> temp = new List<GameObjectBase>();
-                foreach (var i in Physics.SphereCastAll(ray, cardInfo.radius))
-                {
-                    if (i.transform.tag == "Enemy")
-                    {
-                        temp.Add(i.transform.GetComponent<GameObjectBase>());
-                    }
-                }
+                List<GameObjectBase> temp = BattleDataManager.instance.enemyList;
 
                 // 注意 此卡牌特殊 升级是升级持续时间 固主要参数为duration
 
@@ -60,6 +53,7 @@ public class Card_Joke : CardPrototype,ICardOperation,ICardEffectTrigger
                 }
 
                 TriggerEffect(temp.ToArray());
+                Debug.Log(temp.Count);
                 CardManager.instance.SendToDiscardedCardGroup(gameObject);
             }
             else

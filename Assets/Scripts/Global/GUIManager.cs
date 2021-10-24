@@ -29,6 +29,7 @@ public class GUIManager : MonoBehaviour
     public TextMeshProUGUI cardDetail_Cost;
     public TextMeshProUGUI cardDetail_Text_Name;
     public TextMeshProUGUI cardDetail_Text_Level;
+    public TextMeshProUGUI cardDetail_Label_Level;
     public Image cardDetail_ColorBar;
 
     public Image cardDetail_Illustration;
@@ -184,7 +185,7 @@ public class GUIManager : MonoBehaviour
 
         cardDetail_Cost.text = _lcs.text_Cost.text;
 
-        if (_lcs.cardInfo.level == CardManager.instance.cardCommonData.max_Level || _lcs.cardInfo.level == 0)
+        if (_lcs.cardInfo.level == CardManager.instance.cardCommonData.max_Level)
         {
             cardDetail_Label_Max.gameObject.SetActive(true);
 
@@ -192,9 +193,27 @@ public class GUIManager : MonoBehaviour
             cardDetail_Text_Quantity.gameObject.SetActive(false);
             cardDetail_Text_Demanded.gameObject.SetActive(false);
             cardDetail_Sprit.gameObject.SetActive(false);
+
+            cardDetail_Label_Level.gameObject.SetActive(false);
+            cardDetail_Text_Level.gameObject.SetActive(false);
+        }
+        else if(_lcs.cardInfo.level == 0)
+        {
+            cardDetail_Label_Max.gameObject.SetActive(false);
+
+            cardDetail_UpgradeSlider.gameObject.SetActive(false);
+            cardDetail_Text_Quantity.gameObject.SetActive(false);
+            cardDetail_Text_Demanded.gameObject.SetActive(false);
+            cardDetail_Sprit.gameObject.SetActive(false);
+
+            cardDetail_Label_Level.gameObject.SetActive(false);
+            cardDetail_Text_Level.gameObject.SetActive(false);
         }
         else
         {
+            cardDetail_Label_Level.gameObject.SetActive(true);
+            cardDetail_Text_Level.gameObject.SetActive(true);
+
             cardDetail_Label_Max.gameObject.SetActive(false);
 
             cardDetail_UpgradeSlider.gameObject.SetActive(true);

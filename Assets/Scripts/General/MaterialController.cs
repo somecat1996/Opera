@@ -136,7 +136,7 @@ public class MaterialController : MonoBehaviour
         {
             foreach (var i in mainRenderer)
             {
-                i.material.DOVector(Color.white, "LitColor", _duration).OnComplete(() => { SetDisableOutlineSprites(false); });
+                i.material.DOVector(Color.white, "LitColor", _duration);
             }
 
           
