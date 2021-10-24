@@ -14,6 +14,7 @@ public class ListCardSetter : MonoBehaviour
     [Header("Label")]
     public TextMeshProUGUI text_Name;
     public TextMeshProUGUI text_Level;
+    public TextMeshProUGUI label_Level;
     public TextMeshProUGUI text_Cost;
     public Image colorBar;
 
@@ -37,15 +38,30 @@ public class ListCardSetter : MonoBehaviour
         colorBar.sprite = CardManager.instance.cardCommonData.sprite_Quality[cardInfo.rarity];
         text_Cost.text = cardInfo.cost.ToString();
 
-        if(cardInfo.level == CardManager.instance.cardCommonData.max_Level || cardInfo.level == 0)
+        if(cardInfo.level == CardManager.instance.cardCommonData.max_Level)
         {
             text_Demanded.gameObject.SetActive(false);
             text_Quantity.gameObject.SetActive(false);
             upgradeSlider.gameObject.SetActive(false);
             sprit.gameObject.SetActive(false);
 
+            text_Level.gameObject.SetActive(false);
+            label_Level.gameObject.SetActive(false);
+
             label_Max.gameObject.SetActive(true);
             label_Max.GetComponent<TextMeshProUGUI>().enabled = true;
+        }else if (cardInfo.level == 0)
+        {
+            text_Demanded.gameObject.SetActive(false);
+            text_Quantity.gameObject.SetActive(false);
+            upgradeSlider.gameObject.SetActive(false);
+            sprit.gameObject.SetActive(false);
+
+            text_Level.gameObject.SetActive(false);
+            label_Level.gameObject.SetActive(false);
+
+            label_Max.gameObject.SetActive(false);
+            label_Max.GetComponent<TextMeshProUGUI>().enabled = false;
         }
         else
         {

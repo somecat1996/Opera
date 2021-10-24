@@ -36,8 +36,6 @@ public class BuffManager : MonoBehaviour
             ReflashAllBuffData();
         }else if (Input.GetKeyDown(KeyCode.S))
         {
-            EnableBuff(210);
-            return;
             int index = deactivateBuffList[Random.Range(0, deactivateBuffList.Count)];
             EnableBuff(index);
             test.Add(index);
