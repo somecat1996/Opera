@@ -70,14 +70,14 @@ public class EnemyManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
                 PlayerManager.instance.EnterLevel_Test(0);
             if (Input.GetKeyDown(KeyCode.M))
-                generationPointStatus[testPosition].Hurt(testDamage);
+                WhoIsYourDaddy();
         }
     }
 
     private void WhoIsYourDaddy()
     {
-        if (generationPointStatus[4])
-            generationPointStatus[4].Hurt
+        if (generationPointStatus[testPosition])
+            generationPointStatus[testPosition].Hurt(testDamage);
     }
 
     public void EnterLevel(int bossIndex, int difficultyIndex = 0)
