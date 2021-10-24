@@ -47,7 +47,7 @@ public class BuffSelector : MonoBehaviour
         {
             buffID[index] = i.id;
             btnImage[index].sprite = i.icon;
-            buffDesc[index].text = i.buffName + ":" + BuffManager.instance.buffInstanceLibrary[i.id].GetComponent<BuffPrototype>().GetDesc();
+            buffDesc[index].text = "[" + i.buffName + "]\n" + BuffManager.instance.buffInstanceLibrary[i.id].GetComponent<BuffPrototype>().GetDesc();
 
             index++;
         }
