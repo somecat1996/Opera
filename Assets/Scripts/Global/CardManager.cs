@@ -44,7 +44,8 @@ public class CardManager : MonoBehaviour
     // 卡牌锁定相关
     public GameObject flap_LayoutGroup;
     public Coroutine timer_LockCards;
-
+    [Space]
+    public GameObject image_Tip;
     [Header("Optimization Objects")]
     public Transform[] slotPos = new Transform[6]; // 存储插槽坐标
     public float cardMoveTime = 1f;
@@ -397,12 +398,25 @@ public class CardManager : MonoBehaviour
         GUIManager.instance.ClearUnselectedCardList();
         ClearSelectedCard();
 
-        
+        int temp = 0;
+
         // 应遍历通用卡牌库
         foreach (var i in cardLibrary_Common.Values)
         {
             if(i.level != 0)
+            {
                 GUIManager.instance.AddUnselectedCard(i);
+                temp++;
+            }
+        }
+
+        if(temp == 0)
+        {
+            image_Tip.gameObject.SetActive(true);
+        }
+        else
+        {
+            image_Tip.gameObject.SetActive(false);
         }
     }
     // 清空所有已选中的卡牌
