@@ -68,7 +68,7 @@ public class Card_BirdsAndFlowers : CardPrototype,ICardEffectTrigger,ICardOperat
     {
         PlayAnimationAndSound();
         PlayerManager.instance.ChangeHealthPoint(cardInfo.mainValue_Cur);
-        EffectsManager.instance.CreateEffectFollowPlayer(8, cardInfo.duration, Vector3.zero);
+        EffectsManager.instance.CreateEffectFollowPlayer(8, 3, Vector3.zero);
     }
 
     public void TriggerEffect(GameObjectBase _go)
