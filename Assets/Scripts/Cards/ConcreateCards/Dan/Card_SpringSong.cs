@@ -64,7 +64,7 @@ public class Card_SpringSong :CardPrototype,ICardOperation,ICardEffectTrigger
                 }
 
                 EffectsManager.instance.CreateEffect(13, 2, hit.point, Vector3.zero);
-                EffectsManager.instance.CreateEffectFollowPlayer(13, 2, Vector3.zero);
+                EffectsManager.instance.CreateEffectFollowPlayer(12, 2, Vector3.zero);
                 TriggerEffect(temp.ToArray());
                 CardManager.instance.SendToDiscardedCardGroup(gameObject);
             }
