@@ -313,9 +313,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         if (currentStage == 2 && summonedGeneral.Count > 0 && summonChance > Random.Range(0f, 1f))
         {
             SkillAnimation();
-            int index = summonedGeneral[Random.Range(0, summonedGeneral.Count)];
-            Debug.Log(index);
-            Debug.Log(summonedGeneral);
+            int index = Random.Range(0, summonedGeneral.Count);
             EnemyManager.instance.SummonMinion(generalPrefabs[summonedGeneral[index]]);
             summonedGeneral.RemoveAt(index);
         }

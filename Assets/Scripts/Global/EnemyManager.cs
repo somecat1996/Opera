@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
+    [Header("Test")]
     public bool test = false;
     public float testDamage = 500;
     public int testPosition = 4;
+    public int testLevel = 0;
+    [Header("Configuration")]
     public static EnemyManager instance;
     // 敌人生成位置，3*4方阵，从上到下从左到右排列
     // 9  6  3  0
@@ -84,6 +87,8 @@ public class EnemyManager : MonoBehaviour
     {
         /// test
         /// GameManager.instance.SetStartGame(true);
+        if (test)
+            bossIndex = testLevel;
 
         difficulty = difficultyIndex;
         level = PlayerManager.instance.GetLevelIndex();
