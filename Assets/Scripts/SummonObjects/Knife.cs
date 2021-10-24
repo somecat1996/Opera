@@ -40,5 +40,6 @@ public class Knife : SummonedObjectPrototype
         damage = d;
         transform.position = startPosition;
         rigidbody.velocity = speed * direction.normalized;
+        transform.rotation = Quaternion.Euler(direction);
     }
 }
