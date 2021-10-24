@@ -76,9 +76,13 @@ public class EffectsManager : MonoBehaviour
         {
             CreateEffectFollow(3, 10f, Player.instance.transform, Vector3.zero);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            CreateEffectFollow(12, 10f, Player.instance.transform, Vector3.zero);
+        }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            CreateEffectFollow(11, 0.2f, Player.instance.transform, Vector3.zero);
+            CreateEffectFollow(13, 10f, Player.instance.transform, Vector3.zero);
         }
     }
 }
