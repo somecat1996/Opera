@@ -48,6 +48,7 @@ public class WesternQueen : EnemyStatus, BossInterface
     public float summonChance = 0.1f;
     public GameObject[] generalPrefabs;
     private List<int> summonedGeneral;
+    private List<int> generalPosition;
     public GameObject heavenSolider;
     private List<int> heavenSoliderPosition;
     private List<int> aliveHeavenSoliderPosition;
@@ -102,6 +103,8 @@ public class WesternQueen : EnemyStatus, BossInterface
         thunderCounter = 0;
 
         summonedGeneral = new List<int>() { 0, 1, 2, 3 };
+        generalPosition = new List<int> { 0, 1, 2, 3, 5 };
+
         heavenSoliderPosition = new List<int> { 6, 7, 8, 9, 10, 11 };
         aliveHeavenSoliderPosition = new List<int>();
 
@@ -260,7 +263,6 @@ public class WesternQueen : EnemyStatus, BossInterface
         Speak(stage2To3Line);
         CowChange();
         SummonSolider();
-        SummonSolider();
         BattleDataManager.instance.UpdateStage(3);
     }
 
@@ -297,23 +299,25 @@ public class WesternQueen : EnemyStatus, BossInterface
 
     public void SummonSolider()
     {
-        int index = Random.Range(0, heavenSoliderPosition.Count / 4);
-        for (int i = 0; i < 3; i++)
+        foreach (int i in heavenSoliderPosition)
         {
             SkillAnimation();
-            EnemyManager.instance.SummonMinionAt(heavenSolider, heavenSoliderPosition[index * 3 + i]);
-            aliveHeavenSoliderPosition.Add(index * 3 + i);
-            heavenSoliderPosition.RemoveAt(index * 3 + i);
+            EnemyManager.instance.SummonMinionAt(heavenSolider, i);
+            aliveHeavenSoliderPosition.Add(i);
         }
     }
 
     public void StopSoliderReborn()
     {
-        int index = Random.Range(0, aliveHeavenSoliderPosition.Count / 4);
-        for (int i = 0; i < 3; i++)
+        if (aliveHeavenSoliderPosition.Count > 0)
         {
-            EnemyManager.instance.StopRebornAt(index);
+            int index = Random.Range(0, aliveHeavenSoliderPosition.Count / 3);
+            EnemyManager.instance.StopRebornAt(aliveHeavenSoliderPosition[index * 2 + 1]);
+            aliveHeavenSoliderPosition.RemoveAt(index * 2 + 1);
+            EnemyManager.instance.StopRebornAt(aliveHeavenSoliderPosition[index * 2]);
+            aliveHeavenSoliderPosition.RemoveAt(index * 2);
         }
+
     }
 
     private void SummonGeneral()
@@ -322,8 +326,10 @@ public class WesternQueen : EnemyStatus, BossInterface
         {
             SkillAnimation();
             int index = Random.Range(0, summonedGeneral.Count);
-            EnemyManager.instance.SummonMinion(generalPrefabs[summonedGeneral[index]]);
+            int positionIndex = Random.Range(0, generalPosition.Count);
+            EnemyManager.instance.SummonMinionAt(generalPrefabs[summonedGeneral[index]], generalPosition[positionIndex]);
             summonedGeneral.RemoveAt(index);
+            generalPosition.RemoveAt(positionIndex);
         }
     }
 
