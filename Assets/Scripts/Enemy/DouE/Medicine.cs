@@ -96,7 +96,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
             if (!lastUsedCard || !BattleDataManager.instance.lastUsedCard || lastUsedCard != BattleDataManager.instance.lastUsedCard)
             {
                 lastUsedCard = BattleDataManager.instance.lastUsedCard;
-                if (!lastUsedCard.CheckIfDamageCard())
+                if (lastUsedCard && !lastUsedCard.CheckIfDamageCard())
                 {
                     stage2Counter -= 1;
                     Debug.Log(stage2Counter);
