@@ -1,0 +1,40 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "走路"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "扔令牌"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "令牌透明度"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part2",
+			"Name": "道具.psd"
+		},
+		{
+			"Id": "YOUSHOU",
+			"Name": "YOUSHOU"
+		},
+		{
+			"Id": "Part",
+			"Name": "zuo shou"
+		}
+	]
+}

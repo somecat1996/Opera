@@ -63,6 +63,9 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     public string stage1To2Line;
     public string stage2To3Line;
 
+    public GameObject doutianzhang;
+    public Vector3 offset;
+
     // ñ¼¶ðÔ©½Ó¿Ú
     private bool countHurt;
     private int hurtCounter;
@@ -211,9 +214,12 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         DirtyWaterAttack();
         PushAttack();
 
-        stage3TimeLimit -= Time.deltaTime;
-        if (stage3TimeLimit <= 0)
-            Die();
+        if (stage3TimeLimit > 0)
+        {
+            stage3TimeLimit -= Time.deltaTime;
+            if (stage3TimeLimit <= 0)
+                Instantiate(doutianzhang, pushPosition + offset, Quaternion.identity);
+        }
     }
 
     public void SummonMinion(GameObject minion, int number = 1)

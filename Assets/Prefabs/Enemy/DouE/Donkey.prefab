@@ -108,7 +108,7 @@ MonoBehaviour:
   xiaominPrefab: {fileID: 7049907831289417314, guid: a5ca9b9679d44ae46bc45143fc3c712e, type: 3}
   xianguanPrefab: {fileID: 7049907831289417314, guid: 0af878d90daade54190cbcb82969732e, type: 3}
   medicinePrefab: {fileID: 7049907831289417314, guid: 5fefbe98a860f1846882e269c560874b, type: 3}
-  pushPosition: {x: -4.1, y: 0.79, z: -1.07}
+  pushPosition: {x: -4.1, y: 0.79, z: -1.91}
   pushDamage: 3
   pushTime: 10
   stage3TimeLimit: 60
@@ -121,6 +121,8 @@ MonoBehaviour:
   - "\u501F\u5C38\u56FE\u8BC8\uFF0C\u5C82\u4E0D\u7F8E\u54C9"
   stage1To2Line: "\u8FD9\u8017\u5B50\u836F\uFF0C\u5403\u4E86\u51C6\u6B7B"
   stage2To3Line: "\u4ED6\u4EEC\u628A\u6211\u5988\u7ED9\u5BB3\u6B7B\u5566\uFF0C\u6C42\u592A\u7237\u505A\u4E3B"
+  doutianzhang: {fileID: 6220846032883995099, guid: e22fdff361f5e974c8f37adf1a08eb1c, type: 3}
+  offset: {x: -15, y: 0, z: 0}
   douETime: 10
   douECoefficient: 2
 --- !u!114 &4425881617407006909
