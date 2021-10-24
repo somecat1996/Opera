@@ -307,7 +307,10 @@ public class CardPrototype : MonoBehaviour
 
         if (cardInfo.sound != null)
             AudioManager.instance.PlaySound(cardInfo.sound);
+    }
 
-
+    public void ReturnToPos()
+    {
+        transform.DOMove(originPos, returnTime);
     }
 }

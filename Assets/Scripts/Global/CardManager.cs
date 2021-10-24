@@ -672,6 +672,13 @@ public class CardManager : MonoBehaviour
             tempCardList.Remove(tempCardList[index]);
             yield return new WaitForSeconds(0.1f);
         }
+
+        // 刷新所有卡牌的初始位置
+        foreach (var i in GetAllUsableCard())
+        {
+            i.GetComponent<CardPrototype>().ReflashOriginPos();
+            //i.GetComponent<CardPrototype>().ReturnToPos();
+        }
     }
 
     /// <summary>
