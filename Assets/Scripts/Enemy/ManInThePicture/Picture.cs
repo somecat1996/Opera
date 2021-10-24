@@ -6,6 +6,8 @@ public class Picture : GameObjectBase, LevelItemInterface
 {
     private int currentStage;
 
+    private EnergyBarManager energyBarManager;
+
     public float stage1CoolingTime = 20f;
     public float stage1Damage = 100;
     private float stage1CoolingTimer;
@@ -26,12 +28,19 @@ public class Picture : GameObjectBase, LevelItemInterface
     // Start is called before the first frame update
     protected override void Start()
     {
-        // 不创建血条
+        // 创建并初始化能量条
+        GameObject energyBar = Instantiate(healthBarPrefab, GameObject.FindGameObjectWithTag("HealthBarCanvas").transform);
+        energyBarManager = energyBar.GetComponent<EnergyBarManager>();
+
+        energyBarManager.Init(transform, offsetPos);
+
         currentStage = 1;
 
         stage1CoolingTimer = 0;
         stage1CardCounter = stage1CardNumber;
         stage2DamageCounter = stage2DamageNumber;
+
+        energyBarManager.UpdateHealth((float)(stage1CardNumber - stage1CardCounter) / stage1CardNumber);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
     }
@@ -54,6 +63,7 @@ public class Picture : GameObjectBase, LevelItemInterface
         picture.SetActive(false);
         clothes.SetActive(true);
         lastUsedCard = BattleDataManager.instance.lastUsedCard;
+        energyBarManager.UpdateHealth((float)(stage2DamageNumber - stage2DamageCounter) / stage2DamageNumber);
     }
 
     private void Stage1()
@@ -90,6 +100,7 @@ public class Picture : GameObjectBase, LevelItemInterface
                         stage1CoolingTimer = stage1CoolingTime;
                         Stage1Attack();
                     }
+                    energyBarManager.UpdateHealth((float)(stage1CardNumber - stage1CardCounter) / stage1CardNumber);
                 }
             }
         }
@@ -105,6 +116,7 @@ public class Picture : GameObjectBase, LevelItemInterface
                 stage2DamageCounter = stage2DamageNumber;
                 Stage2Attack();
             }
+            energyBarManager.UpdateHealth((float)(stage2DamageNumber - stage2DamageCounter) / stage2DamageNumber);
         }
     }
 

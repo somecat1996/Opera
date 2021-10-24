@@ -6,6 +6,8 @@ public class Medicine : GameObjectBase, LevelItemInterface
 {
     private int currentStage;
 
+    private EnergyBarManager energyBarManager;
+
     public float stage1ImmunityTime = 5f;
     public int stage1WalkNumber = 5;
     private int stage1WalkCounter;
@@ -33,7 +35,12 @@ public class Medicine : GameObjectBase, LevelItemInterface
     // Start is called before the first frame update
     protected override void Start()
     {
-        // 不创建血条
+        // 创建并初始化能量条
+        GameObject energyBar = Instantiate(healthBarPrefab, GameObject.FindGameObjectWithTag("HealthBarCanvas").transform);
+        energyBarManager = energyBar.GetComponent<EnergyBarManager>();
+
+        energyBarManager.Init(transform, offsetPos);
+
         currentStage = 1;
 
         stage1WalkCounter = stage1WalkNumber;
@@ -43,6 +50,8 @@ public class Medicine : GameObjectBase, LevelItemInterface
         stage2SunnyTimer = 0;
         stage2Counter = stage2Num;
         sunny = true;
+
+        energyBarManager.UpdateHealth((float)(stage1WalkNumber - stage1WalkCounter) / stage1WalkNumber);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
     }
@@ -57,12 +66,6 @@ public class Medicine : GameObjectBase, LevelItemInterface
             else if (currentStage == 2)
                 Stage2();
         }
-
-        // test
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Stage2Attack();
-        }
     }
 
     public void Change()
@@ -75,6 +78,8 @@ public class Medicine : GameObjectBase, LevelItemInterface
         {
             GlobalValue.damageIncrement_General -= stage1DamageIncrease;
         }
+
+        energyBarManager.UpdateHealth((float)(stage2Num - stage2Counter) / stage2Num);
     }
 
     private void Stage1()
@@ -108,6 +113,8 @@ public class Medicine : GameObjectBase, LevelItemInterface
                         stage2Counter = stage2Num;
                         stage2CoolingTimer = stage2CoolingTime;
                     }
+
+                    energyBarManager.UpdateHealth((float)(stage2Num - stage2Counter) / stage2Num);
                 }
             }
         }
@@ -162,7 +169,7 @@ public class Medicine : GameObjectBase, LevelItemInterface
         stage1ImmunityTimer = stage1ImmunityTime;
         GlobalValue.damageIncrement_General += stage1DamageIncrease;
 
-        Debug.Log("解药！");
+        EffectsManager.instance.CreateEffectFollowPlayer(2, stage1ImmunityTime, Vector3.zero);
     }
 
     private void Stage2Attack()
@@ -174,14 +181,14 @@ public class Medicine : GameObjectBase, LevelItemInterface
             StartIncreasing();
             stage2SunnyTimer = stage2Time;
 
-            Debug.Log("晴天！");
+            EffectsManager.instance.CreateEffect(15, stage1ImmunityTime, Vector3.zero, new Vector3(0, 0, 2));
         }
         else
         {
             sunny = true;
             stage2SnowyTimer = stage2Time;
 
-            Debug.Log("雪天！");
+            EffectsManager.instance.CreateEffect(14, stage1ImmunityTime, Vector3.zero, new Vector3(0, 0, 2));
         }
     }
 
@@ -195,6 +202,8 @@ public class Medicine : GameObjectBase, LevelItemInterface
                 stage1WalkCounter = stage1WalkNumber;
                 Stage1Attack();
             }
+
+            energyBarManager.UpdateHealth((float)(stage1WalkNumber - stage1WalkCounter) / stage1WalkNumber);
         }
     }
 

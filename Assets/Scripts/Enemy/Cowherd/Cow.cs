@@ -6,6 +6,8 @@ public class Cow : GameObjectBase, LevelItemInterface
 {
     private int currentStage;
 
+    private EnergyBarManager energyBarManager;
+
     public float stage1CoolingTime = 20f;
     public float stage1Damage = 200;
     private float stage1CoolingTimer;
@@ -26,12 +28,19 @@ public class Cow : GameObjectBase, LevelItemInterface
     // Start is called before the first frame update
     protected override void Start()
     {
-        // 不创建血条
+        // 创建并初始化能量条
+        GameObject energyBar = Instantiate(healthBarPrefab, GameObject.FindGameObjectWithTag("HealthBarCanvas").transform);
+        energyBarManager = energyBar.GetComponent<EnergyBarManager>();
+
+        energyBarManager.Init(transform, offsetPos);
+
         currentStage = 1;
 
         stage1CoolingTimer = 0;
         stage1CardCounter = stage1CardNumber;
         stage2CardCounter = stage2CardNumber;
+
+        energyBarManager.UpdateHealth((float)(stage1CardNumber - stage1CardCounter) / stage1CardNumber);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
     }
@@ -59,6 +68,8 @@ public class Cow : GameObjectBase, LevelItemInterface
         cow.SetActive(false);
         magpie.SetActive(true);
         lastUsedCard = BattleDataManager.instance.lastUsedCard;
+
+        energyBarManager.UpdateHealth((float)(stage2CardNumber - stage2CardCounter) / stage2CardNumber);
     }
 
     private void Stage1()
@@ -87,6 +98,8 @@ public class Cow : GameObjectBase, LevelItemInterface
                     stage2CardCounter = stage2CardNumber;
                     Stage2Attack();
                 }
+
+                energyBarManager.UpdateHealth((float)(stage2CardNumber - stage2CardCounter) / stage2CardNumber);
             }
         }
     }
@@ -107,6 +120,8 @@ public class Cow : GameObjectBase, LevelItemInterface
                         stage1CoolingTimer = stage1CoolingTime;
                         Stage1Attack();
                     }
+
+                    energyBarManager.UpdateHealth((float)(stage1CardNumber - stage1CardCounter) / stage1CardNumber);
                 }
             }
         }
@@ -131,6 +146,8 @@ public class Cow : GameObjectBase, LevelItemInterface
         AudioManager.instance.PlaySound(stage1Sound);
         GameObject tmp = EnemyManager.instance.RandomChoose();
         tmp.GetComponent<EnemyStatus>().Hurt(stage1Damage);
+
+        EffectsManager.instance.CreateEffect(11, 0.2f, tmp.transform.position, Vector3.zero);
     }
 
     private void Stage2Attack()
