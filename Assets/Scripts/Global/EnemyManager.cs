@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
+    public bool test = false;
+    public float testDamage = 500;
+    public int testPosition = 4;
     public static EnemyManager instance;
     // 敌人生成位置，3*4方阵，从上到下从左到右排列
     // 9  6  3  0
@@ -62,8 +65,19 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         // 测试
-        if (Input.GetKeyDown(KeyCode.Space))
-            PlayerManager.instance.EnterLevel_Test(0);
+        if (test)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                PlayerManager.instance.EnterLevel_Test(0);
+            if (Input.GetKeyDown(KeyCode.M))
+                generationPointStatus[testPosition].Hurt(testDamage);
+        }
+    }
+
+    private void WhoIsYourDaddy()
+    {
+        if (generationPointStatus[4])
+            generationPointStatus[4].Hurt
     }
 
     public void EnterLevel(int bossIndex, int difficultyIndex = 0)
