@@ -236,9 +236,15 @@ public class WesternQueen : EnemyStatus, BossInterface
         if (countHurt)
             hurtCounter += 1;
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)
-            Stage2Start();
+        {
+            BattleDataManager.instance.UpdateStage(2);
+            Curtain.instance.SetCallbackFun_Open(Stage2Start);
+        }
         if (curHealth <= stage3Start * maxHealth && currentStage == 2)
-            Stage3Start();
+        {
+            BattleDataManager.instance.UpdateStage(3);
+            Curtain.instance.SetCallbackFun_Open(Stage3Start);
+        }
     }
 
     private void SkillAnimation()
@@ -260,7 +266,6 @@ public class WesternQueen : EnemyStatus, BossInterface
         currentStage = 2;
         Speak(stage1To2Line);
         SummonCow();
-        BattleDataManager.instance.UpdateStage(2);
     }
 
     private void Stage3Start()
@@ -269,7 +274,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         Speak(stage2To3Line);
         CowChange();
         SummonSolider();
-        BattleDataManager.instance.UpdateStage(3);
+        Curtain.instance.SetCallbackFun_Open(null);
     }
 
     private void Stage1()

@@ -152,9 +152,15 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         if (countHurt)
             hurtCounter += 1;
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)
-            Stage2Start();
+        {
+            BattleDataManager.instance.UpdateStage(2);
+            Curtain.instance.SetCallbackFun_Open(Stage2Start);
+        }
         if (curHealth <= stage3Start * maxHealth && currentStage == 2)
-            Stage3Start();
+        {
+            BattleDataManager.instance.UpdateStage(3);
+            Curtain.instance.SetCallbackFun_Open(Stage3Start);
+        }
     }
 
     private void Stage2Start()
@@ -162,7 +168,6 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         currentStage = 2;
         Speak(stage1To2Line);
         SummonMedicine();
-        BattleDataManager.instance.UpdateStage(2);
     }
 
     private void Stage3Start()
@@ -171,7 +176,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         Speak(stage2To3Line);
         SummonXianguan();
         MedicineChange();
-        BattleDataManager.instance.UpdateStage(3);
+        Curtain.instance.SetCallbackFun_Open(null);
     }
 
     private void Stage1()
