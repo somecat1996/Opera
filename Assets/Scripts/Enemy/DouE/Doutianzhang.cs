@@ -40,6 +40,7 @@ public class Doutianzhang : MonoBehaviour
         else if (life <= 0)
         {
             EnemyManager.instance.HurtAll(damage);
+            Destroy(gameObject);
         }
     }
 }
