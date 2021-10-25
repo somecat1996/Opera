@@ -97,7 +97,8 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 
         shieldTimer = shieldTime;
 
-        BattleDataManager.instance.UpdateStage(1);
+        BattleDataManager.instance.UpdateStage(1); 
+        GUIManager.instance.UpdateBossHealthPoint(1, curHealth);
     }
 
     // Update is called once per frame
@@ -141,7 +142,7 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
             shieldScript.DestoryObject();
             shieldScript = null;
         }
-        BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth);
+        BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth, Mathf.Max(0, curHealth));
         if (countHurt)
             hurtCounter += 1;
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)

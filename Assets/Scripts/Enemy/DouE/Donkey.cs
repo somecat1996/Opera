@@ -100,6 +100,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         pushTimer = pushTime;
 
         BattleDataManager.instance.UpdateStage(1);
+        GUIManager.instance.UpdateBossHealthPoint(1, curHealth);
     }
 
     // Update is called once per frame
@@ -151,7 +152,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
             shieldScript.DestoryObject();
             shieldScript = null;
         }
-        BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth);
+        BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth, Mathf.Max(0, curHealth));
         if (countHurt)
             hurtCounter += 1;
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)

@@ -65,7 +65,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 123456
+  m_text: '20
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f9e8b22f278ede34ea3fbe8c4e09e87f, type: 2}
   m_sharedMaterial: {fileID: 1456751064542328601, guid: f9e8b22f278ede34ea3fbe8c4e09e87f, type: 2}
@@ -199,7 +201,7 @@ MonoBehaviour:
   text: {fileID: 3534951165124300400}
   direction: {x: 1, y: 1.7, z: 0}
   normalColor: {fileID: 11400000, guid: ce1c6e2a4c0850f40a51df71045e97c2, type: 2}
-  criticalColor: {fileID: 11400000, guid: e1d22921cd49f784bafc0bbe8d4b5f5c, type: 2}
+  criticalColor: {fileID: 11400000, guid: ce1c6e2a4c0850f40a51df71045e97c2, type: 2}
 --- !u!1 &5267453363876275729
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1640661872127520784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -235,7 +237,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 18.319, y: 4.2949}
+  m_SizeDelta: {x: 8.2053, y: 4.2949}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3662044671204189217
 CanvasRenderer:
@@ -258,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6313726}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

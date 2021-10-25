@@ -114,6 +114,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         damageCoefficient = 1;
 
         BattleDataManager.instance.UpdateStage(1);
+        GUIManager.instance.UpdateBossHealthPoint(1, curHealth);
         effects = new List<GameObject>();
     }
 
@@ -232,7 +233,7 @@ public class WesternQueen : EnemyStatus, BossInterface
         {
             Die();
         }
-        BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth);
+        BattleDataManager.instance.UpdateBossHP(curHealth / maxHealth, Mathf.Max(0, curHealth));
         if (countHurt)
             hurtCounter += 1;
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)
