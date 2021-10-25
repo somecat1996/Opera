@@ -7,6 +7,8 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45d192056b336d2459d3b0891b12eb1e, type: 3}
   m_Name: 103_WhiteSnake
   m_EditorClassIdentifier: 
@@ -28,4 +30,4 @@ MonoBehaviour:
   radius: 0
   mainValue_Cur: 5
   quantity: 0
-  level: 1
+  level: 0
