@@ -24,6 +24,10 @@ public class Cow : GameObjectBase, LevelItemInterface
     public GameObject cow;
     public GameObject magpie;
 
+    public GameObject lineTextPrefab;
+    public string stage1Line;
+    public string stage2Line;
+
     private PlayerStatus player;
     // Start is called before the first frame update
     protected override void Start()
@@ -43,6 +47,8 @@ public class Cow : GameObjectBase, LevelItemInterface
         energyBarManager.UpdateHealth((float)(stage1CardNumber - stage1CardCounter) / stage1CardNumber);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
+
+        Speak(stage1Line);
     }
 
     public void Instantiate(WesternQueen q)
@@ -70,6 +76,8 @@ public class Cow : GameObjectBase, LevelItemInterface
         lastUsedCard = BattleDataManager.instance.lastUsedCard;
 
         energyBarManager.UpdateHealth((float)(stage2CardNumber - stage2CardCounter) / stage2CardNumber);
+
+        Speak(stage2Line);
     }
 
     private void Stage1()
@@ -158,8 +166,17 @@ public class Cow : GameObjectBase, LevelItemInterface
 
     public void Walk() { }
 
+    private void Speak(string line)
+    {
+        var col = gameObject.GetComponent<Collider>();
+        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
+        Line lineText = Instantiate(lineTextPrefab, GameObject.FindGameObjectWithTag("LineCanvas").transform).GetComponent<Line>();
+        lineText.Init(line, topAhcor);
+    }
+
     private void OnDestroy()
     {
-        Destroy(energyBarManager.gameObject);
+        if (energyBarManager)
+            Destroy(energyBarManager.gameObject);
     }
 }

@@ -63,6 +63,9 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     public string stage1To2Line;
     public string stage2To3Line;
 
+    public GameObject doutianzhang;
+    public Vector3 offset;
+
     // ñ¼¶ðÔ©½Ó¿Ú
     private bool countHurt;
     private int hurtCounter;
@@ -152,9 +155,15 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         if (countHurt)
             hurtCounter += 1;
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)
-            Stage2Start();
+        {
+            BattleDataManager.instance.UpdateStage(2);
+            Curtain.instance.SetCallbackFun_Open(Stage2Start);
+        }
         if (curHealth <= stage3Start * maxHealth && currentStage == 2)
-            Stage3Start();
+        {
+            BattleDataManager.instance.UpdateStage(3);
+            Curtain.instance.SetCallbackFun_Open(Stage3Start);
+        }
     }
 
     private void Stage2Start()
@@ -162,7 +171,6 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         currentStage = 2;
         Speak(stage1To2Line);
         SummonMedicine();
-        BattleDataManager.instance.UpdateStage(2);
     }
 
     private void Stage3Start()
@@ -171,7 +179,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         Speak(stage2To3Line);
         SummonXianguan();
         MedicineChange();
-        BattleDataManager.instance.UpdateStage(3);
+        Curtain.instance.SetCallbackFun_Open(null);
     }
 
     private void Stage1()
@@ -206,9 +214,12 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         DirtyWaterAttack();
         PushAttack();
 
-        stage3TimeLimit -= Time.deltaTime;
-        if (stage3TimeLimit <= 0)
-            Die();
+        if (stage3TimeLimit > 0)
+        {
+            stage3TimeLimit -= Time.deltaTime;
+            if (stage3TimeLimit <= 0)
+                Instantiate(doutianzhang, pushPosition + offset, Quaternion.identity);
+        }
     }
 
     public void SummonMinion(GameObject minion, int number = 1)

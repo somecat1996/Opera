@@ -48,7 +48,7 @@ public class Picture : GameObjectBase, LevelItemInterface
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
 
-        //Speak(stage1Line);
+        Speak(stage1Line);
     }
 
     // Update is called once per frame
@@ -71,7 +71,7 @@ public class Picture : GameObjectBase, LevelItemInterface
         lastUsedCard = BattleDataManager.instance.lastUsedCard;
         energyBarManager.UpdateHealth((float)(stage2DamageNumber - stage2DamageCounter) / stage2DamageNumber);
 
-        //Speak(stage2Line);
+        Speak(stage2Line);
     }
 
     private void Stage1()
@@ -146,6 +146,7 @@ public class Picture : GameObjectBase, LevelItemInterface
 
     private void Stage2Attack()
     {
+        EffectsManager.instance.CreateEffect(18, 2, Vector3.zero, Vector3.zero);
         AudioManager.instance.PlaySound(stage2Sound);
         EnemyManager.instance.RemoveShieldAll();
         EnemyManager.instance.PercentHurtAll(stage2PercentDamage);
@@ -168,6 +169,7 @@ public class Picture : GameObjectBase, LevelItemInterface
 
     private void OnDestroy()
     {
-        Destroy(energyBarManager.gameObject);
+        if (energyBarManager)
+            Destroy(energyBarManager.gameObject);
     }
 }

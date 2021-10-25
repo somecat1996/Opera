@@ -31,6 +31,10 @@ public class Medicine : GameObjectBase, LevelItemInterface
     public GameObject medicine;
     public GameObject doll;
 
+    public GameObject lineTextPrefab;
+    public string stage1Line;
+    public string stage2Line;
+
     private PlayerStatus player;
     // Start is called before the first frame update
     protected override void Start()
@@ -54,6 +58,8 @@ public class Medicine : GameObjectBase, LevelItemInterface
         energyBarManager.UpdateHealth((float)(stage1WalkNumber - stage1WalkCounter) / stage1WalkNumber);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
+
+        Speak(stage1Line);
     }
 
     // Update is called once per frame
@@ -80,6 +86,8 @@ public class Medicine : GameObjectBase, LevelItemInterface
         }
 
         energyBarManager.UpdateHealth((float)(stage2Num - stage2Counter) / stage2Num);
+
+        Speak(stage2Line);
     }
 
     private void Stage1()
@@ -223,6 +231,15 @@ public class Medicine : GameObjectBase, LevelItemInterface
     {
         if (stage2SunnyTimer > 0)
             StopIncreasing();
-        Destroy(energyBarManager.gameObject);
+        if (energyBarManager)
+            Destroy(energyBarManager.gameObject);
+    }
+
+    private void Speak(string line)
+    {
+        var col = gameObject.GetComponent<Collider>();
+        var topAhcor = new Vector3(col.bounds.center.x, col.bounds.max.y, col.bounds.center.z);
+        Line lineText = Instantiate(lineTextPrefab, GameObject.FindGameObjectWithTag("LineCanvas").transform).GetComponent<Line>();
+        lineText.Init(line, topAhcor);
     }
 }
