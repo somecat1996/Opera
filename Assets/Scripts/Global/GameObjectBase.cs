@@ -495,7 +495,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     {
         if (voodooProbability > 0)
         {
-            if (voodooTimer >= 0)
+            if (voodooTimer > 0)
             {
                 voodooTimer -= Time.deltaTime;
                 if (voodooTimer <= 0)
@@ -504,7 +504,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
                     voodooTimer = 0;
                 }
             }
-            if (voodooCoolingTimer >= 0)
+            if (voodooCoolingTimer > 0)
             {
                 voodooCoolingTimer -= Time.deltaTime;
                 if (voodooCoolingTimer <= 0)
