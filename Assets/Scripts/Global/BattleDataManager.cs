@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System.Linq;
 public class BattleDataManager : MonoBehaviour
 {
     public static BattleDataManager instance;
@@ -365,6 +366,18 @@ public class BattleDataManager : MonoBehaviour
                 if (CardManager.instance.cardLibrary_Common[i].level == 0)
                     lootCard_Common.Add(CardManager.instance.cardLibrary_Common[i]);
             }
+
+            List<int> levelCardID = PlayerManager.instance.GetCurrentLevelInfo().lootCard.ToList<int>();
+
+            // 清除非本关掉落的剧情卡
+            for (int i = 0; i < lootCard_Common.Count; i++)
+            {
+                if (!levelCardID.Contains(lootCard_Common[i].id))
+                {
+                    lootCard_Common.RemoveAt(i);
+                }
+            }
+
             if (lootCard_Common.Count != 0)
             {
                 // 先随机移除一个 之后在新增一个

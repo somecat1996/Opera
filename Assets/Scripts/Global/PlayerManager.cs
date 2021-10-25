@@ -31,7 +31,6 @@ public class PlayerManager : MonoBehaviour
     [Header("Player")]
     public GameObjectBase player;
 
-
     [Space]
     public CharacterType.CharacterTag cur_Character = CharacterType.CharacterTag.Dan;
     public int cur_CharBuffID = 0;

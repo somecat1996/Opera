@@ -7,10 +7,8 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45d192056b336d2459d3b0891b12eb1e, type: 3}
-  m_Name: '103_WhiteSnake '
+  m_Name: 103_WhiteSnake
   m_EditorClassIdentifier: 
   id: 103
   cardName: "\u300A\u767D\u86C7\u4F20\u300B"
