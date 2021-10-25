@@ -482,19 +482,22 @@ public class BattleDataManager : MonoBehaviour
         }
         else if (tempAP >= 50 && tempAP <= 79)
         {
-            PlayerManager.instance.player.InstantHealing(80 + GlobalValue.hpIncrement_Reward);
-            GUIManager.instance.SpawnSystemText("回复 " + (80 + GlobalValue.hpIncrement_Reward) + " 氛围值");
+            if(tempAP <= 60)
+            {
+                PlayerManager.instance.player.InstantHealing(80 + GlobalValue.hpIncrement_Reward);
+                GUIManager.instance.SpawnSystemText("回复 " + (80 + GlobalValue.hpIncrement_Reward) + " 氛围值");
+            }
+            else
+            {
+                PlayerManager.instance.player.InstantHealing(80);
+                GUIManager.instance.SpawnSystemText("回复 " + 80 + " 氛围值");
+            }
+
         }
         else if (tempAP >= 80)
         {
-            PlayerManager.instance.player.InstantHealing(100 + GlobalValue.hpIncrement_Reward);
-            GUIManager.instance.SpawnSystemText("回复 " + (100 + GlobalValue.hpIncrement_Reward) + " 氛围值");
-        }
-
-        if (tempAP <= 60)
-        {
-            PlayerManager.instance.player.InstantHealing(100 + GlobalValue.hpIncrement_Reward);
-            GUIManager.instance.SpawnSystemText("回复 " + (100 + GlobalValue.hpIncrement_Reward) + " 氛围值");
+            PlayerManager.instance.player.InstantHealing(100);
+            GUIManager.instance.SpawnSystemText("回复 " + (100) + " 氛围值");
         }
 
         appealPoint += tempAP;

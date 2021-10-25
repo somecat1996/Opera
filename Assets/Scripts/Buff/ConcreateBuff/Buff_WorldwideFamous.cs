@@ -4,33 +4,21 @@ using UnityEngine;
 
 public class Buff_WorldwideFamous : BuffPrototype
 {
-
-    public float counter_Origin = 100;
-    public float counter;
-
-    public float appealPoint = 0;
-
-    public float hpIncrement = 10;
+    public int hpIncrement = 100;
 
 
     private void Update()
     {
-        if (appealPoint != BattleDataManager.instance.appealPoint)
-        {
-            appealPoint = BattleDataManager.instance.appealPoint;
 
-            if(appealPoint >= 100 && !activated)
-            {
-                activated = true;
-                GlobalValue.hpIncrement_Reward += 10;
-            }
-
-        }
     }
 
     private void OnEnable()
     {
-;
+;        if (!activated)
+        {
+            activated = true;
+            GlobalValue.hpIncrement_Reward += hpIncrement;
+        }
     }
 
     private void OnDisable()
@@ -38,7 +26,7 @@ public class Buff_WorldwideFamous : BuffPrototype
         if (activated)
         {
             activated = false;
-            GlobalValue.hpIncrement_Reward -= 10;
+            GlobalValue.hpIncrement_Reward -= hpIncrement;
         }
     }
 
