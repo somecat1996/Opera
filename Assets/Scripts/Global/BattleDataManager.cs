@@ -455,13 +455,13 @@ public class BattleDataManager : MonoBehaviour
     {
         // 计算上一阶段喝彩值和赏钱
         int tempAP = 0;
-        if (timer_LastStage <= 30)
+        if (timer_LastStage <= 60)
         {
-            tempAP = 120 - (int)timer_LastStage;
+            tempAP = 150 - (int)timer_LastStage;
         }
-        else if (timer_LastStage > 30 && timer_LastStage <= 60)
+        else if (timer_LastStage > 60 && timer_LastStage <= 90)
         {
-            tempAP = 150 - 2 * (int)timer_LastStage;
+            tempAP = 210 - 2 * (int)timer_LastStage;
         }
         else
         {
@@ -474,17 +474,17 @@ public class BattleDataManager : MonoBehaviour
         // 根据单阶段喝彩值回复血量
         if (tempAP >= 30 && tempAP <= 49)
         {
-            PlayerManager.instance.player.InstantHealing(60 + GlobalValue.hpIncrement_Reward);
-            GUIManager.instance.SpawnSystemText("回复 " + (60 + GlobalValue.hpIncrement_Reward) + " 氛围值");
+            PlayerManager.instance.player.InstantHealing(120 + GlobalValue.hpIncrement_Reward);
+            GUIManager.instance.SpawnSystemText("回复 " + (120 + GlobalValue.hpIncrement_Reward) + " 氛围值");
         }
         else if (tempAP >= 50 && tempAP <= 79)
         {
-            PlayerManager.instance.player.InstantHealing(80 + GlobalValue.hpIncrement_Reward);
-            GUIManager.instance.SpawnSystemText("回复 " + (80 + GlobalValue.hpIncrement_Reward) + " 氛围值");
+            PlayerManager.instance.player.InstantHealing(160 + GlobalValue.hpIncrement_Reward);
+            GUIManager.instance.SpawnSystemText("回复 " + (160 + GlobalValue.hpIncrement_Reward) + " 氛围值");
         }
         else if (tempAP >= 80)
         {
-            PlayerManager.instance.player.InstantHealing(100 + GlobalValue.hpIncrement_Reward);
+            PlayerManager.instance.player.InstantHealing(200 + GlobalValue.hpIncrement_Reward);
             GUIManager.instance.SpawnSystemText("回复 " + (100 + GlobalValue.hpIncrement_Reward) + " 氛围值");
         }
 

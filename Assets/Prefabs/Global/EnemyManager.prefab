@@ -75,6 +75,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2027997bb654c4899f17cf555c0785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test: 0
+  testDamage: 500
+  testPosition: 4
+  testLevel: 0
   generationPoint:
   - {fileID: 4587633646745735710}
   - {fileID: 4587633647161620874}
@@ -95,41 +99,41 @@ MonoBehaviour:
   - {fileID: 7049907831289417314, guid: 0914c85ec05eb2447aacc9cee9fe3e7b, type: 3}
   - {fileID: 7049907831289417314, guid: 12cc7c854e94da34a9d88fa73e6eea84, type: 3}
   enemyHealthCoefficientLevel1:
+  - 0.6
+  - 0.8
   - 1
-  - 1.1
-  - 1.3
-  - 1.6
-  - 2
+  - 1.4
+  - 1.8
   enemyHealthCoefficientLevel2:
-  - 1.1
-  - 1.3
+  - 0.7
+  - 0.9
+  - 1.2
   - 1.6
   - 2
-  - 2.5
   enemyHealthCoefficientLevel3:
-  - 1.2
-  - 1.5
-  - 1.9
-  - 2.4
-  - 3
+  - 0.8
+  - 1
+  - 1.4
+  - 1.8
+  - 2.2
   enemyAttackCoefficientLevel1:
   - 1
+  - 1.05
   - 1.1
-  - 1.21
-  - 1.331
-  - 1.4641
+  - 1.15
+  - 1.2
   enemyAttackCoefficientLevel2:
+  - 1.05
   - 1.1
-  - 1.21
-  - 1.331
-  - 1.4641
-  - 1.61051
+  - 1.15
+  - 1.2
+  - 1.25
   enemyAttackCoefficientLevel3:
-  - 1.21
-  - 1.331
-  - 1.4641
-  - 1.61051
-  - 1.771561
+  - 1.1
+  - 1.15
+  - 1.2
+  - 1.25
+  - 1.3
   background: {fileID: 0}
   backgroundImages:
   - {fileID: 21300000, guid: a515ba8ddb54bf94fbfe85a3812bddc0, type: 3}

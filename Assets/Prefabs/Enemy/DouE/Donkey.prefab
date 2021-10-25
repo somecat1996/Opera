@@ -98,7 +98,7 @@ MonoBehaviour:
   normalAttackTimeMax: 5
   normalAttackDamage: 070000000f000000190000002300000032000000
   bananaAttackTime: 10
-  bananaAttackDamage: 33
+  bananaAttackDamage: 22
   shieldTime: 30
   shieldValue: 200
   shieldSound: {fileID: 8300000, guid: a1ef887a4164b2240a3189369e75734c, type: 3}
@@ -109,7 +109,7 @@ MonoBehaviour:
   xianguanPrefab: {fileID: 7049907831289417314, guid: 0af878d90daade54190cbcb82969732e, type: 3}
   medicinePrefab: {fileID: 7049907831289417314, guid: 5fefbe98a860f1846882e269c560874b, type: 3}
   pushPosition: {x: -4.1, y: 0.79, z: -1.91}
-  pushDamage: 3
+  pushDamage: 13
   pushTime: 10
   stage3TimeLimit: 45
   lineTextPrefab: {fileID: 3921916031245853504, guid: 7af6adbf22fe4044d8adbad4008c9957, type: 3}

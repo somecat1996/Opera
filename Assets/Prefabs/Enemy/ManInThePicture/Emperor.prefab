@@ -98,7 +98,7 @@ MonoBehaviour:
   normalAttackTimeMax: 5
   normalAttackDamage: 070000000f000000190000002300000032000000
   bananaAttackTime: 10
-  bananaAttackDamage: 33
+  bananaAttackDamage: 22
   shieldTime: 30
   shieldValue: 200
   shieldSound: {fileID: 8300000, guid: a1ef887a4164b2240a3189369e75734c, type: 3}
