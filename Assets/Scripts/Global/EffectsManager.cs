@@ -81,7 +81,7 @@ public class EffectsManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            CreateEffect(14, 10f, Vector3.zero, new Vector3(0, 0, 2));
+            CreateEffect(19, 10f, Player.instance.transform.position, new Vector3(0, 0, 2));
         }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
