@@ -71,8 +71,6 @@ public class EnemyManager : MonoBehaviour
         // ≤‚ ‘
         if (test)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-                PlayerManager.instance.EnterLevel_Test(0);
             if (Input.GetKeyDown(KeyCode.M))
                 WhoIsYourDaddy();
         }
