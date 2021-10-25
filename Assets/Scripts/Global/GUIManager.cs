@@ -129,7 +129,9 @@ public class GUIManager : MonoBehaviour
     public void UpdateBossHealthPoint(float _percentage,float _v)
     {
         DOTween.To(() => boss_HealthPoint.fillAmount, x => boss_HealthPoint.fillAmount = x, _percentage, 0.25f);
-        boss_HealthPoint_Text.text = _v.ToString();
+        int temp = int.Parse(boss_HealthPoint_Text.text);
+        DOTween.To(_v => { boss_HealthPoint_Text.text = Mathf.Floor(_v).ToString(); }, startValue: temp, endValue: _v, duration: 0.25f);
+        //boss_HealthPoint_Text.text = _v.ToString();
         //boss_HealthPoint.fillAmount = _v;
     }
 
