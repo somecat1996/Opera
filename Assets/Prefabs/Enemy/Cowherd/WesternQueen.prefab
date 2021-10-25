@@ -98,7 +98,7 @@ MonoBehaviour:
   normalAttackTimeMax: 5
   normalAttackDamage: 070000000f000000190000002300000032000000
   bananaAttackTime: 10
-  bananaAttackDamage: 33
+  bananaAttackDamage: 22
   shieldTime: 30
   shieldValue: 200
   shieldSound: {fileID: 8300000, guid: a1ef887a4164b2240a3189369e75734c, type: 3}
@@ -110,7 +110,7 @@ MonoBehaviour:
   thunderDiscardNum: 2
   thunderHeartDamage: 2
   thunderSound: {fileID: 8300000, guid: d392d4c6ccf6f3b4c9b0c93b5934b9f7, type: 3}
-  summonChance: 0.1
+  summonChance: 0.25
   generalPrefabs:
   - {fileID: 7049907831289417314, guid: b14ad5c60b4cfe94e8574e79aad19d88, type: 3}
   - {fileID: 7049907831289417314, guid: 2e25443f03608664f861b48dac063c0c, type: 3}
