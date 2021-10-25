@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class EnemyInformation : MonoBehaviour
+[CreateAssetMenu(menuName = "EnemyInfo/EnemyInfo")]
+public class EnemyInformation : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string enemyName;
+    [TextArea]
+    public string description;
+    public Sprite illus;
 }

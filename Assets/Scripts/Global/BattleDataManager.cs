@@ -15,7 +15,7 @@ public class BattleDataManager : MonoBehaviour
     public float totalDamage = 0; // 由敌人Hurt函数上传伤害信息
     public int totalUsedCard = 0; // 由CardManger.SendToTempLayoutGroup上传
     public GameObjectBase lastTargetEnemy; // 上一个被单体攻击的敌人 由单体输出卡牌上传
-    public float cur_bossHP_Pencentage = 0; // 当前boss剩余血量百分比
+    public float cur_bossHP_Percentage = 0; // 当前boss剩余血量百分比
     public int cur_Stage = 0; // 当前阶段
     public float timer_LastStage = 0; // 上一阶段进行的时间
     [Space]
@@ -202,6 +202,9 @@ public class BattleDataManager : MonoBehaviour
 
         activatedSpectator = 0;
         highlightSpectator = 0;
+
+        // BOSS信息
+        cur_bossHP_Percentage = 1;
     }
 
 
@@ -346,7 +349,7 @@ public class BattleDataManager : MonoBehaviour
         else
         {
             // 失败时 金币结算
-            loot = GlobalValue.GetTrueLoot((Random.Range(100, 200) * PlayerManager.instance.GetCurrentLevelInfo().rewardFactor[0] * (1 - cur_bossHP_Pencentage)));
+            loot = GlobalValue.GetTrueLoot((Random.Range(100, 200) * PlayerManager.instance.GetCurrentLevelInfo().rewardFactor[0] * (1 - cur_bossHP_Percentage)));
         }
 
 
@@ -424,9 +427,9 @@ public class BattleDataManager : MonoBehaviour
     /// <param name="_v">血量</param>
     public void UpdateBossHP(float _percentage,float _v)
     {
-        cur_bossHP_Pencentage = _percentage;
-        cur_bossHP_Pencentage = Mathf.Clamp(cur_bossHP_Pencentage, 0, Mathf.Infinity);
-        GUIManager.instance.UpdateBossHealthPoint(cur_bossHP_Pencentage,_v);
+        cur_bossHP_Percentage = _percentage;
+        cur_bossHP_Percentage = Mathf.Clamp(cur_bossHP_Percentage, 0, Mathf.Infinity);
+        GUIManager.instance.UpdateBossHealthPoint(cur_bossHP_Percentage,_v);
     }
 
     /// <summary>

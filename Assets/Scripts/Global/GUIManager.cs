@@ -94,6 +94,12 @@ public class GUIManager : MonoBehaviour
     public Animator ani_Curtain;
     public Curtain curtain;
 
+    [Header("Enemy Info Objects")]
+    public Transform layout_EnemyInfoBtn;
+    public GameObject prefab_EnemyInfoBtn;
+    public TextMeshProUGUI text_EnemyDesc;
+    public Image image_EnemyIllus;
+
 
     private void Awake()
     {
@@ -104,6 +110,8 @@ public class GUIManager : MonoBehaviour
         {
             slot_UnselectedCard.Add(slotLayout.GetChild(i).GetComponent<RectTransform>());
         }
+
+        LoadAllEnemyInfo();
     }
 
     void Start()
@@ -494,5 +502,31 @@ public class GUIManager : MonoBehaviour
     public void SetInteractable_btn_NextLevel(bool _v)
     {
         btn_NextLevel.GetComponent<Button>().interactable = _v;
+    }
+
+
+    /// <summary>
+    /// 载入所有的敌人信息
+    /// </summary>
+    public void LoadAllEnemyInfo()
+    {
+        foreach(var i in Resources.LoadAll<EnemyInformation>("EnemyInfomation"))
+        {
+            GameObject go = Instantiate(prefab_EnemyInfoBtn);
+            go.transform.parent = layout_EnemyInfoBtn;
+            go.transform.localScale = Vector3.one;
+            go.GetComponentInChildren<TextMeshProUGUI>().text = i.enemyName;
+            go.GetComponent<EnemyInfoCarrier>().enemyInfo = i;
+        }
+    }
+
+    /// <summary>
+    /// 显示选择的敌人信息
+    /// </summary>
+    /// <param name="_info"></param>
+    public void DisplayEnemyInfo(EnemyInformation _info)
+    {
+        image_EnemyIllus.sprite = _info.illus;
+        text_EnemyDesc.text = _info.description;
     }
 }
