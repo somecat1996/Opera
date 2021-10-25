@@ -114,11 +114,13 @@ public class GUIManager : MonoBehaviour
     bool open = true;
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Y))
         {
             SetDisplayCurtain(open);
             open = !open;
         }
+        */
     }
 
     /// <summary>

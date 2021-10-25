@@ -89,13 +89,6 @@ public class PlayerManager : MonoBehaviour
             cur_PowerPoint = Mathf.Clamp(cur_PowerPoint, 0, max_PowerPoint);
             GUIManager.instance.UpdatePowerPoint(cur_PowerPoint / max_PowerPoint, cur_PowerPoint);
         }
-
-
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            player.Hurt(5);
-        }
     }
 
     /// <summary>

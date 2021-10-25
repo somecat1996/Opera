@@ -31,6 +31,7 @@ public class BuffManager : MonoBehaviour
     List<int> test = new List<int>();
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.A))
         {
             ReflashAllBuffData();
@@ -45,6 +46,7 @@ public class BuffManager : MonoBehaviour
             DisableBuff(test[0]);
             test.RemoveAt(0);
         }
+        */
     }
 
     /// <summary>

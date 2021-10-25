@@ -82,11 +82,6 @@ public class BattleDataManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            EvaluateGameResult(true);
-        }
-
         if (!GameManager.instance.CheckIfGameRunning())
         {
             return;

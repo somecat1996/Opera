@@ -79,6 +79,7 @@ public class CardManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        /*
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(test, 1);
 
@@ -101,12 +102,13 @@ public class CardManager : MonoBehaviour
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(Camera.main.gameObject.transform.position, hit.point);
         }
-
+        */
 
     }
 
     void Update()
     {
+        /*
         // 测试用 查看技能影响距离范围
         if (true)
         {
@@ -123,6 +125,7 @@ public class CardManager : MonoBehaviour
                 }
             }
         }
+
 
         // 测试用 生成战斗画面卡牌
         if (Input.GetMouseButtonDown(1))
@@ -143,6 +146,7 @@ public class CardManager : MonoBehaviour
             //LockCards(1);
             DiscardCardRandomly(2);
         }
+        */
     }
 
     private void OnDisable()
