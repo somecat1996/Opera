@@ -440,7 +440,7 @@ public class GUIManager : MonoBehaviour
             ani_Curtain.Play("Curtain_Close");
         }
         else
-        {
+        { 
             if (_fun != null)
                 curtain.SetCallbackFun_Open(_fun);
             ani_Curtain.Play("Curtain_Open");
