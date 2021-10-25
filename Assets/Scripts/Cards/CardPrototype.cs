@@ -79,7 +79,7 @@ public class CardPrototype : MonoBehaviour
         {
             // 当选择时 将卡牌置顶
             originIndex = transform.GetSiblingIndex();
-            transform.SetSiblingIndex(CardManager.instance.layoutGroup.transform.childCount - 1);
+            //transform.SetSiblingIndex(CardManager.instance.layoutGroup.transform.childCount - 1);
 
             //transform.localScale = scale_Selected;
             transform.DOScale(scale_Selected, scaleTime);
@@ -94,7 +94,7 @@ public class CardPrototype : MonoBehaviour
         else
         {
             // 放弃选择时 当前下标设置成选择之前的状态
-            transform.SetSiblingIndex(originIndex);
+            //transform.SetSiblingIndex(originIndex);
 
             transform.DOScale(Vector3.one, scaleTime);
             GUIManager.instance.DisableCardDesc();

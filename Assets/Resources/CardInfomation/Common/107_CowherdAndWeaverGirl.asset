@@ -17,9 +17,11 @@ MonoBehaviour:
   description: "\u968F\u673A\u590D\u5236\u5E76\u4F7F\u7528\u4E00\u5F20\u4F60\u643A\u5E26\u7684\u5267\u60C5\u5361"
   story: 
   illustration: {fileID: 21300000, guid: 837511eb1bd79974fab43fb619deb636, type: 3}
+  animationID: -1
+  sound: {fileID: 0}
   rarity: 4
-  cardTag: 6
-  cardType: 0
+  cardTag: 10
+  cardType: 2
   belongner: -1
   mainValue_Origin: 0
   cost: 0

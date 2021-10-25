@@ -46,6 +46,9 @@ public class Buff_Cheat : BuffPrototype
                     }
                 }
 
+                // 排除手上的卡牌
+                tempList.Remove(BattleDataManager.instance.selectingCard);
+
                 // 确定剩余减费卡牌数量
                 if(tempList.Count == 0)
                 {

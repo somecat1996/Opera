@@ -10,7 +10,7 @@ public class PlayerData : ScriptableObject
 
     public void Initialize()
     {
-        money = 0;
+        money = 100;
         firstTimeRunning = false;
     }
 }

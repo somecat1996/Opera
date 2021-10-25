@@ -44,6 +44,7 @@ public class GUIManager : MonoBehaviour
     public TextMeshProUGUI cardDetail_Text_Story;
 
     public GameObject cardDetail_Label_Max;
+    public TextMeshProUGUI cardDetail_Text_Tag;
 
     [Header("Other Objects")]
     public List<TextMeshProUGUI> text_Money = new List<TextMeshProUGUI>();
@@ -185,6 +186,8 @@ public class GUIManager : MonoBehaviour
 
         cardDetail_Cost.text = _lcs.text_Cost.text;
 
+        cardDetail_Text_Tag.text = CardTag.TagToString(_lcs.cardInfo.cardTag);
+
         if (_lcs.cardInfo.level == CardManager.instance.cardCommonData.max_Level)
         {
             cardDetail_Label_Max.gameObject.SetActive(true);
@@ -229,6 +232,8 @@ public class GUIManager : MonoBehaviour
 
         cardDetail_Text_Description.text = _lcs.cardInfo.GetDesc();
         cardDetail_Text_Story.text = _lcs.cardInfo.story;
+
+
     }
 
     public void UpgradeCard()

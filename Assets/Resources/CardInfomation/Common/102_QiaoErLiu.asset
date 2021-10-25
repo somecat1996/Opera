@@ -22,8 +22,8 @@ MonoBehaviour:
   animationID: -1
   sound: {fileID: 0}
   rarity: 4
-  cardTag: 6
-  cardType: 0
+  cardTag: 10
+  cardType: 2
   belongner: -1
   mainValue_Origin: 0.5
   cost: 0

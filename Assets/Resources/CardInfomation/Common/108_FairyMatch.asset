@@ -18,9 +18,11 @@ MonoBehaviour:
     <color=#20B2AA>#MainValue</color> \u70B9\u5FC3\u6D41\u503C"
   story: 
   illustration: {fileID: 21300000, guid: 54abf0c2f153bf04faf7d1fb9679cd2b, type: 3}
+  animationID: -1
+  sound: {fileID: 0}
   rarity: 4
-  cardTag: 6
-  cardType: 0
+  cardTag: 10
+  cardType: 2
   belongner: -1
   mainValue_Origin: 5
   cost: 0
