@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     public bool test = false;
     public float testDamage = 500;
     public int testPosition = 4;
+    public bool lockLevel = false;
     public int testLevel = 0;
     [Header("Configuration")]
     public static EnemyManager instance;
@@ -87,7 +88,7 @@ public class EnemyManager : MonoBehaviour
     {
         /// test
         /// GameManager.instance.SetStartGame(true);
-        if (test)
+        if (lockLevel)
             bossIndex = testLevel;
 
         difficulty = difficultyIndex;

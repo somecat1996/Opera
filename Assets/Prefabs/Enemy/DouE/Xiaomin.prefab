@@ -93,7 +93,7 @@ MonoBehaviour:
   position: 0
   reduceCoolingTime: 10
   reduceTime: 3
-  reduceRate: 0.02
+  reduceRate: 0.1
 --- !u!1001 &954936079818163690
 PrefabInstance:
   m_ObjectHideFlags: 0
