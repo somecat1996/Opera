@@ -451,12 +451,14 @@ public class BattleDataManager : MonoBehaviour
     /// <param name="_v"></param>
     public void UpdateStage(int _v)
     {
+        cur_Stage = _v;
+
         // 开头不进行结算
-        if (cur_Stage == 0)
+        if (cur_Stage <= 1)
         {
-            cur_Stage = _v; ;
             return;
         }
+
 
         AudioManager.instance.SetTurnDownBGM(true);
         GameManager.instance.SetPauseGame(true);
@@ -603,7 +605,7 @@ public class BattleDataManager : MonoBehaviour
         }
 
         // 更新阶段数
-        cur_Stage++;
+        //cur_Stage++;
 
         // 重置阶段计时器
         timer_LastStage = 0;
