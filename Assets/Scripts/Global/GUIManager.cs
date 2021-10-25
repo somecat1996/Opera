@@ -125,7 +125,7 @@ public class GUIManager : MonoBehaviour
     /// 修改BOSS血条 传入百分值
     /// </summary>
     /// <param name="_percentage">百分比</param>
-/// <param name="_v">具体值</param>
+    /// <param name="_v">具体值</param>
     public void UpdateBossHealthPoint(float _percentage,float _v)
     {
         DOTween.To(() => boss_HealthPoint.fillAmount, x => boss_HealthPoint.fillAmount = x, _percentage, 0.25f);

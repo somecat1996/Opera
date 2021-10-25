@@ -159,7 +159,7 @@ public class PlayerManager : MonoBehaviour
         // 通知GUI关闭无关UI且显示关卡信息,重置Boss血条 修改Boss头像
         GUIManager.instance.DisableAllGUI();
         GUIManager.instance.SpawnLevelName(levelInfo[cur_BossIndex].levelName);
-        GUIManager.instance.UpdateBossHealthPoint(1);
+        //GUIManager.instance.UpdateBossHealthPoint(1);
         GUIManager.instance.SetBossIcon(bossIcon[cur_BossIndex]);
 
         /*
@@ -397,7 +397,7 @@ public class PlayerManager : MonoBehaviour
         // 通知GUI关闭无关UI且显示关卡信息,重置Boss血条
         GUIManager.instance.DisableAllGUI();
         GUIManager.instance.SpawnLevelName(levelInfo[cur_LevelIndex].levelName);
-        GUIManager.instance.UpdateBossHealthPoint(1);
+        //GUIManager.instance.UpdateBossHealthPoint(1);
 
         // Buff相关
         BuffManager.instance.DiableAllBuff(); // 清空BUFF
