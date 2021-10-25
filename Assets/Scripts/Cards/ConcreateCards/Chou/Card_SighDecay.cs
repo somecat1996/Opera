@@ -67,7 +67,7 @@ public class Card_SighDecay : CardPrototype,ICardOperation,ICardEffectTrigger
             OnDisable();
         }
 
-        EffectsManager.instance.CreateEffectFollowPlayer(17, cardInfo.mainValue_Cur, Vector3.zero);
+        EffectsManager.instance.CreateEffectFollowPlayer(17, cardInfo.mainValue_Cur, new Vector3(0, 0, 2));
         PlayAnimationAndSound();
         GlobalValue.poisonAttack = true;
         activated = true;
