@@ -423,14 +423,15 @@ public class BattleDataManager : MonoBehaviour
 
 
     /// <summary>
-    /// 更新BOSS百分比血量
+    /// 更新BOSS血量
     /// </summary>
-    /// <param name=""></param>
-    public void UpdateBossHP(float _percentage)
+    /// <param name="_percentage">百分比</param>
+    /// <param name="_v">血量</param>
+    public void UpdateBossHP(float _percentage,float _v)
     {
         cur_bossHP_Pencentage = _percentage;
         cur_bossHP_Pencentage = Mathf.Clamp(cur_bossHP_Pencentage, 0, Mathf.Infinity);
-        GUIManager.instance.UpdateBossHealthPoint(cur_bossHP_Pencentage);
+        GUIManager.instance.UpdateBossHealthPoint(cur_bossHP_Pencentage,_v);
     }
 
     /// <summary>
