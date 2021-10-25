@@ -78,6 +78,11 @@ public class LevelSelector : MonoBehaviour
     /// </summary>
     public void Confirm()
     {
+        GUIManager.instance.DisplayCurtain(confirm);
+
+    }
+    void confirm()
+    {
         PlayerManager.instance.SpawnLevelIndexList();
     }
 

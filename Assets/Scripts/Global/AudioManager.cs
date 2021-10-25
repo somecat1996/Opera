@@ -175,4 +175,9 @@ public class AudioManager : MonoBehaviour
     {
         PlaySound(sound_ReleaseCard);
     }
+
+    public void MuteBGM()
+    {
+        audio_BGM.mute = !audio_BGM.mute;
+    }
 }

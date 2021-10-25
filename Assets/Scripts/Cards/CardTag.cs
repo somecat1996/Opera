@@ -31,11 +31,11 @@ public static class CardTag
         {
             case Type.Magic:
                 {
-                    return "魔法卡";
+                    return "魔 法 卡";
                 }
             case Type.Physics:
                 {
-                    return "物理卡";
+                    return "物 理 卡";
                 }
             case Type.None:
             default:
@@ -51,48 +51,48 @@ public static class CardTag
         {
             case Tag.Aoe:
                 {
-                    return "群伤";
+                    return "群 伤";
                 }
             case Tag.Soe:
                 {
-                    return "点伤";
+                    return "点 伤";
                 }
             case Tag.Heal:
                 {
-                    return "回复";
+                    return "回 复";
                 }
             case Tag.Control:
                 {
-                    return "控制";
+                    return "控 制";
                 }
             case Tag.Burst:
                 {
-                    return "爆发";
+                    return "爆 发";
                 }
             case Tag.Buff:
                 {
-                    return "增益";
+                    return "增 益";
                 }
             case Tag.Shield:
                 {
-                    return "护盾";
+                    return "护 盾";
                 }
             case Tag.Rd:
                 {
-                    return "减伤";
+                    return "减 伤";
                 }
             case Tag.Posion:
                 {
-                    return "毒伤";
+                    return "毒 伤";
                 }
             case Tag.Common:
                 {
-                    return "剧情卡";
+                    return "剧 情 卡";
                 }
             case Tag.None:
             default:
                 {
-                    return "玄学卡";
+                    return "玄 学 卡";
                 }
         }
     }

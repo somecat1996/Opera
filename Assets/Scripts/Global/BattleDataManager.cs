@@ -320,7 +320,13 @@ public class BattleDataManager : MonoBehaviour
         {
             evaluateGameResult();
         }
-
+    }
+    /// <summary>
+    /// Ç¿ÖÆÊ§°Ü
+    /// </summary>
+    public void ForceDefeated()
+    {
+        EvaluateGameResult(false, true);
     }
     void evaluateGameResult()
     {
