@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eceecb617d9d087489d929c3b05ce1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20000
+  maxHealth: 10000
   offsetPos: {x: 0, y: 0, z: 0}
   healthBarPrefab: {fileID: 310540403340889664, guid: d94984638706c984598c526fe5ad9028, type: 3}
   damageTextPrefab: {fileID: 5041588555292593268, guid: e7da3f62a57a9104c903724e1e0103df, type: 3}
@@ -100,7 +100,7 @@ MonoBehaviour:
   bananaAttackTime: 10
   bananaAttackDamage: 33
   shieldTime: 30
-  shieldValue: 400
+  shieldValue: 200
   shieldSound: {fileID: 8300000, guid: a1ef887a4164b2240a3189369e75734c, type: 3}
   thunderAttackTime: 15
   thunderTickTime: 0.5

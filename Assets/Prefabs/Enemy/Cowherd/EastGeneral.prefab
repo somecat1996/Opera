@@ -94,7 +94,7 @@ MonoBehaviour:
   position: 0
   damage: 10
   attackTime: 5
-  healTime: 2
+  healTime: 1
   healing: 50
 --- !u!114 &1764773919928154437
 MonoBehaviour:
