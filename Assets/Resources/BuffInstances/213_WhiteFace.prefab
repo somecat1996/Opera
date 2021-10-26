@@ -51,4 +51,4 @@ MonoBehaviour:
   counter_Origin: 100
   counter: 0
   totalDamage: 0
-  hpIncrement: 1
+  hpIncrement: 3

@@ -268,6 +268,8 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
             voodooCoolingTimer = voodoocoolingTime;
             voodooTimer = voodooTime;
             voodooHurt = 0;
+
+            EffectsManager.instance.CreateEffectFollow(20, voodooTime, transform, Vector3.zero);
         }
     }
 

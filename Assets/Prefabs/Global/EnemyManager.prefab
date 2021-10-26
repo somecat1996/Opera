@@ -78,6 +78,7 @@ MonoBehaviour:
   test: 0
   testDamage: 500
   testPosition: 4
+  lockLevel: 0
   testLevel: 0
   generationPoint:
   - {fileID: 4587633646745735710}
@@ -99,38 +100,38 @@ MonoBehaviour:
   - {fileID: 7049907831289417314, guid: 0914c85ec05eb2447aacc9cee9fe3e7b, type: 3}
   - {fileID: 7049907831289417314, guid: 12cc7c854e94da34a9d88fa73e6eea84, type: 3}
   enemyHealthCoefficientLevel1:
-  - 0.6
-  - 0.8
+  - 0.5
+  - 0.7
   - 1
   - 1.4
   - 1.8
   enemyHealthCoefficientLevel2:
-  - 0.7
-  - 0.9
+  - 0.6
+  - 0.8
   - 1.2
   - 1.6
   - 2
   enemyHealthCoefficientLevel3:
-  - 0.8
-  - 1
+  - 0.7
+  - 0.9
   - 1.4
   - 1.8
   - 2.2
   enemyAttackCoefficientLevel1:
+  - 0.9
   - 1
-  - 1.05
   - 1.1
   - 1.15
   - 1.2
   enemyAttackCoefficientLevel2:
+  - 0.95
   - 1.05
-  - 1.1
   - 1.15
   - 1.2
   - 1.25
   enemyAttackCoefficientLevel3:
+  - 1
   - 1.1
-  - 1.15
   - 1.2
   - 1.25
   - 1.3
