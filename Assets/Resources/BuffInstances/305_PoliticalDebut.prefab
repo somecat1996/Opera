@@ -44,17 +44,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffInfo: {fileID: 11400000, guid: d9bd7733fb8773c4d83d64b465c875ff, type: 2}
-  replaceText: 
+  replaceValue: 0
   activated: 0
+  buffGUIicon: {fileID: 0}
+  buffGUIScript: {fileID: 0}
   counter: 0
   decrement: 1
   probabilityDict:
   - probability: 0.5
     increment: 2
-  - probability: 0.3
+  - probability: 0.8
     increment: 3
-  - probability: 0.15
+  - probability: 0.95
     increment: 4
-  - probability: 0.05
+  - probability: 1
     increment: 9
   lastUsesdCard: {fileID: 0}

@@ -39,7 +39,7 @@ public class Buff_PoliticalDebut : BuffPrototype
 
                 float random = Random.Range(0, 1f);
 
-                if(random >= 0 && random < (probabilityDict[0].probability - 3*GlobalValue.probabilityIncrement_Event))
+                if (random >= 0 && random < (probabilityDict[0].probability - 3*GlobalValue.probabilityIncrement_Event))
                 {
                     PlayerManager.instance.ChangePowerPoint(probabilityDict[0].increment);
                     Debug.Log("»Ø¸´ " + probabilityDict[0].increment);
@@ -54,7 +54,7 @@ public class Buff_PoliticalDebut : BuffPrototype
                     PlayerManager.instance.ChangePowerPoint(probabilityDict[2].increment);
                     Debug.Log("»Ø¸´ " + probabilityDict[2].increment);
                 }
-                else if (random >= probabilityDict[2].probability + GlobalValue.probabilityIncrement_Event && random < probabilityDict[3].probability + GlobalValue.probabilityIncrement_Event)
+                else if (random >= probabilityDict[2].probability + GlobalValue.probabilityIncrement_Event && random <= probabilityDict[3].probability + GlobalValue.probabilityIncrement_Event)
                 {
                     PlayerManager.instance.ChangePowerPoint(probabilityDict[3].increment);
                     Debug.Log("»Ø¸´ " + probabilityDict[3].increment);
