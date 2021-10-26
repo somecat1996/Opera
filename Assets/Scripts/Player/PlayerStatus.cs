@@ -123,12 +123,6 @@ public class PlayerStatus : GameObjectBase
             shield = 0;
         }
 
-        if (GlobalValue.poisonAttack)
-            Poisoning();
-
-        if (voodooTimer > 0)
-            voodooHurt += trueDamage;
-
         healthBarManager.UpdateHealth(curHealth / maxHealth);
         if (shieldScript && shield <= 0)
         {
