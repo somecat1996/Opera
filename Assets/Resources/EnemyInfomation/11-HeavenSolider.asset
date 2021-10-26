@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c69409d83a069478528e8c5491071a, type: 3}
+  m_Name: 11-HeavenSolider
+  m_EditorClassIdentifier: 
+  enemyName: "\u5341\u4E07\u5929\u5175"
+  description: "\u7531\u738B\u6BCD\u53EC\u5524\uFF0C\u6BCF\u4E2A\u5929\u5175\u6BCF\u79D2\u6263\u9664
+    0.01 \u5FC3\u6D41\u503C\uFF0C 3 \u79D2\u590D\u6D3B"
+  illus: {fileID: 21300000, guid: 093ddf899d080b04186a2474c27ba5b7, type: 3}

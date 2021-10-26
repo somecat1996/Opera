@@ -239,11 +239,13 @@ public class WesternQueen : EnemyStatus, BossInterface
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)
         {
             BattleDataManager.instance.UpdateStage(2);
+            currentStage = 2;
             Curtain.instance.SetCallbackFun_Open(Stage2Start);
         }
         if (curHealth <= stage3Start * maxHealth && currentStage == 2)
         {
             BattleDataManager.instance.UpdateStage(3);
+            currentStage = 3;
             Curtain.instance.SetCallbackFun_Open(Stage3Start);
         }
     }
@@ -264,14 +266,12 @@ public class WesternQueen : EnemyStatus, BossInterface
 
     private void Stage2Start()
     {
-        currentStage = 2;
         Speak(stage1To2Line);
         SummonCow();
     }
 
     private void Stage3Start()
     {
-        currentStage = 3;
         Speak(stage2To3Line);
         CowChange();
         SummonSolider();

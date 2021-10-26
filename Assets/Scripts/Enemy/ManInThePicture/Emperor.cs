@@ -148,25 +148,25 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
         if (curHealth <= stage2Start * maxHealth && currentStage == 1)
         {
             BattleDataManager.instance.UpdateStage(2);
+            currentStage = 2;
             Curtain.instance.SetCallbackFun_Open(Stage2Start);
         }
         if (curHealth <= stage3Start * maxHealth && currentStage == 2)
         {
             BattleDataManager.instance.UpdateStage(3);
+            currentStage = 3;
             Curtain.instance.SetCallbackFun_Open(Stage3Start);
         }
     }
 
     private void Stage2Start()
     {
-        currentStage = 2;
         SummonPicture();
         Speak(stage1To2Line);
     }
 
     private void Stage3Start()
     {
-        currentStage = 3;
         PictureChange();
         EnemyManager.instance.RemoveMinions();
         Speak(stage2To3Line);
