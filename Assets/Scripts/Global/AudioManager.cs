@@ -179,5 +179,7 @@ public class AudioManager : MonoBehaviour
     public void MuteBGM()
     {
         audio_BGM.mute = !audio_BGM.mute;
+        foreach (AudioSource s in audio_SE)
+            s.mute = !s.mute;
     }
 }

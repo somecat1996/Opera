@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9c69409d83a069478528e8c5491071a, type: 3}
-  m_Name: 5-Xiaomin
+  m_Name: 05-Xiaomin
   m_EditorClassIdentifier: 
   enemyName: "\u5E02\u4E95\u5C0F\u6C11"
   description: "\u73A9\u5BB6\u968F\u673A\u79FB\u52A8\u5230\u3010\u810F\u6C34\u3011\u533A\u57DF\u65F6\u53EC\u5524\uFF0C\u6BCF

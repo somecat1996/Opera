@@ -64,7 +64,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
     // 中毒结算时间
     public int poisonDamageTime = 1;
 
-    protected float curHealth;
+    public float curHealth;
     protected HealthBarManager healthBarManager;
     // 中毒持续时间计时器
     protected float poisonTotalTimer;

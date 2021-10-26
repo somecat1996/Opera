@@ -111,7 +111,7 @@ MonoBehaviour:
   pushPosition: {x: -4.1, y: 0.79, z: -1.91}
   pushDamage: 13
   pushTime: 10
-  stage3TimeLimit: 45
+  stage3TimeLimit: 35
   lineTextPrefab: {fileID: 3921916031245853504, guid: 7af6adbf22fe4044d8adbad4008c9957, type: 3}
   speakTime: 20
   stage1Lines:

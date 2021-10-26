@@ -65,6 +65,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     public GameObject doutianzhang;
     public Vector3 offset;
+    private GameObject dou;
 
     // ñ¼¶ðÔ©½Ó¿Ú
     private bool countHurt;
@@ -219,7 +220,7 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
         {
             stage3TimeLimit -= Time.deltaTime;
             if (stage3TimeLimit <= 0)
-                Instantiate(doutianzhang, pushPosition + offset, Quaternion.identity);
+                dou = Instantiate(doutianzhang, pushPosition + offset, Quaternion.identity);
         }
     }
 
@@ -330,16 +331,16 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
     public override void Die()
     {
         //animator.SetTrigger("Die");
-        if (medicine)
-            Destroy(medicine.gameObject);
         EnemyManager.instance.FinishLevel(true);
-        base.Die();
+        Kill();
     }
 
     public override void Kill()
     {
         if (medicine)
             Destroy(medicine.gameObject);
+        if (dou)
+            Destroy(dou);
         base.Die();
     }
 

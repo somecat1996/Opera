@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9c69409d83a069478528e8c5491071a, type: 3}
-  m_Name: 3-Donkey
+  m_Name: 03-Donkey
   m_EditorClassIdentifier: 
   enemyName: "\u5F20\u9A74\u513F"
   description: "\u4E00\u9636\u6BB5\uFF1A\n\t\u95F4\u63A5\u6027\u6263\u9664\u3010\u6C1B\u56F4\u503C\u3011\r\n\t\u968F\u673A\u6295\u63B7\u3010\u9999\u8549\u76AE\u3011\uFF08\u8E29\u5230\u6263\u9664
