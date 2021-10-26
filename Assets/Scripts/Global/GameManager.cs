@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
             InitializeAllData();
             GUIManager.instance.SetActivePanelTitle(false);
             GUIManager.instance.ReturnToMainUI();
+            GUIManager.instance.LockButton_Continue(false);
         }
         // �д浵
         else
