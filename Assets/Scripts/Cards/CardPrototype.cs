@@ -116,12 +116,12 @@ public class CardPrototype : MonoBehaviour
 
         }
 
-        if (fadeOut)
-        {
+        //if (fadeOut)
+        //{
             SetFadeOutAndShowRange(false);
             SetFadeOutAndShowTargetMarker(false);
             SetFadeOutAndShowDirectionPointer(false);
-        }
+        //}
     }
 
     /// <summary>
