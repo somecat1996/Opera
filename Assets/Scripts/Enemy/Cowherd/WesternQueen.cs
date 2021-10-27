@@ -444,19 +444,21 @@ public class WesternQueen : EnemyStatus, BossInterface
 
     public override void Die()
     {
-        //animator.SetTrigger("Die");
-        if (cow)
-            Destroy(cow.gameObject);
         EnemyManager.instance.FinishLevel(true);
-        foreach (GameObject tmp in effects)
-            tmp.GetComponent<EffectFollow>().DestoryObject();
-        base.Die();
+        Kill();
     }
 
     public override void Kill()
     {
+        if (shieldScript)
+        {
+            shieldScript.DestoryObject();
+            shieldScript = null;
+        }
         if (cow)
             Destroy(cow.gameObject);
+        foreach (GameObject tmp in effects)
+            tmp.GetComponent<EffectFollow>().DestoryObject();
         base.Die();
     }
 

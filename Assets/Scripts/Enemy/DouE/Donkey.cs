@@ -337,6 +337,11 @@ public class Donkey : EnemyStatus, SummonEnemy, BossInterface
 
     public override void Kill()
     {
+        if (shieldScript)
+        {
+            shieldScript.DestoryObject();
+            shieldScript = null;
+        }
         if (medicine)
             Destroy(medicine.gameObject);
         if (dou)

@@ -318,15 +318,17 @@ public class Emperor : EnemyStatus, SummonEnemy, BossInterface
 
     public override void Die()
     {
-        animator.SetTrigger("Die");
-        if (picture)
-            Destroy(picture.gameObject);
         EnemyManager.instance.FinishLevel(true);
-        base.Die();
+        Kill();
     }
 
     public override void Kill()
     {
+        if (shieldScript)
+        {
+            shieldScript.DestoryObject();
+            shieldScript = null;
+        }
         animator.SetTrigger("Die");
         if (picture)
             Destroy(picture.gameObject);

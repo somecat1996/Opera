@@ -192,7 +192,29 @@ public class PlayerManager : MonoBehaviour
     }
     void restartLevel()
     {
-        EnterLevel(true);
+        //EnterLevel(true);
+
+        BuffManager.instance.DiableAllBuff();
+        EnableCharBuff();
+        // 重设关卡序列
+        ResetLevelIndex();
+
+        // 重新生成 boss序列
+        List<int> tempList = new List<int>();
+        foreach (var i in levelInfo.Values)
+        {
+            tempList.Add(i.id);
+        }
+
+        bossIndexQueue.Clear();
+        while (tempList.Count != 0)
+        {
+            int index = Random.Range(0, tempList.Count);
+            bossIndexQueue.Add(tempList[index]);
+            tempList.RemoveAt(index);
+        }
+
+        EnterLevel();
     }
     /// <summary>
     /// 进入下一关卡
