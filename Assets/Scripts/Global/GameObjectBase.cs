@@ -502,7 +502,7 @@ public class GameObjectBase : MonoBehaviour, GameObjectInterface
                 voodooTimer -= Time.deltaTime;
                 if (voodooTimer <= 0)
                 {
-                    Hurt(voodooHurt);
+                    Hurt(voodooHurt * 0.8f);
                     voodooTimer = 0;
                 }
             }
