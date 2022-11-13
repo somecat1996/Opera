@@ -6,8 +6,8 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u5446\u6EDEjpg(\u4E5F\u8BB8\u662F\u88AB\u63A7\u4E86\u5427\uFF09"
-  serializedVersion: 6
+  m_Name: "\u5446\u6EDEjpg(\u4E5F\u8BB8\u662F\u88AB\u63A7\u4E86\u5427\uFF09.anim"
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1

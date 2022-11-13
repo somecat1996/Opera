@@ -6,8 +6,8 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u5B9D\u5251\u6362\u9999\u8549\u3002\u3002\u3002"
-  serializedVersion: 6
+  m_Name: "\u5B9D\u5251\u6362\u9999\u8549\u3002\u3002\u3002.anim"
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
