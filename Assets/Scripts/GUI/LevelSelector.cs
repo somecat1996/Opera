@@ -14,6 +14,8 @@ using TMPro;
  */
 public class LevelSelector : MonoBehaviour
 {
+
+    public static LevelSelector instance;
     List<GameObject> buttonList = new List<GameObject>();
 
     [Header("Configuration")]
@@ -32,6 +34,7 @@ public class LevelSelector : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).gameObject.active)

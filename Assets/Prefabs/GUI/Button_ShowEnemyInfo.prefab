@@ -28,13 +28,14 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3980276725009768814}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000024795532}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3980276724034633409
@@ -67,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u5927\u529B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 57494f42007ef5e4db44b7fd4958a582, type: 2}
-  m_sharedMaterial: {fileID: -2783429474139669785, guid: 57494f42007ef5e4db44b7fd4958a582, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 838a00cdf2aedce4a93b7f27a5d7ec51, type: 2}
+  m_sharedMaterial: {fileID: -8317399401745830101, guid: 838a00cdf2aedce4a93b7f27a5d7ec51, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -164,6 +165,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3980276724034633411}
   m_Father: {fileID: 0}
@@ -171,8 +173,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 61.835, y: -25}
-  m_SizeDelta: {x: 110, y: 30}
+  m_AnchoredPosition: {x: 61.83499, y: -23.9076}
+  m_SizeDelta: {x: 110, y: 32.1848}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3980276725009768813
 CanvasRenderer:
@@ -202,7 +204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dcf5c9908985ebc40b2033b528124cb9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72fc6f7e089c2ad4aa424bb4f5053484, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

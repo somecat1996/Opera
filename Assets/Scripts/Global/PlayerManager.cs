@@ -112,7 +112,8 @@ public class PlayerManager : MonoBehaviour
         List<int> tempList = new List<int>();
         foreach(var i in levelInfo.Values)
         {
-            tempList.Add(i.id);
+            if (LevelSelector.instance.currentIndex <= i.id)
+                tempList.Add(i.id);
         }
 
         bossIndexQueue.Clear();

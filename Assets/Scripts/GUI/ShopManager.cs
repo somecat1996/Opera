@@ -81,7 +81,7 @@ public class ShopManager : MonoBehaviour
 
         panel_ItemDetail.SetActive(false);
 
-        itemCardInfo = CardManager.instance.GetCardsRandomly(5);
+        itemCardInfo = CardManager.instance.GetCardsRandomly(8);
 
         for(int i = 0; i < setter_Item.Count; i++)  
         {
