@@ -174,18 +174,18 @@ public class GUIManager : MonoBehaviour
         go.GetComponent<ListCardSetter>().SetCardInfo(_cardInfo);
 
         // *****未知组件启用BUG 暂时解决方法*****
-        foreach(var i in cardList.GetComponentsInChildren<Image>())
-        {
-            i.enabled = true;
-        }
-        foreach (var i in cardList.GetComponentsInChildren<Button>())
-        {
-            i.enabled = true;
-        }
-        foreach (var i in cardList.GetComponentsInChildren<TextMeshProUGUI>())
-        {
-            i.enabled = true;
-        }
+        //foreach(var i in cardList.GetComponentsInChildren<Image>())
+        //{
+        //    i.enabled = true;
+        //}
+        //foreach (var i in cardList.GetComponentsInChildren<Button>())
+        //{
+        //    i.enabled = true;
+        //}
+        //foreach (var i in cardList.GetComponentsInChildren<TextMeshProUGUI>())
+        //{
+        //    i.enabled = true;
+        //}
     }
     
     // 展示卡牌细节 将列表卡牌数据存储至细节画面对象中

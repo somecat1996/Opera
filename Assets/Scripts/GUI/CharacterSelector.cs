@@ -78,14 +78,14 @@ public class CharacterSelector : MonoBehaviour
         charName.text = charInfo[_id].charName;
         charStory.text = charInfo[_id].story;
         selectedId = _id;
-
+        characterIcon.sprite = charInfo[selectedId].icon;
     }
 
     /// <summary>
     /// 显示所选角色的被动效果
     /// </summary>
     /// <param name="_index">被动的下标</param>
-    public void DisplayBuffInfo(int _index = 0)
+    public void DisplayBuffInfo(int _index = 1)
     {
         int buffID = charInfo[selectedId].buffID[_index];
         selectedBuffIndex = _index;
@@ -115,6 +115,7 @@ public class CharacterSelector : MonoBehaviour
     /// </summary>
     public void ConfirmCharacter()
     {
+        Debug.Log(selectedId);
         characterIcon.sprite = charInfo[selectedId].icon;
 
         if(charInfo[selectedId].charTag != PlayerManager.instance.cur_Character)
