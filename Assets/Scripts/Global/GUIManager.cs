@@ -493,7 +493,7 @@ public class GUIManager : MonoBehaviour
     public void ReturnToMainUI()
     {
         DisableAllGUI();
-        panel_MainUI.SetActive(true);
+        // panel_MainUI.SetActive(true);
     }
 
     /// <summary>

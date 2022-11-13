@@ -25,13 +25,20 @@ public class LevelSelector : MonoBehaviour
     [Header("Real-Time Data")]
     public int currentIndex = 0;
     private bool enable = true;
+    private int childCount = 0;
+
+    public Image background;
 
 
     private void Awake()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            buttonList.Add(transform.GetChild(i).gameObject);
+            if (transform.GetChild(i).gameObject.active)
+            {
+                buttonList.Add(transform.GetChild(i).gameObject);
+                childCount++;
+            }
         }
 
         InitializeAllButton();
@@ -54,15 +61,17 @@ public class LevelSelector : MonoBehaviour
 
     public void InitializeAllButton()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < childCount; i++)
         {
             if(currentIndex == i)
             {
                 buttonList[i].GetComponent<RectTransform>().localScale = maxScale;
+                buttonList[i].SetActive(true);
             }
             else
             {
                 buttonList[i].GetComponent<Image>().color = color_Disable;
+                buttonList[i].SetActive(false);
 
                 foreach (var j in buttonList[i].transform.GetComponentsInChildren<Image>())
                 {
@@ -94,7 +103,7 @@ public class LevelSelector : MonoBehaviour
         currentIndex--;
         PlayerManager.instance.cur_Difficity = currentIndex;
 
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < childCount; i++)
         {
             RectTransform rect = buttonList[i].GetComponent<RectTransform>();
             Image image = buttonList[i].GetComponent<Image>();
@@ -107,6 +116,8 @@ public class LevelSelector : MonoBehaviour
             {
                 rect.transform.DOScale(maxScale, speed);
                 image.DOColor(Color.white,speed);
+                buttonList[i].SetActive(true);
+                background.sprite = buttonList[i].GetComponent<LevelIcon>().image;
 
                 foreach (var j in buttonList[i].transform.GetComponentsInChildren<Image>())
                 {
@@ -117,6 +128,7 @@ public class LevelSelector : MonoBehaviour
             {
                 rect.transform.DOScale(Vector3.one, speed);
                 image.DOColor(color_Disable, speed);
+                buttonList[i].SetActive(false);
 
                 foreach (var j in buttonList[i].transform.GetComponentsInChildren<Image>())
                 {
@@ -133,12 +145,12 @@ public class LevelSelector : MonoBehaviour
     // ÓÒÐý
     public void TurnRight()
     {
-        if (currentIndex == transform.childCount-1 || !enable)
+        if (currentIndex == childCount-1 || !enable)
             return;
         currentIndex++;
         PlayerManager.instance.cur_Difficity = currentIndex;
 
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < childCount; i++)
         {
             RectTransform rect = buttonList[i].GetComponent<RectTransform>();
             Image image = buttonList[i].GetComponent<Image>();
@@ -151,6 +163,8 @@ public class LevelSelector : MonoBehaviour
             {
                 rect.transform.DOScale(maxScale, speed);
                 image.DOColor(Color.white, speed);
+                buttonList[i].SetActive(true);
+                background.sprite = buttonList[i].GetComponent<LevelIcon>().image;
 
                 foreach (var j in buttonList[i].transform.GetComponentsInChildren<Image>())
                 {
@@ -161,6 +175,7 @@ public class LevelSelector : MonoBehaviour
             {
                 rect.transform.DOScale(Vector3.one, speed);
                 image.DOColor(color_Disable, speed);
+                buttonList[i].SetActive(false);
 
                 foreach (var j in buttonList[i].transform.GetComponentsInChildren<Image>())
                 {
